@@ -237,6 +237,15 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
          "Description, source et part de valeurs manquantes des variables des tables régionale et nationale."),
         (source / "schema_relations.csv", "architect", "schema-relations-entre-tables",
          "Clés de jointure entre la table d'analyse, les tables de la base et les couches cartographiques."),
+        (source / "metadonnees" / "dictionnaire_bases_modele.csv", "architect", "metadonnees-variables-bases-modele",
+         "Une fiche par variable des bases du modèle : libellé, description, rôle, unité, type, plage ou modalités, "
+         "part manquante, années, mode de calcul, source, limites."),
+        (source / "metadonnees" / "tables_bases_modele.csv", "architect", "metadonnees-tables-bases-modele",
+         "Une ligne par base du modèle : contenu, grain, clé, liens, usage, taille, période."),
+        (source / "metadonnees" / "datapackage.json", "architect", "metadonnees-datapackage-frictionless",
+         "Description des bases du modèle au format standard Frictionless Data Package : schémas, clés, liens."),
+        (source / "metadonnees" / "dictionnaire_bases_modele.html", "architect", "dictionnaire-lisible-bases-modele",
+         "Dictionnaire lisible des bases du modèle (s'ouvre dans un navigateur, imprimable en PDF)."),
         (source / "controles_transformation.csv", "engineer", "controles-transformation",
          "Contrôles : unicité des lignes, cible renseignée, aucune variable venant du futur, variables décrites, "
          "jointure avec la carte de 2025, cohérence des tables régionale et nationale."),

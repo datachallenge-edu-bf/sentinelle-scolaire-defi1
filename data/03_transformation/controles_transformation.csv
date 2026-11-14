@@ -11,3 +11,4 @@ public_plus_prive_egal_total_national;True;écart maximal 0 élève
 taux_achevement_national_2024_2025;True;51.6 % en 2024-2025, valeur citée dans la note d'intention
 contexte_regional_joint_au_panel;True;taux d'achèvement régional renseigné pour 100% des lignes du panel
 variables_regionales_decrites;True;95 variables décrites
+fiches_completes;True;150 variables de 4 tables : libellé, description, unité et source renseignés

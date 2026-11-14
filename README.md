@@ -68,3 +68,16 @@ Le classeur `DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx` es
 ## Éducation non formelle et préscolaire
 
 Les annuaires de l'éducation non formelle (campagnes 2018, 2019, 2020 et 2024) et du préscolaire (2023-2024 et 2024-2025) sont lus par province dans `fait_enf_province` et `fait_prescolaire_province`. La campagne est lue dans l'en-tête des pages : deux fichiers du Data Pack sont identiques (CNS517 et CNS519, campagne 2020) et le second est écarté. Les adolescents de l'éducation non formelle et le taux de préscolarisation de la province entrent dans la table d'analyse.
+
+## Métadonnées des bases du modèle
+
+Les quatre tables d'analyse (`panel_province_annee`, `panel_mensuel_province`, `panel_region_annee`, `serie_nationale_annee`) sont décrites dans `data/03_transformation/metadonnees/`, régénéré à chaque exécution :
+
+| Fichier | Contenu |
+|---|---|
+| `dictionnaire_bases_modele.csv` | Une fiche par variable : libellé, description, rôle, unité, type, plage ou modalités, part manquante, années, mode de calcul, source, limites |
+| `tables_bases_modele.csv` | Une ligne par table : contenu, grain, clé, liens, usage, taille, période |
+| `datapackage.json` | Les mêmes informations au format standard Frictionless Data Package (schémas, clés primaires et étrangères) |
+| `dictionnaire_bases_modele.html` | Version lisible, à ouvrir dans un navigateur ou à imprimer en PDF |
+
+Les libellés, unités, modes de calcul et limites sont rédigés dans `src/sentinelle/transformation/fiche.py` ; le contrôle `fiches_completes` vérifie qu'aucune variable n'en manque.

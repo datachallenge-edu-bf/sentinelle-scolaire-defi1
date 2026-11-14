@@ -4,7 +4,7 @@ province_ancienne_nom;identifiant;Nom de la province;OpenStreetMap (HOT);0.0;201
 region_ancienne_pcode;identifiant;Code de la région (ancien découpage);COD-AB;0.0;2016-2017;2024-2025
 region_ancienne_nom;identifiant;Nom de la région;OpenStreetMap (HOT);0.0;2016-2017;2024-2025
 provinces_actuelles;identifiant;Provinces du découpage de 2025 issues de la province;COD-AB;0.0;2016-2017;2024-2025
-annee_scolaire;identifiant;Année scolaire t;;0.0;2016-2017;2024-2025
+annee_scolaire;identifiant;Année scolaire t;DGESS, annuaires du primaire;0.0;2016-2017;2024-2025
 abandon_brut_suivant;cible (brute);Abandon apparent du cycle CP1-CM1 entre t et t+1, en %;DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
 abandon_precedent;explicative;Abandon entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
 redoublement_precedent;explicative;Redoublement entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
