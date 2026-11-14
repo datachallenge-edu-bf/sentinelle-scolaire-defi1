@@ -16,6 +16,7 @@ import pyogrio
 from .. import config
 from ..indicateurs import effectifs_retenus
 from . import controles, dgess, esu, geographie, metadonnees, pdi
+from .offre import lire_offre
 from .outils import Journal
 
 
@@ -47,6 +48,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     flux = dgess.lire_flux(identifier, journal)
     effectifs = dgess.lire_effectifs(identifier, journal)
     retenus = effectifs_retenus(effectifs)
+    offre = lire_offre(identifier, journal)
 
     # Rapports ESU et déplacés internes.
     esu_provinces, esu_totaux = esu.lire_esu(identifier, journal)
@@ -115,6 +117,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_flux_publie": flux,
         "fait_effectifs_editions": effectifs,
         "fait_effectifs_retenus": retenus,
+        "fait_offre_province": offre,
         "fait_esu_province": esu_provinces,
         "fait_esu_region": esu_regions,
         "fait_pdi_commune": deplaces,

@@ -143,6 +143,9 @@ TABLES_NETTOYAGE = [
     ("fait_effectifs_retenus.csv", "engineer", "effectifs-redoublants-province-classe-sexe-propre",
      "Effectifs et redoublants par province, classe et sexe, une valeur par année (édition la plus récente), "
      "avec l'indicateur de fiabilité de la répartition par sexe."),
+    ("fait_offre_province.csv", "engineer", "ecoles-salles-maitres-eleves-province-2017-2025-propre",
+     "Écoles, salles, groupes pédagogiques, maîtres et élèves par province et statut, avec les élèves par maître "
+     "et par salle."),
     ("fait_effectifs_editions.csv", "engineer", "effectifs-redoublants-toutes-editions",
      "Effectifs et redoublants tels que publiés dans chacune des huit éditions, pour vérifier les révisions."),
     ("fait_esu_province.csv", "engineer", "ecoles-fermees-rouvertes-province-esu-propre",
@@ -198,3 +201,40 @@ def exporter_nettoyage(version: int = 1) -> pd.DataFrame:
         "Relancer : notebooks/02_nettoyage.ipynb, ou python -m sentinelle.nettoyage (avec src dans le PYTHONPATH).",
     ]
     return deposer(2, fichiers, entete, version)
+
+
+def exporter_transformation(version: int = 1) -> pd.DataFrame:
+    """Dépôt de l'étape 03 : table d'analyse, panel mensuel, dictionnaire des variables, schéma des relations."""
+    source = config.DONNEES / "03_transformation"
+    fichiers = [
+        (source / "panel_province_annee.csv", "engineer", "table-analyse-risque-decrochage-province-annee",
+         "Une ligne par province (45) et année scolaire t : cible (abandon entre t et t+1, ou rupture de "
+         "scolarisation) et variables connues en t (passé scolaire, effectifs, offre, déplacés, écoles fermées)."),
+        (source / "panel_mensuel_province.csv", "engineer", "deplaces-ecoles-fermees-province-mensuel",
+         "Déplacés internes par province et par relevé mensuel, avec leurs évolutions, et écoles fermées de la "
+         "région : base de l'alerte entre deux annuaires."),
+        (source / "dictionnaire_variables_modele.csv", "architect", "dictionnaire-variables-table-analyse",
+         "Chaque variable de la table d'analyse : rôle (identifiant, cible, explicative), description, source, "
+         "part de valeurs manquantes, années couvertes."),
+        (source / "schema_relations.csv", "architect", "schema-relations-entre-tables",
+         "Clés de jointure entre la table d'analyse, les tables de la base et les couches cartographiques."),
+        (source / "controles_transformation.csv", "engineer", "controles-transformation",
+         "Contrôles : unicité des lignes, cible renseignée, aucune variable venant du futur, variables décrites, "
+         "jointure avec la carte de 2025."),
+    ]
+    entete = [
+        "DÉPÔT 03 : TRANSFORMATION - Défi 1, cartographie et anticipation du risque de décrochage scolaire",
+        "",
+        "Contenu : tables d'analyse construites à partir de la base nettoyée (dépôt 02).",
+        "La table principale compte une ligne par province (45, ancien découpage) et par année scolaire t,",
+        "de 2016-2017 à 2024-2025. La cible est l'abandon apparent du cycle CP1-CM1 entre t et t+1 ; quand",
+        "les effectifs varient de plus de 30 % entre t et t+1, la ligne est classée en rupture de",
+        "scolarisation (fermetures ou réouvertures massives) et la cible est laissée vide. Les variables",
+        "explicatives ne portent que sur l'année t ou les précédentes.",
+        "",
+        "Les valeurs absentes des sources restent vides. Pour la carte, chaque province de 2025 reçoit",
+        "la valeur de la province dont elle est issue (colonne provinces_actuelles).",
+        "",
+        "Relancer : python -m sentinelle.transformation (avec src dans le PYTHONPATH) ou notebooks/03_transformation.ipynb.",
+    ]
+    return deposer(3, fichiers, entete, version)

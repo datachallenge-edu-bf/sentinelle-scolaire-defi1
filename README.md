@@ -30,6 +30,7 @@ Competition_EducationBurkina/
 |---|---|---|---|
 | 01 Collecte | `sentinelle.collecte` | `notebooks/01_collecte.ipynb` | `data/01_collecte/`, `depots/01-collecte/` |
 | 02 Nettoyage | `sentinelle.nettoyage` | `notebooks/02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02-nettoyage/` |
+| 03 Transformation | `sentinelle.transformation` | `notebooks/03_transformation.ipynb` | `data/03_transformation/` (table d'analyse), `depots/03-transformation/` |
 
 ## Démarrer après un clonage
 
@@ -55,6 +56,7 @@ $env:SENTINELLE_EQUIPE = "E07"     # code équipe utilisé dans le nom des dép�
 $env:PYTHONPATH = "src"
 python -m sentinelle.collecte       # étape 01
 python -m sentinelle.nettoyage      # étape 02
+python -m sentinelle.transformation # étape 03
 ```
 
 Si les données des organisateurs sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.
