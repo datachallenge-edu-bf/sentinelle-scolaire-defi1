@@ -1,0 +1,6 @@
+﻿niveau;fichier;taille_ko;points;nb_entites;geometries_valides;mosaique_valide
+commune;commune.geojson;437.0;13559;351;True;True
+province;province.geojson;132.9;5623;47;True;True
+region;region.geojson;79.1;3635;17;True;True
+province_ancienne;province_ancienne.geojson;126.5;5492;45;True;True
+region_ancienne;region_ancienne.geojson;67.9;3112;13;True;True

@@ -1,0 +1,73 @@
+﻿nom_normalise;pcode;niveau;nom_reference;origine
+BURKINAFASO;BF;pays;BURKINAFASO;libellé du total national
+BURKINA;BF;pays;BURKINA;libellé du total national
+TOTAL;BF;pays;TOTAL;libellé du total national
+ENSEMBLE;BF;pays;ENSEMBLE;libellé du total national
+NATIONAL;BF;pays;NATIONAL;libellé du total national
+TOTALNATIONAL;BF;pays;TOTALNATIONAL;libellé du total national
+KADIOGO;BF1300;province_ancienne;Kadiogo;OpenStreetMap
+BALE;BF4601;province_ancienne;Balé;OpenStreetMap
+LESBALE;BF4601;province_ancienne;LESBALE;variante relevée dans les publications DGESS
+LESBALES;BF4601;province_ancienne;LESBALES;variante relevée dans les publications DGESS
+BALES;BF4601;province_ancienne;BALES;variante relevée dans les publications DGESS
+BANWA;BF4602;province_ancienne;Banwa;OpenStreetMap
+KOSSI;BF4603;province_ancienne;Kossi;OpenStreetMap
+MOUHOUN;BF4604;province_ancienne;Mouhoun;OpenStreetMap
+NAYALA;BF4605;province_ancienne;Nayala;OpenStreetMap
+SOUROU;BF4606;province_ancienne;Sourou;OpenStreetMap
+COMOE;BF4701;province_ancienne;Comoé;OpenStreetMap
+LERABA;BF4702;province_ancienne;Léraba;OpenStreetMap
+BOULGOU;BF4801;province_ancienne;Boulgou;OpenStreetMap
+KOULPELOGO;BF4802;province_ancienne;Koulpélogo;OpenStreetMap
+KOURITTENGA;BF4803;province_ancienne;Kourittenga;OpenStreetMap
+BAM;BF4901;province_ancienne;Bam;OpenStreetMap
+NAMENTENGA;BF4902;province_ancienne;Namentenga;OpenStreetMap
+SANMATENGA;BF4903;province_ancienne;Sanmatenga;OpenStreetMap
+BOULKIEMDE;BF5001;province_ancienne;Boulkiemdé;OpenStreetMap
+SANGUIE;BF5002;province_ancienne;Sanguié;OpenStreetMap
+SISSILI;BF5003;province_ancienne;Sissili;OpenStreetMap
+ZIRO;BF5004;province_ancienne;Ziro;OpenStreetMap
+BAZEGA;BF5101;province_ancienne;Bazèga;OpenStreetMap
+NAHOURI;BF5102;province_ancienne;Nahouri;OpenStreetMap
+ZOUNDWEOGO;BF5103;province_ancienne;Zoundwéogo;OpenStreetMap
+GNAGNA;BF5201;province_ancienne;Gnagna;OpenStreetMap
+GOURMA;BF5202;province_ancienne;Gourma;OpenStreetMap
+KOMANDJARI;BF5203;province_ancienne;Komandjari;OpenStreetMap
+KOMONDJARI;BF5203;province_ancienne;KOMONDJARI;variante relevée dans les publications DGESS
+KOMANDJOARI;BF5203;province_ancienne;KOMANDJOARI;variante relevée dans les publications DGESS
+KOMONDJOARI;BF5203;province_ancienne;KOMONDJOARI;variante relevée dans les publications DGESS
+KOMPIENGA;BF5204;province_ancienne;Kompienga;OpenStreetMap
+TAPOA;BF5205;province_ancienne;Tapoa;OpenStreetMap
+HOUET;BF5301;province_ancienne;Houet;OpenStreetMap
+KENEDOUGOU;BF5302;province_ancienne;Kénédougou;OpenStreetMap
+TUY;BF5303;province_ancienne;Tuy;OpenStreetMap
+LOROUM;BF5401;province_ancienne;Loroum;OpenStreetMap
+PASSORE;BF5402;province_ancienne;Passoré;OpenStreetMap
+YATENGA;BF5403;province_ancienne;Yatenga;OpenStreetMap
+ZONDOMA;BF5404;province_ancienne;Zondoma;OpenStreetMap
+GANZOURGOU;BF5501;province_ancienne;Ganzourgou;OpenStreetMap
+KOURWEOGO;BF5502;province_ancienne;Kourwéogo;OpenStreetMap
+OUBRITENGA;BF5503;province_ancienne;Oubritenga;OpenStreetMap
+OUDALAN;BF5601;province_ancienne;Oudalan;OpenStreetMap
+SENO;BF5602;province_ancienne;Séno;OpenStreetMap
+SOUM;BF5603;province_ancienne;Soum;OpenStreetMap
+YAGHA;BF5604;province_ancienne;Yagha;OpenStreetMap
+BOUGOURIBA;BF5701;province_ancienne;Bougouriba;OpenStreetMap
+IOBA;BF5702;province_ancienne;Ioba;OpenStreetMap
+NOUMBIEL;BF5703;province_ancienne;Noumbiel;OpenStreetMap
+PONI;BF5704;province_ancienne;Poni;OpenStreetMap
+CENTRE;BF13;region_ancienne;Centre;OpenStreetMap
+BOUCLEDUMOUHOUN;BF46;region_ancienne;Boucle du Mouhoun;OpenStreetMap
+CASCADES;BF47;region_ancienne;Cascades;OpenStreetMap
+CASCADE;BF47;region_ancienne;CASCADE;variante relevée dans les publications DGESS
+CENTREEST;BF48;region_ancienne;Centre-Est;OpenStreetMap
+CENTRENORD;BF49;region_ancienne;Centre-Nord;OpenStreetMap
+CENTREOUEST;BF50;region_ancienne;Centre-Ouest;OpenStreetMap
+CENTRESUD;BF51;region_ancienne;Centre-Sud;OpenStreetMap
+EST;BF52;region_ancienne;Est;OpenStreetMap
+HAUTSBASSINS;BF53;region_ancienne;Hauts-Bassins;OpenStreetMap
+HAUTBASSINS;BF53;region_ancienne;HAUTBASSINS;variante relevée dans les publications DGESS
+NORD;BF54;region_ancienne;Nord;OpenStreetMap
+PLATEAUCENTRAL;BF55;region_ancienne;Plateau-Central;OpenStreetMap
+SAHEL;BF56;region_ancienne;Sahel;OpenStreetMap
+SUDOUEST;BF57;region_ancienne;Sud-Ouest;OpenStreetMap

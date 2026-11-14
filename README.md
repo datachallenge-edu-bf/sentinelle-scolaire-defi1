@@ -34,7 +34,7 @@ Competition_EducationBurkina/
 
 ## Démarrer après un clonage
 
-Le dépôt ne contient ni les données des organisateurs (réservées au concours), ni les données produites par la chaîne : elles se régénèrent en quelques minutes.
+Le dépôt contient les données produites par la chaîne (`data/` et `depots/`), prêtes à consulter et à déposer. Il ne contient pas les données des organisateurs, réservées au concours : elles ne sont nécessaires que pour relancer la chaîne.
 
 1. Récupérer dans l'espace du challenge le Data Pack (`DataPack_DCB_2026/`) et la base principale (`DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx`), et les placer dans un dossier `Competition_EducationBurkina/`.
 2. Cloner le dépôt dans ce même dossier :
@@ -42,7 +42,7 @@ Le dépôt ne contient ni les données des organisateurs (réservées au concour
    cd Competition_EducationBurkina
    git clone https://github.com/datachallenge-edu-bf/sentinelle-scolaire-defi1.git defi1_sentinelle
    ```
-3. Installer l'environnement et relancer la chaîne (section suivante). Les dossiers `data/` et `depots/` sont recréés à l'identique.
+3. Pour relancer la chaîne, installer l'environnement (section suivante). Les dossiers `data/` et `depots/` sont recréés à l'identique.
 
 ## Relancer
 

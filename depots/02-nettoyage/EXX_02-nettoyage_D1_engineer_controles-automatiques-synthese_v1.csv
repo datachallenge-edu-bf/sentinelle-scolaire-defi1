@@ -1,0 +1,13 @@
+﻿controle;conforme;detail
+completude_flux;True;45 à 45 provinces par année
+completude_effectifs;True;45 à 45 provinces par année
+coherence_sexes;True;0 lignes où garçons + filles diffère du total
+repartition_filles_garcons_plausible;False;"provinces hors [0.8 ; 1.25] par année : 2007-2008 : 1, 2008-2009 : 12, 2009-2010 : 3, 2010-2011 : 1, 2011-2012 : 1, 2012-2013 : 1, 2013-2014 : 2, 2014-2015 : 1, 2015-2016 : 2, 2016-2017 : 1, 2017-2018 : 1, 2018-2019 : 1, 2019-2020 : 1, 2020-2021 : 1, 2021-2022 : 3, 2022-2023 : 2, 2024-2025 : 31"
+somme_provinces_egale_total_regional_annuaire;False;39 écarts > 0.5% sur 3236 comparaisons
+somme_provinces_egale_total_regional_base_principale;False;38 écarts > 0.5% sur 390 comparaisons (édition 2024-2025)
+somme_provinces_egale_total_national_base_principale;False;5 écarts > 0.5% sur 30 comparaisons (édition 2024-2025)
+jointure_contours_flux;True;45 à 45 provinces sur 45 avec contour
+jointure_contours_effectifs;True;45 à 45 provinces sur 45 avec contour
+esu_somme_provinces_egale_total_primaire_publie;True;"12 tableaux sur 30 retrouvent le total publié à 5 % près (2021-11-30 fermes, 2021-11-30 rouverts, 2021-12-31 fermes, 2021-12-31 rouverts, 2022-01 fermes, 2022-01 rouverts, 2022-03 fermes, 2022-03 rouverts, 2022-04 fermes, 2022-05 fermes, 2022-05 rouverts, 2023-10 fermes) ; les autres sont marqués non fiables (rapport_fiable = faux)"
+pdi_communes_rapprochees;True;328 communes, 46 dates de situation (2019-01-27 à 2023-03-31)
+metadonnees_completes;True;toutes les tables et variables sont décrites

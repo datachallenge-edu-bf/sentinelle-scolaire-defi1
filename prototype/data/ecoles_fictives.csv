@@ -1,0 +1,181 @@
+ecole_id,nom,province,region,milieu,cantine,distance_moy_km,part_deplaces,lat,lon,donnees
+E001,École B001 de Kompienga,Kompienga,Est,rural,True,4.2,0.24,11.5636,0.5622,fictives
+E002,École B002 de Kompienga,Kompienga,Est,rural,False,1.9,0.28,11.6747,1.0413,fictives
+E003,École B003 de Kompienga,Kompienga,Est,rural,True,0.8,0.12,11.2931,0.844,fictives
+E004,École B004 de Kompienga,Kompienga,Est,rural,True,3.9,0.39,11.3596,0.9653,fictives
+E005,École B005 de Gourma,Gourma,Est,rural,True,12.2,0.12,11.8703,0.7258,fictives
+E006,École A006 de Gourma,Gourma,Est,urbain,False,1.2,0.25,12.1236,0.7217,fictives
+E007,École B007 de Gourma,Gourma,Est,rural,True,3.2,0.37,12.0099,0.9421,fictives
+E008,École B008 de Gourma,Gourma,Est,rural,True,1.5,0.3,11.9915,-0.0764,fictives
+E009,École B009 de Houet,Houet,Hauts-Bassins,rural,True,0.8,0.07,11.9297,-4.1126,fictives
+E010,École B010 de Houet,Houet,Hauts-Bassins,rural,True,9.5,0.15,11.5235,-4.5121,fictives
+E011,École B011 de Houet,Houet,Hauts-Bassins,rural,True,3.1,0.09,11.1356,-4.0349,fictives
+E012,École B012 de Houet,Houet,Hauts-Bassins,rural,False,7.8,0.13,11.4073,-4.5139,fictives
+E013,École B013 de Kénédougou,Kénédougou,Hauts-Bassins,rural,True,6.7,0.25,11.4951,-5.0531,fictives
+E014,École B014 de Kénédougou,Kénédougou,Hauts-Bassins,rural,True,9.8,0.35,11.6552,-5.1773,fictives
+E015,École B015 de Kénédougou,Kénédougou,Hauts-Bassins,rural,True,3.1,0.1,11.103,-4.9447,fictives
+E016,École B016 de Kénédougou,Kénédougou,Hauts-Bassins,rural,True,4.5,0.33,11.7688,-5.2764,fictives
+E017,École B017 de Banwa,Banwa,Boucle du Mouhoun,rural,False,1.9,0.44,12.4516,-3.8712,fictives
+E018,École B018 de Banwa,Banwa,Boucle du Mouhoun,rural,True,2.3,0.3,12.2785,-4.4771,fictives
+E019,École B019 de Banwa,Banwa,Boucle du Mouhoun,rural,False,3.3,0.05,12.3834,-3.8097,fictives
+E020,École B020 de Banwa,Banwa,Boucle du Mouhoun,rural,True,2.7,0.29,12.2804,-4.429,fictives
+E021,École B021 de Kossi,Kossi,Boucle du Mouhoun,rural,True,4.9,0.27,13.0926,-3.8954,fictives
+E022,École B022 de Kossi,Kossi,Boucle du Mouhoun,rural,True,1.7,0.33,12.9242,-3.8246,fictives
+E023,École B023 de Kossi,Kossi,Boucle du Mouhoun,rural,True,4.3,0.09,13.0754,-3.5041,fictives
+E024,École B024 de Kossi,Kossi,Boucle du Mouhoun,rural,True,2.1,0.19,13.1003,-3.6248,fictives
+E025,École B025 de Balé,Balé,Boucle du Mouhoun,rural,True,0.4,0.37,11.607,-2.8108,fictives
+E026,École B026 de Balé,Balé,Boucle du Mouhoun,rural,False,5.2,0.38,11.5947,-2.7703,fictives
+E027,École B027 de Balé,Balé,Boucle du Mouhoun,rural,True,2.8,0.18,11.8765,-2.843,fictives
+E028,École B028 de Balé,Balé,Boucle du Mouhoun,rural,False,14.6,0.3,11.9627,-3.4139,fictives
+E029,École B029 de Mouhoun,Mouhoun,Boucle du Mouhoun,rural,False,1.5,0.24,12.4472,-3.5254,fictives
+E030,École B030 de Mouhoun,Mouhoun,Boucle du Mouhoun,rural,True,4.9,0.11,12.4223,-3.5071,fictives
+E031,École B031 de Mouhoun,Mouhoun,Boucle du Mouhoun,rural,True,1.7,0.38,12.2638,-3.1001,fictives
+E032,École B032 de Mouhoun,Mouhoun,Boucle du Mouhoun,rural,True,3.7,0.13,12.2009,-3.6329,fictives
+E033,École B033 de Oudalan,Oudalan,Sahel,rural,True,1.0,0.18,14.2301,-0.5708,fictives
+E034,École B034 de Oudalan,Oudalan,Sahel,rural,True,0.7,0.15,14.1879,-0.4446,fictives
+E035,École B035 de Oudalan,Oudalan,Sahel,rural,True,3.7,0.8,14.4986,-0.2862,fictives
+E036,École A036 de Oudalan,Oudalan,Sahel,urbain,False,1.5,0.76,14.1742,-0.5435,fictives
+E037,École A037 de Soum,Soum,Sahel,urbain,False,1.1,0.52,14.3422,-0.9171,fictives
+E038,École A038 de Soum,Soum,Sahel,urbain,False,1.4,0.44,13.8106,-1.161,fictives
+E039,École B039 de Soum,Soum,Sahel,rural,True,2.9,0.27,14.2694,-0.8387,fictives
+E040,École B040 de Soum,Soum,Sahel,rural,True,2.9,0.08,14.4497,-1.7665,fictives
+E041,École B041 de Nayala,Nayala,Boucle du Mouhoun,rural,True,1.6,0.23,12.6848,-2.6931,fictives
+E042,École B042 de Nayala,Nayala,Boucle du Mouhoun,rural,False,1.5,0.11,12.9188,-3.275,fictives
+E043,École B043 de Nayala,Nayala,Boucle du Mouhoun,rural,True,3.0,0.36,12.4341,-2.7656,fictives
+E044,École B044 de Nayala,Nayala,Boucle du Mouhoun,rural,True,0.9,0.25,12.5214,-2.7393,fictives
+E045,École B045 de Sourou,Sourou,Boucle du Mouhoun,rural,True,3.7,0.09,13.2458,-3.0489,fictives
+E046,École B046 de Sourou,Sourou,Boucle du Mouhoun,rural,False,4.1,0.31,13.4149,-3.1123,fictives
+E047,École B047 de Sourou,Sourou,Boucle du Mouhoun,rural,True,3.6,0.21,12.9412,-2.6976,fictives
+E048,École B048 de Sourou,Sourou,Boucle du Mouhoun,rural,True,2.3,0.17,13.2902,-2.6886,fictives
+E049,École B049 de Bam,Bam,Centre-Nord,rural,True,2.7,0.37,13.7713,-1.5161,fictives
+E050,École B050 de Bam,Bam,Centre-Nord,rural,True,4.8,0.07,13.4342,-1.626,fictives
+E051,École B051 de Bam,Bam,Centre-Nord,rural,True,3.9,0.08,13.2037,-1.7075,fictives
+E052,École B052 de Bam,Bam,Centre-Nord,rural,True,6.3,0.37,13.1109,-1.5242,fictives
+E053,École B053 de Boulkiemdé,Boulkiemdé,Centre-Ouest,rural,True,2.1,0.07,12.21,-1.9456,fictives
+E054,École B054 de Boulkiemdé,Boulkiemdé,Centre-Ouest,rural,True,5.1,0.03,12.4131,-2.0675,fictives
+E055,École B055 de Boulkiemdé,Boulkiemdé,Centre-Ouest,rural,True,1.9,0.11,12.5565,-1.9627,fictives
+E056,École B056 de Boulkiemdé,Boulkiemdé,Centre-Ouest,rural,True,3.4,0.03,12.3723,-2.2923,fictives
+E057,École B057 de Kourwéogo,Kourwéogo,Plateau-Central,rural,True,4.4,0.18,12.308,-1.9679,fictives
+E058,École B058 de Kourwéogo,Kourwéogo,Plateau-Central,rural,True,4.5,0.13,12.6993,-1.8244,fictives
+E059,École B059 de Kourwéogo,Kourwéogo,Plateau-Central,rural,True,0.6,0.07,12.6298,-1.7034,fictives
+E060,École B060 de Kourwéogo,Kourwéogo,Plateau-Central,rural,False,0.7,0.04,12.6405,-1.7047,fictives
+E061,École B061 de Bazéga,Bazéga,Centre-Sud,rural,True,0.5,0.06,12.097,-1.1761,fictives
+E062,École B062 de Bazéga,Bazéga,Centre-Sud,rural,True,5.3,0.07,11.937,-1.5805,fictives
+E063,École B063 de Bazéga,Bazéga,Centre-Sud,rural,True,8.8,0.1,11.9893,-1.1351,fictives
+E064,École B064 de Bazéga,Bazéga,Centre-Sud,rural,True,0.3,0.06,11.9059,-1.3356,fictives
+E065,École A065 de Kadiogo,Kadiogo,Centre,urbain,False,1.9,0.05,12.5564,-1.6555,fictives
+E066,École A066 de Kadiogo,Kadiogo,Centre,urbain,False,3.4,0.05,12.1024,-1.6837,fictives
+E067,École B067 de Kadiogo,Kadiogo,Centre,rural,True,5.7,0.08,12.2053,-1.4546,fictives
+E068,École A068 de Kadiogo,Kadiogo,Centre,urbain,False,2.7,0.03,12.2346,-1.4231,fictives
+E069,École B069 de Oubritenga,Oubritenga,Plateau-Central,rural,True,3.7,0.08,12.5141,-1.0693,fictives
+E070,École B070 de Oubritenga,Oubritenga,Plateau-Central,rural,False,6.8,0.13,12.7531,-1.344,fictives
+E071,École B071 de Oubritenga,Oubritenga,Plateau-Central,rural,False,4.9,0.16,12.4891,-1.2053,fictives
+E072,École B072 de Oubritenga,Oubritenga,Plateau-Central,rural,True,4.4,0.08,12.6497,-1.188,fictives
+E073,École B073 de Passoré,Passoré,Nord,rural,True,2.9,0.1,12.9302,-2.6623,fictives
+E074,École B074 de Passoré,Passoré,Nord,rural,True,1.0,0.2,12.9494,-2.2486,fictives
+E075,École B075 de Passoré,Passoré,Nord,rural,True,1.5,0.2,13.0261,-2.0376,fictives
+E076,École B076 de Passoré,Passoré,Nord,rural,False,3.5,0.2,12.8558,-2.1507,fictives
+E077,École B077 de Zondoma,Zondoma,Nord,rural,True,6.3,0.22,13.1518,-2.3512,fictives
+E078,École B078 de Zondoma,Zondoma,Nord,rural,True,7.9,0.07,13.2302,-2.2138,fictives
+E079,École B079 de Zondoma,Zondoma,Nord,rural,True,1.5,0.35,13.298,-2.5437,fictives
+E080,École B080 de Zondoma,Zondoma,Nord,rural,True,5.7,0.09,13.3519,-2.3897,fictives
+E081,École B081 de Sanguié,Sanguié,Centre-Ouest,rural,True,4.2,0.01,11.8937,-2.4304,fictives
+E082,École B082 de Sanguié,Sanguié,Centre-Ouest,rural,False,3.5,0.06,12.0353,-2.774,fictives
+E083,École A083 de Sanguié,Sanguié,Centre-Ouest,urbain,False,0.1,0.07,11.6585,-2.605,fictives
+E084,École A084 de Sanguié,Sanguié,Centre-Ouest,urbain,False,0.6,0.1,12.5952,-2.3692,fictives
+E085,École B085 de Sissili,Sissili,Centre-Ouest,rural,True,1.4,0.06,11.2233,-2.6363,fictives
+E086,École B086 de Sissili,Sissili,Centre-Ouest,rural,False,9.3,0.1,11.1167,-1.7796,fictives
+E087,École B087 de Sissili,Sissili,Centre-Ouest,rural,True,3.7,0.08,11.3354,-2.3807,fictives
+E088,École B088 de Sissili,Sissili,Centre-Ouest,rural,True,0.7,0.03,11.1976,-1.633,fictives
+E089,École A089 de Ziro,Ziro,Centre-Ouest,urbain,False,1.4,0.03,11.3764,-1.5126,fictives
+E090,École A090 de Ziro,Ziro,Centre-Ouest,urbain,False,0.8,0.05,11.6773,-1.8712,fictives
+E091,École B091 de Ziro,Ziro,Centre-Ouest,rural,True,5.3,0.15,11.7488,-1.9839,fictives
+E092,École A092 de Ziro,Ziro,Centre-Ouest,urbain,True,1.8,0.03,11.5339,-1.483,fictives
+E093,École A093 de Loroum,Loroum,Nord,urbain,True,2.1,0.15,13.9362,-2.2664,fictives
+E094,École A094 de Loroum,Loroum,Nord,urbain,False,1.5,0.21,14.1445,-2.3787,fictives
+E095,École A095 de Loroum,Loroum,Nord,urbain,False,0.7,0.15,13.7918,-2.0698,fictives
+E096,École A096 de Loroum,Loroum,Nord,urbain,False,0.5,0.37,14.0396,-2.0205,fictives
+E097,École B097 de Yatenga,Yatenga,Nord,rural,True,1.6,0.18,13.9853,-2.3356,fictives
+E098,École B098 de Yatenga,Yatenga,Nord,rural,False,2.9,0.44,13.3265,-2.5627,fictives
+E099,École B099 de Yatenga,Yatenga,Nord,rural,True,2.3,0.12,13.1384,-1.7959,fictives
+E100,École B100 de Yatenga,Yatenga,Nord,rural,True,2.8,0.24,13.4785,-2.0284,fictives
+E101,École B101 de Namentenga,Namentenga,Centre-Nord,rural,True,0.9,0.03,13.879,-0.5288,fictives
+E102,École B102 de Namentenga,Namentenga,Centre-Nord,rural,True,0.7,0.23,13.7563,-0.6346,fictives
+E103,École A103 de Namentenga,Namentenga,Centre-Nord,urbain,False,3.4,0.14,13.5638,-0.7293,fictives
+E104,École B104 de Namentenga,Namentenga,Centre-Nord,rural,False,7.4,0.59,13.5891,-0.4514,fictives
+E105,École B105 de Sanmatenga,Sanmatenga,Centre-Nord,rural,False,2.1,0.23,13.335,-0.8482,fictives
+E106,École B106 de Sanmatenga,Sanmatenga,Centre-Nord,rural,True,6.9,0.26,12.9201,-0.9061,fictives
+E107,École B107 de Sanmatenga,Sanmatenga,Centre-Nord,rural,True,3.1,0.18,12.8429,-0.8802,fictives
+E108,École B108 de Sanmatenga,Sanmatenga,Centre-Nord,rural,False,6.6,0.28,13.5519,-1.0901,fictives
+E109,École B109 de Boulgou,Boulgou,Centre-Est,rural,False,4.5,0.13,11.6264,-0.1716,fictives
+E110,École B110 de Boulgou,Boulgou,Centre-Est,rural,True,2.1,0.06,11.8443,-0.6191,fictives
+E111,École B111 de Boulgou,Boulgou,Centre-Est,rural,True,0.8,0.04,11.2821,-0.024,fictives
+E112,École B112 de Boulgou,Boulgou,Centre-Est,rural,True,1.8,0.12,11.9232,-0.1182,fictives
+E113,École B113 de Koulpélogo,Koulpélogo,Centre-Est,rural,True,2.1,0.04,11.5466,0.1663,fictives
+E114,École B114 de Koulpélogo,Koulpélogo,Centre-Est,rural,True,2.5,0.08,11.2194,0.0041,fictives
+E115,École B115 de Koulpélogo,Koulpélogo,Centre-Est,rural,True,8.2,0.08,11.5018,0.4723,fictives
+E116,École B116 de Koulpélogo,Koulpélogo,Centre-Est,rural,True,0.1,0.17,11.2849,0.2986,fictives
+E117,École B117 de Ganzourgou,Ganzourgou,Plateau-Central,rural,True,2.6,0.07,12.2238,-0.9021,fictives
+E118,École B118 de Ganzourgou,Ganzourgou,Plateau-Central,rural,True,2.1,0.18,12.0185,-0.6195,fictives
+E119,École B119 de Ganzourgou,Ganzourgou,Plateau-Central,rural,True,8.9,0.19,12.2316,-0.9209,fictives
+E120,École B120 de Ganzourgou,Ganzourgou,Plateau-Central,rural,True,0.7,0.05,12.4334,-0.7891,fictives
+E121,École B121 de Kouritenga,Kouritenga,Centre-Est,rural,True,4.6,0.04,12.5092,-0.254,fictives
+E122,École A122 de Kouritenga,Kouritenga,Centre-Est,urbain,False,2.0,0.09,12.1264,-0.0742,fictives
+E123,École B123 de Kouritenga,Kouritenga,Centre-Est,rural,True,2.0,0.22,12.2451,-0.437,fictives
+E124,École B124 de Kouritenga,Kouritenga,Centre-Est,rural,False,1.5,0.21,12.3888,-0.3178,fictives
+E125,École B125 de Nahouri,Nahouri,Centre-Sud,rural,True,5.0,0.06,11.0968,-0.8826,fictives
+E126,École B126 de Nahouri,Nahouri,Centre-Sud,rural,True,1.2,0.11,11.085,-1.2095,fictives
+E127,École B127 de Nahouri,Nahouri,Centre-Sud,rural,False,1.1,0.09,11.1455,-0.9947,fictives
+E128,École B128 de Nahouri,Nahouri,Centre-Sud,rural,True,1.8,0.11,11.085,-1.3761,fictives
+E129,École B129 de Zoundwéogo,Zoundwéogo,Centre-Sud,rural,True,7.6,0.03,11.7955,-0.8667,fictives
+E130,École A130 de Zoundwéogo,Zoundwéogo,Centre-Sud,urbain,True,0.9,0.17,11.7531,-1.1442,fictives
+E131,École A131 de Zoundwéogo,Zoundwéogo,Centre-Sud,urbain,False,1.3,0.03,11.6973,-1.2845,fictives
+E132,École B132 de Zoundwéogo,Zoundwéogo,Centre-Sud,rural,True,2.8,0.06,11.6756,-1.1082,fictives
+E133,École B133 de Bougouriba,Bougouriba,Sud-Ouest,rural,True,6.8,0.04,10.9116,-3.1814,fictives
+E134,École A134 de Bougouriba,Bougouriba,Sud-Ouest,urbain,True,1.7,0.03,11.0638,-3.4466,fictives
+E135,École B135 de Bougouriba,Bougouriba,Sud-Ouest,rural,True,4.8,0.2,11.1656,-3.2482,fictives
+E136,École B136 de Bougouriba,Bougouriba,Sud-Ouest,rural,True,4.0,0.02,10.824,-3.3207,fictives
+E137,École B137 de Ioba,Ioba,Sud-Ouest,rural,True,4.0,0.22,10.873,-3.1368,fictives
+E138,École B138 de Ioba,Ioba,Sud-Ouest,rural,True,0.8,0.18,10.9885,-2.8898,fictives
+E139,École A139 de Ioba,Ioba,Sud-Ouest,urbain,True,1.0,0.18,11.0535,-2.7139,fictives
+E140,École B140 de Ioba,Ioba,Sud-Ouest,rural,False,2.1,0.15,11.2527,-2.8876,fictives
+E141,École B141 de Tuy,Tuy,Hauts-Bassins,rural,False,2.3,0.04,11.1785,-3.6732,fictives
+E142,École B142 de Tuy,Tuy,Hauts-Bassins,rural,False,3.2,0.09,11.6232,-3.7859,fictives
+E143,École B143 de Tuy,Tuy,Hauts-Bassins,rural,True,2.4,0.32,11.7686,-3.9404,fictives
+E144,École B144 de Tuy,Tuy,Hauts-Bassins,rural,False,3.2,0.14,11.4946,-3.8696,fictives
+E145,École B145 de Léraba,Léraba,Cascades,rural,True,1.6,0.12,10.3273,-5.2533,fictives
+E146,École B146 de Léraba,Léraba,Cascades,rural,True,4.1,0.14,10.5835,-5.097,fictives
+E147,École B147 de Léraba,Léraba,Cascades,rural,True,2.1,0.01,10.6021,-4.9924,fictives
+E148,École B148 de Léraba,Léraba,Cascades,rural,True,2.5,0.18,10.5531,-5.4504,fictives
+E149,École B149 de Comoé,Comoé,Cascades,rural,True,0.7,0.28,10.3326,-4.9477,fictives
+E150,École B150 de Comoé,Comoé,Cascades,rural,True,8.7,0.27,10.3161,-3.9936,fictives
+E151,École B151 de Comoé,Comoé,Cascades,rural,False,3.1,0.11,9.9103,-4.2813,fictives
+E152,École B152 de Comoé,Comoé,Cascades,rural,False,2.1,0.22,9.9341,-4.4115,fictives
+E153,École B153 de Poni,Poni,Sud-Ouest,rural,True,6.6,0.07,10.4659,-3.4758,fictives
+E154,École B154 de Poni,Poni,Sud-Ouest,rural,True,1.0,0.28,10.2848,-3.0798,fictives
+E155,École A155 de Poni,Poni,Sud-Ouest,urbain,False,0.4,0.09,10.4039,-3.5841,fictives
+E156,École B156 de Poni,Poni,Sud-Ouest,rural,True,1.8,0.1,10.2978,-3.2056,fictives
+E157,École B157 de Gnagna,Gnagna,Est,rural,False,2.5,0.11,12.7397,0.1047,fictives
+E158,École B158 de Gnagna,Gnagna,Est,rural,True,2.5,0.34,12.8872,0.5053,fictives
+E159,École B159 de Gnagna,Gnagna,Est,rural,True,2.8,0.33,12.2941,-0.1282,fictives
+E160,École B160 de Gnagna,Gnagna,Est,rural,True,2.1,0.36,13.2657,0.0971,fictives
+E161,École A161 de Komondjari,Komondjari,Est,urbain,True,1.0,0.27,12.6623,0.8674,fictives
+E162,École B162 de Komondjari,Komondjari,Est,rural,True,5.8,0.13,12.9625,0.7142,fictives
+E163,École B163 de Komondjari,Komondjari,Est,rural,True,1.7,0.1,12.772,0.6414,fictives
+E164,École B164 de Komondjari,Komondjari,Est,rural,True,1.8,0.42,12.6009,0.8315,fictives
+E165,École B165 de Séno,Séno,Sahel,rural,True,3.4,0.21,13.732,0.0272,fictives
+E166,École B166 de Séno,Séno,Sahel,rural,False,0.5,0.43,14.162,0.3548,fictives
+E167,École B167 de Séno,Séno,Sahel,rural,True,7.3,0.1,14.0169,-0.5591,fictives
+E168,École B168 de Séno,Séno,Sahel,rural,True,1.2,0.26,13.8943,0.4062,fictives
+E169,École B169 de Yagha,Yagha,Sahel,rural,False,2.9,0.31,13.5911,0.9249,fictives
+E170,École B170 de Yagha,Yagha,Sahel,rural,True,2.1,0.38,13.6247,0.4222,fictives
+E171,École A171 de Yagha,Yagha,Sahel,urbain,False,1.1,0.68,13.2785,0.34,fictives
+E172,École B172 de Yagha,Yagha,Sahel,rural,True,1.9,0.21,13.5664,0.7741,fictives
+E173,École B173 de Tapoa,Tapoa,Est,rural,False,2.1,0.54,12.6191,1.3979,fictives
+E174,École B174 de Tapoa,Tapoa,Est,rural,True,3.0,0.35,12.6513,1.3816,fictives
+E175,École B175 de Tapoa,Tapoa,Est,rural,True,8.4,0.25,12.1918,1.2275,fictives
+E176,École B176 de Tapoa,Tapoa,Est,rural,True,5.7,0.11,11.5475,1.8035,fictives
+E177,École B177 de Noumbiel,Noumbiel,Sud-Ouest,rural,False,2.1,0.04,9.8756,-2.9106,fictives
+E178,École B178 de Noumbiel,Noumbiel,Sud-Ouest,rural,True,1.9,0.24,9.9903,-3.0296,fictives
+E179,École B179 de Noumbiel,Noumbiel,Sud-Ouest,rural,True,0.8,0.16,9.7139,-2.8782,fictives
+E180,École B180 de Noumbiel,Noumbiel,Sud-Ouest,rural,False,8.6,0.04,9.8587,-2.8283,fictives

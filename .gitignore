@@ -1,8 +1,5 @@
-# Données produites par la chaîne : elles se régénèrent avec
-#   python -m sentinelle.collecte   puis   python -m sentinelle.nettoyage
-data/
-depots/
-outputs/figures/
+# Les données produites (data/), les dépôts (depots/) et les figures (outputs/) sont versionnés pour les
+# collaborateurs ; ils se régénèrent aussi avec les commandes du README.
 
 # Environnement Python et fichiers temporaires
 .venv/

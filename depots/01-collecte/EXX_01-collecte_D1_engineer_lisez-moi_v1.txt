@@ -1,0 +1,93 @@
+DÉPÔT 01 : COLLECTE - Défi 1, cartographie et anticipation du risque de décrochage scolaire
+
+Contenu : extractions brutes des données remises par les organisateurs (base principale DGESS
+2016-2025 et Data Pack DCB 2026). Les lignes sont copiées sans aucune modification ;
+la remise en forme est faite à l'étape 02 (nettoyage).
+
+Traçabilité : chaque ligne extraite porte le fichier d'origine (source_fichier), le CSV du pack
+(source_csv_pack), la période (source_periode) et, pour les PDF, la page et la ligne.
+Le registre des sources donne l'URL d'origine et l'empreinte SHA-256 de chaque fichier.
+Le bilan des sources indique, pour chaque fichier remis par les organisateurs, s'il a été
+retenu ou écarté, et pourquoi.
+
+Format : séparateur « ; », encodage UTF-8. Les nombres restent sous leur forme d'origine
+(virgule décimale, espace des milliers).
+
+Relancer : notebooks/01_collecte.ipynb, ou python -m sentinelle.collecte (avec src dans le PYTHONPATH).
+
+FICHIERS
+
+EXX_01-collecte_D1_engineer_registre-sources_v1.csv
+    Registre des sources : fichier d'origine, pages retenues, empreinte SHA-256, URL, date de collecte.
+EXX_01-collecte_D1_engineer_bilan-sources-retenues-ecartees_v1.csv
+    Statut de chaque fichier remis par les organisateurs : retenu (avec les jeux concernés) ou écarté (avec le motif).
+EXX_01-collecte_D1_engineer_inventaire-fichiers-organisateurs_v1.csv
+    Inventaire de tous les fichiers remis par les organisateurs (format, taille, empreinte, dimensions).
+EXX_01-collecte_D1_engineer_controle-couverture-extractions_v1.csv
+    Pages retenues par fichier pour les jeux sélectifs, avec alerte si aucune page n'est trouvée.
+EXX_01-collecte_D1_engineer_series-nationales-banque-mondiale-1970-2025_v1.csv
+    Indicateurs éducation Banque mondiale et UNESCO, séries nationales
+EXX_01-collecte_D1_engineer_referentiel-communes-pcodes-13-17-regions_v1.csv
+    Limites administratives COD-AB : communes, avec anciens et nouveaux P-codes
+EXX_01-collecte_D1_engineer_referentiel-provinces-pcodes_v1.csv
+    Limites administratives COD-AB : provinces
+EXX_01-collecte_D1_engineer_referentiel-regions-pcodes_v1.csv
+    Limites administratives COD-AB : régions
+EXX_01-collecte_D1_engineer_base-principale-dgess-region-2016-2025_v1.csv
+    Données statistiques du préscolaire et du primaire 2016-2025 (base principale)
+EXX_01-collecte_D1_engineer_resultats-cep-province-2017-2025_v1.csv
+    Résultats au certificat d'études primaires par province
+EXX_01-collecte_D1_engineer_indicateurs-43-communes-prioritaires-2017-2021_v1.csv
+    Principaux chiffres des 43 communes prioritaires (annuaires 2017-2018 à 2020-2021)
+EXX_01-collecte_D1_engineer_depliants-chiffres-cles-primaire-2017-2024_v1.csv
+    Dépliants statistiques de l'enseignement primaire 2017-2018 à 2023-2024
+EXX_01-collecte_D1_engineer_distance-ecole-province-2017-2025_v1.csv
+    Pourcentage des élèves selon la distance parcourue par province
+EXX_01-collecte_D1_engineer_ecoles-salles-public-prive-province-2017-2025_v1.csv
+    Répartition des écoles et salles de classe publiques et privées par province
+EXX_01-collecte_D1_engineer_effectifs-historique-province-2017-2025_v1.csv
+    Historique des effectifs par province
+EXX_01-collecte_D1_engineer_effectifs-redoublants-classe-province-2017-2025_v1.csv
+    Historique des effectifs et des redoublants par niveau et par province
+EXX_01-collecte_D1_engineer_taux-abandon-redoublement-province-2017-2025_v1.csv
+    Taux de promotion, redoublement et abandon par province, classe et sexe
+EXX_01-collecte_D1_engineer_annuaire-post-primaire-2019-2020_v1.csv
+    Annuaire statistique du post-primaire et du secondaire 2019-2020
+EXX_01-collecte_D1_engineer_ecoles-salles-maitres-province-2017-2025_v1.csv
+    Écoles, salles de classe, élèves, groupes pédagogiques et maîtres par province
+EXX_01-collecte_D1_engineer_syntheses-annuaires-primaire-region-2017-2022_v1.csv
+    Synthèses des annuaires de l'enseignement primaire 2017-2018 à 2021-2022
+EXX_01-collecte_D1_engineer_tableaux-de-bord-post-primaire-region-2023-2024_v1.csv
+    Tableaux de bord du post-primaire et du secondaire 2023 et 2024
+EXX_01-collecte_D1_engineer_tableaux-de-bord-primaire-region-2015-2024_v1.csv
+    Tableaux de bord de l'enseignement primaire 2015-2016 à 2023-2024
+EXX_01-collecte_D1_engineer_taux-admission-scolarisation-achevement-province-2017-2025_v1.csv
+    Taux d'admission, de scolarisation et d'achèvement par province
+EXX_01-collecte_D1_engineer_ecoles-geolocalisees-osm-2026_v1.csv
+    Structures éducatives géolocalisées (OpenStreetMap, HOT)
+EXX_01-collecte_D1_engineer_eds-2021-instruction-mariage-precoce_v1.csv
+    EDS 2021, pages sur l'instruction, la fréquentation scolaire et le mariage précoce
+EXX_01-collecte_D1_engineer_ehcvm-2021-scolarisation-abandon_v1.csv
+    EHCVM 2021, pages sur la scolarisation et l'abandon
+EXX_01-collecte_D1_engineer_ecoles-fermees-esu-mensuel-2021-2026_v1.csv
+    Rapports mensuels de l'éducation en situation d'urgence (ST-ESU)
+EXX_01-collecte_D1_engineer_annuaires-nationaux-insd-education-2015-2024_v1.csv
+    Annuaires statistiques nationaux 2015-2024, pages sur l'enseignement primaire
+EXX_01-collecte_D1_engineer_ecoles-eleves-enseignants-commune-insd-2014-2024_v1.csv
+    Écoles, salles, élèves et enseignants du primaire par commune (annuaires régionaux 2024)
+EXX_01-collecte_D1_engineer_profils-pauvrete-region-province-2024_v1.csv
+    Profils régionaux de pauvreté
+EXX_01-collecte_D1_engineer_projections-population-2020-2035_v1.csv
+    Projections démographiques 2020-2035 (RGPH 2019, volume 4)
+EXX_01-collecte_D1_engineer_tableau-de-bord-social-2020_v1.csv
+    Tableau de bord social 2020 (INSD)
+EXX_01-collecte_D1_engineer_deplaces-internes-commune-2020-2025_v1.csv
+    Personnes déplacées internes par commune (CONASUR), 2020 à 2025
+EXX_01-collecte_D1_engineer_rgph-2019-alphabetisation-scolarisation_v1.csv
+    RGPH 2019 : rapport thématique alphabétisation et scolarisation
+EXX_01-collecte_D1_engineer_rgph-2019-pauvrete-commune_v1.csv
+    RGPH 2019 : cartographie de la pauvreté
+EXX_01-collecte_D1_engineer_rgph-2019-disparites-communales_v1.csv
+    RGPH 2019 : analyse des disparités communales
+EXX_01-collecte_D1_engineer_rgph-2019-population-localites_v1.csv
+    RGPH 2019 : fichier des localités (population par village et secteur)

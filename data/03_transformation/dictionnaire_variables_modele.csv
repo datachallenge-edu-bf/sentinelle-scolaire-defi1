@@ -1,0 +1,33 @@
+﻿variable;role;description;source;part_manquante;premiere_annee;derniere_annee
+province_ancienne_pcode;identifiant;Code de la province (ancien découpage, 45 provinces);COD-AB;0.0;2016-2017;2024-2025
+province_ancienne_nom;identifiant;Nom de la province;OpenStreetMap (HOT);0.0;2016-2017;2024-2025
+region_ancienne_pcode;identifiant;Code de la région (ancien découpage);COD-AB;0.0;2016-2017;2024-2025
+region_ancienne_nom;identifiant;Nom de la région;OpenStreetMap (HOT);0.0;2016-2017;2024-2025
+provinces_actuelles;identifiant;Provinces du découpage de 2025 issues de la province;COD-AB;0.0;2016-2017;2024-2025
+annee_scolaire;identifiant;Année scolaire t;;0.0;2016-2017;2024-2025
+abandon_brut_suivant;cible (brute);Abandon apparent du cycle CP1-CM1 entre t et t+1, en %;DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
+abandon_precedent;explicative;Abandon entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+redoublement_precedent;explicative;Redoublement entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+promotion_precedente;explicative;Promotion entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+effectif;explicative;Effectif total du primaire en t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+part_filles;explicative;"Part des filles dans l'effectif ; vide quand la répartition publiée est invraisemblable";DGESS, tableau VIII.3;0.106;2016-2017;2024-2025
+part_cp1;explicative;Part du CP1 dans l'effectif;DGESS, tableau VIII.3;0.002;2016-2017;2024-2025
+rapport_cm2_cp1;explicative;Effectif du CM2 rapporté à celui du CP1;DGESS, tableau VIII.3;0.002;2016-2017;2024-2025
+effectif_precedent;explicative;Effectif total en t-1;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+effectif_suivant;cible (contexte);"Effectif total en t+1 ; jamais comme variable explicative";DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
+evolution_effectifs;explicative;Évolution des effectifs entre t-1 et t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+evolution_effectifs_suivante;cible (contexte);"Évolution des effectifs entre t et t+1 ; sert à repérer les ruptures, jamais comme variable explicative";DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
+choc_effectifs;explicative;Vrai si les effectifs ont varié de plus de 30% entre t-1 et t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+rupture_cible;cible;Vrai si les effectifs varient de plus de 30% entre t et t+1;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+abandon_suivant;cible;"Abandon entre t et t+1, en % ; vide en cas de rupture de scolarisation ou pour la dernière année";DGESS, tableau VIII.3;0.207;2016-2017;2023-2024
+statut_cible;cible;abandon observé, rupture de scolarisation ou à prévoir;calculs des auteurs;0.0;2016-2017;2024-2025
+eleves_par_maitre;explicative;Élèves par maître chargé de cours, public et privé;DGESS, tableau I.1;0.114;2017-2018;2024-2025
+eleves_par_salle;explicative;Élèves par salle de classe, public et privé;DGESS, tableau I.1;0.114;2017-2018;2024-2025
+part_eleves_prive;explicative;Part des élèves scolarisés dans le privé;DGESS, tableau I.1;0.114;2017-2018;2024-2025
+deplaces;explicative;Déplacés internes accueillis dans la province, dernière situation connue au 31 décembre de l'année de rentrée;SP/CONASUR;0.563;2019-2020;2022-2023
+date_deplaces;qualité;Date de la situation des déplacés retenue;SP/CONASUR;0.563;2019-2020;2022-2023
+deplaces_pour_100_eleves;explicative;Déplacés accueillis pour 100 élèves inscrits;"SP/CONASUR ; DGESS";0.563;2019-2020;2022-2023
+ecoles_fermees_province;explicative;Écoles primaires fermées, moyenne des rapports fiables de l'année scolaire;ST-ESU;0.923;2021-2022;2023-2024
+eleves_touches_province;explicative;Élèves des écoles primaires fermées, moyenne des rapports fiables de l'année;ST-ESU;0.923;2021-2022;2023-2024
+ecoles_fermees_region;explicative;Établissements fermés dans la région (tous ordres), moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
+eleves_affectes_region;explicative;Élèves affectés par les fermetures dans la région, moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023

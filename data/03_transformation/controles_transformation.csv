@@ -1,0 +1,7 @@
+﻿controle;conforme;detail
+une_ligne_par_province_et_annee;True;405 lignes = 45 provinces × 9 années, sans doublon
+cible_renseignee;True;abandon observé : 321, à prévoir : 45, rupture de scolarisation : 39
+aucune_variable_explicative_venant_du_futur;True;les variables de t+1 servent seulement à définir la cible
+toutes_les_variables_decrites;True;32 variables décrites
+jointure_carte_2025;True;les 45 provinces du panel couvrent les 47 provinces de 2025
+panel_mensuel_sans_doublon;True;1764 lignes, 44 mois (2019-01 à 2023-03)
