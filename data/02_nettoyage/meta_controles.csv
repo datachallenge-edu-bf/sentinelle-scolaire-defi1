@@ -14,4 +14,11 @@ base_principale_lue_en_entier;True;21 tableaux sur 21, 6621 valeurs, 14 feuilles
 base_principale_une_valeur_par_cle;True;0 doublons
 base_principale_sommes_coherentes;True;1691 sommes vérifiées (régions = national, garçons + filles = total, statuts, milieux et niveaux = total), 0 en écart
 base_principale_variations_brutales_signalees;True;73 comptages variant d'un facteur supérieur à 2,5 d'une année à l'autre, consignés dans le journal sans correction (surtout préscolaire, structures et salles)
+enf_provinces_par_campagne;True;"campagne 2018 : 45; campagne 2019 : 45; campagne 2020 : 45; campagne 2024 : 45"
+enf_coherence_tableaux;True;"apprenants 1.1 = 1.3 : 679 sur 693 ; adultes + adolescents = total : 693 sur 693 ; centres adultes + adolescents = total : 708 sur 708"
+enf_rural_plus_urbain_egal_total;True;236 sur 236 identiques
+enf_somme_provinces_egal_region;True;52 régions × campagnes identiques sur 52
+prescolaire_provinces_par_annee;True;"2023-2024 : 45; 2024-2025 : 45"
+prescolaire_tableaux_02_et_9_coherents;True;"préscolarisés (tableau 02) = inscrits (tableau 9) : 354 sur 354 ; somme des sections = total : 354 sur 354"
+prescolaire_regions_egal_base_principale;True;24 régions × années identiques à la base principale sur 26
 metadonnees_completes;True;toutes les tables et variables sont décrites

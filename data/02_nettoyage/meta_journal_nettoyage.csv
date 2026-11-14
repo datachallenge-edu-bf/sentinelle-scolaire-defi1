@@ -29,6 +29,15 @@ fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil10;;128;2
 fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil11;;124;2017;
 fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil12;;102;2017;
 fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil13;;140;2017;
+fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuaire_statistique_de_leducation_non_formelle_2018.pdf;24;43;0 0 0 0 0 0 0 0 0 0;
+fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuaire_statistique_de_leducation_non_formelle_2018.pdf;25;27;0 0 0 0 0 0 0 0 0 0;
+fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuaire_statistique_de_leducation_non_formelle_2018.pdf;25;40;0 0 0 0 0 0 0 0 0 0;
+fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuaire_statistique_de_leducation_non_formelle_2018.pdf;26;39;0 0 0 0 0 0 0 0 0 0;
+fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuaire_statistique_de_leducation_non_formelle_2018.pdf;27;30;0 0 0 0 0 0 0 0 0 0;
+fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuaire_statistique_de_leducation_non_formelle_2018.pdf;29;34;0 0 0 0 0 0 0 0 0 0;
+fait_enf_province;signalement;la campagne de l'en-tête diffère de l'année du nom du fichier;CNS517_Annuaire_statistique_de_leducation_non_formelle_2019.pdf;;;;2020
+fait_enf_province;signalement;la campagne de l'en-tête diffère de l'année du nom du fichier;CNS518_Annuaire_statistique_de_leducation_non_formelle_2020.pdf;;;;2019
+fait_enf_province;fichier écarté;doublon : même campagne déjà lue dans un autre fichier;CNS519_Annuaire_statistique_de_leducation_non_formelle_2021.pdf;;;2020;CNS517_Annuaire_statistique_de_leducation_non_formelle_2019.pdf
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;27;CENTRELEST KOULPELOGO 2 302 4 12 46;
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;32;EST GOURMA 1 40 48 88 O0;
 fait_esu_province;ligne ignorée;2 valeurs au lieu de 7;RAPPORT_STATISTIQUE_MENSUEL_ESU_AVRIL_2023.pdf;10;22;BOUCLE DU MOUHOUN KOSSI 17 1475;

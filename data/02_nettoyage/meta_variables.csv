@@ -52,7 +52,7 @@ fait_flux_publie;entite_pcode;texte;;P-code de l'entité de l'ancien découpage 
 fait_flux_publie;niveau_geo;texte;;Niveau géographique de l'entité
 fait_flux_publie;nom_source;texte;;Nom de l'entité tel qu'écrit dans la source
 fait_flux_publie;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
-fait_flux_publie;sexe;texte;;Sexe : G (garçons), F (filles), T (total)
+fait_flux_publie;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
 fait_flux_publie;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale)"
 fait_flux_publie;valeur_pct;décimal;%;"Taux publié ; les valeurs négatives sont ramenées à zéro par la DGESS"
 fait_flux_publie;source_fichier;texte;;Fichier d'origine remis par les organisateurs
@@ -63,7 +63,7 @@ fait_effectifs_editions;entite_pcode;texte;;P-code de l'entité de l'ancien déc
 fait_effectifs_editions;niveau_geo;texte;;Niveau géographique de l'entité
 fait_effectifs_editions;nom_source;texte;;Nom de l'entité tel qu'écrit dans la source
 fait_effectifs_editions;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
-fait_effectifs_editions;sexe;texte;;Sexe : G (garçons), F (filles), T (total)
+fait_effectifs_editions;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
 fait_effectifs_editions;effectif;décimal;élèves;Nombre d'élèves inscrits
 fait_effectifs_editions;redoublants;décimal;élèves;Nombre d'élèves redoublants
 fait_effectifs_editions;source_fichier;texte;;Fichier d'origine remis par les organisateurs
@@ -74,7 +74,7 @@ fait_effectifs_retenus;entite_pcode;texte;;P-code de l'entité de l'ancien déco
 fait_effectifs_retenus;niveau_geo;texte;;Niveau géographique de l'entité
 fait_effectifs_retenus;nom_source;texte;;Nom de l'entité tel qu'écrit dans la source
 fait_effectifs_retenus;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
-fait_effectifs_retenus;sexe;texte;;Sexe : G (garçons), F (filles), T (total)
+fait_effectifs_retenus;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
 fait_effectifs_retenus;effectif;décimal;élèves;Nombre d'élèves inscrits
 fait_effectifs_retenus;redoublants;décimal;élèves;Nombre d'élèves redoublants
 fait_effectifs_retenus;source_fichier;texte;;Fichier d'origine remis par les organisateurs
@@ -103,13 +103,48 @@ fait_base_principale;entite_pcode;texte;;P-code de l'entité de l'ancien découp
 fait_base_principale;statut;texte;;Statut des écoles : public, prive, communautaire (préscolaire) ou total
 fait_base_principale;milieu;texte;;Milieu : urbain, rural, indetermine ou total
 fait_base_principale;classe;texte;;Classe : CP1 à CM2, petite, moyenne ou grande section, ou total
-fait_base_principale;sexe;texte;;Sexe : G (garçons), F (filles), T (total)
+fait_base_principale;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
 fait_base_principale;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
 fait_base_principale;valeur;décimal;;Valeur publiée, dans l'unité indiquée
 fait_base_principale;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_base_principale;feuille;texte;;Feuille du classeur d'origine
 fait_base_principale;ligne;entier;;Ligne du fichier d'origine
 fait_base_principale;titre;texte;;Titre du tableau dans le classeur d'origine
+fait_enf_province;campagne;entier;année;Campagne d'éducation non formelle, lue dans l'en-tête des pages de l'annuaire
+fait_enf_province;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_enf_province;niveau_geo;texte;;Niveau géographique de l'entité
+fait_enf_province;milieu;texte;;Milieu : urbain, rural, indetermine ou total
+fait_enf_province;centres_adultes;décimal;centres;Centres d'éducation non formelle des adultes
+fait_enf_province;centres_adolescents;décimal;centres;Centres d'éducation non formelle des adolescents (CEBNF et assimilés)
+fait_enf_province;centres_total;décimal;centres;Centres d'éducation non formelle
+fait_enf_province;apprenants_total;décimal;apprenants;Apprenants de l'éducation non formelle (tableau 1.1)
+fait_enf_province;apprenants_femmes;décimal;apprenants;Apprenantes de l'éducation non formelle (tableau 1.1)
+fait_enf_province;adultes_1er_cycle;décimal;apprenants;Apprenants adultes du 1er cycle (alphabétisation initiale)
+fait_enf_province;adultes_1er_cycle_femmes;décimal;apprenants;Apprenants adultes du 1er cycle, dont femmes
+fait_enf_province;adultes_2nd_cycle;décimal;apprenants;Apprenants adultes du 2nd cycle
+fait_enf_province;adultes_2nd_cycle_femmes;décimal;apprenants;Apprenants adultes du 2nd cycle, dont femmes
+fait_enf_province;adultes_total;décimal;apprenants;Apprenants adultes, 1er et 2nd cycle
+fait_enf_province;adultes_total_femmes;décimal;apprenants;Apprenants adultes, dont femmes
+fait_enf_province;adolescents;décimal;apprenants;Apprenants adolescents de l'éducation non formelle (enfants non scolarisés ou déscolarisés)
+fait_enf_province;adolescents_filles;décimal;apprenants;Apprenants adolescents, dont filles
+fait_enf_province;apprenants_total_t13;décimal;apprenants;Apprenants de l'éducation non formelle (tableau 1.3, contrôle du tableau 1.1)
+fait_enf_province;apprenants_femmes_t13;décimal;apprenants;Apprenantes (tableau 1.3, contrôle du tableau 1.1)
+fait_enf_province;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_enf_province;page;texte;;Page du fichier d'origine
+fait_enf_province;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_prescolaire_province;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_prescolaire_province;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_prescolaire_province;niveau_geo;texte;;Niveau géographique de l'entité
+fait_prescolaire_province;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
+fait_prescolaire_province;population_prescolarisable;décimal;enfants;Enfants d'âge préscolaire (3 à 5 ans) projetés
+fait_prescolaire_province;enfants_prescolarises;décimal;enfants;Enfants inscrits au préscolaire (tableau 02)
+fait_prescolaire_province;taux_prescolarisation;décimal;%;Enfants préscolarisés rapportés à la population préscolarisable, tel que publié
+fait_prescolaire_province;petite_section;décimal;enfants;Enfants inscrits en petite section
+fait_prescolaire_province;moyenne_section;décimal;enfants;Enfants inscrits en moyenne section
+fait_prescolaire_province;grande_section;décimal;enfants;Enfants inscrits en grande section, futurs entrants au CP1
+fait_prescolaire_province;enfants_inscrits;décimal;enfants;Enfants inscrits au préscolaire (tableau 9, contrôle du tableau 02)
+fait_prescolaire_province;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_prescolaire_province;page;texte;;Page du fichier d'origine
 fait_esu_province;mois;texte;;Mois du rapport (AAAA-MM ou AAAA-MM-JJ)
 fait_esu_province;type;texte;;Type de situation : établissements fermés ou rouverts
 fait_esu_province;province_ancienne_pcode;texte;;P-code de la province dans l'ancien découpage (45 provinces)

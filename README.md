@@ -64,3 +64,7 @@ Si les données des organisateurs sont rangées ailleurs que dans le dossier par
 ## La base principale DGESS
 
 Le classeur `DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx` est lu en entier (14 feuilles, 21 tableaux, 6 621 valeurs) dans la table `fait_base_principale` : effectifs du préscolaire et du primaire par région, statut, milieu, classe et sexe, nouveaux inscrits au CP1, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures et salles du préscolaire. Le contexte de la région entre dans la table d'analyse ; `panel_region_annee` et `serie_nationale_annee` reprennent tous ses indicateurs.
+
+## Éducation non formelle et préscolaire
+
+Les annuaires de l'éducation non formelle (campagnes 2018, 2019, 2020 et 2024) et du préscolaire (2023-2024 et 2024-2025) sont lus par province dans `fait_enf_province` et `fait_prescolaire_province`. La campagne est lue dans l'en-tête des pages : deux fichiers du Data Pack sont identiques (CNS517 et CNS519, campagne 2020) et le second est écarté. Les adolescents de l'éducation non formelle et le taux de préscolarisation de la province entrent dans la table d'analyse.

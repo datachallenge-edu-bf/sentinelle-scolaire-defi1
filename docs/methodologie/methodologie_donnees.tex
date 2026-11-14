@@ -93,7 +93,7 @@ Le dossier remis contient 347 fichiers : 173 fichiers sources (138 PDF, 23 class
 
 \subsection{Les sources retenues}
 
-Chaque fichier source a été examiné. 118 sont retenus et répartis en 33 jeux de données selon leur rôle dans le défi (tableau~\ref{tab:sources}). Les annuaires de la DGESS fournissent la variable cible : les taux de promotion, de redoublement et d'abandon par province, classe et sexe, pour huit éditions, et l'historique des effectifs et des redoublants qui permet de recalculer ces taux~\cite{dgess_annuaires}. Les rapports du ST-ESU et les situations de déplacés internes du CONASUR mesurent l'exposition à la crise sécuritaire~\cite{stesu,conasur}. Les publications de l'INSD décrivent le contexte démographique et social~\cite{insd_rgph,insd_annuaires,insd_pauvrete,ehcvm2021,eds2021}. Les limites administratives COD-AB servent de référentiel géographique et de fond de carte~\cite{codab}.
+Chaque fichier source a été examiné. 146 sont retenus et répartis en 36 jeux de données selon leur rôle dans le défi (tableau~\ref{tab:sources}). Les annuaires de la DGESS fournissent la variable cible : les taux de promotion, de redoublement et d'abandon par province, classe et sexe, pour huit éditions, et l'historique des effectifs et des redoublants qui permet de recalculer ces taux~\cite{dgess_annuaires}. Les annuaires de l'éducation non formelle décrivent l'autre versant du décrochage : les centres qui accueillent les adolescents non scolarisés ou déscolarisés ; ceux du préscolaire mesurent la préparation à l'entrée au CP1. Les rapports du ST-ESU et les situations de déplacés internes du CONASUR mesurent l'exposition à la crise sécuritaire~\cite{stesu,conasur}. Les publications de l'INSD décrivent le contexte démographique et social~\cite{insd_rgph,insd_annuaires,insd_pauvrete,ehcvm2021,eds2021}. Les limites administratives COD-AB servent de référentiel géographique et de fond de carte~\cite{codab}.
 
 \begin{table*}[!t]
 \centering
@@ -104,7 +104,9 @@ Source & Contenu retenu & Période & Niveau & Usage dans \sol{} \\
 \midrule
 Base principale DGESS~\cite{dgess_base} & Préscolaire et primaire : effectifs, admission, scolarisation, achèvement, CEP, parité, écoles, structures et salles (14 feuilles, 21 tableaux) & 2015-2016 à 2024-2025 & 13 régions & Lue en entier ; contexte régional du modèle, contrôle des totaux \\
 Annuaires du primaire DGESS (8)~\cite{dgess_annuaires} & Taux de promotion, redoublement, abandon ; effectifs et redoublants ; écoles, salles, maîtres ; distance ; CEP ; 43 communes prioritaires & Éditions 2017-2018 à 2024-2025 & 45 provinces, communes & Variable cible, offre scolaire \\
-Tableaux de bord, synthèses, dépliants DGESS (21)~\cite{dgess_tdb} & Séries régionales d'indicateurs, chiffres clés nationaux & 2015-2016 à 2023-2024 & Région, pays & Recoupement, contrôle des totaux \\
+Annuaires de l'éducation non formelle DGESS (5, dont un doublon)~\cite{dgess_annuaires} & Centres et apprenants, adultes et adolescents, par milieu & Campagnes 2018, 2019, 2020, 2024 & 45 provinces & Seconde chance des déscolarisés \\
+Annuaires du préscolaire DGESS (2)~\cite{dgess_annuaires} & Taux de préscolarisation, enfants par section & 2023-2024, 2024-2025 & 45 provinces & Préparation à l'école \\
+Tableaux de bord, synthèses, dépliants DGESS (42)~\cite{dgess_tdb} & Séries régionales d'indicateurs, chiffres clés nationaux & 2015-2016 à 2023-2024 & Région, pays & Recoupement, contrôle des totaux \\
 Rapports mensuels ST-ESU (24)~\cite{stesu} & Écoles fermées et rouvertes, élèves et enseignants concernés & Nov. 2021 à fév. 2026 & Région, province & Exposition sécuritaire \\
 Déplacés internes CONASUR (20 classeurs)~\cite{conasur} & Déplacés et enfants déplacés accueillis & Janv. 2019 à mai 2025 & Commune & Pression d'accueil, départs \\
 Annuaires régionaux INSD 2024 (10)~\cite{insd_annuaires} & Écoles, salles, salles sous paillote, élèves, enseignants & Environ 2014 à 2024 & Commune & Variables communales \\
@@ -122,7 +124,7 @@ Séries Banque mondiale~\cite{bm_unesco} & Indicateurs nationaux d'éducation & 
 
 \subsection{Les sources écartées}
 
-Les 55 fichiers non retenus le sont pour une raison écrite dans le bilan des sources déposé avec la collecte (tableau~\ref{tab:ecartees}). Aucun fichier n'est resté sans décision. Le défi portant sur le primaire, l'éducation non formelle et le préscolaire sont hors du champ. Les géométries sont réservées à l'étape cartographique, et les documents méthodologiques sont cités mais ne contiennent pas de tableau à extraire.
+Les 27 fichiers non retenus le sont pour une raison écrite dans le bilan des sources déposé avec la collecte (tableau~\ref{tab:ecartees}). Aucun fichier n'est resté sans décision. L'éducation non formelle et le préscolaire, d'abord jugés hors du champ du primaire, ont été réintégrés : l'une accueille les enfants sortis de l'école, l'autre prépare leur entrée. Les géométries sont réservées à l'étape cartographique, et les documents méthodologiques sont cités mais ne contiennent pas de tableau à extraire.
 
 \begin{table}[!t]
 \centering
@@ -131,14 +133,12 @@ Les 55 fichiers non retenus le sont pour une raison écrite dans le bilan des so
 \toprule
 Motif d'exclusion & Fichiers \\
 \midrule
-Éducation non formelle : hors du champ (primaire) & 22 \\
 Géométries et métadonnées cartographiques, réservées aux cartes & 9 \\
-Préscolaire : hors du champ & 6 \\
 Documentation du challenge et du Data Pack & 5 \\
 Résultats généraux du RGPH, repris plus finement ailleurs & 4 \\
 ONG, supérieur, emploi, doublons, documents de méthode & 9 \\
 \midrule
-Total & 55 \\
+Total & 27 \\
 \bottomrule
 \end{tabularx}
 \caption{Fichiers sources écartés et motifs. Source : bilan des sources, calculs des auteurs.}
@@ -166,7 +166,7 @@ Un contrôle de couverture vérifie que chaque fichier d'un jeu sélectif fourni
 
 \subsection{Résultat}
 
-La collecte produit 33 jeux de données issus de 118 fichiers sources, soit 312\,727 lignes extraites, ainsi qu'un inventaire des 347 fichiers remis, le bilan des sources retenues et écartées, le registre et le contrôle de couverture. Les 37 fichiers du dépôt 01 suivent la convention de nommage du challenge, avec un LISEZ-MOI.
+La collecte produit 36 jeux de données issus de 146 fichiers sources, soit 455\,372 lignes extraites, ainsi qu'un inventaire des 347 fichiers remis, le bilan des sources retenues et écartées, le registre et le contrôle de couverture. Les 40 fichiers du dépôt 01 suivent la convention de nommage du challenge, avec un LISEZ-MOI.
 
 %======================================================================
 \section{Méthode de nettoyage}
@@ -203,6 +203,12 @@ Le classeur remis par les organisateurs est lu en entier : ses 14 feuilles empil
 
 Pour chaque comptage, la somme des parties retrouve le total publié dans les 1\,691 cas vérifiés (régions et pays, garçons et filles, statuts, milieux, classes), et le taux d'achèvement national de 2024-2025 retrouve les 51,6\,\% cités dans la note d'intention. Les variations d'un facteur supérieur à 2,5 d'une année à l'autre (73 valeurs, presque toutes au préscolaire) sont consignées sans correction : en 2019-2020, plusieurs régions semblent avoir leurs structures privées et communautaires interverties, le total restant juste.
 
+\subsection{L'éducation non formelle et le préscolaire}
+
+Les annuaires de l'éducation non formelle donnent, par province et milieu, les centres des adultes et des adolescents et leurs apprenants (tableaux 1.1 et 1.3). La campagne est lue dans l'en-tête des pages, jamais dans le nom du fichier : deux fichiers du Data Pack, intitulés 2019 et 2021, sont identiques (même empreinte) et portent la campagne 2020, et celui intitulé 2020 porte la campagne 2019. Le doublon est écarté ; restent les campagnes 2018, 2019, 2020 et 2024, chacune pour les 45 provinces. Les deux tableaux se recoupent (adultes et adolescents retrouvent le total dans tous les cas), et la somme des provinces retrouve le total régional publié pour les 52 régions et campagnes.
+
+Les annuaires du préscolaire 2023-2024 et 2024-2025 donnent, par province et sexe, la population préscolarisable, les enfants préscolarisés, le taux de préscolarisation et les enfants par section. Chaque entité occupe trois lignes ; le nom de la région, centré dans le PDF, tombe dans le bloc d'une province (« BOUCLE DU » puis « MOUHOUN » dans le bloc du Mouhoun), et le total régional n'est pas toujours intitulé. Chaque bloc est donc lu en entier : les noms de région en sont retirés, puis le reste est reconnu comme province ; un bloc sans province est le total de la région. Le tableau par section change de numéro d'une édition à l'autre et se reconnaît à son intitulé. Les sections retrouvent le total dans les 354 cas, et 24 totaux régionaux sur 26 sont identiques à ceux de la base principale.
+
 \subsection{Les rapports du ST-ESU}
 
 Les rapports mensuels donnent les écoles fermées et rouvertes par ordre d'enseignement, région et province. Seul le primaire est retenu. Deux niveaux de lecture coexistent. Au niveau provincial, chaque ligne est contrôlée (filles + garçons = total), et un rapport n'est jugé fiable que si la somme des provinces retrouve le total primaire publié à 5\,\% près : c'est le cas de 12 tableaux sur 30, issus des rapports en texte natif de novembre 2021 à mai 2022 et d'octobre 2023. Les rapports lus par reconnaissance de caractères sont conservés mais marqués non fiables. Au niveau régional, la phrase de synthèse de chaque région (« Est : 1\,090 établissements scolaires fermés, affectant 189\,095 élèves… ») résiste mieux à cette lecture et donne une série mensuelle des fermetures de novembre 2021 à mai 2023. À partir d'octobre 2023, les rapports ne recensent plus les fermetures, seulement les réouvertures.
@@ -222,7 +228,7 @@ Deux formats coexistent : des fichiers détaillés par site d'accueil, avec P-co
 \section{La base Sentinelle Scolaire}
 %======================================================================
 
-Le nettoyage produit une base unique au format GeoPackage, qui s'ouvre dans un logiciel de cartographie comme QGIS, et dont chaque table est aussi exportée en CSV (tableau~\ref{tab:base}). Elle suit un schéma en étoile : des couches et tables de référence, des tables de faits reliées par les P-codes et la période, et des tables de traçabilité. Deux tables de métadonnées la documentent : \texttt{meta\_tables} décrit chaque table (contenu, grain, clé, sources, période, nombre de lignes), et \texttt{meta\_variables} est le dictionnaire des 175 variables (type, unité, description). Un contrôle vérifie qu'aucune table ni variable ne reste sans description.
+Le nettoyage produit une base unique au format GeoPackage, qui s'ouvre dans un logiciel de cartographie comme QGIS, et dont chaque table est aussi exportée en CSV (tableau~\ref{tab:base}). Elle suit un schéma en étoile : des couches et tables de référence, des tables de faits reliées par les P-codes et la période, et des tables de traçabilité. Deux tables de métadonnées la documentent : \texttt{meta\_tables} décrit chaque table (contenu, grain, clé, sources, période, nombre de lignes), et \texttt{meta\_variables} est le dictionnaire des 210 variables (type, unité, description). Un contrôle vérifie qu'aucune table ni variable ne reste sans description.
 
 \begin{table*}[!t]
 \centering
@@ -241,15 +247,17 @@ fait\_flux\_publie & Taux de promotion, redoublement et abandon publiés & édit
 fait\_effectifs\_editions & Effectifs et redoublants tels que publiés dans chaque édition & édition, année, entité, classe, sexe & 101\,199 \\
 fait\_effectifs\_retenus & Une valeur par année (édition la plus récente), fiabilité de la répartition par sexe & année, entité, classe, sexe & 20\,720 \\
 fait\_offre\_province & Écoles, salles, maîtres, élèves et ratios d'encadrement & année, entité, statut & 1\,389 \\
+fait\_enf\_province & Éducation non formelle : centres et apprenants & campagne, entité, milieu & 708 \\
+fait\_prescolaire\_province & Préscolaire : taux, enfants par section & année, entité, sexe & 354 \\
 fait\_base\_principale & Les 21 tableaux de la base principale (préscolaire et primaire) & tableau, entité, statut, milieu, classe, sexe, année & 6\,621 \\
 fait\_esu\_province & Écoles primaires fermées et rouvertes, fiabilité du rapport & rapport, type, province & 389 \\
 fait\_esu\_region & Établissements fermés, élèves et enseignants affectés & rapport, région & 77 \\
 fait\_pdi\_commune & Déplacés internes et enfants déplacés & date, commune & 9\,989 \\
 \multicolumn{4}{@{}l}{\emph{Métadonnées et traçabilité}} \\
-meta\_tables, meta\_variables & Description des tables, dictionnaire des variables & table ; variable & 19 ; 175 \\
+meta\_tables, meta\_variables & Description des tables, dictionnaire des variables & table ; variable & 21 ; 210 \\
 meta\_source & Registre des sources de la collecte & fichier, jeu & 191 \\
-meta\_journal\_nettoyage & Corrections, déductions, rapprochements, lignes écartées & opération & 1\,170 \\
-meta\_controles & Résultat des contrôles automatiques & contrôle & 16 \\
+meta\_journal\_nettoyage & Corrections, déductions, rapprochements, lignes écartées & opération & 1\,179 \\
+meta\_controles & Résultat des contrôles automatiques & contrôle & 23 \\
 \bottomrule
 \end{tabularx}
 \caption{Tables de la base \sol{}. Source : calculs des auteurs à partir des fichiers remis par les organisateurs.}
@@ -281,6 +289,8 @@ Déplacés internes rattachés à une commune & 328 communes, 46 dates ; seules 
 Base principale lue en entier & 21 tableaux sur 21, 6\,621 valeurs, aucun doublon & Conforme \\
 Base principale : parties = total & 1\,691 sommes vérifiées, aucun écart & Conforme \\
 Base principale : variations brutales & 73 valeurs signalées dans le journal, surtout au préscolaire & À noter \\
+Éducation non formelle : 45 provinces par campagne, tableaux cohérents, provinces = régions & 4 campagnes ; 52 totaux régionaux sur 52 retrouvés & Conforme \\
+Préscolaire : 45 provinces, sections = total, régions = base principale & 354 sur 354 ; 24 régions sur 26 & Conforme \\
 Contours web sans trou ni chevauchement & Mosaïque valide aux cinq niveaux & Conforme \\
 Métadonnées complètes & Toutes les tables et variables sont décrites & Conforme \\
 \bottomrule
@@ -306,6 +316,7 @@ Le nettoyage a révélé des anomalies dans les publications elles-mêmes. Elles
 \item des étiquettes d'année absentes, erronées ou répétées dans l'historique des effectifs de plusieurs éditions, et un bloc imprimé deux fois (Mouhoun, édition 2024-2025) ;
 \item des rapports ESU récents illisibles au niveau provincial et, depuis octobre 2023, l'absence de recensement des fermetures ;
 \item un fichier de déplacés incomplet à la fin d'avril 2022 ;
+\item dans le Data Pack, deux annuaires de l'éducation non formelle identiques sous deux noms (2019 et 2021, campagne 2020), et un troisième dont le nom (2020) ne correspond pas à la campagne (2019) ;
 \item dans la base principale, des structures privées et communautaires du préscolaire apparemment interverties en 2019-2020 dans plusieurs régions, et des sauts brusques des effectifs et des structures du préscolaire en 2024-2025.
 \end{itemize}
 

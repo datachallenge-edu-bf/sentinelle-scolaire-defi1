@@ -11,7 +11,9 @@ Une ligne par ancienne province (45) et par année scolaire t. La ligne réunit 
   effectifs, structure des effectifs, offre scolaire, déplacés internes, écoles
   fermées, et le contexte de la région tiré de la base principale DGESS (taux
   bruts d'admission et de scolarisation, taux d'achèvement, parité, préscolaire,
-  réussite au CEP de la session précédente).
+  réussite au CEP de la session précédente), l'éducation non formelle des
+  adolescents (campagnes 2018 à 2020 et 2024) et le préscolaire (2023-2024 et
+  2024-2025) de la province.
 
 Deux tables complètent le panel : ``panel_region_annee`` reprend tous les
 indicateurs régionaux de la base principale (13 régions et le pays), et
@@ -253,6 +255,26 @@ def _contexte_regional() -> pd.DataFrame:
                           on=["region_ancienne_pcode", "annee_scolaire"], how="outer")
 
 
+def _non_formelle_et_prescolaire() -> pd.DataFrame:
+    """Éducation non formelle et préscolaire par province, connus à la rentrée de t.
+
+    La campagne d'éducation non formelle Y est achevée à la rentrée de l'année scolaire
+    Y-(Y+1) : elle est rattachée à cette année (campagnes 2018, 2019, 2020 et 2024).
+    Le préscolaire de t est recensé à la rentrée de t (2023-2024 et 2024-2025).
+    """
+    enf = lire("fait_enf_province")
+    enf = enf[(enf["niveau_geo"] == "province_ancienne") & (enf["milieu"] == "total")]
+    enf = enf.assign(annee_scolaire=enf["campagne"].map(annee_scolaire))[
+        ["entite_pcode", "annee_scolaire", "adolescents", "centres_adolescents"]].rename(
+        columns={"adolescents": "adolescents_non_formelle", "centres_adolescents": "centres_non_formelle_adolescents"})
+    pre = lire("fait_prescolaire_province")
+    pre = pre[(pre["niveau_geo"] == "province_ancienne") & (pre["sexe"] == "T")][
+        ["entite_pcode", "annee_scolaire", "taux_prescolarisation", "grande_section"]].rename(
+        columns={"taux_prescolarisation": "taux_prescolarisation_province", "grande_section": "grande_section_province"})
+    resultat = enf.merge(pre, on=["entite_pcode", "annee_scolaire"], how="outer")
+    return resultat.rename(columns={"entite_pcode": "province_ancienne_pcode"})
+
+
 def construire_panel() -> pd.DataFrame:
     effectifs = _effectifs()
     flux = _flux(effectifs)
@@ -304,6 +326,10 @@ def construire_panel() -> pd.DataFrame:
 
     # Contexte régional de la base principale DGESS.
     panel = panel.merge(_contexte_regional(), on=["region_ancienne_pcode", "annee_scolaire"], how="left")
+
+    # Éducation non formelle (seconde chance des déscolarisés) et préscolaire, par province.
+    panel = panel.merge(_non_formelle_et_prescolaire(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
+    panel["adolescents_non_formelle_pour_1000_eleves"] = 1000 * panel["adolescents_non_formelle"] / panel["effectif"]
 
     colonnes_arrondies = panel.select_dtypes("float").columns
     panel[colonnes_arrondies] = panel[colonnes_arrondies].round(4)

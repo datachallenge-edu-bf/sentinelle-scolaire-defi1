@@ -147,6 +147,12 @@ TABLES_NETTOYAGE = [
      "Les 21 tableaux de la base principale DGESS en format long : effectifs du préscolaire et du primaire "
      "(région, statut, milieu, niveau, sexe), nouveaux inscrits au CP1, TBA, TBS, taux d'achèvement, réussite "
      "au CEP, indices de parité, écoles, structures et salles du préscolaire, 2015-2016 à 2024-2025."),
+    ("fait_enf_province.csv", "engineer", "education-non-formelle-centres-apprenants-province-2018-2024-propre",
+     "Éducation non formelle par province et milieu, campagnes 2018, 2019, 2020 et 2024 : centres des adultes et "
+     "des adolescents, apprenants adultes (1er et 2nd cycle) et adolescents, dont femmes ; doublon du Data Pack écarté."),
+    ("fait_prescolaire_province.csv", "engineer", "prescolaire-taux-sections-province-2023-2025-propre",
+     "Préscolaire par province et sexe, 2023-2024 et 2024-2025 : population préscolarisable, enfants préscolarisés, "
+     "taux de préscolarisation, enfants par section."),
     ("fait_offre_province.csv", "engineer", "ecoles-salles-maitres-eleves-province-2017-2025-propre",
      "Écoles, salles, groupes pédagogiques, maîtres et élèves par province et statut, avec les élèves par maître "
      "et par salle."),

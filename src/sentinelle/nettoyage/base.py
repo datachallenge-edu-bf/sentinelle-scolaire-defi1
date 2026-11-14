@@ -16,6 +16,7 @@ import pyogrio
 from .. import config
 from ..indicateurs import effectifs_retenus
 from . import base_principale as principale
+from . import enf_prescolaire
 from . import controles, dgess, esu, geographie, metadonnees, pdi
 from .offre import lire_offre
 from .outils import Journal
@@ -51,6 +52,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     retenus = effectifs_retenus(effectifs)
     offre = lire_offre(identifier, journal)
     tableaux_dgess = principale.lire_base_principale(alias, journal)
+    enf = enf_prescolaire.lire_enf(identifier, journal)
+    prescolaire = enf_prescolaire.lire_prescolaire(identifier, alias, journal)
 
     # Rapports ESU et déplacés internes.
     esu_provinces, esu_totaux = esu.lire_esu(identifier, journal)
@@ -112,6 +115,10 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
          "detail": f"{len(resultats_controles['base_principale_sauts'])} comptages variant d'un facteur supérieur "
                    "à 2,5 d'une année à l'autre, consignés dans le journal sans correction "
                    "(surtout préscolaire, structures et salles)"},
+        *[{"controle": nom, "conforme": conforme, "detail": detail} for nom, (conforme, detail) in
+          enf_prescolaire.controler(enf, prescolaire, tableaux_dgess,
+                                    dict(zip(communes["province_ancienne_pcode"],
+                                             communes["region_ancienne_pcode"]))).items()],
         {"controle": "metadonnees_completes", "conforme": False, "detail": ""},
     ])], ignore_index=True)
 
@@ -139,6 +146,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_effectifs_retenus": retenus,
         "fait_offre_province": offre,
         "fait_base_principale": tableaux_dgess,
+        "fait_enf_province": enf,
+        "fait_prescolaire_province": prescolaire,
         "fait_esu_province": esu_provinces,
         "fait_esu_region": esu_regions,
         "fait_pdi_commune": deplaces,

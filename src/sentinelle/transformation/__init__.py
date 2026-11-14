@@ -52,6 +52,11 @@ VARIABLES = {
     "ips_tap_region": ("explicative", "Indice de parité filles / garçons du taux d'achèvement de la région en t", "DGESS, base principale, feuille 12"),
     "tbs_prescolaire_region": ("explicative", "Taux brut de scolarisation au préscolaire de la région en t, en %", "DGESS, base principale, feuille PRESCOLAIRE, tableau 5"),
     "part_ecoles_privees_region": ("explicative", "Part des écoles primaires privées de la région en t", "DGESS, base principale, feuille 13"),
+    "adolescents_non_formelle": ("explicative", "Adolescents inscrits dans l'éducation non formelle de la province (campagne achevée à la rentrée de t)", "DGESS, annuaires de l'éducation non formelle, tableau 1.3"),
+    "centres_non_formelle_adolescents": ("explicative", "Centres d'éducation non formelle des adolescents de la province (campagne achevée à la rentrée de t)", "DGESS, annuaires de l'éducation non formelle, tableau 1.1"),
+    "adolescents_non_formelle_pour_1000_eleves": ("explicative", "Adolescents de l'éducation non formelle pour 1 000 élèves du primaire", "DGESS ; calculs des auteurs"),
+    "taux_prescolarisation_province": ("explicative", "Taux de préscolarisation de la province en t, en %", "DGESS, annuaires du préscolaire, tableau 02"),
+    "grande_section_province": ("explicative", "Enfants en grande section dans la province en t (futurs entrants au CP1)", "DGESS, annuaires du préscolaire, tableau 9"),
     "reussite_cep_precedente_region": ("explicative", "Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %", "DGESS, base principale, feuille 9"),
 }
 
