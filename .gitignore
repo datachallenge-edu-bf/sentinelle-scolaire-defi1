@@ -1,0 +1,24 @@
+# Données produites par la chaîne : elles se régénèrent avec
+#   python -m sentinelle.collecte   puis   python -m sentinelle.nettoyage
+data/
+depots/
+outputs/figures/
+
+# Environnement Python et fichiers temporaires
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Compilation LaTeX
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+
+# Système
+.DS_Store
+Thumbs.db
+desktop.ini
