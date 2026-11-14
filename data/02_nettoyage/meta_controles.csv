@@ -10,4 +10,8 @@ jointure_contours_flux;True;45 à 45 provinces sur 45 avec contour
 jointure_contours_effectifs;True;45 à 45 provinces sur 45 avec contour
 esu_somme_provinces_egale_total_primaire_publie;True;"12 tableaux sur 30 retrouvent le total publié à 5 % près (2021-11-30 fermes, 2021-11-30 rouverts, 2021-12-31 fermes, 2021-12-31 rouverts, 2022-01 fermes, 2022-01 rouverts, 2022-03 fermes, 2022-03 rouverts, 2022-04 fermes, 2022-05 fermes, 2022-05 rouverts, 2023-10 fermes) ; les autres sont marqués non fiables (rapport_fiable = faux)"
 pdi_communes_rapprochees;True;328 communes, 46 dates de situation (2019-01-27 à 2023-03-31)
+base_principale_lue_en_entier;True;21 tableaux sur 21, 6621 valeurs, 14 feuilles
+base_principale_une_valeur_par_cle;True;0 doublons
+base_principale_sommes_coherentes;True;1691 sommes vérifiées (régions = national, garçons + filles = total, statuts, milieux et niveaux = total), 0 en écart
+base_principale_variations_brutales_signalees;True;73 comptages variant d'un facteur supérieur à 2,5 d'une année à l'autre, consignés dans le journal sans correction (surtout préscolaire, structures et salles)
 metadonnees_completes;True;toutes les tables et variables sont décrites

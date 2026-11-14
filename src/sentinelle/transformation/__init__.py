@@ -6,7 +6,8 @@ import geopandas as gpd
 import pandas as pd
 
 from .. import config
-from .panel import SEUIL_RUPTURE, construire_panel, construire_panel_mensuel
+from .panel import (SEUIL_RUPTURE, construire_panel, construire_panel_mensuel, construire_panel_region,
+                    construire_serie_nationale)
 
 SORTIE = config.DONNEES / "03_transformation"
 
@@ -44,6 +45,72 @@ VARIABLES = {
     "eleves_touches_province": ("explicative", "Élèves des écoles primaires fermées, moyenne des rapports fiables de l'année", "ST-ESU"),
     "ecoles_fermees_region": ("explicative", "Établissements fermés dans la région (tous ordres), moyenne des rapports de l'année", "ST-ESU"),
     "eleves_affectes_region": ("explicative", "Élèves affectés par les fermetures dans la région, moyenne des rapports de l'année", "ST-ESU"),
+    "tba_region": ("explicative", "Taux brut d'admission au CP1 de la région en t, en %", "DGESS, base principale, feuille 6"),
+    "tbs_region": ("explicative", "Taux brut de scolarisation au primaire de la région en t, en %", "DGESS, base principale, feuille 7"),
+    "taux_achevement_region": ("explicative", "Taux d'achèvement du primaire de la région en t, en %", "DGESS, base principale, feuille 8"),
+    "ips_tbs_region": ("explicative", "Indice de parité filles / garçons du TBS de la région en t", "DGESS, base principale, feuille 11"),
+    "ips_tap_region": ("explicative", "Indice de parité filles / garçons du taux d'achèvement de la région en t", "DGESS, base principale, feuille 12"),
+    "tbs_prescolaire_region": ("explicative", "Taux brut de scolarisation au préscolaire de la région en t, en %", "DGESS, base principale, feuille PRESCOLAIRE, tableau 5"),
+    "part_ecoles_privees_region": ("explicative", "Part des écoles primaires privées de la région en t", "DGESS, base principale, feuille 13"),
+    "reussite_cep_precedente_region": ("explicative", "Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %", "DGESS, base principale, feuille 9"),
+}
+
+_CLASSES = ["CP1", "CP2", "CE1", "CE2", "CM1", "CM2"]
+
+# Description des variables des tables régionale et nationale tirées de la base principale.
+VARIABLES_REGION = {
+    "region_ancienne_pcode": "Code de la région (ancien découpage) ; BF pour le pays",
+    "region_ancienne_nom": "Nom de la région",
+    "annee_scolaire": "Année scolaire",
+    "effectif_primaire": "Élèves du primaire",
+    "effectif_primaire_filles": "Élèves du primaire, filles",
+    "nouveaux_inscrits_cp1": "Nouveaux inscrits au CP1",
+    "nouveaux_inscrits_cp1_filles": "Nouveaux inscrits au CP1, filles",
+    "tba": "Taux brut d'admission, en %",
+    "tba_filles": "Taux brut d'admission des filles, en %",
+    "tba_garcons": "Taux brut d'admission des garçons, en %",
+    "tbs": "Taux brut de scolarisation, en %",
+    "tbs_filles": "Taux brut de scolarisation des filles, en %",
+    "tbs_garcons": "Taux brut de scolarisation des garçons, en %",
+    "taux_achevement": "Taux d'achèvement du primaire, en %",
+    "taux_achevement_filles": "Taux d'achèvement des filles, en %",
+    "taux_achevement_garcons": "Taux d'achèvement des garçons, en %",
+    "reussite_cep": "Taux de réussite au CEP (session qui clôt l'année), en %",
+    "reussite_cep_filles": "Taux de réussite des filles au CEP, en %",
+    "reussite_cep_garcons": "Taux de réussite des garçons au CEP, en %",
+    "ips_tba": "Indice de parité filles / garçons du TBA",
+    "ips_tbs": "Indice de parité filles / garçons du TBS",
+    "ips_tap": "Indice de parité filles / garçons du taux d'achèvement",
+    "ecoles_primaires": "Écoles primaires",
+    "ecoles_primaires_publiques": "Écoles primaires publiques",
+    "ecoles_primaires_privees": "Écoles primaires privées",
+    "effectif_prescolaire": "Enfants inscrits au préscolaire",
+    "tbs_prescolaire": "Taux brut de scolarisation au préscolaire, en %",
+    "ips_tbs_prescolaire": "Indice de parité du TBS au préscolaire",
+    "structures_prescolaire": "Structures du préscolaire",
+    "structures_prescolaire_publiques": "Structures publiques du préscolaire",
+    "salles_prescolaire": "Salles du préscolaire",
+    "part_filles_primaire": "Part des filles parmi les élèves du primaire",
+    "part_ecoles_privees": "Part des écoles primaires privées",
+    "eleves_par_ecole": "Élèves du primaire par école",
+    "prescolaire_pour_100_nouveaux_cp1": "Enfants du préscolaire pour 100 nouveaux inscrits au CP1",
+    "effectif_primaire_public": "Élèves du primaire public",
+    "effectif_primaire_prive": "Élèves du primaire privé",
+    "effectif_primaire_urbain": "Élèves du primaire en milieu urbain",
+    "effectif_primaire_rural": "Élèves du primaire en milieu rural",
+    **{f"effectif_{c.lower()}": f"Élèves du {c}, public et privé" for c in _CLASSES},
+    **{f"effectif_{c.lower()}_public": f"Élèves du {c} dans le public" for c in _CLASSES},
+    "effectif_prescolaire_public": "Enfants du préscolaire public",
+    "effectif_prescolaire_prive": "Enfants du préscolaire privé",
+    "effectif_prescolaire_communautaire": "Enfants du préscolaire communautaire",
+    "effectif_prescolaire_urbain": "Enfants du préscolaire en milieu urbain",
+    "effectif_prescolaire_rural": "Enfants du préscolaire en milieu rural",
+    "effectif_petite_section": "Enfants en petite section",
+    "effectif_moyenne_section": "Enfants en moyenne section",
+    "effectif_grande_section": "Enfants en grande section",
+    "part_prive_primaire": "Part des élèves du primaire dans le privé",
+    "part_urbain_primaire": "Part des élèves du primaire en milieu urbain",
+    "rapport_cm2_cp1_national": "Élèves du CM2 rapportés à ceux du CP1",
 }
 
 # Relations entre tables, pour le schéma de la base (rôle architecte).
@@ -60,6 +127,11 @@ RELATIONS = [
     ("fait_esu_province", "province_ancienne_pcode", "province_ancienne", "province_ancienne_pcode", "plusieurs à un"),
     ("fait_esu_region", "region_ancienne_pcode", "region_ancienne", "region_ancienne_pcode", "plusieurs à un"),
     ("fait_pdi_commune", "commune_pcode", "commune", "commune_pcode", "plusieurs à un"),
+    ("fait_base_principale", "entite_pcode", "region_ancienne", "region_ancienne_pcode", "plusieurs à un"),
+    ("panel_region_annee", "region_ancienne_pcode", "region_ancienne", "region_ancienne_pcode", "plusieurs à un"),
+    ("panel_province_annee", "region_ancienne_pcode, annee_scolaire", "panel_region_annee",
+     "region_ancienne_pcode, annee_scolaire", "plusieurs à un"),
+    ("serie_nationale_annee", "annee_scolaire", "panel_region_annee", "annee_scolaire (ligne BF)", "un à un"),
 ]
 
 
@@ -73,6 +145,16 @@ def dictionnaire(panel: pd.DataFrame) -> pd.DataFrame:
                        "part_manquante": round(1 - renseignees.mean(), 3),
                        "premiere_annee": annees.min() if len(annees) else "",
                        "derniere_annee": annees.max() if len(annees) else ""})
+    return pd.DataFrame(lignes)
+
+
+def dictionnaire_region(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    lignes = []
+    for nom, table in tables.items():
+        for colonne in table.columns:
+            source = "OpenStreetMap (HOT)" if colonne == "region_ancienne_nom" else "DGESS, base principale"
+            lignes.append({"table": nom, "variable": colonne, "description": VARIABLES_REGION.get(colonne, ""),
+                           "source": source, "part_manquante": round(float(table[colonne].isna().mean()), 3)})
     return pd.DataFrame(lignes)
 
 
@@ -100,15 +182,49 @@ def controles(panel: pd.DataFrame, mensuel: pd.DataFrame, dico: pd.DataFrame) ->
     return pd.DataFrame(resultats, columns=["controle", "conforme", "detail"])
 
 
+def controles_region(region: pd.DataFrame, nationale: pd.DataFrame, dico_region: pd.DataFrame,
+                     panel: pd.DataFrame) -> pd.DataFrame:
+    regions = region[region["region_ancienne_pcode"] != "BF"]
+    pays = region[region["region_ancienne_pcode"] == "BF"].set_index("annee_scolaire")
+    ecart = (regions.groupby("annee_scolaire")["effectif_primaire"].sum() - pays["effectif_primaire"]).abs().max()
+    achevement = pays.loc["2024-2025", "taux_achevement"]
+    n = nationale.set_index("annee_scolaire")
+    statuts = (n["effectif_primaire_public"] + n["effectif_primaire_prive"] - n["effectif_primaire"]).abs().max()
+    renseigne = panel["taux_achevement_region"].notna().mean()
+    decrites = (dico_region["description"] != "").all()
+    resultats = [
+        ("panel_region_une_ligne_par_region_et_annee",
+         not region.duplicated(["region_ancienne_pcode", "annee_scolaire"]).any() and len(region) == 14 * 10,
+         f"{len(region)} lignes = 13 régions et le pays × 10 années"),
+        ("somme_des_regions_egale_national", ecart <= 0.5, f"écart maximal {ecart:g} élève sur 10 années"),
+        ("public_plus_prive_egal_total_national", statuts <= 0.5, f"écart maximal {statuts:g} élève"),
+        ("taux_achevement_national_2024_2025", abs(achevement - 51.6) < 0.05,
+         f"{achevement:.1f} % en 2024-2025, valeur citée dans la note d'intention"),
+        ("contexte_regional_joint_au_panel", renseigne == 1,
+         f"taux d'achèvement régional renseigné pour {renseigne:.0%} des lignes du panel"),
+        ("variables_regionales_decrites", decrites,
+         f"{len(dico_region)} variables décrites" if decrites
+         else "sans description : " + ", ".join(dico_region.loc[dico_region["description"] == "", "variable"])),
+    ]
+    return pd.DataFrame(resultats, columns=["controle", "conforme", "detail"])
+
+
 def executer_transformation() -> dict[str, pd.DataFrame]:
     sortie = config.verifier_ecriture(SORTIE)
     sortie.mkdir(parents=True, exist_ok=True)
     panel = construire_panel()
     mensuel = construire_panel_mensuel()
+    region = construire_panel_region()
+    nationale = construire_serie_nationale()
     dico = dictionnaire(panel)
+    dico_region = dictionnaire_region({"panel_region_annee": region, "serie_nationale_annee": nationale})
     relations = pd.DataFrame(RELATIONS, columns=["table", "cle", "table_liee", "cle_liee", "cardinalite"])
-    resultat = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "dictionnaire_variables_modele": dico,
-                "schema_relations": relations, "controles_transformation": controles(panel, mensuel, dico)}
+    verifications = pd.concat([controles(panel, mensuel, dico),
+                               controles_region(region, nationale, dico_region, panel)], ignore_index=True)
+    resultat = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
+                "serie_nationale_annee": nationale, "dictionnaire_variables_modele": dico,
+                "dictionnaire_variables_region": dico_region, "schema_relations": relations,
+                "controles_transformation": verifications}
     for nom, table in resultat.items():
         table.to_csv(sortie / f"{nom}.csv", sep=config.SEPARATEUR, encoding=config.ENCODAGE_SORTIE, index=False)
     return resultat

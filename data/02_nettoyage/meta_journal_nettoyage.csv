@@ -17,6 +17,18 @@ fait_effectifs_province;année déduite;étiquette d'année absente ou illisible
 fait_effectifs_province;doublon retiré;groupe d'année imprimé deux fois dans le PDF;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;385;56;MOUHOUN 2023-2024;
 fait_effectifs_province;année déduite;étiquette d'année absente ou illisible : déduite des années voisines;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;391;15;KOURITTENGA;2022-2023
 fait_effectifs_province;ligne ignorée;8 valeurs au lieu de 14;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;409;49;Filles | 215 | 0 | 418 | 0 | 127 | 0 | 760 | 0;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil1;;67;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil2;;70;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil3;;96;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil4;;113;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil5;;77;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil7;;108;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil8;;84;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil9;;166;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil10;;128;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil11;;124;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil12;;102;2017;
+fait_base_principale;ligne écartée;valeur isolée sans libellé;Feuil13;;140;2017;
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;27;CENTRELEST KOULPELOGO 2 302 4 12 46;
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;32;EST GOURMA 1 40 48 88 O0;
 fait_esu_province;ligne ignorée;2 valeurs au lieu de 7;RAPPORT_STATISTIQUE_MENSUEL_ESU_AVRIL_2023.pdf;10;22;BOUCLE DU MOUHOUN KOSSI 17 1475;
@@ -1010,6 +1022,79 @@ fait_pdi_commune;fichier doublon écarté;autre version de la situation au 2022-
 fait_pdi_commune;fichier doublon écarté;autre version de la situation au 2022-12-31;03_Conditions_de_Vie_et_Emploi/PDI_CONASUR/situation-des-pdi-par-communes-31-janvier-2022pcodes__Tableau.csv;;;;03_Conditions_de_Vie_et_Emploi/PDI_CONASUR/idps4__Tableau.csv
 fait_pdi_commune;fichier doublon écarté;autre version de la situation au 2022-12-31;03_Conditions_de_Vie_et_Emploi/PDI_CONASUR/situation-des-pdi-par-communes-accueil-du-31-decembre-2022-1__31122022.csv;;;;03_Conditions_de_Vie_et_Emploi/PDI_CONASUR/idps4__Tableau.csv
 fait_pdi_commune;fichier doublon écarté;autre version de la situation au 2023-01-31;03_Conditions_de_Vie_et_Emploi/PDI_CONASUR/situation-des-pdi-par-communes-31-janvier-2022pcodes__Tableau.csv;;;;03_Conditions_de_Vie_et_Emploi/PDI_CONASUR/idps4__Tableau.csv
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);Feuil13;;37;Feuil13 T13 BF56 prive 2018-2019 : 95;23
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;4;PRESCOLAIRE T1 BF46 total 2024-2025 : 1985;5609
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;10;PRESCOLAIRE T1 BF51 total 2016-2017 : 1196;468
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;10;PRESCOLAIRE T1 BF51 total 2018-2019 : 696;1908
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;13;PRESCOLAIRE T1 BF54 total 2024-2025 : 2065;5475
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;15;PRESCOLAIRE T1 BF56 total 2018-2019 : 313;1184
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;4;PRESCOLAIRE T1 BF46 total 2024-2025 : 2076;5870
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;10;PRESCOLAIRE T1 BF51 total 2016-2017 : 1239;457
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;10;PRESCOLAIRE T1 BF51 total 2018-2019 : 732;1867
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;13;PRESCOLAIRE T1 BF54 total 2024-2025 : 2221;5830
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;15;PRESCOLAIRE T1 BF56 total 2018-2019 : 351;1282
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;4;PRESCOLAIRE T1 BF46 total 2024-2025 : 4061;11479
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;10;PRESCOLAIRE T1 BF51 total 2016-2017 : 2435;925
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;10;PRESCOLAIRE T1 BF51 total 2018-2019 : 1428;3775
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;13;PRESCOLAIRE T1 BF54 total 2024-2025 : 4286;11305
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;15;PRESCOLAIRE T1 BF56 total 2018-2019 : 664;2466
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;41;PRESCOLAIRE T4 BF public 2024-2025 : 4663;13761
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;41;PRESCOLAIRE T4 BF public 2024-2025 : 4840;14661
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;41;PRESCOLAIRE T4 BF public 2024-2025 : 9503;28422
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;103;PRESCOLAIRE T7 BF13 communautaire 2019-2020 : 6;796
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;103;PRESCOLAIRE T7 BF13 communautaire 2020-2021 : 796;6
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;103;PRESCOLAIRE T7 BF13 communautaire 2022-2023 : 11;30
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;95;PRESCOLAIRE T7 BF46 communautaire 2019-2020 : 9;26
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;111;PRESCOLAIRE T7 BF49 communautaire 2019-2020 : 81;25
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;111;PRESCOLAIRE T7 BF49 communautaire 2020-2021 : 25;70
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;119;PRESCOLAIRE T7 BF51 communautaire 2016-2017 : 52;2
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;119;PRESCOLAIRE T7 BF51 communautaire 2018-2019 : 8;40
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;119;PRESCOLAIRE T7 BF51 communautaire 2019-2020 : 40;14
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;119;PRESCOLAIRE T7 BF51 communautaire 2020-2021 : 14;44
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;123;PRESCOLAIRE T7 BF52 communautaire 2016-2017 : 20;2
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;127;PRESCOLAIRE T7 BF53 communautaire 2019-2020 : 7;111
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;127;PRESCOLAIRE T7 BF53 communautaire 2020-2021 : 111;18
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;127;PRESCOLAIRE T7 BF53 communautaire 2024-2025 : 24;0
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;102;PRESCOLAIRE T7 BF13 prive 2019-2020 : 662;7
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;102;PRESCOLAIRE T7 BF13 prive 2020-2021 : 7;800
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;94;PRESCOLAIRE T7 BF46 prive 2019-2020 : 24;7
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;94;PRESCOLAIRE T7 BF46 prive 2020-2021 : 7;28
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;110;PRESCOLAIRE T7 BF49 prive 2019-2020 : 20;53
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;118;PRESCOLAIRE T7 BF51 prive 2019-2020 : 9;49
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;118;PRESCOLAIRE T7 BF51 prive 2020-2021 : 49;17
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;126;PRESCOLAIRE T7 BF53 prive 2016-2017 : 1;96
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;126;PRESCOLAIRE T7 BF53 prive 2019-2020 : 70;13
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;126;PRESCOLAIRE T7 BF53 prive 2020-2021 : 13;130
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;93;PRESCOLAIRE T7 BF46 public 2024-2025 : 16;90
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;109;PRESCOLAIRE T7 BF49 public 2024-2025 : 11;47
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;113;PRESCOLAIRE T7 BF50 public 2024-2025 : 40;121
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;121;PRESCOLAIRE T7 BF52 public 2024-2025 : 11;28
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;125;PRESCOLAIRE T7 BF53 public 2016-2017 : 4;25
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;125;PRESCOLAIRE T7 BF53 public 2024-2025 : 30;77
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;129;PRESCOLAIRE T7 BF54 public 2024-2025 : 15;76
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;133;PRESCOLAIRE T7 BF55 public 2024-2025 : 17;53
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;141;PRESCOLAIRE T7 BF57 public 2024-2025 : 20;61
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;96;PRESCOLAIRE T7 BF46 total 2024-2025 : 41;116
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;120;PRESCOLAIRE T7 BF51 total 2016-2017 : 68;15
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;120;PRESCOLAIRE T7 BF51 total 2018-2019 : 20;55
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;128;PRESCOLAIRE T7 BF53 total 2016-2017 : 33;133
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;160;PRESCOLAIRE T8 BF13 communautaire 2022-2023 : 19;69
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;160;PRESCOLAIRE T8 BF13 communautaire 2024-2025 : 40;11
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;172;PRESCOLAIRE T8 BF50 communautaire 2018-2019 : 25;73
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;176;PRESCOLAIRE T8 BF51 communautaire 2016-2017 : 104;4
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;176;PRESCOLAIRE T8 BF51 communautaire 2018-2019 : 18;52
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;180;PRESCOLAIRE T8 BF52 communautaire 2016-2017 : 27;3
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;184;PRESCOLAIRE T8 BF53 communautaire 2017-2018 : 20;6
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;184;PRESCOLAIRE T8 BF53 communautaire 2024-2025 : 36;0
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;175;PRESCOLAIRE T8 BF51 prive 2016-2017 : 30;11
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;183;PRESCOLAIRE T8 BF53 prive 2016-2017 : 2;178
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;150;PRESCOLAIRE T8 BF46 public 2024-2025 : 43;129
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;166;PRESCOLAIRE T8 BF49 public 2024-2025 : 23;76
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;182;PRESCOLAIRE T8 BF53 public 2016-2017 : 12;44
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;186;PRESCOLAIRE T8 BF54 public 2024-2025 : 40;108
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;177;PRESCOLAIRE T8 BF51 total 2016-2017 : 142;30
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;185;PRESCOLAIRE T8 BF53 total 2016-2017 : 54;242
+fait_base_principale;signalement;variation brutale d'une année à l'autre (facteur > 2.5);PRESCOLAIRE;;197;PRESCOLAIRE T8 BF56 total 2018-2019 : 10;44
 fait_effectifs_retenus;signalement;répartition filles / garçons invraisemblable : seul le total est utilisable;;;;BF4602 2007-2008;
 fait_effectifs_retenus;signalement;répartition filles / garçons invraisemblable : seul le total est utilisable;;;;BF4602 2008-2009;
 fait_effectifs_retenus;signalement;répartition filles / garçons invraisemblable : seul le total est utilisable;;;;BF4802 2008-2009;

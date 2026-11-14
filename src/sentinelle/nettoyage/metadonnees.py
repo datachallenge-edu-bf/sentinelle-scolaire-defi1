@@ -45,6 +45,13 @@ TABLES = {
                             "annee_scolaire, entite_pcode, statut",
                             "DGESS, annuaires statistiques du primaire, tableau I.1 (II.1 en 2017-2018)",
                             "2017-2018 à 2024-2025"),
+    "fait_base_principale": ("Tous les tableaux de la base principale DGESS : effectifs du préscolaire et du primaire "
+                             "par région, statut, milieu, niveau et sexe, nouveaux inscrits au CP1, TBA, TBS, taux "
+                             "d'achèvement, réussite au CEP, indices de parité, écoles, structures et salles du "
+                             "préscolaire", "tableau × entité × statut × milieu × classe × sexe × année",
+                             "tableau, entite_pcode, statut, milieu, classe, sexe, annee_scolaire",
+                             "DGESS, base principale « Données statistiques préscolaire et primaire 2016-2025 » "
+                             "(14 feuilles, 21 tableaux)", "2015-2016 à 2024-2025"),
     "fait_esu_province": ("Écoles primaires fermées et rouvertes, élèves et enseignants concernés, par province",
                           "rapport mensuel × type × province", "mois, type, province_ancienne_pcode",
                           "ST-ESU, rapports statistiques mensuels (via ReliefWeb)", "novembre 2021 à novembre 2024"),
@@ -98,14 +105,23 @@ VARIABLES = {
     "niveau_geo": ("Niveau géographique de l'entité", ""),
     "nom_source": ("Nom de l'entité tel qu'écrit dans la source", ""),
     "sexe": ("Sexe : G (garçons), F (filles), T (total)", ""),
-    "indicateur": ("Indicateur de flux : promotion, redoublement ou abandon", ""),
+    "indicateur": ("Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, "
+                   "taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles "
+                   "(base principale)", ""),
+    "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
+    "tableau": ("Feuille et numéro du tableau dans la base principale", ""),
+    "ordre": ("Ordre d'enseignement : prescolaire ou primaire", ""),
+    "milieu": ("Milieu : urbain, rural, indetermine ou total", ""),
+    "classe": ("Classe : CP1 à CM2, petite, moyenne ou grande section, ou total", ""),
+    "feuille": ("Feuille du classeur d'origine", ""),
+    "titre": ("Titre du tableau dans le classeur d'origine", ""),
     "valeur_pct": ("Taux publié ; les valeurs négatives sont ramenées à zéro par la DGESS", "%"),
     "effectif": ("Nombre d'élèves inscrits", "élèves"),
     "redoublants": ("Nombre d'élèves redoublants", "élèves"),
     "repartition_sexe_fiable": ("Faux si le rapport filles / garçons de l'année est invraisemblable : "
                                 "seul le total est alors utilisable", "booléen"),
     "source_fichier": ("Fichier d'origine remis par les organisateurs", ""),
-    "statut": ("Statut des écoles : public, prive ou total", ""),
+    "statut": ("Statut des écoles : public, prive, communautaire (préscolaire) ou total", ""),
     "ecoles": ("Nombre d'écoles primaires", "écoles"),
     "salles": ("Nombre de salles de classe", "salles"),
     "groupes_pedagogiques": ("Nombre de groupes pédagogiques", "groupes"),
@@ -146,7 +162,7 @@ VARIABLES = {
     "date_production": ("Date de production de la table", ""),
     "variable": ("Nom de la variable", ""),
     "type_donnee": ("Type de donnée", ""),
-    "unite": ("Unité", ""),
+    "unite": ("Unité : nombre, pour cent ou indice (rapport filles / garçons)", ""),
     "operation": ("Opération de nettoyage", ""),
     "motif": ("Motif de l'opération", ""),
     "ligne": ("Ligne du fichier d'origine", ""),

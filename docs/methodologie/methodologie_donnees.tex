@@ -102,7 +102,7 @@ Chaque fichier source a été examiné. 118 sont retenus et répartis en 33 jeux
 \toprule
 Source & Contenu retenu & Période & Niveau & Usage dans \sol{} \\
 \midrule
-Base principale DGESS~\cite{dgess_base} & Effectifs, admission, scolarisation, achèvement, CEP, parité, écoles (14 feuilles) & 2015-2016 à 2024-2025 & 13 régions & Contrôle des totaux \\
+Base principale DGESS~\cite{dgess_base} & Préscolaire et primaire : effectifs, admission, scolarisation, achèvement, CEP, parité, écoles, structures et salles (14 feuilles, 21 tableaux) & 2015-2016 à 2024-2025 & 13 régions & Lue en entier ; contexte régional du modèle, contrôle des totaux \\
 Annuaires du primaire DGESS (8)~\cite{dgess_annuaires} & Taux de promotion, redoublement, abandon ; effectifs et redoublants ; écoles, salles, maîtres ; distance ; CEP ; 43 communes prioritaires & Éditions 2017-2018 à 2024-2025 & 45 provinces, communes & Variable cible, offre scolaire \\
 Tableaux de bord, synthèses, dépliants DGESS (21)~\cite{dgess_tdb} & Séries régionales d'indicateurs, chiffres clés nationaux & 2015-2016 à 2023-2024 & Région, pays & Recoupement, contrôle des totaux \\
 Rapports mensuels ST-ESU (24)~\cite{stesu} & Écoles fermées et rouvertes, élèves et enseignants concernés & Nov. 2021 à fév. 2026 & Région, province & Exposition sécuritaire \\
@@ -197,6 +197,12 @@ Une table d'alias relie chaque orthographe rencontrée au bon code (« Komondjar
 
 \textbf{Validation.} Les taux de promotion, de redoublement et d'abandon ont été recalculés à partir des effectifs et des redoublants (méthode de la cohorte reconstituée), en conservant les valeurs négatives que les annuaires ramènent à zéro. Comparés aux taux publiés, ils s'en écartent de 0,03 point en médiane, à condition de rattacher les taux d'une édition au passage de l'année précédente à celle de l'édition. Ce résultat valide à la fois la lecture des tableaux et la convention de calcul de la DGESS.
 
+\subsection{La base principale de la DGESS}
+
+Le classeur remis par les organisateurs est lu en entier : ses 14 feuilles empilent 21 tableaux selon trois mises en page (une colonne par année et le sexe en ligne ; trois colonnes garçons, filles, total sous chaque année ; une seule valeur par année pour les indices de parité, les structures et les salles). Chaque feuille est parcourue ligne par ligne : une ligne « Tableau » ouvre un tableau, l'en-tête donne les colonnes de libellés et les années, écrites de cinq façons (« 2015-2016 », « 2015/16 », « 2024/25 », ou l'année de fin seule, « 2016 », pour le préscolaire et le CEP). Les libellés sont reportés vers le bas (une région vaut pour les lignes de statut qui la suivent) et reconnus par vocabulaire : région, statut, milieu, classe, sexe, total. Une cellule d'en-tête qui porte un texte parasite après un saut de ligne n'est lue que sur sa première ligne ; les cellules isolées en bas de feuille, sans libellé, sont écartées. Le résultat, \texttt{fait\_base\_principale}, compte 6\,621 valeurs.
+
+Pour chaque comptage, la somme des parties retrouve le total publié dans les 1\,691 cas vérifiés (régions et pays, garçons et filles, statuts, milieux, classes), et le taux d'achèvement national de 2024-2025 retrouve les 51,6\,\% cités dans la note d'intention. Les variations d'un facteur supérieur à 2,5 d'une année à l'autre (73 valeurs, presque toutes au préscolaire) sont consignées sans correction : en 2019-2020, plusieurs régions semblent avoir leurs structures privées et communautaires interverties, le total restant juste.
+
 \subsection{Les rapports du ST-ESU}
 
 Les rapports mensuels donnent les écoles fermées et rouvertes par ordre d'enseignement, région et province. Seul le primaire est retenu. Deux niveaux de lecture coexistent. Au niveau provincial, chaque ligne est contrôlée (filles + garçons = total), et un rapport n'est jugé fiable que si la somme des provinces retrouve le total primaire publié à 5\,\% près : c'est le cas de 12 tableaux sur 30, issus des rapports en texte natif de novembre 2021 à mai 2022 et d'octobre 2023. Les rapports lus par reconnaissance de caractères sont conservés mais marqués non fiables. Au niveau régional, la phrase de synthèse de chaque région (« Est : 1\,090 établissements scolaires fermés, affectant 189\,095 élèves… ») résiste mieux à cette lecture et donne une série mensuelle des fermetures de novembre 2021 à mai 2023. À partir d'octobre 2023, les rapports ne recensent plus les fermetures, seulement les réouvertures.
@@ -216,7 +222,7 @@ Deux formats coexistent : des fichiers détaillés par site d'accueil, avec P-co
 \section{La base Sentinelle Scolaire}
 %======================================================================
 
-Le nettoyage produit une base unique au format GeoPackage, qui s'ouvre dans un logiciel de cartographie comme QGIS, et dont chaque table est aussi exportée en CSV (tableau~\ref{tab:base}). Elle suit un schéma en étoile : des couches et tables de référence, des tables de faits reliées par les P-codes et la période, et des tables de traçabilité. Deux tables de métadonnées la documentent : \texttt{meta\_tables} décrit chaque table (contenu, grain, clé, sources, période, nombre de lignes), et \texttt{meta\_variables} est le dictionnaire des 145 variables (type, unité, description). Un contrôle vérifie qu'aucune table ni variable ne reste sans description.
+Le nettoyage produit une base unique au format GeoPackage, qui s'ouvre dans un logiciel de cartographie comme QGIS, et dont chaque table est aussi exportée en CSV (tableau~\ref{tab:base}). Elle suit un schéma en étoile : des couches et tables de référence, des tables de faits reliées par les P-codes et la période, et des tables de traçabilité. Deux tables de métadonnées la documentent : \texttt{meta\_tables} décrit chaque table (contenu, grain, clé, sources, période, nombre de lignes), et \texttt{meta\_variables} est le dictionnaire des 175 variables (type, unité, description). Un contrôle vérifie qu'aucune table ni variable ne reste sans description.
 
 \begin{table*}[!t]
 \centering
@@ -234,14 +240,16 @@ ref\_alias\_nom & Orthographes rencontrées et codes correspondants & nom & 72 \
 fait\_flux\_publie & Taux de promotion, redoublement et abandon publiés & édition, entité, classe, sexe & 22\,032 \\
 fait\_effectifs\_editions & Effectifs et redoublants tels que publiés dans chaque édition & édition, année, entité, classe, sexe & 101\,199 \\
 fait\_effectifs\_retenus & Une valeur par année (édition la plus récente), fiabilité de la répartition par sexe & année, entité, classe, sexe & 20\,720 \\
+fait\_offre\_province & Écoles, salles, maîtres, élèves et ratios d'encadrement & année, entité, statut & 1\,389 \\
+fait\_base\_principale & Les 21 tableaux de la base principale (préscolaire et primaire) & tableau, entité, statut, milieu, classe, sexe, année & 6\,621 \\
 fait\_esu\_province & Écoles primaires fermées et rouvertes, fiabilité du rapport & rapport, type, province & 389 \\
 fait\_esu\_region & Établissements fermés, élèves et enseignants affectés & rapport, région & 77 \\
 fait\_pdi\_commune & Déplacés internes et enfants déplacés & date, commune & 9\,989 \\
 \multicolumn{4}{@{}l}{\emph{Métadonnées et traçabilité}} \\
-meta\_tables, meta\_variables & Description des tables, dictionnaire des variables & table ; variable & 17 ; 145 \\
+meta\_tables, meta\_variables & Description des tables, dictionnaire des variables & table ; variable & 19 ; 175 \\
 meta\_source & Registre des sources de la collecte & fichier, jeu & 191 \\
-meta\_journal\_nettoyage & Corrections, déductions, rapprochements, lignes écartées & opération & 1\,085 \\
-meta\_controles & Résultat des contrôles automatiques & contrôle & 12 \\
+meta\_journal\_nettoyage & Corrections, déductions, rapprochements, lignes écartées & opération & 1\,170 \\
+meta\_controles & Résultat des contrôles automatiques & contrôle & 16 \\
 \bottomrule
 \end{tabularx}
 \caption{Tables de la base \sol{}. Source : calculs des auteurs à partir des fichiers remis par les organisateurs.}
@@ -270,6 +278,9 @@ Répartition filles / garçons plausible & 31 provinces sur 45 hors de l'interva
 Taux recalculés et taux publiés & Écart médian de 0,03 point & Conforme \\
 Rapports ESU : somme des provinces = total publié & 12 tableaux sur 30 à 5\,\% près ; les autres sont marqués non fiables & À noter \\
 Déplacés internes rattachés à une commune & 328 communes, 46 dates ; seules restent des lignes de total & Conforme \\
+Base principale lue en entier & 21 tableaux sur 21, 6\,621 valeurs, aucun doublon & Conforme \\
+Base principale : parties = total & 1\,691 sommes vérifiées, aucun écart & Conforme \\
+Base principale : variations brutales & 73 valeurs signalées dans le journal, surtout au préscolaire & À noter \\
 Contours web sans trou ni chevauchement & Mosaïque valide aux cinq niveaux & Conforme \\
 Métadonnées complètes & Toutes les tables et variables sont décrites & Conforme \\
 \bottomrule
@@ -294,7 +305,8 @@ Le nettoyage a révélé des anomalies dans les publications elles-mêmes. Elles
 \item dans l'annuaire du primaire 2024-2025, la répartition entre garçons et filles est impossible pour 31 provinces alors que le total est juste (par exemple 84\,353 filles pour 33\,313 garçons au CP1 du Kadiogo) ;
 \item des étiquettes d'année absentes, erronées ou répétées dans l'historique des effectifs de plusieurs éditions, et un bloc imprimé deux fois (Mouhoun, édition 2024-2025) ;
 \item des rapports ESU récents illisibles au niveau provincial et, depuis octobre 2023, l'absence de recensement des fermetures ;
-\item un fichier de déplacés incomplet à la fin d'avril 2022.
+\item un fichier de déplacés incomplet à la fin d'avril 2022 ;
+\item dans la base principale, des structures privées et communautaires du préscolaire apparemment interverties en 2019-2020 dans plusieurs régions, et des sauts brusques des effectifs et des structures du préscolaire en 2024-2025.
 \end{itemize}
 
 D'autres limites tiennent à la nature des données. Aucune donnée n'est disponible au niveau de l'école ou de l'élève. Les annuaires régionaux de l'INSD manquent pour le Centre-Est, le Centre-Nord et l'Est. Enfin, l'abandon calculé par différence d'effectifs mesure toutes les pertes nettes d'élèves d'une province : là où les écoles ferment ou rouvrent en masse, il cesse de mesurer le décrochage. Ces cas, repérés par une variation des effectifs supérieure à 30\,\% en un an, seront traités à part à l'étape de transformation.

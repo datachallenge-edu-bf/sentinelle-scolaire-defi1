@@ -30,7 +30,7 @@ Competition_EducationBurkina/
 |---|---|---|---|
 | 01 Collecte | `sentinelle.collecte` | `notebooks/01_collecte.ipynb` | `data/01_collecte/`, `depots/01-collecte/` |
 | 02 Nettoyage | `sentinelle.nettoyage` | `notebooks/02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02-nettoyage/` |
-| 03 Transformation | `sentinelle.transformation` | `notebooks/03_transformation.ipynb` | `data/03_transformation/` (table d'analyse), `depots/03-transformation/` |
+| 03 Transformation | `sentinelle.transformation` | `notebooks/03_transformation.ipynb` | `data/03_transformation/` (table d'analyse province × année, panel mensuel, indicateurs régionaux et série nationale de la base principale), `depots/03-transformation/` |
 
 ## Démarrer après un clonage
 
@@ -60,3 +60,7 @@ python -m sentinelle.transformation # étape 03
 ```
 
 Si les données des organisateurs sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.
+
+## La base principale DGESS
+
+Le classeur `DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx` est lu en entier (14 feuilles, 21 tableaux, 6 621 valeurs) dans la table `fait_base_principale` : effectifs du préscolaire et du primaire par région, statut, milieu, classe et sexe, nouveaux inscrits au CP1, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures et salles du préscolaire. Le contexte de la région entre dans la table d'analyse ; `panel_region_annee` et `serie_nationale_annee` reprennent tous ses indicateurs.

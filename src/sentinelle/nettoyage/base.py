@@ -15,6 +15,7 @@ import pyogrio
 
 from .. import config
 from ..indicateurs import effectifs_retenus
+from . import base_principale as principale
 from . import controles, dgess, esu, geographie, metadonnees, pdi
 from .offre import lire_offre
 from .outils import Journal
@@ -49,6 +50,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     effectifs = dgess.lire_effectifs(identifier, journal)
     retenus = effectifs_retenus(effectifs)
     offre = lire_offre(identifier, journal)
+    tableaux_dgess = principale.lire_base_principale(alias, journal)
 
     # Rapports ESU et déplacés internes.
     esu_provinces, esu_totaux = esu.lire_esu(identifier, journal)
@@ -70,6 +72,9 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "jointure_contours_effectifs": controles.jointure_contours(effectifs, "annee_publication", communes),
     }
     resultats_controles["esu_totaux_primaire"] = esu.controle_totaux(esu_provinces, esu_totaux)
+    resultats_controles["base_principale_unicite"] = principale.controle_unicite(tableaux_dgess)
+    resultats_controles["base_principale_sommes"] = principale.controle_sommes(tableaux_dgess)
+    resultats_controles["base_principale_sauts"] = principale.signaler_sauts(tableaux_dgess, journal)
     synthese = controles.synthese(resultats_controles)
     # Un rapport est jugé fiable au niveau provincial si la somme des provinces retrouve le total
     # primaire publié à 5 % près, pour les établissements comme pour les élèves.
@@ -92,6 +97,21 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         {"controle": "pdi_communes_rapprochees", "conforme": True,
          "detail": f"{deplaces['commune_pcode'].nunique()} communes, {deplaces['date_situation'].nunique()} dates "
                    f"de situation ({deplaces['date_situation'].min()} à {deplaces['date_situation'].max()})"},
+        {"controle": "base_principale_lue_en_entier", "conforme": tableaux_dgess["tableau"].nunique() == 21,
+         "detail": f"{tableaux_dgess['tableau'].nunique()} tableaux sur 21, {len(tableaux_dgess)} valeurs, "
+                   f"{tableaux_dgess['feuille'].nunique()} feuilles"},
+        {"controle": "base_principale_une_valeur_par_cle",
+         "conforme": bool(resultats_controles["base_principale_unicite"]["conforme"].all()),
+         "detail": f"{int(resultats_controles['base_principale_unicite']['doublons'].iloc[0])} doublons"},
+        {"controle": "base_principale_sommes_coherentes",
+         "conforme": bool(resultats_controles["base_principale_sommes"]["conforme"].all()),
+         "detail": f"{int(resultats_controles['base_principale_sommes']['sommes_verifiees'].sum())} sommes vérifiées "
+                   "(régions = national, garçons + filles = total, statuts, milieux et niveaux = total), "
+                   f"{int(resultats_controles['base_principale_sommes']['sommes_en_ecart'].sum())} en écart"},
+        {"controle": "base_principale_variations_brutales_signalees", "conforme": True,
+         "detail": f"{len(resultats_controles['base_principale_sauts'])} comptages variant d'un facteur supérieur "
+                   "à 2,5 d'une année à l'autre, consignés dans le journal sans correction "
+                   "(surtout préscolaire, structures et salles)"},
         {"controle": "metadonnees_completes", "conforme": False, "detail": ""},
     ])], ignore_index=True)
 
@@ -118,6 +138,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_effectifs_editions": effectifs,
         "fait_effectifs_retenus": retenus,
         "fait_offre_province": offre,
+        "fait_base_principale": tableaux_dgess,
         "fait_esu_province": esu_provinces,
         "fait_esu_region": esu_regions,
         "fait_pdi_commune": deplaces,

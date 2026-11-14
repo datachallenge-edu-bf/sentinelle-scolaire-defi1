@@ -1,0 +1,27 @@
+﻿tableau;dimension;sommes_verifiees;sommes_en_ecart;annees_en_ecart;conforme
+Feuil1 T1;entite_pcode;30;0;;True
+Feuil13 T13;entite_pcode;30;0;;True
+Feuil5 T5;entite_pcode;30;0;;True
+PRESCOLAIRE T1;entite_pcode;30;0;;True
+PRESCOLAIRE T7;entite_pcode;10;0;;True
+PRESCOLAIRE T8;entite_pcode;10;0;;True
+Feuil1 T1;sexe;140;0;;True
+Feuil2 T2;sexe;30;0;;True
+Feuil3 T3;sexe;30;0;;True
+Feuil4 T4;sexe;150;0;;True
+Feuil5 T5;sexe;140;0;;True
+PRESCOLAIRE T1;sexe;140;0;;True
+PRESCOLAIRE T2;sexe;40;0;;True
+PRESCOLAIRE T3;sexe;27;0;;True
+PRESCOLAIRE T4;sexe;130;0;;True
+Feuil13 T13;statut;140;0;;True
+Feuil2 T2;statut;30;0;;True
+Feuil4 T4;statut;30;0;;True
+PRESCOLAIRE T2;statut;30;0;;True
+PRESCOLAIRE T4;statut;30;0;;True
+PRESCOLAIRE T7;statut;130;0;;True
+PRESCOLAIRE T8;statut;130;0;;True
+Feuil3 T3;milieu;30;0;;True
+PRESCOLAIRE T3;milieu;24;0;;True
+Feuil4 T4;classe;60;0;;True
+PRESCOLAIRE T4;classe;90;0;;True

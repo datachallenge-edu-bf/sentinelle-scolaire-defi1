@@ -53,7 +53,7 @@ fait_flux_publie;niveau_geo;texte;;Niveau géographique de l'entité
 fait_flux_publie;nom_source;texte;;Nom de l'entité tel qu'écrit dans la source
 fait_flux_publie;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
 fait_flux_publie;sexe;texte;;Sexe : G (garçons), F (filles), T (total)
-fait_flux_publie;indicateur;texte;;Indicateur de flux : promotion, redoublement ou abandon
+fait_flux_publie;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale)"
 fait_flux_publie;valeur_pct;décimal;%;"Taux publié ; les valeurs négatives sont ramenées à zéro par la DGESS"
 fait_flux_publie;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_flux_publie;page;texte;;Page du fichier d'origine
@@ -83,7 +83,7 @@ fait_effectifs_retenus;repartition_sexe_fiable;booléen;booléen;Faux si le rapp
 fait_offre_province;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
 fait_offre_province;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
 fait_offre_province;niveau_geo;texte;;Niveau géographique de l'entité
-fait_offre_province;statut;texte;;Statut des écoles : public, prive ou total
+fait_offre_province;statut;texte;;Statut des écoles : public, prive, communautaire (préscolaire) ou total
 fait_offre_province;ecoles;décimal;écoles;Nombre d'écoles primaires
 fait_offre_province;salles;décimal;salles;Nombre de salles de classe
 fait_offre_province;groupes_pedagogiques;décimal;groupes;Nombre de groupes pédagogiques
@@ -94,6 +94,22 @@ fait_offre_province;source_fichier;texte;;Fichier d'origine remis par les organi
 fait_offre_province;page;texte;;Page du fichier d'origine
 fait_offre_province;eleves_par_maitre;décimal;élèves par maître;Élèves par maître, recalculé
 fait_offre_province;eleves_par_salle;décimal;élèves par salle;Élèves par salle de classe, recalculé
+fait_base_principale;tableau;texte;;Feuille et numéro du tableau dans la base principale
+fait_base_principale;ordre;texte;;Ordre d'enseignement : prescolaire ou primaire
+fait_base_principale;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale)"
+fait_base_principale;unite;texte;;Unité : nombre, pour cent ou indice (rapport filles / garçons)
+fait_base_principale;niveau_geo;texte;;Niveau géographique de l'entité
+fait_base_principale;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_base_principale;statut;texte;;Statut des écoles : public, prive, communautaire (préscolaire) ou total
+fait_base_principale;milieu;texte;;Milieu : urbain, rural, indetermine ou total
+fait_base_principale;classe;texte;;Classe : CP1 à CM2, petite, moyenne ou grande section, ou total
+fait_base_principale;sexe;texte;;Sexe : G (garçons), F (filles), T (total)
+fait_base_principale;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_base_principale;valeur;décimal;;Valeur publiée, dans l'unité indiquée
+fait_base_principale;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_base_principale;feuille;texte;;Feuille du classeur d'origine
+fait_base_principale;ligne;entier;;Ligne du fichier d'origine
+fait_base_principale;titre;texte;;Titre du tableau dans le classeur d'origine
 fait_esu_province;mois;texte;;Mois du rapport (AAAA-MM ou AAAA-MM-JJ)
 fait_esu_province;type;texte;;Type de situation : établissements fermés ou rouverts
 fait_esu_province;province_ancienne_pcode;texte;;P-code de la province dans l'ancien découpage (45 provinces)
@@ -156,7 +172,7 @@ meta_source;usage;texte;;Usage prévu dans Sentinelle Scolaire
 meta_variables;table;texte;;Nom de la table
 meta_variables;variable;texte;;Nom de la variable
 meta_variables;type_donnee;texte;;Type de donnée
-meta_variables;unite;texte;;Unité
+meta_variables;unite;texte;;Unité : nombre, pour cent ou indice (rapport filles / garçons)
 meta_variables;description;texte;;Description
 meta_tables;table;texte;;Nom de la table
 meta_tables;description;texte;;Description

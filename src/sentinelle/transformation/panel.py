@@ -9,7 +9,14 @@ Une ligne par ancienne province (45) et par année scolaire t. La ligne réunit 
 - des variables connues à la date t uniquement, pour que le modèle ne voie jamais
   l'avenir : abandon et redoublement du passage précédent, évolution des
   effectifs, structure des effectifs, offre scolaire, déplacés internes, écoles
-  fermées.
+  fermées, et le contexte de la région tiré de la base principale DGESS (taux
+  bruts d'admission et de scolarisation, taux d'achèvement, parité, préscolaire,
+  réussite au CEP de la session précédente).
+
+Deux tables complètent le panel : ``panel_region_annee`` reprend tous les
+indicateurs régionaux de la base principale (13 régions et le pays), et
+``serie_nationale_annee`` les ventilations publiées seulement au niveau national
+(statut, milieu, classe, sections du préscolaire).
 
 Les valeurs absentes des sources restent vides : aucune n'est inventée.
 """
@@ -132,6 +139,120 @@ def _ecoles_fermees() -> pd.DataFrame:
     return provinces, regions
 
 
+# Base principale DGESS ------------------------------------------------------------------------------
+
+# Nom de colonne -> (tableau, filtre) ; le filtre porte sur sexe, statut, milieu et classe.
+_REGIONAL = {
+    "effectif_primaire": ("Feuil1 T1", {"sexe": "T"}),
+    "effectif_primaire_filles": ("Feuil1 T1", {"sexe": "F"}),
+    "nouveaux_inscrits_cp1": ("Feuil5 T5", {"sexe": "T"}),
+    "nouveaux_inscrits_cp1_filles": ("Feuil5 T5", {"sexe": "F"}),
+    "tba": ("Feuil6 T6", {"sexe": "T"}),
+    "tba_filles": ("Feuil6 T6", {"sexe": "F"}),
+    "tba_garcons": ("Feuil6 T6", {"sexe": "G"}),
+    "tbs": ("Feuil7 T7", {"sexe": "T"}),
+    "tbs_filles": ("Feuil7 T7", {"sexe": "F"}),
+    "tbs_garcons": ("Feuil7 T7", {"sexe": "G"}),
+    "taux_achevement": ("Feuil8 T8", {"sexe": "T"}),
+    "taux_achevement_filles": ("Feuil8 T8", {"sexe": "F"}),
+    "taux_achevement_garcons": ("Feuil8 T8", {"sexe": "G"}),
+    "reussite_cep": ("Feuil9 T9", {"sexe": "T"}),
+    "reussite_cep_filles": ("Feuil9 T9", {"sexe": "F"}),
+    "reussite_cep_garcons": ("Feuil9 T9", {"sexe": "G"}),
+    "ips_tba": ("Feuil10 T10", {}),
+    "ips_tbs": ("Feuil11 T11", {}),
+    "ips_tap": ("Feuil12 T12", {}),
+    "ecoles_primaires": ("Feuil13 T13", {"statut": "total"}),
+    "ecoles_primaires_publiques": ("Feuil13 T13", {"statut": "public"}),
+    "ecoles_primaires_privees": ("Feuil13 T13", {"statut": "prive"}),
+    "effectif_prescolaire": ("PRESCOLAIRE T1", {"sexe": "T"}),
+    "tbs_prescolaire": ("PRESCOLAIRE T5", {"sexe": "T"}),
+    "ips_tbs_prescolaire": ("PRESCOLAIRE T6", {}),
+    "structures_prescolaire": ("PRESCOLAIRE T7", {"statut": "total"}),
+    "structures_prescolaire_publiques": ("PRESCOLAIRE T7", {"statut": "public"}),
+    "salles_prescolaire": ("PRESCOLAIRE T8", {"statut": "total"}),
+}
+
+_CLASSES = ["CP1", "CP2", "CE1", "CE2", "CM1", "CM2"]
+_NATIONAL = {
+    "effectif_primaire_public": ("Feuil2 T2", {"statut": "public"}),
+    "effectif_primaire_prive": ("Feuil2 T2", {"statut": "prive"}),
+    "effectif_primaire_urbain": ("Feuil3 T3", {"milieu": "urbain"}),
+    "effectif_primaire_rural": ("Feuil3 T3", {"milieu": "rural"}),
+    **{f"effectif_{c.lower()}": ("Feuil4 T4", {"classe": c}) for c in _CLASSES},
+    **{f"effectif_{c.lower()}_public": ("Feuil4 T4", {"statut": "public", "classe": c}) for c in _CLASSES},
+    "effectif_prescolaire_public": ("PRESCOLAIRE T2", {"statut": "public"}),
+    "effectif_prescolaire_prive": ("PRESCOLAIRE T2", {"statut": "prive"}),
+    "effectif_prescolaire_communautaire": ("PRESCOLAIRE T2", {"statut": "communautaire"}),
+    "effectif_prescolaire_urbain": ("PRESCOLAIRE T3", {"milieu": "urbain"}),
+    "effectif_prescolaire_rural": ("PRESCOLAIRE T3", {"milieu": "rural"}),
+    **{f"effectif_{s.split()[0]}_section": ("PRESCOLAIRE T4", {"classe": s})
+       for s in ["petite section", "moyenne section", "grande section"]},
+}
+
+_DEFAUTS = {"sexe": "T", "statut": "total", "milieu": "total", "classe": "total"}
+
+
+def _extraire(table: pd.DataFrame, definitions: dict) -> pd.DataFrame:
+    colonnes = []
+    for nom, (tableau, filtre) in definitions.items():
+        partie = table[table["tableau"] == tableau]
+        for dimension, valeur in {**_DEFAUTS, **filtre}.items():
+            partie = partie[partie[dimension] == valeur]
+        colonnes.append(partie.set_index(["entite_pcode", "annee_scolaire"])["valeur"].rename(nom))
+    return pd.concat(colonnes, axis=1)
+
+
+def construire_panel_region() -> pd.DataFrame:
+    """Tous les indicateurs régionaux de la base principale : 13 régions et le pays, 2015-2016 à 2024-2025."""
+    large = _extraire(lire("fait_base_principale"), _REGIONAL)
+    large["part_filles_primaire"] = large["effectif_primaire_filles"] / large["effectif_primaire"]
+    large["part_ecoles_privees"] = large["ecoles_primaires_privees"] / large["ecoles_primaires"]
+    large["eleves_par_ecole"] = large["effectif_primaire"] / large["ecoles_primaires"]
+    large["prescolaire_pour_100_nouveaux_cp1"] = 100 * large["effectif_prescolaire"] / large["nouveaux_inscrits_cp1"]
+    large = large.reset_index().rename(columns={"entite_pcode": "region_ancienne_pcode"})
+    regions = lire("region_ancienne")[["region_ancienne_pcode", "region_ancienne_nom"]]
+    large = regions.merge(large, on="region_ancienne_pcode", how="right")
+    large["region_ancienne_nom"] = large["region_ancienne_nom"].fillna("Burkina Faso")
+    flottants = large.select_dtypes("float").columns
+    large[flottants] = large[flottants].round(4)
+    return large.sort_values(["region_ancienne_pcode", "annee_scolaire"]).reset_index(drop=True)
+
+
+def construire_serie_nationale() -> pd.DataFrame:
+    """Ventilations nationales de la base principale : statut, milieu, classe, sections du préscolaire."""
+    large = _extraire(lire("fait_base_principale"), _NATIONAL).reset_index().drop(columns="entite_pcode")
+    regional = construire_panel_region()
+    pays = regional[regional["region_ancienne_pcode"] == "BF"].drop(columns=["region_ancienne_pcode",
+                                                                             "region_ancienne_nom"])
+    large = pays.merge(large, on="annee_scolaire", how="outer")
+    large["part_prive_primaire"] = large["effectif_primaire_prive"] / large["effectif_primaire"]
+    large["part_urbain_primaire"] = large["effectif_primaire_urbain"] / large["effectif_primaire"]
+    large["rapport_cm2_cp1_national"] = large["effectif_cm2"] / large["effectif_cp1"]
+    flottants = large.select_dtypes("float").columns
+    large[flottants] = large[flottants].round(4)
+    return large.sort_values("annee_scolaire").reset_index(drop=True)
+
+
+def _contexte_regional() -> pd.DataFrame:
+    """Contexte de la région pour chaque année t ; la réussite au CEP est celle de la session précédente.
+
+    La session du CEP d'une année scolaire a lieu à sa fin : celle de t n'est pas connue à la
+    rentrée de t, d'où le décalage d'un an.
+    """
+    region = construire_panel_region()
+    region = region[region["region_ancienne_pcode"] != "BF"]
+    contexte = region[["region_ancienne_pcode", "annee_scolaire", "tba", "tbs", "taux_achevement", "ips_tbs",
+                       "ips_tap", "tbs_prescolaire", "part_ecoles_privees"]].rename(columns={
+        "tba": "tba_region", "tbs": "tbs_region", "taux_achevement": "taux_achevement_region",
+        "ips_tbs": "ips_tbs_region", "ips_tap": "ips_tap_region", "tbs_prescolaire": "tbs_prescolaire_region",
+        "part_ecoles_privees": "part_ecoles_privees_region"})
+    cep = region[["region_ancienne_pcode", "annee_scolaire", "reussite_cep"]].copy()
+    cep["annee_scolaire"] = cep["annee_scolaire"].map(lambda a: annee_scolaire(debut(a) + 1))
+    return contexte.merge(cep.rename(columns={"reussite_cep": "reussite_cep_precedente_region"}),
+                          on=["region_ancienne_pcode", "annee_scolaire"], how="outer")
+
+
 def construire_panel() -> pd.DataFrame:
     effectifs = _effectifs()
     flux = _flux(effectifs)
@@ -180,6 +301,9 @@ def construire_panel() -> pd.DataFrame:
     fermees_provinces, fermees_regions = _ecoles_fermees()
     panel = panel.merge(fermees_provinces, on=["province_ancienne_pcode", "annee_scolaire"], how="left")
     panel = panel.merge(fermees_regions, on=["region_ancienne_pcode", "annee_scolaire"], how="left")
+
+    # Contexte régional de la base principale DGESS.
+    panel = panel.merge(_contexte_regional(), on=["region_ancienne_pcode", "annee_scolaire"], how="left")
 
     colonnes_arrondies = panel.select_dtypes("float").columns
     panel[colonnes_arrondies] = panel[colonnes_arrondies].round(4)

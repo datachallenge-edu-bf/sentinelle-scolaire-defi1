@@ -144,6 +144,44 @@ CATALOGUE: tuple[Jeu, ...] = (
         regle=Regle("entete", r"CERTIFICAT"),
         usage="Résultats scolaires",
     ),
+    # Préscolaire : la fréquentation avant le CP1 prépare l'entrée et le maintien à l'école.
+    Jeu(
+        identifiant="dgess_prescolaire",
+        libelle="Préscolaire : annuaires 2023-2024 et 2024-2025, dépliants et tableaux de bord",
+        theme="education",
+        niveau_geo="region et province",
+        fichiers=(
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Annuaires/CNS52[78]_*.csv",
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Depliants/CNS53[89]_*.csv",
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Tableaux_de_bord/CNS554_*.csv",
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Tableaux_de_bord/CNS563_*.csv",
+        ),
+        usage="Préparation à l'école : enfants inscrits, structures, encadrement, par province",
+    ),
+    # Éducation non formelle : centres d'éducation de base (CEBNF), alphabétisation, passerelles.
+    # Elle accueille des enfants et adolescents non scolarisés ou déscolarisés : l'autre versant
+    # du décrochage.
+    Jeu(
+        identifiant="dgess_non_formelle_annuaires",
+        libelle="Éducation non formelle : annuaires statistiques 2018 à 2021 et 2024",
+        theme="education",
+        niveau_geo="region et province",
+        fichiers=("01_Education_MENAPLN_DGESS/CNS_DGESS/Annuaires/CNS51[6-9]_*.csv", "01_Education_MENAPLN_DGESS/CNS_DGESS/Annuaires/CNS520_*.csv"),
+        usage="Offre de seconde chance pour les déscolarisés : centres, apprenants, par province",
+    ),
+    Jeu(
+        identifiant="dgess_non_formelle_syntheses",
+        libelle="Éducation non formelle : dépliants, synthèses et tableaux de bord 2015 à 2024",
+        theme="education",
+        niveau_geo="national et region",
+        fichiers=(
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Depliants/CNS54[0-6]_*.csv",
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Syntheses/CNS53[12]_*.csv",
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Tableaux_de_bord/CNS55[5-9]_*.csv",
+            "01_Education_MENAPLN_DGESS/CNS_DGESS/Tableaux_de_bord/CNS56[0-2]_*.csv",
+        ),
+        usage="Séries longues de l'éducation non formelle, contrôle des totaux des annuaires",
+    ),
     Jeu(
         identifiant="dgess_communes_prioritaires",
         libelle="Principaux chiffres des 43 communes prioritaires (annuaires 2017-2018 à 2020-2021)",
@@ -389,6 +427,9 @@ NOMS_DEPOT = {
     "dgess_ecoles_salles_province": "ecoles-salles-public-prive-province-2017-2025",
     "dgess_cep_province": "resultats-cep-province-2017-2025",
     "dgess_communes_prioritaires": "indicateurs-43-communes-prioritaires-2017-2021",
+    "dgess_prescolaire": "prescolaire-annuaires-depliants-tableaux-de-bord-2022-2025",
+    "dgess_non_formelle_annuaires": "education-non-formelle-annuaires-2018-2024",
+    "dgess_non_formelle_syntheses": "education-non-formelle-depliants-syntheses-2015-2024",
     "dgess_tableaux_de_bord_primaire": "tableaux-de-bord-primaire-region-2015-2024",
     "dgess_tableaux_de_bord_post_primaire": "tableaux-de-bord-post-primaire-region-2023-2024",
     "dgess_syntheses_primaire": "syntheses-annuaires-primaire-region-2017-2022",
@@ -417,8 +458,6 @@ NOMS_DEPOT = {
 # Fichiers du Data Pack examinés et non retenus, avec le motif de l'exclusion.
 # La première règle dont le motif correspond au chemin s'applique.
 SOURCES_ECARTEES: tuple[tuple[str, str], ...] = (
-    (r"non_formelle|non_Formelle", "Éducation non formelle : hors du champ du défi (primaire formel)"),
-    (r"[Pp]r[ée]c?scolaire|Précolaire", "Préscolaire : hors du champ du défi (primaire)"),
     (r"/Superieur/", "Enseignement supérieur : sans lien direct avec le décrochage au primaire"),
     (r"CNS758_", "Marché de l'emploi : sans lien direct avec le décrochage au primaire"),
     (r"ONG_et_AD", "Annuaires des ONG : interventions non reliées à la cible ; pistes de leviers pour plus tard"),

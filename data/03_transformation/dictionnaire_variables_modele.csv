@@ -31,3 +31,11 @@ ecoles_fermees_province;explicative;Écoles primaires fermées, moyenne des rapp
 eleves_touches_province;explicative;Élèves des écoles primaires fermées, moyenne des rapports fiables de l'année;ST-ESU;0.923;2021-2022;2023-2024
 ecoles_fermees_region;explicative;Établissements fermés dans la région (tous ordres), moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
 eleves_affectes_region;explicative;Élèves affectés par les fermetures dans la région, moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
+tba_region;explicative;Taux brut d'admission au CP1 de la région en t, en %;DGESS, base principale, feuille 6;0.0;2016-2017;2024-2025
+tbs_region;explicative;Taux brut de scolarisation au primaire de la région en t, en %;DGESS, base principale, feuille 7;0.0;2016-2017;2024-2025
+taux_achevement_region;explicative;Taux d'achèvement du primaire de la région en t, en %;DGESS, base principale, feuille 8;0.0;2016-2017;2024-2025
+ips_tbs_region;explicative;Indice de parité filles / garçons du TBS de la région en t;DGESS, base principale, feuille 11;0.0;2016-2017;2024-2025
+ips_tap_region;explicative;Indice de parité filles / garçons du taux d'achèvement de la région en t;DGESS, base principale, feuille 12;0.0;2016-2017;2024-2025
+tbs_prescolaire_region;explicative;Taux brut de scolarisation au préscolaire de la région en t, en %;DGESS, base principale, feuille PRESCOLAIRE, tableau 5;0.0;2016-2017;2024-2025
+part_ecoles_privees_region;explicative;Part des écoles primaires privées de la région en t;DGESS, base principale, feuille 13;0.0;2016-2017;2024-2025
+reussite_cep_precedente_region;explicative;Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %;DGESS, base principale, feuille 9;0.0;2016-2017;2024-2025

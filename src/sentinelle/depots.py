@@ -143,6 +143,10 @@ TABLES_NETTOYAGE = [
     ("fait_effectifs_retenus.csv", "engineer", "effectifs-redoublants-province-classe-sexe-propre",
      "Effectifs et redoublants par province, classe et sexe, une valeur par année (édition la plus récente), "
      "avec l'indicateur de fiabilité de la répartition par sexe."),
+    ("fait_base_principale.csv", "engineer", "base-principale-dgess-prescolaire-primaire-2016-2025-propre",
+     "Les 21 tableaux de la base principale DGESS en format long : effectifs du préscolaire et du primaire "
+     "(région, statut, milieu, niveau, sexe), nouveaux inscrits au CP1, TBA, TBS, taux d'achèvement, réussite "
+     "au CEP, indices de parité, écoles, structures et salles du préscolaire, 2015-2016 à 2024-2025."),
     ("fait_offre_province.csv", "engineer", "ecoles-salles-maitres-eleves-province-2017-2025-propre",
      "Écoles, salles, groupes pédagogiques, maîtres et élèves par province et statut, avec les élèves par maître "
      "et par salle."),
@@ -213,14 +217,23 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
         (source / "panel_mensuel_province.csv", "engineer", "deplaces-ecoles-fermees-province-mensuel",
          "Déplacés internes par province et par relevé mensuel, avec leurs évolutions, et écoles fermées de la "
          "région : base de l'alerte entre deux annuaires."),
+        (source / "panel_region_annee.csv", "engineer", "indicateurs-regionaux-base-principale-2016-2025",
+         "Une ligne par région (13, ancien découpage) et pour le pays, par année de 2015-2016 à 2024-2025 : "
+         "effectifs, nouveaux inscrits au CP1, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, "
+         "écoles, préscolaire (effectifs, TBS, structures, salles)."),
+        (source / "serie_nationale_annee.csv", "engineer", "serie-nationale-statut-milieu-classe-2016-2025",
+         "Une ligne par année : indicateurs nationaux et ventilations publiées seulement au niveau national "
+         "(public et privé, urbain et rural, effectifs par classe, préscolaire par statut, milieu et section)."),
         (source / "dictionnaire_variables_modele.csv", "architect", "dictionnaire-variables-table-analyse",
          "Chaque variable de la table d'analyse : rôle (identifiant, cible, explicative), description, source, "
          "part de valeurs manquantes, années couvertes."),
+        (source / "dictionnaire_variables_region.csv", "architect", "dictionnaire-variables-region-nation",
+         "Description, source et part de valeurs manquantes des variables des tables régionale et nationale."),
         (source / "schema_relations.csv", "architect", "schema-relations-entre-tables",
          "Clés de jointure entre la table d'analyse, les tables de la base et les couches cartographiques."),
         (source / "controles_transformation.csv", "engineer", "controles-transformation",
          "Contrôles : unicité des lignes, cible renseignée, aucune variable venant du futur, variables décrites, "
-         "jointure avec la carte de 2025."),
+         "jointure avec la carte de 2025, cohérence des tables régionale et nationale."),
     ]
     entete = [
         "DÉPÔT 03 : TRANSFORMATION - Défi 1, cartographie et anticipation du risque de décrochage scolaire",
@@ -231,6 +244,11 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
         "les effectifs varient de plus de 30 % entre t et t+1, la ligne est classée en rupture de",
         "scolarisation (fermetures ou réouvertures massives) et la cible est laissée vide. Les variables",
         "explicatives ne portent que sur l'année t ou les précédentes.",
+        "",
+        "La base principale DGESS est exploitée en entier : le contexte de la région entre dans la table",
+        "principale (TBA, TBS, taux d'achèvement, parité, préscolaire, réussite au CEP de la session",
+        "précédente), une table régionale reprend tous les indicateurs régionaux et une série nationale",
+        "les ventilations par statut, milieu et classe.",
         "",
         "Les valeurs absentes des sources restent vides. Pour la carte, chaque province de 2025 reçoit",
         "la valeur de la province dont elle est issue (colonne provinces_actuelles).",
