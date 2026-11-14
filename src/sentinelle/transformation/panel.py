@@ -360,6 +360,27 @@ def _repartitions() -> pd.DataFrame:
     return resultat.reset_index().rename(columns={"entite_pcode": "province_ancienne_pcode"})
 
 
+def _causes_abandon() -> pd.DataFrame:
+    """Abandons déclarés pour orpaillage et pour mariage ou grossesse, pour 1 000 élèves de la région, année t-1.
+
+    Les tableaux de bord publient les causes de l'année précédant leur édition : à la rentrée de t,
+    seules celles de t-1 sont connues.
+    """
+    causes = lire("fait_causes_abandon")
+    causes = causes[(causes["ordre"] == "primaire") & (causes["niveau_geo"] == "region_ancienne")]
+    region = construire_panel_region()[["region_ancienne_pcode", "annee_scolaire", "effectif_primaire"]]
+    causes = causes.merge(region, left_on=["entite_pcode", "annee_scolaire"],
+                          right_on=["region_ancienne_pcode", "annee_scolaire"], how="left")
+    resultat = pd.DataFrame({
+        "region_ancienne_pcode": causes["entite_pcode"],
+        "annee_scolaire": causes["annee_scolaire"].map(lambda a: annee_scolaire(debut(a) + 1)),
+        "abandons_orpaillage_pour_1000_region": 1000 * causes["abandons_orpaillage"] / causes["effectif_primaire"],
+        "abandons_mariage_grossesse_pour_1000_region": 1000 * (causes["abandons_mariage"] + causes["abandons_grossesse"])
+        / causes["effectif_primaire"],
+    })
+    return resultat
+
+
 def construire_panel() -> pd.DataFrame:
     effectifs = _effectifs()
     flux = _flux(effectifs)
@@ -420,6 +441,7 @@ def construire_panel() -> pd.DataFrame:
     panel = panel.merge(_conditions_scolarisation(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
     panel["deficit_places_pour_100_eleves"] = 100 * panel.pop("deficit_places_assises") / panel["effectif"]
     panel = panel.merge(_repartitions(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
+    panel = panel.merge(_causes_abandon(), on=["region_ancienne_pcode", "annee_scolaire"], how="left")
 
     # Pauvreté et conditions de vie (RGPH 2019) : caractéristiques structurelles, constantes dans le temps.
     panel = panel.merge(_structurelles(), on="province_ancienne_pcode", how="left")

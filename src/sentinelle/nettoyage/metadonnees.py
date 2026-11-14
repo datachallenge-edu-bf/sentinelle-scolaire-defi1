@@ -83,6 +83,14 @@ TABLES = {
                                    "× modalité × variable", "annee_scolaire, section, sous_tableau, entite_pcode, "
                                    "modalite, variable", "DGESS, annuaires statistiques du primaire, répartitions par âge "
                                    "et personnel enseignant", "2017-2018 à 2024-2025"),
+    "fait_causes_abandon": ("Abandons déclarés pour orpaillage, mariage et grossesse, par région et pour le pays ; "
+                            "primaire et post-primaire", "année × ordre × entité", "annee_scolaire, ordre, entite_pcode",
+                            "DGESS, tableaux de bord de l'enseignement primaire (éditions 2017-2018 à 2023-2024) et du "
+                            "post-primaire et secondaire (2023, 2024)", "2016-2017 à 2022-2023"),
+    "fait_mines_region": ("Permis d'exploitation et sites miniers par typologie (industrielle, semi-mécanisée, "
+                          "artisanale), par région ; série lacunaire conservée pour mémoire",
+                          "année × région × indicateur × typologie", "annee, entite_pcode, indicateur, typologie",
+                          "INSD, annuaires statistiques régionaux 2024 (sources DGCM, MEMC)", "2014 à 2024 selon les régions"),
     "fait_esu_province": ("Écoles primaires fermées et rouvertes, élèves et enseignants concernés, par province",
                           "rapport mensuel × type × province", "mois, type, province_ancienne_pcode",
                           "ST-ESU, rapports statistiques mensuels (via ReliefWeb)", "novembre 2021 à novembre 2024"),
@@ -138,7 +146,7 @@ VARIABLES = {
     "sexe": ("Sexe : G (garçons), F (filles), T (total ou ensemble)", ""),
     "indicateur": ("Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, "
                    "taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles "
-                   "(base principale)", ""),
+                   "(base principale) ; permis ou sites (mines)", ""),
     "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
     "incidence": ("Part de la population sous le seuil de pauvreté (P0)", "%"),
     "contribution": ("Contribution de l'entité à la pauvreté de la région (C0)", "%"),
@@ -151,6 +159,12 @@ VARIABLES = {
     "rapport_q90_q10": ("Rapport entre le 9e et le 1er décile de consommation", "rapport"),
     "rapport_q90_q50": ("Rapport entre le 9e décile et la médiane de consommation", "rapport"),
     "modalite": ("Ligne du tableau : F (filles ou femmes), G (garçons), H (hommes), T (total), pct (pourcentage)", ""),
+    "abandons_orpaillage": ("Abandons déclarés pour cause d'orpaillage", "élèves"),
+    "abandons_mariage": ("Abandons déclarés pour cause de mariage", "élèves"),
+    "abandons_grossesse": ("Abandons déclarés pour cause de grossesse", "élèves"),
+    "abandons_trois_causes": ("Abandons déclarés pour orpaillage, mariage ou grossesse", "élèves"),
+    "annee": ("Année civile (permis et sites miniers)", "année"),
+    "typologie": ("Typologie d'exploitation minière : industrielle, semi_mecanisee, artisanale, ensemble", ""),
     "section": ("Section de l'annuaire : equipement, distance, taille_ecoles, logements_maitres, manuels, mobilier, "
                 "profession_parents, surface_salles, anciennete_salles, murs, toitures, tba, tbs, tns, achevement, cep ; "
                 "ages_eleves, ages_entrants, enseignants (répartitions)", ""),
@@ -215,7 +229,7 @@ VARIABLES = {
     "grande_section": ("Enfants inscrits en grande section, futurs entrants au CP1", "enfants"),
     "enfants_inscrits": ("Enfants inscrits au préscolaire (tableau 9, contrôle du tableau 02)", "enfants"),
     "tableau": ("Feuille et numéro du tableau dans la base principale", ""),
-    "ordre": ("Ordre d'enseignement : prescolaire ou primaire", ""),
+    "ordre": ("Ordre d'enseignement : prescolaire, primaire ou post_primaire", ""),
     "milieu": ("Milieu : urbain, rural, indetermine ou total", ""),
     "classe": ("Classe : CP1 à CM2, petite, moyenne ou grande section, ou total", ""),
     "feuille": ("Feuille du classeur d'origine", ""),

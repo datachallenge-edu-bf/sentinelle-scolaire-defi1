@@ -849,6 +849,30 @@
             "derivation": "enseignants de 1 à 5 ans d'expérience / enseignants"
           },
           {
+            "name": "abandons_orpaillage_pour_1000_region",
+            "title": "Abandons pour orpaillage pour 1 000 élèves (région, t-1)",
+            "description": "Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire",
+            "type": "number",
+            "unit": "élèves pour 1 000",
+            "role": "explicative",
+            "source": "DGESS, tableaux de bord du primaire",
+            "missing_share": 0.222,
+            "derivation": "1000 × abandons pour orpaillage / élèves du primaire de la région",
+            "limitations": "Causes de t-1 (publiées dans l'édition de t) ; seulement les abandons dont la cause est déclarée ; vide pour 2016-2017 et 2024-2025"
+          },
+          {
+            "name": "abandons_mariage_grossesse_pour_1000_region",
+            "title": "Abandons pour mariage ou grossesse pour 1 000 élèves (région, t-1)",
+            "description": "Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire",
+            "type": "number",
+            "unit": "élèves pour 1 000",
+            "role": "explicative",
+            "source": "DGESS, tableaux de bord du primaire",
+            "missing_share": 0.222,
+            "derivation": "1000 × (abandons pour mariage + grossesse) / élèves de la région",
+            "limitations": "Causes de t-1 (publiées dans l'édition de t) ; seulement les abandons dont la cause est déclarée ; vide pour 2016-2017 et 2024-2025"
+          },
+          {
             "name": "pauvrete_province",
             "title": "Incidence de la pauvreté dans la province",
             "description": "Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps)",

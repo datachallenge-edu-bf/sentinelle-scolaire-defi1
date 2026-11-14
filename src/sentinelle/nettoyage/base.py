@@ -16,7 +16,8 @@ import pyogrio
 from .. import config
 from ..indicateurs import effectifs_retenus
 from . import base_principale as principale
-from . import conditions_scolarisation, conditions_vie, enf_prescolaire, profils_pauvrete, repartitions_province
+from . import (causes_abandon, conditions_scolarisation, conditions_vie, enf_prescolaire, profils_pauvrete,
+               repartitions_province)
 from . import controles, dgess, esu, geographie, metadonnees, pdi
 from .offre import lire_offre
 from .outils import Journal
@@ -58,6 +59,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     scolarisation = conditions_scolarisation.lire_conditions(identifier, journal)
     profils = profils_pauvrete.lire_profils(identifier, communes, journal)
     repartitions = repartitions_province.lire_repartitions(identifier, journal)
+    causes = causes_abandon.lire_causes(identifier, journal)
+    mines = causes_abandon.lire_mines(identifier, journal)
 
     # Rapports ESU et déplacés internes.
     esu_provinces, esu_totaux = esu.lire_esu(identifier, journal)
@@ -131,6 +134,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
           profils_pauvrete.controler(profils, vie).items()],
         *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
           repartitions_province.controler(repartitions).items()],
+        *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
+          causes_abandon.controler(causes, mines).items()],
         {"controle": "metadonnees_completes", "conforme": False, "detail": ""},
     ])], ignore_index=True)
 
@@ -164,6 +169,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_conditions_scolarisation": scolarisation,
         "fait_profils_pauvrete": profils,
         "fait_repartitions_province": repartitions,
+        "fait_causes_abandon": causes,
+        "fait_mines_region": mines,
         "fait_esu_province": esu_provinces,
         "fait_esu_region": esu_regions,
         "fait_pdi_commune": deplaces,

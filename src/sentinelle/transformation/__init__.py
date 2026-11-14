@@ -96,6 +96,8 @@ VARIABLES = {
     "part_entrants_cp1_8_ans_et_plus": ("explicative", "Part des nouveaux entrants au CP1 âgés de 8 ans ou plus (entrée tardive)", "DGESS, annuaires du primaire, nouveaux entrants par âge"),
     "part_enseignantes": ("explicative", "Part des femmes parmi les enseignants", "DGESS, annuaires du primaire, enseignants par sexe, âge et expérience"),
     "part_enseignants_debutants": ("explicative", "Part des enseignants ayant de 1 à 5 ans d'expérience", "DGESS, annuaires du primaire, enseignants par sexe, âge et expérience"),
+    "abandons_orpaillage_pour_1000_region": ("explicative", "Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire", "DGESS, tableaux de bord du primaire"),
+    "abandons_mariage_grossesse_pour_1000_region": ("explicative", "Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire", "DGESS, tableaux de bord du primaire"),
     "reussite_cep_precedente_region": ("explicative", "Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %", "DGESS, base principale, feuille 9"),
 }
 

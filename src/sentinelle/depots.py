@@ -166,6 +166,12 @@ TABLES_NETTOYAGE = [
     ("fait_repartitions_province.csv", "engineer", "eleves-entrants-par-age-enseignants-province-2017-2025-propre",
      "Élèves et nouveaux entrants au CP1 par âge et sexe, enseignants par sexe, âge et expérience, par province, "
      "8 éditions de l'annuaire du primaire."),
+    ("fait_causes_abandon.csv", "engineer", "abandons-orpaillage-mariage-grossesse-region-2017-2023-propre",
+     "Abandons déclarés pour orpaillage, mariage et grossesse par région, primaire 2016-2017 à 2022-2023 et "
+     "post-primaire 2021-2022 et 2022-2023 (tableaux de bord DGESS)."),
+    ("fait_mines_region.csv", "engineer", "permis-sites-miniers-region-propre",
+     "Permis d'exploitation et sites miniers par typologie et par région (annuaires régionaux INSD), série lacunaire "
+     "conservée pour mémoire."),
     ("fait_offre_province.csv", "engineer", "ecoles-salles-maitres-eleves-province-2017-2025-propre",
      "Écoles, salles, groupes pédagogiques, maîtres et élèves par province et statut, avec les élèves par maître "
      "et par salle."),

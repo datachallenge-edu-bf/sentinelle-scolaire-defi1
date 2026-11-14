@@ -68,6 +68,8 @@ part_eleves_12_ans_et_plus;explicative;Part des élèves du primaire âgés de 1
 part_entrants_cp1_8_ans_et_plus;explicative;Part des nouveaux entrants au CP1 âgés de 8 ans ou plus (entrée tardive);DGESS, annuaires du primaire, nouveaux entrants par âge;0.116;2017-2018;2024-2025
 part_enseignantes;explicative;Part des femmes parmi les enseignants;DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
 part_enseignants_debutants;explicative;Part des enseignants ayant de 1 à 5 ans d'expérience;DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
+abandons_orpaillage_pour_1000_region;explicative;Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire;DGESS, tableaux de bord du primaire;0.222;2017-2018;2023-2024
+abandons_mariage_grossesse_pour_1000_region;explicative;Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire;DGESS, tableaux de bord du primaire;0.222;2017-2018;2023-2024
 pauvrete_province;explicative;Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 profondeur_pauvrete_province;explicative;Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 travail_enfants_7_14_province;explicative;Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025

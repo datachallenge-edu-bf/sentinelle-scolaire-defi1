@@ -312,6 +312,17 @@ CATALOGUE: tuple[Jeu, ...] = (
         ),
         usage="Variables communales agrégées par province : chocs d'effectifs, salles sous paillote",
     ),
+    Jeu(
+        identifiant="insd_mines_region",
+        libelle="Permis d'exploitation et sites miniers par typologie (industrielle, semi-mécanisée, artisanale), par région",
+        theme="economie",
+        niveau_geo="region",
+        fichiers=("02_Demographie_INSD/Annuaires_Statistiques_Regionaux_2024/*.csv",
+                  "externe:insd_annuaires_regionaux_2024/*.csv"),
+        regle=Regle("texte", r"permis d.exploitation par typologie|site.? miniers? par typologie", ignorer_casse=True,
+                    exclure=TABLES_DES_MATIERES),
+        usage="Contexte minier régional, pour mémoire : série lacunaire, absente dans les régions de forte activité",
+    ),
     # Sécurité et déplacements.
     Jeu(
         identifiant="pdi_conasur_commune",
@@ -522,6 +533,7 @@ NOMS_DEPOT = {
     "dgess_post_primaire_2019_2020": "annuaire-post-primaire-2019-2020",
     "esu_rapports_mensuels": "ecoles-fermees-esu-mensuel-2021-2026",
     "insd_primaire_commune": "ecoles-eleves-enseignants-commune-insd-2014-2024",
+    "insd_mines_region": "permis-sites-miniers-typologie-region-2014-2024",
     "pdi_conasur_commune": "deplaces-internes-commune-2020-2025",
     "insd_projections_2020_2035": "projections-population-2020-2035",
     "insd_profils_pauvrete": "profils-pauvrete-region-province-2024",

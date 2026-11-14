@@ -120,6 +120,12 @@ FICHES: dict[str, tuple[str, str, str, str]] = {
     "part_entrants_cp1_8_ans_et_plus": ("Nouveaux entrants au CP1 de 8 ans et plus", "proportion", "nouveaux entrants de 8 ans ou plus / nouveaux entrants", ""),
     "part_enseignantes": ("Part des enseignantes", "proportion", "femmes / enseignants (public et privé)", ""),
     "part_enseignants_debutants": ("Enseignants de 1 à 5 ans d'expérience", "proportion", "enseignants de 1 à 5 ans d'expérience / enseignants", ""),
+    # Causes déclarées de l'abandon (tableaux de bord DGESS, région, année t-1).
+    "abandons_orpaillage_pour_1000_region": ("Abandons pour orpaillage pour 1 000 élèves (région, t-1)", "élèves pour 1 000",
+                                             "1000 × abandons pour orpaillage / élèves du primaire de la région", "Causes de t-1 (publiées dans l'édition de t) ; seulement les abandons dont la cause est déclarée ; vide pour 2016-2017 et 2024-2025"),
+    "abandons_mariage_grossesse_pour_1000_region": ("Abandons pour mariage ou grossesse pour 1 000 élèves (région, t-1)",
+                                                    "élèves pour 1 000",
+                                                    "1000 × (abandons pour mariage + grossesse) / élèves de la région", "Causes de t-1 (publiées dans l'édition de t) ; seulement les abandons dont la cause est déclarée ; vide pour 2016-2017 et 2024-2025"),
     # Conditions de vie (RGPH 2019).
     "pauvrete_province": ("Incidence de la pauvreté dans la province", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
     "profondeur_pauvrete_province": ("Profondeur de la pauvreté dans la province", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
