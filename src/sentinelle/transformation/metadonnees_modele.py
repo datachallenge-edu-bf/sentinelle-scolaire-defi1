@@ -60,12 +60,14 @@ def _profil(serie: pd.Series, annees: pd.Series | None) -> dict:
 
 
 def _role_description_source(table: str, variable: str, variables: dict, variables_region: dict) -> tuple[str, str, str]:
-    if table in ("panel_province_annee", "panel_mensuel_province"):
+    if table in ("panel_province_annee", "panel_mensuel_province", "panel_province_2025"):
         if variable in variables:
             return variables[variable]
         if variable in DESCRIPTIONS_MENSUEL:
             return DESCRIPTIONS_MENSUEL[variable]
         return "", "", ""
+    if variable in ("region_pcode", "region_nom", "methode_passage"):
+        return variables[variable]
     description = variables_region.get(variable, "")
     identifiants = {"region_ancienne_pcode", "region_ancienne_nom", "annee_scolaire"}
     role = "identifiant" if variable in identifiants else "contexte"

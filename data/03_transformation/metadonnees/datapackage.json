@@ -2,7 +2,7 @@
   "name": "sentinelle-scolaire-bases-modele",
   "title": "Sentinelle Scolaire : bases du modèle de risque de décrochage",
   "description": "Tables d'analyse de l'étape 03 du Data Challenge Burkina 2026, défi 1.",
-  "created": "2026-11-14",
+  "created": "2026-11-15",
   "licenses": [
     {
       "name": "selon les conditions des données du challenge"
@@ -2480,6 +2480,1700 @@
           }
         ],
         "primaryKey": [
+          "annee_scolaire"
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    },
+    {
+      "name": "panel_province_2025",
+      "path": "panel_province_2025.csv",
+      "title": "Panel du modèle dans le découpage de juillet 2025 (noms et codes du COD-AB)",
+      "description": "Carte du risque, alertes et recommandations dans les unités de 2025",
+      "format": "csv",
+      "encoding": "utf-8-sig",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "grain": "province de 2025 (47) × année scolaire t",
+      "rows": 423,
+      "temporal": "2016-2017 à 2024-2025",
+      "schema": {
+        "fields": [
+          {
+            "name": "province_pcode",
+            "title": "Code de la province (2025)",
+            "description": "Code de la province de 2025 (47 provinces)",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB (découpage de juillet 2025)",
+            "missing_share": 0.0,
+            "derivation": "P-code COD-AB du découpage de juillet 2025 (47 provinces)"
+          },
+          {
+            "name": "province_nom",
+            "title": "Province (2025)",
+            "description": "Nom de la province de 2025",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB (découpage de juillet 2025)",
+            "missing_share": 0.0
+          },
+          {
+            "name": "region_pcode",
+            "title": "Code de la région (2025)",
+            "description": "Code de la région de 2025 (17 régions) ; BF pour le pays",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB (découpage de juillet 2025)",
+            "missing_share": 0.0,
+            "derivation": "P-code COD-AB du découpage de juillet 2025 (17 régions) ; BF pour le pays"
+          },
+          {
+            "name": "region_nom",
+            "title": "Région (2025)",
+            "description": "Nom de la région de 2025",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB (découpage de juillet 2025)",
+            "missing_share": 0.0
+          },
+          {
+            "name": "province_ancienne_pcode",
+            "title": "Code de la province",
+            "description": "Code de la province (ancien découpage, 45 provinces)",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB",
+            "missing_share": 0.0,
+            "derivation": "P-code COD-AB de l'ancien découpage (45 provinces)"
+          },
+          {
+            "name": "province_ancienne_nom",
+            "title": "Province",
+            "description": "Nom de la province",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "OpenStreetMap (HOT)",
+            "missing_share": 0.0
+          },
+          {
+            "name": "region_ancienne_pcode",
+            "title": "Code de la région",
+            "description": "Code de la région (ancien découpage)",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB",
+            "missing_share": 0.0,
+            "derivation": "P-code COD-AB de l'ancien découpage ; BF pour le pays"
+          },
+          {
+            "name": "region_ancienne_nom",
+            "title": "Région",
+            "description": "Nom de la région",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "OpenStreetMap (HOT)",
+            "missing_share": 0.0
+          },
+          {
+            "name": "annee_scolaire",
+            "title": "Année scolaire",
+            "description": "Année scolaire t",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "DGESS, annuaires du primaire",
+            "missing_share": 0.0,
+            "constraints": {
+              "enum": [
+                "2016-2017",
+                "2017-2018",
+                "2018-2019",
+                "2019-2020",
+                "2020-2021",
+                "2021-2022",
+                "2022-2023",
+                "2023-2024",
+                "2024-2025"
+              ]
+            }
+          },
+          {
+            "name": "methode_passage",
+            "title": "Méthode de passage au découpage de 2025",
+            "description": "Méthode de passage de l'ancien découpage à celui de 2025 pour la ligne",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "Calcul Sentinelle d'après le COD-AB, le RGPH 2019 et le CONASUR",
+            "missing_share": 0.0,
+            "derivation": "identique, ou unité scindée : effectifs répartis, taux hérités, déplacés et RGPH recalculés sur les communes",
+            "limitations": "Les effectifs répartis d'une unité scindée sont des estimations",
+            "constraints": {
+              "enum": [
+                "identique (code et nom de 2025)",
+                "province scindée : effectifs répartis selon la population 2019, déplacés et RGPH 2019 recalculés sur les communes, taux et cible hérités de l'ancienne province"
+              ]
+            }
+          },
+          {
+            "name": "abandon_brut_suivant",
+            "title": "Abandon de t à t+1 (brut)",
+            "description": "Abandon apparent du cycle CP1-CM1 entre t et t+1, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "cible (brute)",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.111,
+            "derivation": "Cohorte reconstituée, CP1 à CM1 : [E(g,t) - (E(g+1,t+1) - R(g+1,t+1)) - R(g,t+1)] / E(g,t), sommé sur les classes avant division",
+            "limitations": "Mesure toutes les pertes nettes d'élèves, y compris les départs vers une autre province"
+          },
+          {
+            "name": "abandon_precedent",
+            "title": "Abandon de t-1 à t",
+            "description": "Abandon entre t-1 et t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "Cohorte reconstituée, passage précédent"
+          },
+          {
+            "name": "redoublement_precedent",
+            "title": "Redoublement de t-1 à t",
+            "description": "Redoublement entre t-1 et t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "R(g,t) / E(g,t-1), sommé sur CP1 à CM1"
+          },
+          {
+            "name": "promotion_precedente",
+            "title": "Promotion de t-1 à t",
+            "description": "Promotion entre t-1 et t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "(E(g+1,t) - R(g+1,t)) / E(g,t-1), sommé sur CP1 à CM1"
+          },
+          {
+            "name": "effectif",
+            "title": "Élèves du primaire",
+            "description": "Effectif total du primaire en t",
+            "type": "number",
+            "unit": "élèves",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "part_filles",
+            "title": "Part des filles",
+            "description": "Part des filles dans l'effectif ; vide quand la répartition publiée est invraisemblable",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.106,
+            "derivation": "filles / total",
+            "limitations": "Vide en 2024-2025 pour 31 provinces : répartition par sexe de l'annuaire invraisemblable"
+          },
+          {
+            "name": "part_cp1",
+            "title": "Part du CP1",
+            "description": "Part du CP1 dans l'effectif",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.002,
+            "derivation": "effectif CP1 / effectif total"
+          },
+          {
+            "name": "rapport_cm2_cp1",
+            "title": "Rapport CM2 / CP1",
+            "description": "Effectif du CM2 rapporté à celui du CP1",
+            "type": "number",
+            "unit": "rapport",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.002,
+            "derivation": "effectif CM2 / effectif CP1"
+          },
+          {
+            "name": "effectif_precedent",
+            "title": "Élèves en t-1",
+            "description": "Effectif total en t-1",
+            "type": "number",
+            "unit": "élèves",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "effectif_suivant",
+            "title": "Effectif en t+1",
+            "description": "Effectif total en t+1 ; jamais comme variable explicative",
+            "type": "number",
+            "unit": "élèves",
+            "role": "cible (contexte)",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.111,
+            "derivation": "effectif de l'année suivante",
+            "limitations": "Interdite comme variable explicative"
+          },
+          {
+            "name": "evolution_effectifs",
+            "title": "Évolution des effectifs de t-1 à t",
+            "description": "Évolution des effectifs entre t-1 et t",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "effectif / effectif_precedent - 1"
+          },
+          {
+            "name": "evolution_effectifs_suivante",
+            "title": "Évolution des effectifs de t à t+1",
+            "description": "Évolution des effectifs entre t et t+1 ; sert à repérer les ruptures, jamais comme variable explicative",
+            "type": "number",
+            "unit": "proportion",
+            "role": "cible (contexte)",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.111,
+            "derivation": "effectif_suivant / effectif - 1",
+            "limitations": "Sert à définir la cible ; interdite comme variable explicative"
+          },
+          {
+            "name": "choc_effectifs",
+            "title": "Choc d'effectifs",
+            "description": "Vrai si les effectifs ont varié de plus de 30% entre t-1 et t",
+            "type": "boolean",
+            "unit": "booléen",
+            "role": "explicative",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "|evolution_effectifs| > 0,30",
+            "constraints": {
+              "enum": [
+                "False",
+                "True"
+              ]
+            }
+          },
+          {
+            "name": "rupture_cible",
+            "title": "Rupture de scolarisation",
+            "description": "Vrai si les effectifs varient de plus de 30% entre t et t+1",
+            "type": "boolean",
+            "unit": "booléen",
+            "role": "cible",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.0,
+            "derivation": "|evolution_effectifs_suivante| > 0,30",
+            "constraints": {
+              "enum": [
+                "False",
+                "True"
+              ]
+            }
+          },
+          {
+            "name": "abandon_suivant",
+            "title": "Abandon de t à t+1",
+            "description": "Abandon entre t et t+1, en % ; vide en cas de rupture de scolarisation ou pour la dernière année",
+            "type": "number",
+            "unit": "%",
+            "role": "cible",
+            "source": "DGESS, tableau VIII.3",
+            "missing_share": 0.215,
+            "derivation": "abandon_brut_suivant, vidé en cas de rupture de scolarisation",
+            "limitations": "Vide pour 2024-2025 (à prévoir) et pour les 39 ruptures"
+          },
+          {
+            "name": "statut_cible",
+            "title": "Statut de la cible",
+            "description": "abandon observé, rupture de scolarisation ou à prévoir",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "cible",
+            "source": "calculs des auteurs",
+            "missing_share": 0.0,
+            "derivation": "abandon observé, rupture de scolarisation (|évolution| > 30 %) ou à prévoir",
+            "constraints": {
+              "enum": [
+                "abandon observé",
+                "rupture de scolarisation",
+                "à prévoir"
+              ]
+            }
+          },
+          {
+            "name": "eleves_par_maitre",
+            "title": "Élèves par maître",
+            "description": "Élèves par maître chargé de cours, public et privé",
+            "type": "number",
+            "unit": "élèves par maître",
+            "role": "explicative",
+            "source": "DGESS, tableau I.1",
+            "missing_share": 0.113,
+            "derivation": "élèves / maîtres chargés de cours (public et privé)"
+          },
+          {
+            "name": "eleves_par_salle",
+            "title": "Élèves par salle",
+            "description": "Élèves par salle de classe, public et privé",
+            "type": "number",
+            "unit": "élèves par salle",
+            "role": "explicative",
+            "source": "DGESS, tableau I.1",
+            "missing_share": 0.113,
+            "derivation": "élèves / salles de classe (public et privé)"
+          },
+          {
+            "name": "part_eleves_prive",
+            "title": "Part des élèves du privé",
+            "description": "Part des élèves scolarisés dans le privé",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, tableau I.1",
+            "missing_share": 0.113,
+            "derivation": "élèves du privé / élèves"
+          },
+          {
+            "name": "deplaces",
+            "title": "Déplacés internes accueillis",
+            "description": "Déplacés internes accueillis dans la province, dernière situation connue au 31 décembre de l'année de rentrée",
+            "type": "integer",
+            "unit": "personnes",
+            "role": "explicative",
+            "source": "SP/CONASUR",
+            "missing_share": 0.565,
+            "derivation": "somme des communes de la province",
+            "limitations": "Situations disponibles de janvier 2019 à mars 2023"
+          },
+          {
+            "name": "date_deplaces",
+            "title": "Date de la situation des déplacés",
+            "description": "Date de la situation des déplacés retenue",
+            "type": "date",
+            "unit": "sans unité",
+            "role": "qualité",
+            "source": "SP/CONASUR",
+            "missing_share": 0.565,
+            "derivation": "dernière situation des 6 mois précédant le 31 décembre de t"
+          },
+          {
+            "name": "deplaces_pour_100_eleves",
+            "title": "Déplacés pour 100 élèves",
+            "description": "Déplacés accueillis pour 100 élèves inscrits",
+            "type": "number",
+            "unit": "personnes pour 100 élèves",
+            "role": "explicative",
+            "source": "SP/CONASUR ; DGESS",
+            "missing_share": 0.567,
+            "derivation": "100 × deplaces / effectif"
+          },
+          {
+            "name": "ecoles_fermees_province",
+            "title": "Écoles fermées (province)",
+            "description": "Écoles primaires fermées, moyenne des rapports fiables de l'année scolaire",
+            "type": "number",
+            "unit": "écoles",
+            "role": "explicative",
+            "source": "ST-ESU",
+            "missing_share": 0.92,
+            "derivation": "moyenne des rapports ESU fiables de l'année",
+            "limitations": "Rapports fiables seulement de novembre 2021 à mai 2022 et en octobre 2023"
+          },
+          {
+            "name": "eleves_touches_province",
+            "title": "Élèves des écoles fermées (province)",
+            "description": "Élèves des écoles primaires fermées, moyenne des rapports fiables de l'année",
+            "type": "number",
+            "unit": "élèves",
+            "role": "explicative",
+            "source": "ST-ESU",
+            "missing_share": 0.92,
+            "derivation": "moyenne des rapports ESU fiables de l'année"
+          },
+          {
+            "name": "ecoles_fermees_region",
+            "title": "Établissements fermés (région)",
+            "description": "Établissements fermés dans la région (tous ordres), moyenne des rapports de l'année",
+            "type": "number",
+            "unit": "établissements",
+            "role": "explicative",
+            "source": "ST-ESU",
+            "missing_share": 0.813,
+            "derivation": "moyenne des rapports de l'année (tous ordres)",
+            "limitations": "Tous ordres d'enseignement confondus"
+          },
+          {
+            "name": "eleves_affectes_region",
+            "title": "Élèves affectés (région)",
+            "description": "Élèves affectés par les fermetures dans la région, moyenne des rapports de l'année",
+            "type": "number",
+            "unit": "élèves",
+            "role": "explicative",
+            "source": "ST-ESU",
+            "missing_share": 0.813,
+            "derivation": "moyenne des rapports de l'année"
+          },
+          {
+            "name": "tba_region",
+            "title": "TBA de la région",
+            "description": "Taux brut d'admission au CP1 de la région en t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 6",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "tbs_region",
+            "title": "TBS de la région",
+            "description": "Taux brut de scolarisation au primaire de la région en t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 7",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "taux_achevement_region",
+            "title": "Taux d'achèvement de la région",
+            "description": "Taux d'achèvement du primaire de la région en t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 8",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "ips_tbs_region",
+            "title": "Parité du TBS (région)",
+            "description": "Indice de parité filles / garçons du TBS de la région en t",
+            "type": "number",
+            "unit": "indice",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 11",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Rapport filles / garçons ; 1 = parité"
+          },
+          {
+            "name": "ips_tap_region",
+            "title": "Parité de l'achèvement (région)",
+            "description": "Indice de parité filles / garçons du taux d'achèvement de la région en t",
+            "type": "number",
+            "unit": "indice",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 12",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Rapport filles / garçons ; 1 = parité"
+          },
+          {
+            "name": "tbs_prescolaire_region",
+            "title": "TBS du préscolaire (région)",
+            "description": "Taux brut de scolarisation au préscolaire de la région en t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille PRESCOLAIRE, tableau 5",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "part_ecoles_privees_region",
+            "title": "Part des écoles privées (région)",
+            "description": "Part des écoles primaires privées de la région en t",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 13",
+            "missing_share": 0.0,
+            "derivation": "écoles privées / écoles"
+          },
+          {
+            "name": "reussite_cep_precedente_region",
+            "title": "Réussite au CEP, session précédente (région)",
+            "description": "Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, base principale, feuille 9",
+            "missing_share": 0.0,
+            "derivation": "taux de la session qui clôt t-1",
+            "limitations": "Décalé d'un an : la session de t n'est pas connue à la rentrée"
+          },
+          {
+            "name": "adolescents_non_formelle",
+            "title": "Adolescents en éducation non formelle",
+            "description": "Adolescents inscrits dans l'éducation non formelle de la province (campagne achevée à la rentrée de t)",
+            "type": "number",
+            "unit": "apprenants",
+            "role": "explicative",
+            "source": "DGESS, annuaires de l'éducation non formelle, tableau 1.3",
+            "missing_share": 0.556,
+            "derivation": "campagne Y rattachée à l'année Y-(Y+1)",
+            "limitations": "Campagnes 2018, 2019, 2020 et 2024 seulement"
+          },
+          {
+            "name": "centres_non_formelle_adolescents",
+            "title": "Centres pour adolescents",
+            "description": "Centres d'éducation non formelle des adolescents de la province (campagne achevée à la rentrée de t)",
+            "type": "number",
+            "unit": "centres",
+            "role": "explicative",
+            "source": "DGESS, annuaires de l'éducation non formelle, tableau 1.1",
+            "missing_share": 0.556,
+            "derivation": "campagne Y rattachée à l'année Y-(Y+1)",
+            "limitations": "Campagnes 2018, 2019, 2020 et 2024 seulement"
+          },
+          {
+            "name": "taux_prescolarisation_province",
+            "title": "Taux de préscolarisation (province)",
+            "description": "Taux de préscolarisation de la province en t, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du préscolaire, tableau 02",
+            "missing_share": 0.778,
+            "derivation": "valeur publiée",
+            "limitations": "2023-2024 et 2024-2025 seulement"
+          },
+          {
+            "name": "grande_section_province",
+            "title": "Grande section (province)",
+            "description": "Enfants en grande section dans la province en t (futurs entrants au CP1)",
+            "type": "number",
+            "unit": "enfants",
+            "role": "explicative",
+            "source": "DGESS, annuaires du préscolaire, tableau 9",
+            "missing_share": 0.778,
+            "derivation": "valeur publiée",
+            "limitations": "2023-2024 et 2024-2025 seulement"
+          },
+          {
+            "name": "adolescents_non_formelle_pour_1000_eleves",
+            "title": "Adolescents en éducation non formelle pour 1 000 élèves",
+            "description": "Adolescents de l'éducation non formelle pour 1 000 élèves du primaire",
+            "type": "number",
+            "unit": "apprenants pour 1 000 élèves",
+            "role": "explicative",
+            "source": "DGESS ; calculs des auteurs",
+            "missing_share": 0.556,
+            "derivation": "1000 × adolescents_non_formelle / effectif"
+          },
+          {
+            "name": "part_ecoles_cantine",
+            "title": "Écoles avec cantine",
+            "description": "Part des écoles disposant d'une cantine scolaire",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, équipement des écoles",
+            "missing_share": 0.113,
+            "derivation": "écoles disposant d'une cantine / écoles (public et privé)"
+          },
+          {
+            "name": "part_ecoles_latrines",
+            "title": "Écoles avec latrines",
+            "description": "Part des écoles disposant de latrines",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, équipement des écoles",
+            "missing_share": 0.113,
+            "derivation": "écoles disposant de latrines / écoles"
+          },
+          {
+            "name": "part_ecoles_eau_potable",
+            "title": "Écoles avec eau potable",
+            "description": "Part des écoles disposant d'un point d'eau potable",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, équipement des écoles",
+            "missing_share": 0.113,
+            "derivation": "écoles disposant d'eau potable / écoles"
+          },
+          {
+            "name": "part_ecoles_electricite",
+            "title": "Écoles avec électricité",
+            "description": "Part des écoles disposant de l'électricité",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, équipement des écoles",
+            "missing_share": 0.113,
+            "derivation": "écoles disposant de l'électricité / écoles"
+          },
+          {
+            "name": "part_eleves_plus_3km",
+            "title": "Élèves à plus de 3 km",
+            "description": "Part des élèves effectuant un trajet de plus de 3 km pour aller à l'école",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, distance parcourue",
+            "missing_share": 0.113,
+            "derivation": "part des élèves à 3-5 km + part à plus de 5 km"
+          },
+          {
+            "name": "part_ecoles_cycle_incomplet",
+            "title": "Écoles de moins de six salles",
+            "description": "Part des écoles de moins de six salles fonctionnelles (cycle incomplet probable)",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, taille des écoles",
+            "missing_share": 0.113,
+            "derivation": "écoles ayant 0 à 5 salles fonctionnelles / écoles",
+            "limitations": "Une école à six classes peut offrir le cycle complet ; en dessous, classes multigrades ou cycle interrompu"
+          },
+          {
+            "name": "logements_pour_100_maitres",
+            "title": "Logements pour 100 maîtres",
+            "description": "Logements de maîtres disponibles pour 100 maîtres chargés de cours",
+            "type": "number",
+            "unit": "logements pour 100 maîtres",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, logements de maîtres",
+            "missing_share": 0.113,
+            "derivation": "100 × logements de maîtres / maîtres chargés de cours"
+          },
+          {
+            "name": "manuels_lecture_par_eleve",
+            "title": "Manuels de lecture par élève",
+            "description": "Manuels de lecture disponibles par élève",
+            "type": "number",
+            "unit": "manuels par élève",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, manuels des élèves",
+            "missing_share": 0.123,
+            "derivation": "manuels de lecture / élèves"
+          },
+          {
+            "name": "manuels_calcul_par_eleve",
+            "title": "Manuels de calcul par élève",
+            "description": "Manuels de calcul disponibles par élève",
+            "type": "number",
+            "unit": "manuels par élève",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, manuels des élèves",
+            "missing_share": 0.123,
+            "derivation": "manuels de calcul / élèves"
+          },
+          {
+            "name": "part_parents_agriculteurs",
+            "title": "Élèves de parents cultivateurs ou éleveurs",
+            "description": "Part des élèves dont les parents sont cultivateurs ou éleveurs",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, profession des parents",
+            "missing_share": 0.113,
+            "derivation": "(cultivateurs + éleveurs) / ensemble des professions",
+            "limitations": "Les intitulés des autres professions ont changé selon les éditions ; seules ces deux colonnes sont stables"
+          },
+          {
+            "name": "part_salles_murs_precaires",
+            "title": "Salles aux murs précaires",
+            "description": "Part des salles aux murs semi-durs, en paille ou en banco",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, nature et état des murs",
+            "missing_share": 0.113,
+            "derivation": "(murs semi-durs + paille ou banco) / salles"
+          },
+          {
+            "name": "part_salles_toit_precaire",
+            "title": "Salles au toit précaire",
+            "description": "Part des salles couvertes de banco, de paille ou sans toit",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, nature et état des toitures",
+            "missing_share": 0.113,
+            "derivation": "(toit en banco + paille + sans toit) / salles",
+            "limitations": "Colonne « sans toit » absente avant 2019-2020 (comptée comme nulle)"
+          },
+          {
+            "name": "part_salles_recentes",
+            "title": "Salles mises en service après 2015",
+            "description": "Part des salles de classe mises en service après 2015",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, année de mise en service",
+            "missing_share": 0.113,
+            "derivation": "salles mises en service après 2015 / salles"
+          },
+          {
+            "name": "tba_province",
+            "title": "TBA de la province",
+            "description": "Taux brut d'admission au CP1 de la province",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, taux brut d'admission",
+            "missing_share": 0.111,
+            "derivation": "valeur publiée (garçons et filles)"
+          },
+          {
+            "name": "tbs_province",
+            "title": "TBS de la province",
+            "description": "Taux brut de scolarisation de la province",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, taux brut de scolarisation",
+            "missing_share": 0.111,
+            "derivation": "valeur publiée (garçons et filles)",
+            "limitations": "Peut dépasser 100 %"
+          },
+          {
+            "name": "tns_province",
+            "title": "TNS de la province",
+            "description": "Taux net de scolarisation de la province (enfants de 6 à 11 ans scolarisés)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, taux net de scolarisation",
+            "missing_share": 0.111,
+            "derivation": "valeur publiée (garçons et filles)"
+          },
+          {
+            "name": "ecart_tbs_filles_garcons",
+            "title": "Écart de TBS filles - garçons",
+            "description": "Écart entre le TBS des filles et celui des garçons",
+            "type": "number",
+            "unit": "points de %",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, taux brut de scolarisation",
+            "missing_share": 0.111,
+            "derivation": "TBS des filles - TBS des garçons"
+          },
+          {
+            "name": "achevement_province",
+            "title": "Taux d'achèvement de la province",
+            "description": "Taux d'achèvement du primaire de la province",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, taux d'achèvement",
+            "missing_share": 0.111,
+            "derivation": "valeur publiée (garçons et filles)"
+          },
+          {
+            "name": "reussite_cep_precedente_province",
+            "title": "Réussite au CEP, session précédente (province)",
+            "description": "Taux d'admission au CEP de la province à la session qui clôt t-1",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, résultats au CEP",
+            "missing_share": 0.225,
+            "derivation": "taux d'admission de la session qui clôt t-1",
+            "limitations": "Décalé d'un an : la session de t n'est pas connue à la rentrée"
+          },
+          {
+            "name": "deficit_places_pour_100_eleves",
+            "title": "Places assises manquantes pour 100 élèves",
+            "description": "Places assises manquantes pour 100 élèves",
+            "type": "number",
+            "unit": "places pour 100 élèves",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, mobilier des élèves",
+            "missing_share": 0.121,
+            "derivation": "100 × déficit de places assises / effectif"
+          },
+          {
+            "name": "part_eleves_12_ans_et_plus",
+            "title": "Élèves de 12 ans et plus",
+            "description": "Part des élèves du primaire âgés de 12 ans ou plus (retard scolaire)",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, élèves par âge",
+            "missing_share": 0.113,
+            "derivation": "élèves de 12 ans ou plus / élèves",
+            "limitations": "L'âge officiel du primaire est 6-11 ans : au-delà, retard scolaire ou entrée tardive"
+          },
+          {
+            "name": "part_entrants_cp1_8_ans_et_plus",
+            "title": "Nouveaux entrants au CP1 de 8 ans et plus",
+            "description": "Part des nouveaux entrants au CP1 âgés de 8 ans ou plus (entrée tardive)",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, nouveaux entrants par âge",
+            "missing_share": 0.116,
+            "derivation": "nouveaux entrants de 8 ans ou plus / nouveaux entrants"
+          },
+          {
+            "name": "part_enseignantes",
+            "title": "Part des enseignantes",
+            "description": "Part des femmes parmi les enseignants",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, enseignants par sexe, âge et expérience",
+            "missing_share": 0.113,
+            "derivation": "femmes / enseignants (public et privé)"
+          },
+          {
+            "name": "part_enseignants_debutants",
+            "title": "Enseignants de 1 à 5 ans d'expérience",
+            "description": "Part des enseignants ayant de 1 à 5 ans d'expérience",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire, enseignants par sexe, âge et expérience",
+            "missing_share": 0.113,
+            "derivation": "enseignants de 1 à 5 ans d'expérience / enseignants"
+          },
+          {
+            "name": "abandons_orpaillage_pour_1000_region",
+            "title": "Abandons pour orpaillage pour 1 000 élèves (région, t-1)",
+            "description": "Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire",
+            "type": "number",
+            "unit": "élèves pour 1 000",
+            "role": "explicative",
+            "source": "DGESS, tableaux de bord du primaire",
+            "missing_share": 0.222,
+            "derivation": "1000 × abandons pour orpaillage / élèves du primaire de la région",
+            "limitations": "Causes de t-1 (publiées dans l'édition de t) ; seulement les abandons dont la cause est déclarée ; vide pour 2016-2017 et 2024-2025"
+          },
+          {
+            "name": "abandons_mariage_grossesse_pour_1000_region",
+            "title": "Abandons pour mariage ou grossesse pour 1 000 élèves (région, t-1)",
+            "description": "Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire",
+            "type": "number",
+            "unit": "élèves pour 1 000",
+            "role": "explicative",
+            "source": "DGESS, tableaux de bord du primaire",
+            "missing_share": 0.222,
+            "derivation": "1000 × (abandons pour mariage + grossesse) / élèves de la région",
+            "limitations": "Causes de t-1 (publiées dans l'édition de t) ; seulement les abandons dont la cause est déclarée ; vide pour 2016-2017 et 2024-2025"
+          },
+          {
+            "name": "tba_6e_province",
+            "title": "Taux brut d'admission en 6e (province)",
+            "description": "Taux brut d'admission en 6e de la province, année t",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.1",
+            "missing_share": 0.444,
+            "derivation": "nouveaux inscrits en 6e / enfants de 12 ans",
+            "limitations": "2018-2019 à 2022-2023 ; général et technique"
+          },
+          {
+            "name": "tbs_post_primaire_province",
+            "title": "TBS du post-primaire (province)",
+            "description": "Taux brut de scolarisation au post-primaire de la province, année t",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.4",
+            "missing_share": 0.444,
+            "derivation": "élèves du post-primaire / enfants de 12-15 ans",
+            "limitations": "2018-2019 à 2022-2023"
+          },
+          {
+            "name": "achevement_post_primaire_province",
+            "title": "Taux d'achèvement du post-primaire (province)",
+            "description": "Taux d'achèvement du post-primaire de la province, année t",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.9",
+            "missing_share": 0.444,
+            "derivation": "non-redoublants de 3e / enfants de 15 ans",
+            "limitations": "2018-2019 à 2022-2023"
+          },
+          {
+            "name": "parite_tbs_post_primaire_province",
+            "title": "Parité du TBS du post-primaire (province)",
+            "description": "Indice de parité filles / garçons du TBS du post-primaire, année t",
+            "type": "number",
+            "unit": "ratio",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.4",
+            "missing_share": 0.444,
+            "derivation": "TBS des filles / TBS des garçons",
+            "limitations": "2018-2019 à 2022-2023"
+          },
+          {
+            "name": "abandon_post_primaire_province",
+            "title": "Abandon au post-primaire, 6e à 4e (province)",
+            "description": "Abandon moyen en 6e, 5e et 4e (passage de t-1 à t), enseignement général",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.11",
+            "missing_share": 0.556,
+            "derivation": "moyenne simple des taux d'abandon publiés en 6e, 5e et 4e",
+            "limitations": "Passage de t-1 à t ; vide pour 2019-2020 (pages pivotées dans la conversion du Data Pack)"
+          },
+          {
+            "name": "redoublement_3e_province",
+            "title": "Redoublement en 3e (province)",
+            "description": "Redoublement en 3e (passage de t-1 à t), enseignement général",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.11",
+            "missing_share": 0.556,
+            "derivation": "valeur publiée",
+            "limitations": "Passage de t-1 à t ; vide pour 2019-2020"
+          },
+          {
+            "name": "ratio_eleves_classe_post_primaire_region",
+            "title": "Élèves par classe au post-primaire public (région)",
+            "description": "Élèves par classe au post-primaire public de la région, année t",
+            "type": "integer",
+            "unit": "élèves par classe",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.1.11",
+            "missing_share": 0.444,
+            "derivation": "valeur publiée",
+            "limitations": "2018-2019 à 2022-2023 ; norme nationale de 70"
+          },
+          {
+            "name": "part_etab_secondaires_publics_electricite_region",
+            "title": "Établissements secondaires publics avec électricité (région)",
+            "description": "Part des établissements publics du post-primaire et du secondaire disposant de l'électricité (région)",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1",
+            "missing_share": 0.444,
+            "derivation": "établissements avec électricité / établissements",
+            "limitations": "Enseignement général public"
+          },
+          {
+            "name": "part_etab_secondaires_publics_cantine_region",
+            "title": "Établissements secondaires publics avec cantine (région)",
+            "description": "Part des établissements publics du post-primaire et du secondaire disposant d'une cantine (région)",
+            "type": "number",
+            "unit": "proportion",
+            "role": "explicative",
+            "source": "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1",
+            "missing_share": 0.444,
+            "derivation": "établissements avec cantine / établissements",
+            "limitations": "Enseignement général public"
+          },
+          {
+            "name": "ecart_achevement_entree_6e",
+            "title": "Écart entre achèvement du primaire et entrée en 6e",
+            "description": "Achèvement du primaire moins entrée en 6e (points) : élèves perdus au passage vers le post-primaire",
+            "type": "number",
+            "unit": "points de %",
+            "role": "explicative",
+            "source": "DGESS, annuaires du primaire et du post-primaire",
+            "missing_share": 0.444,
+            "derivation": "taux d'achèvement du primaire − TBA en 6e (même province, même année)",
+            "limitations": "Deux taux bruts aux dénominateurs différents (enfants de 11 et de 12 ans) : ordre de grandeur"
+          },
+          {
+            "name": "pauvrete_province",
+            "title": "Incidence de la pauvreté dans la province",
+            "description": "Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "profondeur_pauvrete_province",
+            "title": "Profondeur de la pauvreté dans la province",
+            "description": "Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "travail_enfants_7_14_province",
+            "title": "Enfants de 7 à 14 ans occupés",
+            "description": "Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "hors_ecole_6_11_province",
+            "title": "Enfants de 6 à 11 ans hors de l'école",
+            "description": "Enfants de 6 à 11 ans hors de l'école (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "hors_ecole_12_15_province",
+            "title": "Enfants de 12 à 15 ans hors de l'école",
+            "description": "Enfants de 12 à 15 ans hors de l'école (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "filles_17_ans_mariees_province",
+            "title": "Filles de 17 ans mariées",
+            "description": "Filles de 17 ans mariées (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "alphabetisation_adultes_province",
+            "title": "Alphabétisation des 15-64 ans",
+            "description": "Alphabétisation des 15-64 ans (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "acte_naissance_province",
+            "title": "Personnes disposant d'un acte de naissance",
+            "description": "Personnes disposant d'un acte de naissance (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "parite_scolarisation_province",
+            "title": "Rapport filles / garçons scolarisés au primaire",
+            "description": "Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "rapport",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "electricite_province",
+            "title": "Ménages accédant à l'électricité",
+            "description": "Ménages accédant à l'électricité (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "telephone_province",
+            "title": "Ménages accédant à un téléphone",
+            "description": "Ménages accédant à un téléphone (RGPH 2019, constant dans le temps)",
+            "type": "number",
+            "unit": "%",
+            "role": "explicative",
+            "source": "INSD, RGPH 2019, volume 3 (pauvreté)",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée pour la province en 2019, répétée chaque année",
+            "limitations": "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"
+          },
+          {
+            "name": "consommation_par_personne_province",
+            "title": "Consommation par personne (province)",
+            "description": "Consommation annuelle moyenne par personne dans la province (2019, constante dans le temps)",
+            "type": "number",
+            "unit": "FCFA",
+            "role": "explicative",
+            "source": "INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019",
+            "missing_share": 0.255,
+            "derivation": "valeur publiée",
+            "limitations": "Mesure de 2019 republiée en 2023 ; pas de profil pour la Boucle du Mouhoun, les Cascades et le Centre-Est (11 provinces sans valeur)"
+          },
+          {
+            "name": "gini_province",
+            "title": "Gini de la consommation (province)",
+            "description": "Indice de Gini de la consommation dans la province (2019, constant dans le temps)",
+            "type": "number",
+            "unit": "indice",
+            "role": "explicative",
+            "source": "INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019",
+            "missing_share": 0.234,
+            "derivation": "valeur publiée",
+            "limitations": "Mesure de 2019 republiée en 2023 ; pas de profil pour la Boucle du Mouhoun, les Cascades et le Centre-Est (11 provinces sans valeur)"
+          },
+          {
+            "name": "rapport_q90_q10_province",
+            "title": "Rapport interdécile q90/q10 (province)",
+            "description": "Rapport entre le 9e et le 1er décile de consommation dans la province (2019)",
+            "type": "number",
+            "unit": "rapport",
+            "role": "explicative",
+            "source": "INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019",
+            "missing_share": 0.234,
+            "derivation": "valeur publiée",
+            "limitations": "Mesure de 2019 republiée en 2023 ; pas de profil pour la Boucle du Mouhoun, les Cascades et le Centre-Est (11 provinces sans valeur)"
+          }
+        ],
+        "primaryKey": [
+          "province_pcode",
+          "annee_scolaire"
+        ],
+        "missingValues": [
+          ""
+        ],
+        "foreignKeys": [
+          {
+            "fields": [
+              "region_pcode",
+              "annee_scolaire"
+            ],
+            "reference": {
+              "resource": "panel_region_2025",
+              "fields": [
+                "region_pcode",
+                "annee_scolaire"
+              ]
+            }
+          },
+          {
+            "fields": [
+              "province_ancienne_pcode",
+              "annee_scolaire"
+            ],
+            "reference": {
+              "resource": "panel_province_annee",
+              "fields": [
+                "province_ancienne_pcode",
+                "annee_scolaire"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "panel_region_2025",
+      "path": "panel_region_2025.csv",
+      "title": "Indicateurs régionaux dans le découpage de juillet 2025",
+      "description": "Contexte régional dans les unités de 2025",
+      "format": "csv",
+      "encoding": "utf-8-sig",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "grain": "région de 2025 (17) et pays × année scolaire",
+      "rows": 180,
+      "temporal": "2015-2016 à 2024-2025",
+      "schema": {
+        "fields": [
+          {
+            "name": "region_pcode",
+            "title": "Code de la région (2025)",
+            "description": "Code de la région de 2025 (17 régions) ; BF pour le pays",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB (découpage de juillet 2025)",
+            "missing_share": 0.0,
+            "derivation": "P-code COD-AB du découpage de juillet 2025 (17 régions) ; BF pour le pays"
+          },
+          {
+            "name": "region_nom",
+            "title": "Région (2025)",
+            "description": "Nom de la région de 2025",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB (découpage de juillet 2025)",
+            "missing_share": 0.0
+          },
+          {
+            "name": "region_ancienne_pcode",
+            "title": "Code de la région",
+            "description": "Code de la région (ancien découpage) ; BF pour le pays",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "COD-AB",
+            "missing_share": 0.0,
+            "derivation": "P-code COD-AB de l'ancien découpage ; BF pour le pays"
+          },
+          {
+            "name": "region_ancienne_nom",
+            "title": "Région",
+            "description": "Nom de la région",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "OpenStreetMap (HOT)",
+            "missing_share": 0.0
+          },
+          {
+            "name": "annee_scolaire",
+            "title": "Année scolaire",
+            "description": "Année scolaire",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "constraints": {
+              "enum": [
+                "2015-2016",
+                "2016-2017",
+                "2017-2018",
+                "2018-2019",
+                "2019-2020",
+                "2020-2021",
+                "2021-2022",
+                "2022-2023",
+                "2023-2024",
+                "2024-2025"
+              ]
+            }
+          },
+          {
+            "name": "methode_passage",
+            "title": "Méthode de passage au découpage de 2025",
+            "description": "Méthode de passage de l'ancien découpage à celui de 2025 pour la ligne",
+            "type": "string",
+            "unit": "sans unité",
+            "role": "identifiant",
+            "source": "Calcul Sentinelle d'après le COD-AB, le RGPH 2019 et le CONASUR",
+            "missing_share": 0.0,
+            "derivation": "identique, ou unité scindée : effectifs répartis, taux hérités, déplacés et RGPH recalculés sur les communes",
+            "limitations": "Les effectifs répartis d'une unité scindée sont des estimations",
+            "constraints": {
+              "enum": [
+                "identique (région renommée en 2025)",
+                "pays (inchangé)",
+                "région scindée : effectifs répartis selon les élèves des provinces de l'année (à défaut, la population 2019), taux hérités"
+              ]
+            }
+          },
+          {
+            "name": "effectif_primaire",
+            "title": "Élèves du primaire",
+            "description": "Élèves du primaire",
+            "type": "number",
+            "unit": "élèves",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "effectif_primaire_filles",
+            "title": "Élèves du primaire, filles",
+            "description": "Élèves du primaire, filles",
+            "type": "number",
+            "unit": "élèves",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "nouveaux_inscrits_cp1",
+            "title": "Nouveaux inscrits au CP1",
+            "description": "Nouveaux inscrits au CP1",
+            "type": "number",
+            "unit": "élèves",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "nouveaux_inscrits_cp1_filles",
+            "title": "Nouveaux inscrits au CP1, filles",
+            "description": "Nouveaux inscrits au CP1, filles",
+            "type": "number",
+            "unit": "élèves",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "tba",
+            "title": "TBA",
+            "description": "Taux brut d'admission, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Peut dépasser 100 % (élèves hors de l'âge officiel)"
+          },
+          {
+            "name": "tba_filles",
+            "title": "TBA des filles",
+            "description": "Taux brut d'admission des filles, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "tba_garcons",
+            "title": "TBA des garçons",
+            "description": "Taux brut d'admission des garçons, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "tbs",
+            "title": "TBS",
+            "description": "Taux brut de scolarisation, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Peut dépasser 100 % (élèves hors de l'âge officiel)"
+          },
+          {
+            "name": "tbs_filles",
+            "title": "TBS des filles",
+            "description": "Taux brut de scolarisation des filles, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "tbs_garcons",
+            "title": "TBS des garçons",
+            "description": "Taux brut de scolarisation des garçons, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "taux_achevement",
+            "title": "Taux d'achèvement",
+            "description": "Taux d'achèvement du primaire, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "taux_achevement_filles",
+            "title": "Taux d'achèvement des filles",
+            "description": "Taux d'achèvement des filles, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "taux_achevement_garcons",
+            "title": "Taux d'achèvement des garçons",
+            "description": "Taux d'achèvement des garçons, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "reussite_cep",
+            "title": "Réussite au CEP",
+            "description": "Taux de réussite au CEP (session qui clôt l'année), en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Session de fin d'année"
+          },
+          {
+            "name": "reussite_cep_filles",
+            "title": "Réussite des filles au CEP",
+            "description": "Taux de réussite des filles au CEP, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "reussite_cep_garcons",
+            "title": "Réussite des garçons au CEP",
+            "description": "Taux de réussite des garçons au CEP, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "ips_tba",
+            "title": "Parité du TBA",
+            "description": "Indice de parité filles / garçons du TBA",
+            "type": "number",
+            "unit": "indice",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Rapport filles / garçons"
+          },
+          {
+            "name": "ips_tbs",
+            "title": "Parité du TBS",
+            "description": "Indice de parité filles / garçons du TBS",
+            "type": "number",
+            "unit": "indice",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Rapport filles / garçons"
+          },
+          {
+            "name": "ips_tap",
+            "title": "Parité de l'achèvement",
+            "description": "Indice de parité filles / garçons du taux d'achèvement",
+            "type": "number",
+            "unit": "indice",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Rapport filles / garçons"
+          },
+          {
+            "name": "ecoles_primaires",
+            "title": "Écoles primaires",
+            "description": "Écoles primaires",
+            "type": "number",
+            "unit": "écoles",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "ecoles_primaires_publiques",
+            "title": "Écoles primaires publiques",
+            "description": "Écoles primaires publiques",
+            "type": "number",
+            "unit": "écoles",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "ecoles_primaires_privees",
+            "title": "Écoles primaires privées",
+            "description": "Écoles primaires privées",
+            "type": "number",
+            "unit": "écoles",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "effectif_prescolaire",
+            "title": "Enfants du préscolaire",
+            "description": "Enfants inscrits au préscolaire",
+            "type": "number",
+            "unit": "enfants",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Saut brusque en 2024-2025, signalé"
+          },
+          {
+            "name": "tbs_prescolaire",
+            "title": "TBS du préscolaire",
+            "description": "Taux brut de scolarisation au préscolaire, en %",
+            "type": "number",
+            "unit": "%",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "ips_tbs_prescolaire",
+            "title": "Parité du TBS au préscolaire",
+            "description": "Indice de parité du TBS au préscolaire",
+            "type": "number",
+            "unit": "indice",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "structures_prescolaire",
+            "title": "Structures du préscolaire",
+            "description": "Structures du préscolaire",
+            "type": "number",
+            "unit": "structures",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée",
+            "limitations": "Statuts privé et communautaire apparemment intervertis en 2019-2020 dans plusieurs régions"
+          },
+          {
+            "name": "structures_prescolaire_publiques",
+            "title": "Structures publiques du préscolaire",
+            "description": "Structures publiques du préscolaire",
+            "type": "number",
+            "unit": "structures",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.056,
+            "derivation": "valeur publiée",
+            "limitations": "Saut brusque en 2024-2025"
+          },
+          {
+            "name": "salles_prescolaire",
+            "title": "Salles du préscolaire",
+            "description": "Salles du préscolaire",
+            "type": "number",
+            "unit": "salles",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "valeur publiée"
+          },
+          {
+            "name": "part_filles_primaire",
+            "title": "Part des filles",
+            "description": "Part des filles parmi les élèves du primaire",
+            "type": "number",
+            "unit": "proportion",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "effectif_primaire_filles / effectif_primaire"
+          },
+          {
+            "name": "part_ecoles_privees",
+            "title": "Part des écoles privées",
+            "description": "Part des écoles primaires privées",
+            "type": "number",
+            "unit": "proportion",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "ecoles_primaires_privees / ecoles_primaires"
+          },
+          {
+            "name": "eleves_par_ecole",
+            "title": "Élèves par école",
+            "description": "Élèves du primaire par école",
+            "type": "number",
+            "unit": "élèves par école",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "effectif_primaire / ecoles_primaires"
+          },
+          {
+            "name": "prescolaire_pour_100_nouveaux_cp1",
+            "title": "Préscolaire pour 100 nouveaux inscrits au CP1",
+            "description": "Enfants du préscolaire pour 100 nouveaux inscrits au CP1",
+            "type": "number",
+            "unit": "enfants pour 100 élèves",
+            "role": "contexte",
+            "source": "DGESS, base principale",
+            "missing_share": 0.0,
+            "derivation": "100 × effectif_prescolaire / nouveaux_inscrits_cp1"
+          }
+        ],
+        "primaryKey": [
+          "region_pcode",
           "annee_scolaire"
         ],
         "missingValues": [

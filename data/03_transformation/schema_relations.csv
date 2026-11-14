@@ -1,4 +1,7 @@
 ﻿table;cle;table_liee;cle_liee;cardinalite
+panel_province_2025;province_pcode;province;province_pcode;plusieurs à un
+panel_province_2025;province_ancienne_pcode;province_ancienne;province_ancienne_pcode;plusieurs à un
+panel_region_2025;region_pcode;region;region_pcode;plusieurs à un
 panel_province_annee;province_ancienne_pcode;province_ancienne;province_ancienne_pcode;plusieurs à un
 panel_province_annee;region_ancienne_pcode;region_ancienne;region_ancienne_pcode;plusieurs à un
 panel_mensuel_province;province_ancienne_pcode;province_ancienne;province_ancienne_pcode;plusieurs à un
