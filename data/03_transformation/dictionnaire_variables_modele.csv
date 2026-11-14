@@ -44,6 +44,30 @@ centres_non_formelle_adolescents;explicative;Centres d'éducation non formelle d
 taux_prescolarisation_province;explicative;Taux de préscolarisation de la province en t, en %;DGESS, annuaires du préscolaire, tableau 02;0.778;2023-2024;2024-2025
 grande_section_province;explicative;Enfants en grande section dans la province en t (futurs entrants au CP1);DGESS, annuaires du préscolaire, tableau 9;0.778;2023-2024;2024-2025
 adolescents_non_formelle_pour_1000_eleves;explicative;Adolescents de l'éducation non formelle pour 1 000 élèves du primaire;"DGESS ; calculs des auteurs";0.556;2018-2019;2024-2025
+part_ecoles_cantine;explicative;Part des écoles disposant d'une cantine scolaire;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_ecoles_latrines;explicative;Part des écoles disposant de latrines;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_ecoles_eau_potable;explicative;Part des écoles disposant d'un point d'eau potable;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_ecoles_electricite;explicative;Part des écoles disposant de l'électricité;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_eleves_plus_3km;explicative;Part des élèves effectuant un trajet de plus de 3 km pour aller à l'école;DGESS, annuaires du primaire, distance parcourue;0.114;2017-2018;2024-2025
+part_ecoles_cycle_incomplet;explicative;Part des écoles de moins de six salles fonctionnelles (cycle incomplet probable);DGESS, annuaires du primaire, taille des écoles;0.114;2017-2018;2024-2025
+logements_pour_100_maitres;explicative;Logements de maîtres disponibles pour 100 maîtres chargés de cours;DGESS, annuaires du primaire, logements de maîtres;0.114;2017-2018;2024-2025
+manuels_lecture_par_eleve;explicative;Manuels de lecture disponibles par élève;DGESS, annuaires du primaire, manuels des élèves;0.123;2017-2018;2024-2025
+manuels_calcul_par_eleve;explicative;Manuels de calcul disponibles par élève;DGESS, annuaires du primaire, manuels des élèves;0.123;2017-2018;2024-2025
+part_parents_agriculteurs;explicative;Part des élèves dont les parents sont cultivateurs ou éleveurs;DGESS, annuaires du primaire, profession des parents;0.114;2017-2018;2024-2025
+part_salles_murs_precaires;explicative;Part des salles aux murs semi-durs, en paille ou en banco;DGESS, annuaires du primaire, nature et état des murs;0.114;2017-2018;2024-2025
+part_salles_toit_precaire;explicative;Part des salles couvertes de banco, de paille ou sans toit;DGESS, annuaires du primaire, nature et état des toitures;0.114;2017-2018;2024-2025
+part_salles_recentes;explicative;Part des salles de classe mises en service après 2015;DGESS, annuaires du primaire, année de mise en service;0.114;2017-2018;2024-2025
+tba_province;explicative;Taux brut d'admission au CP1 de la province;DGESS, annuaires du primaire, taux brut d'admission;0.111;2017-2018;2024-2025
+tbs_province;explicative;Taux brut de scolarisation de la province;DGESS, annuaires du primaire, taux brut de scolarisation;0.111;2017-2018;2024-2025
+tns_province;explicative;Taux net de scolarisation de la province (enfants de 6 à 11 ans scolarisés);DGESS, annuaires du primaire, taux net de scolarisation;0.111;2017-2018;2024-2025
+ecart_tbs_filles_garcons;explicative;Écart entre le TBS des filles et celui des garçons;DGESS, annuaires du primaire, taux brut de scolarisation;0.111;2017-2018;2024-2025
+achevement_province;explicative;Taux d'achèvement du primaire de la province;DGESS, annuaires du primaire, taux d'achèvement;0.111;2017-2018;2024-2025
+reussite_cep_precedente_province;explicative;Taux d'admission au CEP de la province à la session qui clôt t-1;DGESS, annuaires du primaire, résultats au CEP;0.225;2018-2019;2024-2025
+deficit_places_pour_100_eleves;explicative;Places assises manquantes pour 100 élèves;DGESS, annuaires du primaire, mobilier des élèves;0.121;2017-2018;2024-2025
+part_eleves_12_ans_et_plus;explicative;Part des élèves du primaire âgés de 12 ans ou plus (retard scolaire);DGESS, annuaires du primaire, élèves par âge;0.114;2017-2018;2024-2025
+part_entrants_cp1_8_ans_et_plus;explicative;Part des nouveaux entrants au CP1 âgés de 8 ans ou plus (entrée tardive);DGESS, annuaires du primaire, nouveaux entrants par âge;0.116;2017-2018;2024-2025
+part_enseignantes;explicative;Part des femmes parmi les enseignants;DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
+part_enseignants_debutants;explicative;Part des enseignants ayant de 1 à 5 ans d'expérience;DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
 pauvrete_province;explicative;Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 profondeur_pauvrete_province;explicative;Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 travail_enfants_7_14_province;explicative;Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
@@ -55,3 +79,6 @@ acte_naissance_province;explicative;Personnes disposant d'un acte de naissance (
 parite_scolarisation_province;explicative;Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 electricite_province;explicative;Ménages accédant à l'électricité (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 telephone_province;explicative;Ménages accédant à un téléphone (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+consommation_par_personne_province;explicative;Consommation annuelle moyenne par personne dans la province (2019, constante dans le temps);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.267;2016-2017;2024-2025
+gini_province;explicative;Indice de Gini de la consommation dans la province (2019, constant dans le temps);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.244;2016-2017;2024-2025
+rapport_q90_q10_province;explicative;Rapport entre le 9e et le 1er décile de consommation dans la province (2019);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.244;2016-2017;2024-2025

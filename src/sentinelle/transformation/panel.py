@@ -16,7 +16,10 @@ Une ligne par ancienne province (45) et par année scolaire t. La ligne réunit 
   2024-2025) de la province, et ses caractéristiques structurelles mesurées au
   recensement de 2019 (pauvreté, travail des enfants, enfants hors de l'école,
   mariage précoce, alphabétisation, actes de naissance, électricité, téléphone),
-  constantes d'une année à l'autre.
+  constantes d'une année à l'autre ; enfin les conditions de scolarisation de
+  l'année t (équipement des écoles, distance, taille des écoles, logements de
+  maîtres, manuels, mobilier, profession des parents, état des salles, taux par
+  province, réussite au CEP de la session précédente).
 
 Deux tables complètent le panel : ``panel_region_annee`` reprend tous les
 indicateurs régionaux de la base principale (13 régions et le pays), et
@@ -283,11 +286,78 @@ STRUCTURELLES = {"incidence_pauvrete": "pauvrete_province", "profondeur_pauvrete
 
 
 def _structurelles() -> pd.DataFrame:
-    """Pauvreté et conditions de vie de la province en 2019, identiques pour toutes les années."""
+    """Pauvreté, conditions de vie, consommation et inégalités de la province en 2019, identiques chaque année."""
     vie = lire("fait_conditions_vie")
     vie = vie[vie["niveau_geo"] == "province_ancienne"]
-    return vie[["entite_pcode", *STRUCTURELLES]].rename(columns={"entite_pcode": "province_ancienne_pcode",
-                                                                  **STRUCTURELLES})
+    vie = vie[["entite_pcode", *STRUCTURELLES]].rename(columns=STRUCTURELLES)
+    profils = lire("fait_profils_pauvrete")
+    profils = profils[profils["niveau_geo"] == "province_ancienne"][
+        ["entite_pcode", "consommation_par_personne", "gini", "rapport_q90_q10"]].rename(columns={
+        "consommation_par_personne": "consommation_par_personne_province", "gini": "gini_province",
+        "rapport_q90_q10": "rapport_q90_q10_province"})
+    return vie.merge(profils, on="entite_pcode", how="left").rename(columns={"entite_pcode": "province_ancienne_pcode"})
+
+
+def _conditions_scolarisation() -> pd.DataFrame:
+    """Équipement, distance, taille des écoles, manuels, salles, taux et CEP par province, édition de l'année t."""
+    table = lire("fait_conditions_scolarisation")
+    ensemble = table[table["sous_tableau"] == "ensemble"]
+    large = ensemble.pivot_table(index=["entite_pcode", "annee_scolaire"], columns=["section", "variable"], values="valeur")
+    v = lambda section, variable: large.get((section, variable))  # noqa: E731
+    resultat = pd.DataFrame(index=large.index)
+    ecoles = v("equipement", "ecoles")
+    for nom, colonne in [("cantine", "ecoles_cantines"), ("latrines", "ecoles_latrines"),
+                         ("eau_potable", "ecoles_eau_potable"), ("electricite", "ecoles_electricite")]:
+        resultat[f"part_ecoles_{nom}"] = v("equipement", colonne) / ecoles
+    resultat["part_eleves_plus_3km"] = v("distance", "pct_eleves_3_5km") + v("distance", "pct_eleves_plus_5km")
+    petites = sum(v("taille_ecoles", f"ecoles_{n}_salles") for n in ["0", "1", "2", "3", "4", "5"])
+    resultat["part_ecoles_cycle_incomplet"] = petites / v("taille_ecoles", "ecoles")
+    resultat["logements_pour_100_maitres"] = 100 * v("logements_maitres", "logements") / v("logements_maitres", "maitres")
+    resultat["manuels_lecture_par_eleve"] = v("manuels", "manuels_lecture") / v("manuels", "eleves")
+    resultat["manuels_calcul_par_eleve"] = v("manuels", "manuels_calcul") / v("manuels", "eleves")
+    resultat["deficit_places_assises"] = v("mobilier", "deficit_places_assises")
+    professions = large.xs("profession_parents", axis=1, level="section")
+    resultat["part_parents_agriculteurs"] = (professions["parents_cultivateurs"] + professions["parents_eleveurs"]) / \
+        professions.sum(axis=1, min_count=1)
+    resultat["part_salles_murs_precaires"] = (v("murs", "murs_semi_dur") + v("murs", "murs_paille_banco")) / v("murs", "salles")
+    absent = v("toitures", "toit_absent")
+    resultat["part_salles_toit_precaire"] = (v("toitures", "toit_banco") + v("toitures", "toit_paille")
+                                             + (absent.fillna(0) if absent is not None else 0)) / v("toitures", "salles")
+    resultat["part_salles_recentes"] = v("anciennete_salles", "salles_apres_2015") / v("anciennete_salles", "salles")
+    for section in ["tba", "tbs", "tns"]:
+        resultat[f"{section}_province"] = v(section, "taux_t")
+    resultat["ecart_tbs_filles_garcons"] = v("tbs", "taux_f") - v("tbs", "taux_g")
+    resultat["achevement_province"] = v("achevement", "taux_t")
+    resultat = resultat.reset_index()
+    # CEP : la session de t a lieu en fin d'année ; on retient celle qui clôt t-1.
+    cep = v("cep", "taux_t").rename("reussite_cep_precedente_province").reset_index()
+    cep["annee_scolaire"] = cep["annee_scolaire"].map(lambda a: annee_scolaire(debut(a) + 1))
+    resultat = resultat.merge(cep, on=["entite_pcode", "annee_scolaire"], how="outer")
+    return resultat.rename(columns={"entite_pcode": "province_ancienne_pcode"})
+
+
+def _repartitions() -> pd.DataFrame:
+    """Retard scolaire, entrée tardive au CP1, part des enseignantes et des débutants, édition de l'année t."""
+    table = lire("fait_repartitions_province")
+    ensemble = table[table["sous_tableau"] == "ensemble"]
+    cles = ["entite_pcode", "annee_scolaire"]
+
+    def ligne(section: str, modalite: str) -> pd.DataFrame:
+        partie = ensemble[(ensemble["section"] == section) & (ensemble["modalite"] == modalite)]
+        return partie.pivot_table(index=cles, columns="variable", values="valeur")
+
+    eleves = ligne("ages_eleves", "T")
+    entrants = ligne("ages_entrants", "T")
+    femmes, total = ligne("enseignants", "F"), ligne("enseignants", "T")
+    resultat = pd.DataFrame({
+        "part_eleves_12_ans_et_plus": eleves[["age_12", "age_13", "age_14", "age_15", "age_plus_15"]].sum(axis=1)
+        / eleves["age_total"],
+        "part_entrants_cp1_8_ans_et_plus": entrants[["age_8", "age_9", "age_10", "age_plus_10"]].sum(axis=1)
+        / entrants["age_total"],
+        "part_enseignantes": femmes["total"] / total["total"],
+        "part_enseignants_debutants": total["experience_1_5"] / total["total"],
+    })
+    return resultat.reset_index().rename(columns={"entite_pcode": "province_ancienne_pcode"})
 
 
 def construire_panel() -> pd.DataFrame:
@@ -345,6 +415,11 @@ def construire_panel() -> pd.DataFrame:
     # Éducation non formelle (seconde chance des déscolarisés) et préscolaire, par province.
     panel = panel.merge(_non_formelle_et_prescolaire(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
     panel["adolescents_non_formelle_pour_1000_eleves"] = 1000 * panel["adolescents_non_formelle"] / panel["effectif"]
+
+    # Conditions de scolarisation de l'année t (annuaires DGESS, 8 éditions).
+    panel = panel.merge(_conditions_scolarisation(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
+    panel["deficit_places_pour_100_eleves"] = 100 * panel.pop("deficit_places_assises") / panel["effectif"]
+    panel = panel.merge(_repartitions(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
 
     # Pauvreté et conditions de vie (RGPH 2019) : caractéristiques structurelles, constantes dans le temps.
     panel = panel.merge(_structurelles(), on="province_ancienne_pcode", how="left")

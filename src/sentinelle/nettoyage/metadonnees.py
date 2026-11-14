@@ -66,6 +66,23 @@ TABLES = {
                             "le pays", "entité (commune, province, région, pays)", "niveau_geo, entite_pcode",
                             "INSD, 5e RGPH, volume 3, Mesure et cartographie de la pauvreté (novembre 2022), annexes "
                             "4 à 9 ; EHCVM 2018 et RGPH 2019", "2019"),
+    "fait_conditions_scolarisation": ("Conditions de scolarisation par province : équipement des écoles, distance "
+                                      "parcourue, taille des écoles, logements de maîtres, manuels, mobilier, "
+                                      "profession des parents, surface, ancienneté et état des salles, TBA, TBS, TNS, "
+                                      "achèvement, CEP", "édition × section × sous-tableau × province × variable",
+                                      "annee_scolaire, section, sous_tableau, entite_pcode, variable",
+                                      "DGESS, annuaires statistiques du primaire, sections I à X selon les éditions",
+                                      "2017-2018 à 2024-2025"),
+    "fait_profils_pauvrete": ("Consommation par personne, sévérité de la pauvreté et inégalités (Gini, Theil, rapports "
+                              "interdéciles) par province et commune, pour 10 régions ; l'incidence et la profondeur "
+                              "reprennent celles du RGPH 2019", "entité (province, commune)", "niveau_geo, entite_pcode",
+                              "INSD, profils régionaux de pauvreté (octobre 2023), à partir de l'EHCVM 2018 et du RGPH 2019",
+                              "2019 (année de référence)"),
+    "fait_repartitions_province": ("Élèves et nouveaux entrants au CP1 par âge et sexe ; enseignants par sexe, âge et "
+                                   "années d'expérience ; par province", "édition × section × sous-tableau × province "
+                                   "× modalité × variable", "annee_scolaire, section, sous_tableau, entite_pcode, "
+                                   "modalite, variable", "DGESS, annuaires statistiques du primaire, répartitions par âge "
+                                   "et personnel enseignant", "2017-2018 à 2024-2025"),
     "fait_esu_province": ("Écoles primaires fermées et rouvertes, élèves et enseignants concernés, par province",
                           "rapport mensuel × type × province", "mois, type, province_ancienne_pcode",
                           "ST-ESU, rapports statistiques mensuels (via ReliefWeb)", "novembre 2021 à novembre 2024"),
@@ -123,6 +140,21 @@ VARIABLES = {
                    "taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles "
                    "(base principale)", ""),
     "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
+    "incidence": ("Part de la population sous le seuil de pauvreté (P0)", "%"),
+    "contribution": ("Contribution de l'entité à la pauvreté de la région (C0)", "%"),
+    "profondeur": ("Écart moyen au seuil de pauvreté (P1)", "%"),
+    "severite": ("Sévérité de la pauvreté (P2) ; publiée seulement dans certains profils", "%"),
+    "consommation_par_personne": ("Consommation annuelle moyenne par personne", "FCFA"),
+    "gini": ("Indice de Gini de la consommation (0 = égalité parfaite)", "indice"),
+    "theil_0": ("Indice de Theil (0) de la consommation", "indice"),
+    "theil_1": ("Indice de Theil (1) de la consommation", "indice"),
+    "rapport_q90_q10": ("Rapport entre le 9e et le 1er décile de consommation", "rapport"),
+    "rapport_q90_q50": ("Rapport entre le 9e décile et la médiane de consommation", "rapport"),
+    "modalite": ("Ligne du tableau : F (filles ou femmes), G (garçons), H (hommes), T (total), pct (pourcentage)", ""),
+    "section": ("Section de l'annuaire : equipement, distance, taille_ecoles, logements_maitres, manuels, mobilier, "
+                "profession_parents, surface_salles, anciennete_salles, murs, toitures, tba, tbs, tns, achevement, cep ; "
+                "ages_eleves, ages_entrants, enseignants (répartitions)", ""),
+    "sous_tableau": ("Sous-tableau de la section : public, prive, ensemble, urbain ou rural", ""),
     "code_rgph": ("Code de l'entité dans le RGPH 2019 ; plusieurs codes quand des arrondissements sont regroupés", ""),
     "nb_unites_rgph": ("Nombre d'unités du RGPH regroupées dans la ligne (arrondissements de Ouagadougou et de Bobo-Dioulasso)", "unités"),
     "annee_reference": ("Année de référence des indicateurs", "année"),
@@ -233,7 +265,8 @@ VARIABLES = {
     "nb_lignes": ("Nombre de lignes", "lignes"),
     "nb_colonnes": ("Nombre de colonnes", "colonnes"),
     "date_production": ("Date de production de la table", ""),
-    "variable": ("Nom de la variable", ""),
+    "variable": ("Nom de la variable (dictionnaire) ou de la colonne du tableau d'origine (conditions de "
+                 "scolarisation : nombre d'écoles, de salles, part d'élèves, taux...)", ""),
     "type_donnee": ("Type de donnée", ""),
     "unite": ("Unité : nombre, pour cent ou indice (rapport filles / garçons)", ""),
     "operation": ("Opération de nettoyage", ""),

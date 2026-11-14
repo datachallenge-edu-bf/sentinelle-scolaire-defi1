@@ -156,6 +156,16 @@ TABLES_NETTOYAGE = [
     ("fait_conditions_vie.csv", "engineer", "pauvrete-conditions-vie-commune-province-rgph-2019-propre",
      "Pauvreté, emploi, travail des enfants, enfants hors de l'école, alphabétisation, mariage précoce, actes de "
      "naissance, eau, électricité, téléphone : 351 communes, 45 provinces, 13 régions, pays (INSD, RGPH 2019, vol. 3)."),
+    ("fait_conditions_scolarisation.csv", "engineer", "conditions-scolarisation-province-2017-2025-propre",
+     "Seize tableaux par province des annuaires DGESS, 8 éditions : équipement des écoles (eau, électricité, latrines, "
+     "cantines), distance parcourue, taille des écoles, logements de maîtres, manuels, mobilier, profession des parents, "
+     "surface, ancienneté et état des salles, TBA, TBS, TNS, achèvement, CEP."),
+    ("fait_profils_pauvrete.csv", "engineer", "consommation-inegalites-province-commune-profils-pauvrete-propre",
+     "Consommation par personne, sévérité de la pauvreté, Gini et autres inégalités par province et commune (10 régions), "
+     "d'après les profils régionaux de l'INSD (2023), année de référence 2019."),
+    ("fait_repartitions_province.csv", "engineer", "eleves-entrants-par-age-enseignants-province-2017-2025-propre",
+     "Élèves et nouveaux entrants au CP1 par âge et sexe, enseignants par sexe, âge et expérience, par province, "
+     "8 éditions de l'annuaire du primaire."),
     ("fait_offre_province.csv", "engineer", "ecoles-salles-maitres-eleves-province-2017-2025-propre",
      "Écoles, salles, groupes pédagogiques, maîtres et élèves par province et statut, avec les élèves par maître "
      "et par salle."),

@@ -16,7 +16,7 @@ import pyogrio
 from .. import config
 from ..indicateurs import effectifs_retenus
 from . import base_principale as principale
-from . import conditions_vie, enf_prescolaire
+from . import conditions_scolarisation, conditions_vie, enf_prescolaire, profils_pauvrete, repartitions_province
 from . import controles, dgess, esu, geographie, metadonnees, pdi
 from .offre import lire_offre
 from .outils import Journal
@@ -55,6 +55,9 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     enf = enf_prescolaire.lire_enf(identifier, journal)
     prescolaire = enf_prescolaire.lire_prescolaire(identifier, alias, journal)
     vie = conditions_vie.construire(communes, alias, journal)
+    scolarisation = conditions_scolarisation.lire_conditions(identifier, journal)
+    profils = profils_pauvrete.lire_profils(identifier, communes, journal)
+    repartitions = repartitions_province.lire_repartitions(identifier, journal)
 
     # Rapports ESU et déplacés internes.
     esu_provinces, esu_totaux = esu.lire_esu(identifier, journal)
@@ -122,6 +125,12 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
                                              communes["region_ancienne_pcode"]))).items()],
         *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
           conditions_vie.controler(vie, communes, config.CONTROLE_PAUVRETE).items()],
+        *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
+          conditions_scolarisation.controler(scolarisation).items()],
+        *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
+          profils_pauvrete.controler(profils, vie).items()],
+        *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
+          repartitions_province.controler(repartitions).items()],
         {"controle": "metadonnees_completes", "conforme": False, "detail": ""},
     ])], ignore_index=True)
 
@@ -152,6 +161,9 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_enf_province": enf,
         "fait_prescolaire_province": prescolaire,
         "fait_conditions_vie": vie,
+        "fait_conditions_scolarisation": scolarisation,
+        "fait_profils_pauvrete": profils,
+        "fait_repartitions_province": repartitions,
         "fait_esu_province": esu_provinces,
         "fait_esu_region": esu_regions,
         "fait_pdi_commune": deplaces,

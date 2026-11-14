@@ -1,10 +1,10 @@
 ﻿nom_normalise;pcode;niveau;nom_reference;origine
+TOTAL;BF;pays;TOTAL;libellé du total national
+BURKINA;BF;pays;BURKINA;libellé du total national
+NATIONAL;BF;pays;NATIONAL;libellé du total national
 BURKINAFASO;BF;pays;BURKINAFASO;libellé du total national
 TOTALNATIONAL;BF;pays;TOTALNATIONAL;libellé du total national
 ENSEMBLE;BF;pays;ENSEMBLE;libellé du total national
-NATIONAL;BF;pays;NATIONAL;libellé du total national
-TOTAL;BF;pays;TOTAL;libellé du total national
-BURKINA;BF;pays;BURKINA;libellé du total national
 KADIOGO;BF1300;province_ancienne;Kadiogo;OpenStreetMap
 BALE;BF4601;province_ancienne;Balé;OpenStreetMap
 LESBALE;BF4601;province_ancienne;LESBALE;variante relevée dans les publications DGESS
@@ -19,11 +19,13 @@ COMOE;BF4701;province_ancienne;Comoé;OpenStreetMap
 LERABA;BF4702;province_ancienne;Léraba;OpenStreetMap
 BOULGOU;BF4801;province_ancienne;Boulgou;OpenStreetMap
 KOULPELOGO;BF4802;province_ancienne;Koulpélogo;OpenStreetMap
+KOULPELOGOKOULPELOGO;BF4802;province_ancienne;KOULPELOGOKOULPELOGO;variante relevée dans les publications DGESS
 KOURITTENGA;BF4803;province_ancienne;Kourittenga;OpenStreetMap
 KOURITENGA;BF4803;province_ancienne;KOURITENGA;variante relevée dans les publications DGESS
 BAM;BF4901;province_ancienne;Bam;OpenStreetMap
 NAMENTENGA;BF4902;province_ancienne;Namentenga;OpenStreetMap
 SANMATENGA;BF4903;province_ancienne;Sanmatenga;OpenStreetMap
+SANEMATENGA;BF4903;province_ancienne;SANEMATENGA;variante relevée dans les publications DGESS
 BOULKIEMDE;BF5001;province_ancienne;Boulkiemdé;OpenStreetMap
 BOULKIENDE;BF5001;province_ancienne;BOULKIENDE;variante relevée dans les publications DGESS
 SANGUIE;BF5002;province_ancienne;Sanguié;OpenStreetMap

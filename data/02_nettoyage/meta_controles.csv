@@ -25,4 +25,12 @@ conditions_vie_couverture;True;13 régions, 45 provinces, 351 communes sur 351
 conditions_vie_population_communes_egal_province;True;45 provinces sur 45 identiques
 conditions_vie_indicateurs_renseignes;True;part renseignée de 33 indicateurs : minimum 99.3% (ratio_filles_garcons_post_primaire)
 conditions_vie_identique_extraction_equipe;True;pays, régions, provinces et communes : 4485 valeurs identiques sur 4485 comparées (11 indicateurs) avec l'extraction indépendante d'un membre de l'équipe
+conditions_scolarisation_45_provinces;True;"16 sections × 8 éditions ; toutes à 44 ou 45 provinces"
+conditions_scolarisation_public_plus_prive;True;équipement : public + privé = ensemble pour 2824 valeurs sur 2824
+conditions_scolarisation_taille_somme_ecoles;True;écoles par nombre de salles = total des écoles pour 359 provinces × éditions sur 359
+conditions_scolarisation_distance_somme_100;True;parts de la distance sommant à 100 % à 0,5 point près : 1786 sur 1795
+profils_couverture;True;34 provinces et 247 communes de 10 régions (pas de profil pour la Boucle du Mouhoun, les Cascades et le Centre-Est)
+profils_incidence_egale_recensement;True;incidence identique à celle du RGPH 2019 (vol. 3) pour 258 entités sur 258 : les profils de 2023 reprennent la mesure de 2019
+repartitions_45_provinces;True;"3 sections × 8 éditions ; toutes à 44 ou 45 provinces"
+repartitions_sexes_egal_total;True;filles + garçons (femmes + hommes) = total pour 3949 lignes sur 3949
 metadonnees_completes;True;toutes les tables et variables sont décrites

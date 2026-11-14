@@ -184,6 +184,39 @@ fait_conditions_vie;telephone;décimal;%;Ménages accédant à un téléphone
 fait_conditions_vie;valeurs_hors_domaine;texte;;Indicateurs dont la valeur publiée sort de son domaine (taux > 100, rapport > 3), conservés tels quels
 fait_conditions_vie;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_conditions_vie;page;entier;;Page du fichier d'origine
+fait_conditions_scolarisation;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_conditions_scolarisation;section;texte;;"Section de l'annuaire : equipement, distance, taille_ecoles, logements_maitres, manuels, mobilier, profession_parents, surface_salles, anciennete_salles, murs, toitures, tba, tbs, tns, achevement, cep ; ages_eleves, ages_entrants, enseignants (répartitions)"
+fait_conditions_scolarisation;sous_tableau;texte;;Sous-tableau de la section : public, prive, ensemble, urbain ou rural
+fait_conditions_scolarisation;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_conditions_scolarisation;variable;texte;;Nom de la variable (dictionnaire) ou de la colonne du tableau d'origine (conditions de scolarisation : nombre d'écoles, de salles, part d'élèves, taux...)
+fait_conditions_scolarisation;valeur;décimal;;Valeur publiée, dans l'unité indiquée
+fait_conditions_scolarisation;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_conditions_scolarisation;page;entier;;Page du fichier d'origine
+fait_profils_pauvrete;niveau_geo;texte;;Niveau géographique de l'entité
+fait_profils_pauvrete;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_profils_pauvrete;libelle;texte;;Libellé : nom du jeu de données (registre des sources) ou de l'entité dans la publication (conditions de vie)
+fait_profils_pauvrete;annee_reference;entier;année;Année de référence des indicateurs
+fait_profils_pauvrete;incidence;décimal;%;Part de la population sous le seuil de pauvreté (P0)
+fait_profils_pauvrete;contribution;décimal;%;Contribution de l'entité à la pauvreté de la région (C0)
+fait_profils_pauvrete;profondeur;décimal;%;Écart moyen au seuil de pauvreté (P1)
+fait_profils_pauvrete;severite;décimal;%;"Sévérité de la pauvreté (P2) ; publiée seulement dans certains profils"
+fait_profils_pauvrete;consommation_par_personne;décimal;FCFA;Consommation annuelle moyenne par personne
+fait_profils_pauvrete;gini;décimal;indice;Indice de Gini de la consommation (0 = égalité parfaite)
+fait_profils_pauvrete;theil_0;décimal;indice;Indice de Theil (0) de la consommation
+fait_profils_pauvrete;theil_1;décimal;indice;Indice de Theil (1) de la consommation
+fait_profils_pauvrete;rapport_q90_q10;décimal;rapport;Rapport entre le 9e et le 1er décile de consommation
+fait_profils_pauvrete;rapport_q90_q50;décimal;rapport;Rapport entre le 9e décile et la médiane de consommation
+fait_profils_pauvrete;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_profils_pauvrete;page;texte;;Page du fichier d'origine
+fait_repartitions_province;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_repartitions_province;section;texte;;"Section de l'annuaire : equipement, distance, taille_ecoles, logements_maitres, manuels, mobilier, profession_parents, surface_salles, anciennete_salles, murs, toitures, tba, tbs, tns, achevement, cep ; ages_eleves, ages_entrants, enseignants (répartitions)"
+fait_repartitions_province;sous_tableau;texte;;Sous-tableau de la section : public, prive, ensemble, urbain ou rural
+fait_repartitions_province;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_repartitions_province;modalite;texte;;Ligne du tableau : F (filles ou femmes), G (garçons), H (hommes), T (total), pct (pourcentage)
+fait_repartitions_province;variable;texte;;Nom de la variable (dictionnaire) ou de la colonne du tableau d'origine (conditions de scolarisation : nombre d'écoles, de salles, part d'élèves, taux...)
+fait_repartitions_province;valeur;décimal;;Valeur publiée, dans l'unité indiquée
+fait_repartitions_province;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_repartitions_province;page;entier;;Page du fichier d'origine
 fait_esu_province;mois;texte;;Mois du rapport (AAAA-MM ou AAAA-MM-JJ)
 fait_esu_province;type;texte;;Type de situation : établissements fermés ou rouverts
 fait_esu_province;province_ancienne_pcode;texte;;P-code de la province dans l'ancien découpage (45 provinces)
@@ -244,7 +277,7 @@ meta_source;url;texte;;Adresse de téléchargement d'origine
 meta_source;date_collecte;texte;;Date de la collecte
 meta_source;usage;texte;;Usage prévu dans Sentinelle Scolaire
 meta_variables;table;texte;;Nom de la table
-meta_variables;variable;texte;;Nom de la variable
+meta_variables;variable;texte;;Nom de la variable (dictionnaire) ou de la colonne du tableau d'origine (conditions de scolarisation : nombre d'écoles, de salles, part d'élèves, taux...)
 meta_variables;type_donnee;texte;;Type de donnée
 meta_variables;unite;texte;;Unité : nombre, pour cent ou indice (rapport filles / garçons)
 meta_variables;description;texte;;Description
