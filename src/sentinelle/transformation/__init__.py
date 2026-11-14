@@ -20,6 +20,12 @@ VARIABLES = {
     "region_ancienne_pcode": ("identifiant", "Code de la région (ancien découpage)", "COD-AB"),
     "region_ancienne_nom": ("identifiant", "Nom de la région", "OpenStreetMap (HOT)"),
     "provinces_actuelles": ("identifiant", "Provinces du découpage de 2025 issues de la province", "COD-AB"),
+    "abandon_suivant_province_origine": ("identifiant", "Valeur de l'ancienne province d'origine (abandon de t à t+1 (cible)) : sert au recalage des provinces scindées", "DGESS, annuaires du primaire"),
+    "abandon_brut_suivant_province_origine": ("identifiant", "Valeur de l'ancienne province d'origine (abandon brut de t à t+1) : sert au recalage des provinces scindées", "DGESS, annuaires du primaire"),
+    "abandon_precedent_province_origine": ("identifiant", "Valeur de l'ancienne province d'origine (abandon de t-1 à t) : sert au recalage des provinces scindées", "DGESS, annuaires du primaire"),
+    "redoublement_precedent_province_origine": ("identifiant", "Valeur de l'ancienne province d'origine (redoublement de t-1 à t) : sert au recalage des provinces scindées", "DGESS, annuaires du primaire"),
+    "promotion_precedente_province_origine": ("identifiant", "Valeur de l'ancienne province d'origine (promotion de t-1 à t) : sert au recalage des provinces scindées", "DGESS, annuaires du primaire"),
+    "cible_observee": ("identifiant", "Vrai si la cible est observée pour la province de 2025 (faux pour les provinces scindées et l'année à prévoir)", "Calcul Sentinelle"),
     "province_pcode": ("identifiant", "Code de la province de 2025 (47 provinces)", "COD-AB (découpage de juillet 2025)"),
     "province_nom": ("identifiant", "Nom de la province de 2025", "COD-AB (découpage de juillet 2025)"),
     "region_pcode": ("identifiant", "Code de la région de 2025 (17 régions) ; BF pour le pays", "COD-AB (découpage de juillet 2025)"),
@@ -288,6 +294,7 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
     # Mêmes panels dans le découpage de 2025, pour la restitution (le modèle reste entraîné sur 45 provinces).
     panel_2025 = decoupage_2025.panel_province_2025(panel)
     region_2025 = decoupage_2025.panel_region_2025(region, panel_2025)
+    panel_2025 = decoupage_2025.contexte_regional_2025(panel_2025, region_2025)
     bases = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
              "serie_nationale_annee": nationale, "panel_province_2025": panel_2025, "panel_region_2025": region_2025}
     metadonnees = metadonnees_modele.ecrire(bases, VARIABLES, VARIABLES_REGION, sortie / "metadonnees")

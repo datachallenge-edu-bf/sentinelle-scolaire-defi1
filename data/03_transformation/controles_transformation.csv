@@ -11,9 +11,11 @@ public_plus_prive_egal_total_national;True;écart maximal 0 élève
 taux_achevement_national_2024_2025;True;51.6 % en 2024-2025, valeur citée dans la note d'intention
 contexte_regional_joint_au_panel;True;taux d'achèvement régional renseigné pour 100% des lignes du panel
 variables_regionales_decrites;True;95 variables décrites
+decoupage_2025_recalcul_regional_valide;True;taux recalculés depuis les provinces contre taux publiés des 10 régions inchangées, écart médian (points) : tba 0.02, tbs 0.00, taux_achevement 0.00, reussite_cep 0.00
+decoupage_2025_provinces_scindees_differenciees;True;TBS distincts entre les deux moitiés pour 16 couples province × année sur 18 (clés communales INSD)
 decoupage_2025_47_provinces;True;47 provinces de 2025 × 9 années, noms du COD-AB
 decoupage_2025_17_regions;True;17 régions de 2025 et le pays
 decoupage_2025_effectifs_conserves;True;"élèves : somme des 47 provinces = somme des 45 anciennes (écart maximal 0.00) ; somme des 17 régions = somme des 13 (écart 0.00)"
 decoupage_2025_deplaces_conserves;True;déplacés recomptés sur les communes : total national inchangé (écart maximal 0)
-decoupage_2025_cible_heritee;True;cible (abandon de t à t+1) des 47 provinces égale à celle de leur province d'origine : 423 lignes sur 423
-fiches_completes;True;337 variables de 6 tables : libellé, description, unité et source renseignés
+decoupage_2025_cible_origine_conservee;True;"cible de la province d'origine conservée pour le recalage : 423 lignes sur 423 ; cible observée (entraînement) pour 310 lignes"
+fiches_completes;True;343 variables de 6 tables : libellé, description, unité et source renseignés

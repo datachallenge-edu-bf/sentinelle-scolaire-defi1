@@ -20,6 +20,9 @@ MANIFESTE_EXTERNE = SOURCES_EXTERNES / "manifeste_sources_externes.csv"
 PREFIXE_EXTERNE = "externe:"
 # Extraction indépendante du RGPH 2019 (volume 3) par un membre de l'équipe : sert de contrôle.
 CONTROLE_PAUVRETE = DOSSIER_ORGANISATEURS / "Sentinelle_Scolaire_Pauvrete_INSD_2019.xlsx"
+# Effectifs communaux des annuaires régionaux de l'INSD, nettoyés par l'équipe Boussole (défi 3) : donnée
+# partagée, lue telle quelle, pour répartir les effectifs des provinces scindées en 2025.
+COMMUNES_INSD = DOSSIER_ORGANISATEURS / "defi3_boussole" / "donnees" / "base"
 MANIFESTE = DATA_PACK / "00_Documentation_et_Referentiels" / "manifeste_telechargements.csv"
 BASE_PRINCIPALE = DOSSIER_ORGANISATEURS / "DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx"
 DOCUMENT_CHALLENGE = DOSSIER_ORGANISATEURS / "Document_du_challenge_Data_Challenge_Burkina.pdf"

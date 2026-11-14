@@ -2623,7 +2623,11 @@
             "constraints": {
               "enum": [
                 "identique (code et nom de 2025)",
-                "province scindée : effectifs répartis selon la population 2019, déplacés et RGPH 2019 recalculés sur les communes, taux et cible hérités de l'ancienne province"
+                "identique (code et nom de 2025)",
+                "contexte régional de 2025",
+                "province scindée : effectifs et rapports corrigés par clés communales INSD, déplacés et RGPH 2019 recalculés sur les communes, autres taux hérités, cible à estimer",
+                "province scindée : effectifs et rapports corrigés par clés communales INSD, déplacés et RGPH 2019 recalculés sur les communes, autres taux hérités, cible à estimer",
+                "clé eleves remplacée par enseignants"
               ]
             }
           },
@@ -2635,7 +2639,7 @@
             "unit": "%",
             "role": "cible (brute)",
             "source": "DGESS, tableau VIII.3",
-            "missing_share": 0.111,
+            "missing_share": 0.187,
             "derivation": "Cohorte reconstituée, CP1 à CM1 : [E(g,t) - (E(g+1,t+1) - R(g+1,t+1)) - R(g,t+1)] / E(g,t), sommé sur les classes avant division",
             "limitations": "Mesure toutes les pertes nettes d'élèves, y compris les départs vers une autre province"
           },
@@ -2647,7 +2651,7 @@
             "unit": "%",
             "role": "explicative",
             "source": "DGESS, tableau VIII.3",
-            "missing_share": 0.0,
+            "missing_share": 0.085,
             "derivation": "Cohorte reconstituée, passage précédent"
           },
           {
@@ -2658,7 +2662,7 @@
             "unit": "%",
             "role": "explicative",
             "source": "DGESS, tableau VIII.3",
-            "missing_share": 0.0,
+            "missing_share": 0.085,
             "derivation": "R(g,t) / E(g,t-1), sommé sur CP1 à CM1"
           },
           {
@@ -2669,7 +2673,7 @@
             "unit": "%",
             "role": "explicative",
             "source": "DGESS, tableau VIII.3",
-            "missing_share": 0.0,
+            "missing_share": 0.085,
             "derivation": "(E(g+1,t) - R(g+1,t)) / E(g,t-1), sommé sur CP1 à CM1"
           },
           {
@@ -2805,7 +2809,7 @@
             "unit": "%",
             "role": "cible",
             "source": "DGESS, tableau VIII.3",
-            "missing_share": 0.215,
+            "missing_share": 0.267,
             "derivation": "abandon_brut_suivant, vidé en cas de rupture de scolarisation",
             "limitations": "Vide pour 2024-2025 (à prévoir) et pour les 39 ruptures"
           },
@@ -2823,6 +2827,7 @@
               "enum": [
                 "abandon observé",
                 "rupture de scolarisation",
+                "à estimer (province scindée en 2025)",
                 "à prévoir"
               ]
             }
@@ -3671,6 +3676,84 @@
             "missing_share": 0.234,
             "derivation": "valeur publiée",
             "limitations": "Mesure de 2019 republiée en 2023 ; pas de profil pour la Boucle du Mouhoun, les Cascades et le Centre-Est (11 provinces sans valeur)"
+          },
+          {
+            "name": "abandon_suivant_province_origine",
+            "title": "Abandon de t à t+1 (cible), province d'origine",
+            "description": "Valeur de l'ancienne province d'origine (abandon de t à t+1 (cible)) : sert au recalage des provinces scindées",
+            "type": "number",
+            "unit": "%",
+            "role": "identifiant",
+            "source": "DGESS, annuaires du primaire",
+            "missing_share": 0.215,
+            "derivation": "valeur de l'ancienne province (45)",
+            "limitations": "Identique pour les deux moitiés d'une province scindée : contrainte de recalage, pas une cible"
+          },
+          {
+            "name": "abandon_brut_suivant_province_origine",
+            "title": "Abandon brut de t à t+1, province d'origine",
+            "description": "Valeur de l'ancienne province d'origine (abandon brut de t à t+1) : sert au recalage des provinces scindées",
+            "type": "number",
+            "unit": "%",
+            "role": "identifiant",
+            "source": "DGESS, annuaires du primaire",
+            "missing_share": 0.111,
+            "derivation": "valeur de l'ancienne province (45)",
+            "limitations": "Identique pour les deux moitiés d'une province scindée : contrainte de recalage, pas une cible"
+          },
+          {
+            "name": "abandon_precedent_province_origine",
+            "title": "Abandon de t-1 à t, province d'origine",
+            "description": "Valeur de l'ancienne province d'origine (abandon de t-1 à t) : sert au recalage des provinces scindées",
+            "type": "number",
+            "unit": "%",
+            "role": "identifiant",
+            "source": "DGESS, annuaires du primaire",
+            "missing_share": 0.0,
+            "derivation": "valeur de l'ancienne province (45)",
+            "limitations": "Identique pour les deux moitiés d'une province scindée : contrainte de recalage, pas une cible"
+          },
+          {
+            "name": "redoublement_precedent_province_origine",
+            "title": "Redoublement de t-1 à t, province d'origine",
+            "description": "Valeur de l'ancienne province d'origine (redoublement de t-1 à t) : sert au recalage des provinces scindées",
+            "type": "number",
+            "unit": "%",
+            "role": "identifiant",
+            "source": "DGESS, annuaires du primaire",
+            "missing_share": 0.0,
+            "derivation": "valeur de l'ancienne province (45)",
+            "limitations": "Identique pour les deux moitiés d'une province scindée : contrainte de recalage, pas une cible"
+          },
+          {
+            "name": "promotion_precedente_province_origine",
+            "title": "Promotion de t-1 à t, province d'origine",
+            "description": "Valeur de l'ancienne province d'origine (promotion de t-1 à t) : sert au recalage des provinces scindées",
+            "type": "number",
+            "unit": "%",
+            "role": "identifiant",
+            "source": "DGESS, annuaires du primaire",
+            "missing_share": 0.0,
+            "derivation": "valeur de l'ancienne province (45)",
+            "limitations": "Identique pour les deux moitiés d'une province scindée : contrainte de recalage, pas une cible"
+          },
+          {
+            "name": "cible_observee",
+            "title": "Cible observée",
+            "description": "Vrai si la cible est observée pour la province de 2025 (faux pour les provinces scindées et l'année à prévoir)",
+            "type": "boolean",
+            "unit": "booléen",
+            "role": "identifiant",
+            "source": "Calcul Sentinelle",
+            "missing_share": 0.0,
+            "derivation": "faux pour les provinces scindées en 2025 et pour l'année à prévoir",
+            "limitations": "Seules les lignes vraies servent à l'entraînement et à l'évaluation",
+            "constraints": {
+              "enum": [
+                "False",
+                "True"
+              ]
+            }
           }
         ],
         "primaryKey": [
@@ -3806,7 +3889,7 @@
               "enum": [
                 "identique (région renommée en 2025)",
                 "pays (inchangé)",
-                "région scindée : effectifs répartis selon les élèves des provinces de l'année (à défaut, la population 2019), taux hérités"
+                "région scindée : taux recalculés depuis les provinces, effectifs répartis selon les élèves des provinces de l'année"
               ]
             }
           },

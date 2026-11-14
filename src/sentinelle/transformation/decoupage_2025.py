@@ -17,8 +17,20 @@ sa province d'origine. 43 sont identiques ; le Soum (Djelgodji, Karo-Peli) et la
 
 Les régions de 2025 réunissent des provinces anciennes entières. Dix sont d'anciennes
 régions renommées ; la Boucle du Mouhoun, l'Est et le Sahel sont scindés : leurs effectifs
-régionaux sont répartis selon les élèves de leurs provinces l'année considérée, leurs taux
-sont hérités.
+régionaux sont répartis selon les élèves de leurs provinces l'année considérée.
+
+Reconstruction des indicateurs des unités touchées (le modèle s'entraîne sur ces unités) :
+
+- provinces scindées : les rapports qui dépendent d'effectifs (élèves par maître, par
+  salle, part des filles, du privé, taux bruts et nets, scolarisation au post-primaire) sont
+  corrigés par le rapport des clés communales de l'INSD (élèves, filles, privé, enseignants,
+  salles, élèves du post-primaire) à la population ; les écoles fermées sont réparties
+  selon les écoles fermées des communes ; la cible n'est pas observée à cette échelle : elle
+  est laissée vide (à estimer à l'étape 04) et la cible de la province d'origine est gardée
+  à part pour le recalage ;
+- régions de 2025 : TBA, TBS, achèvement, CEP (et leurs indices de parité), préscolaire et
+  part des écoles privées sont recalculés à partir des numérateurs et dénominateurs des
+  provinces ; le contexte régional des provinces prend ces valeurs.
 """
 
 from __future__ import annotations
@@ -26,7 +38,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .panel import STRUCTURELLES, annee_scolaire, lire
+from .. import config
+from .panel import SEUIL_RUPTURE, STRUCTURELLES, annee_scolaire, debut, lire
 
 EFFECTIFS_PROVINCE = ["effectif", "effectif_precedent", "effectif_suivant", "deplaces", "ecoles_fermees_province",
                       "eleves_touches_province", "adolescents_non_formelle", "centres_non_formelle_adolescents",
@@ -89,6 +102,72 @@ def _deplaces_par_province_2025(communes: pd.DataFrame, codes: list[str]) -> pd.
     return pd.concat(lignes)[["province_pcode", "annee_scolaire", "pdi_total"]].rename(columns={"pdi_total": "deplaces"})
 
 
+CIBLES = ["abandon_suivant", "abandon_brut_suivant", "abandon_precedent", "redoublement_precedent",
+          "promotion_precedente"]
+# Rapport corrigé par (clé du numérateur / clé du dénominateur) pour une province scindée.
+CORRECTIONS = {
+    "part_filles": ("filles", "eleves"), "eleves_par_maitre": ("eleves", "enseignants"),
+    "eleves_par_salle": ("eleves", "salles"), "part_eleves_prive": ("prive", "eleves"),
+    "tba_province": ("eleves", "population"), "tbs_province": ("eleves", "population"),
+    "tns_province": ("eleves", "population"), "achevement_province": ("eleves", "population"),
+    "tbs_post_primaire_province": ("eleves_post_primaire", "population"),
+}
+
+
+def _effectifs_communaux() -> pd.DataFrame:
+    """Élèves (total, filles, privé), enseignants, salles, écoles fermées et élèves du post-primaire par commune."""
+    primaire = pd.read_csv(config.COMMUNES_INSD / "communes_primaire.csv", sep=";", encoding="utf-8-sig")
+    secondaire = pd.read_csv(config.COMMUNES_INSD / "communes_secondaire.csv", sep=";", encoding="utf-8-sig")
+    def serie(t, indicateurs, modalite):
+        partie = t[t["indicateur"].isin(indicateurs) & (t["modalite"] == modalite)]
+        # Le premier tableau publié prime ; l'autre (par sexe ou par statut) complète ses manques.
+        partie = partie.assign(rang=partie["indicateur"].map({k: i for i, k in enumerate(indicateurs)}))
+        return partie.sort_values("rang").drop_duplicates(["commune_code", "annee"]).set_index(
+            ["commune_code", "annee"])["valeur"]
+    return pd.DataFrame({
+        "eleves": serie(primaire, ["eleves_par_sexe", "eleves_par_statut"], "ensemble"),
+        "filles": serie(primaire, ["eleves_par_sexe"], "filles"),
+        "prive": serie(primaire, ["eleves_par_statut"], "prive"),
+        "enseignants": serie(primaire, ["enseignants_par_sexe", "enseignants_par_statut"], "ensemble"),
+        "salles": serie(primaire, ["salles"], "ensemble"),
+        "ecoles_fermees": serie(primaire, ["ecoles_fermees"], "ensemble"),
+        "eleves_post_primaire": serie(secondaire, ["eleves_post_primaire_par_statut",
+                                                   "eleves_post_primaire_par_sexe"], "ensemble"),
+    }).reset_index()
+
+
+def _parts_communales(communes: pd.DataFrame, codes: list[str]) -> dict:
+    """{(province de 2025, clé) : {année : part dans la province d'origine}}, années à communes complètes."""
+    donnees = _effectifs_communaux()
+    parts = {}
+    for code in codes:
+        ancienne = communes.loc[communes["province_pcode"] == code, "province_ancienne_pcode"].iloc[0]
+        membres = communes[communes["province_ancienne_pcode"] == ancienne][["commune_pcode", "province_pcode"]]
+        d = donnees[donnees["commune_code"].isin(membres["commune_pcode"])]
+        for cle in [c for c in donnees.columns if c not in ("commune_code", "annee")]:
+            large = d.pivot_table(index="annee", columns="commune_code", values=cle).reindex(
+                columns=membres["commune_pcode"]).dropna()
+            large = large[large.sum(axis=1) > 0]
+            dedans = membres.loc[membres["province_pcode"] == code, "commune_pcode"]
+            parts[(code, cle)] = (large[dedans].sum(axis=1) / large.sum(axis=1)).to_dict()
+    return parts
+
+
+# Clé incomplète pour une province (élèves du Soum : 2 communes sur 9 dans l'annuaire du Sahel) : clé de repli.
+REPLIS = {"eleves": ["enseignants", "salles"]}
+
+
+def _part_annee(parts: dict, code: str, cle: str, annee: str, replis: set | None = None) -> float | None:
+    for candidate in [cle] + REPLIS.get(cle, []):
+        serie = parts.get((code, candidate), {})
+        if serie:
+            if candidate != cle and replis is not None:
+                replis.add(f"clé {cle} remplacée par {candidate}")
+            proche = min(serie, key=lambda a: abs(debut(a) - debut(annee)))
+            return serie[proche]
+    return None
+
+
 def panel_province_2025(panel: pd.DataFrame) -> pd.DataFrame:
     communes = _communes()
     passage = correspondance_provinces(communes)
@@ -105,18 +184,89 @@ def panel_province_2025(panel: pd.DataFrame) -> pd.DataFrame:
     rgph = _rgph_par_province(communes, codes)
     for colonne in rgph.columns:
         table.loc[scindee, colonne] = table.loc[scindee, "province_pcode"].map(rgph[colonne])
+    # Clés communales de l'INSD : effectifs et rapports propres à chaque province scindée.
+    parts = _parts_communales(communes, codes)
+    population = dict(zip(table["province_pcode"], table["part_population"]))
+    notes = {}
+    for i in table.index[scindee]:
+        code, annee = table.at[i, "province_pcode"], table.at[i, "annee_scolaire"]
+        origine = table.at[i, "part_population"]
+        replis = set()
+        for colonne, ecart in [("effectif", 0), ("effectif_precedent", -1), ("effectif_suivant", 1)]:
+            part = _part_annee(parts, code, "eleves", annee_scolaire(debut(annee) + ecart), replis)
+            if part is not None and pd.notna(table.at[i, colonne]):
+                table.at[i, colonne] = table.at[i, colonne] / origine * part
+        for colonne in ["ecoles_fermees_province", "eleves_touches_province"]:
+            part = _part_annee(parts, code, "ecoles_fermees", annee)
+            if part is not None and pd.notna(table.at[i, colonne]):
+                table.at[i, colonne] = table.at[i, colonne] / origine * part
+        for colonne, (numerateur, denominateur) in CORRECTIONS.items():
+            p_num = _part_annee(parts, code, numerateur, annee, replis)
+            p_den = population[code] if denominateur == "population" else _part_annee(parts, code, denominateur, annee,
+                                                                                         replis)
+            if colonne in table and p_num is not None and p_den and pd.notna(table.at[i, colonne]):
+                table.at[i, colonne] = table.at[i, colonne] * p_num / p_den
+        if replis:
+            notes[i] = " ; " + ", ".join(sorted(replis))
+    table.loc[scindee, "evolution_effectifs"] = table["effectif"] / table["effectif_precedent"] - 1
+    table.loc[scindee, "evolution_effectifs_suivante"] = table["effectif_suivant"] / table["effectif"] - 1
+    table.loc[scindee, "choc_effectifs"] = table.loc[scindee, "evolution_effectifs"].abs() > SEUIL_RUPTURE
+    table["ecart_achevement_entree_6e"] = table["achevement_province"] - table["tba_6e_province"]
+    # Cible : observée pour l'ancienne province seulement ; gardée à part, laissée vide pour les provinces scindées.
+    for colonne in CIBLES:
+        table[f"{colonne}_province_origine"] = table[colonne]
+        table.loc[scindee, colonne] = np.nan
+    table["cible_observee"] = ~scindee & table["abandon_suivant"].notna()
+    table.loc[scindee, "statut_cible"] = "à estimer (province scindée en 2025)"
     # Rapports à recalculer après la répartition.
     table["deplaces_pour_100_eleves"] = 100 * table["deplaces"] / table["effectif"].where(table["effectif"] > 0)
     table["adolescents_non_formelle_pour_1000_eleves"] = (1000 * table["adolescents_non_formelle"]
                                                           / table["effectif"].where(table["effectif"] > 0))
     table["methode_passage"] = np.where(
-        scindee, "province scindée : effectifs répartis selon la population 2019, déplacés et RGPH 2019 recalculés "
-                 "sur les communes, taux et cible hérités de l'ancienne province", "identique (code et nom de 2025)")
+        scindee, "province scindée : effectifs et rapports corrigés par clés communales INSD, déplacés et RGPH 2019 "
+                 "recalculés sur les communes, autres taux hérités, cible à estimer", "identique (code et nom de 2025)")
+    for i, note in notes.items():
+        table.at[i, "methode_passage"] += note
     table = table.drop(columns="part_population")
     flottants = table.select_dtypes("float").columns
     table[flottants] = table[flottants].round(4)
     autres = [c for c in table.columns if c not in IDENTIFIANTS_PROVINCE]
     return table[IDENTIFIANTS_PROVINCE + autres].sort_values(["province_pcode", "annee_scolaire"]).reset_index(drop=True)
+
+
+def taux_regions_2025() -> pd.DataFrame:
+    """Taux régionaux de 2025 recalculés à partir des numérateurs et dénominateurs des anciennes provinces."""
+    communes = lire("commune")
+    region_de = communes.drop_duplicates("province_ancienne_pcode").set_index("province_ancienne_pcode")["region_pcode"]
+    s = lire("fait_conditions_scolarisation")
+    s = s[(s["sous_tableau"] == "ensemble") & s["section"].isin(["tba", "tbs", "achevement", "cep"])
+          & s["entite_pcode"].isin(region_de.index)]
+    s = s.assign(region_pcode=s["entite_pcode"].map(region_de))
+    sommes = s.groupby(["region_pcode", "annee_scolaire", "section", "variable"])["valeur"].sum(min_count=1).unstack(
+        ["section", "variable"])
+    sortie = pd.DataFrame(index=sommes.index)
+    for section, nom in [("tba", "tba"), ("tbs", "tbs"), ("achevement", "taux_achevement")]:
+        for sexe, suffixe in [("t", ""), ("f", "_filles"), ("g", "_garcons")]:
+            if (section, f"numerateur_{sexe}") in sommes:
+                sortie[f"{nom}{suffixe}"] = 100 * sommes[(section, f"numerateur_{sexe}")] / sommes[(section, f"denominateur_{sexe}")]
+    for sexe, suffixe in [("t", ""), ("f", "_filles"), ("g", "_garcons")]:
+        if ("cep", f"admis_{sexe}") in sommes:
+            sortie[f"reussite_cep{suffixe}"] = 100 * sommes[("cep", f"admis_{sexe}")] / sommes[("cep", f"presents_{sexe}")]
+    sortie["ips_tba"] = sortie["tba_filles"] / sortie["tba_garcons"]
+    sortie["ips_tbs"] = sortie["tbs_filles"] / sortie["tbs_garcons"]
+    sortie["ips_tap"] = sortie["taux_achevement_filles"] / sortie["taux_achevement_garcons"]
+    offre = lire("fait_offre_province")
+    offre = offre[offre["entite_pcode"].isin(region_de.index)].assign(region_pcode=lambda t: t["entite_pcode"].map(region_de))
+    ecoles = offre.pivot_table(index=["region_pcode", "annee_scolaire"], columns="statut", values="ecoles", aggfunc="sum")
+    if "prive" in ecoles and "total" in ecoles:
+        sortie["part_ecoles_privees"] = (ecoles["prive"] / ecoles["total"]).reindex(sortie.index)
+    pre = lire("fait_prescolaire_province")
+    pre = pre[pre["entite_pcode"].isin(region_de.index) & (pre["sexe"] == "T")]
+    pre = pre.assign(region_pcode=pre["entite_pcode"].map(region_de)).groupby(["region_pcode", "annee_scolaire"])[
+        ["enfants_prescolarises", "population_prescolarisable"]].sum(min_count=1)
+    sortie = sortie.join((100 * pre["enfants_prescolarises"] / pre["population_prescolarisable"]).rename(
+        "tbs_prescolaire"), how="outer")
+    return sortie
 
 
 def panel_region_2025(region: pd.DataFrame, province_2025: pd.DataFrame) -> pd.DataFrame:
@@ -141,6 +291,15 @@ def panel_region_2025(region: pd.DataFrame, province_2025: pd.DataFrame) -> pd.D
     table["methode_passage"] = np.where(scindee, "région scindée : effectifs répartis selon les élèves des provinces "
                                                  "de l'année (à défaut, la population 2019), taux hérités",
                                         "identique (région renommée en 2025)")
+    # Taux des régions scindées : recalculés depuis les provinces (numérateurs et dénominateurs).
+    recalcul = taux_regions_2025()
+    cles = pd.MultiIndex.from_frame(table[["region_pcode", "annee_scolaire"]])
+    for colonne in recalcul.columns:
+        if colonne in table:
+            valeurs = pd.Series(recalcul[colonne].reindex(cles).to_numpy(), index=table.index)
+            table.loc[scindee, colonne] = valeurs[scindee].combine_first(table.loc[scindee, colonne])
+    table.loc[scindee, "methode_passage"] = ("région scindée : taux recalculés depuis les provinces, effectifs "
+                                             "répartis selon les élèves des provinces de l'année")
     pays = region[region["region_ancienne_pcode"] == "BF"].assign(region_pcode="BF", region_nom="Burkina Faso",
                                                                   methode_passage="pays (inchangé)")
     table = pd.concat([table.drop(columns="part"), pays], ignore_index=True)
@@ -150,6 +309,41 @@ def panel_region_2025(region: pd.DataFrame, province_2025: pd.DataFrame) -> pd.D
     table[flottants] = table[flottants].round(4)
     return table[debut + [c for c in table.columns if c not in debut]].sort_values(
         ["region_pcode", "annee_scolaire"]).reset_index(drop=True)
+
+
+CONTEXTE = {"tba_region": "tba", "tbs_region": "tbs", "taux_achevement_region": "taux_achevement",
+            "ips_tbs_region": "ips_tbs", "ips_tap_region": "ips_tap", "tbs_prescolaire_region": "tbs_prescolaire",
+            "part_ecoles_privees_region": "part_ecoles_privees"}
+
+
+def contexte_regional_2025(province_2025: pd.DataFrame, region_2025: pd.DataFrame) -> pd.DataFrame:
+    """Contexte régional des provinces : valeurs des régions de 2025 (CEP de la session précédente)."""
+    region = region_2025.set_index(["region_pcode", "annee_scolaire"])
+    cles = pd.MultiIndex.from_frame(province_2025[["region_pcode", "annee_scolaire"]])
+    for colonne, origine in CONTEXTE.items():
+        if colonne in province_2025 and origine in region:
+            province_2025[colonne] = pd.Series(region[origine].reindex(cles).to_numpy(), index=province_2025.index)
+    precedent = pd.MultiIndex.from_arrays([province_2025["region_pcode"],
+                                           province_2025["annee_scolaire"].map(lambda a: annee_scolaire(debut(a) - 1))])
+    province_2025["reussite_cep_precedente_region"] = region["reussite_cep"].reindex(precedent).to_numpy()
+    touchees = province_2025["region_ancienne_pcode"].map(
+        province_2025.groupby("region_ancienne_pcode")["region_pcode"].nunique()) > 1
+    identiques = touchees & province_2025["methode_passage"].str.startswith("identique")
+    province_2025.loc[identiques, "methode_passage"] = "identique (code et nom de 2025) ; contexte régional de 2025"
+    return province_2025
+
+
+def ecarts_recalcul_regional(region: pd.DataFrame) -> pd.Series:
+    """Écart médian (points) entre taux recalculés et taux publiés, sur les régions inchangées."""
+    recalcul = taux_regions_2025()
+    communes = lire("commune")
+    inchangees = communes.groupby("region_ancienne_pcode")["region_pcode"].nunique()
+    inchangees = communes[communes["region_ancienne_pcode"].isin(inchangees[inchangees == 1].index)][
+        ["region_ancienne_pcode", "region_pcode"]].drop_duplicates()
+    publie = region.merge(inchangees, on="region_ancienne_pcode").set_index(["region_pcode", "annee_scolaire"])
+    commun = publie.index.intersection(recalcul.index)
+    return pd.Series({c: float((recalcul.loc[commun, c] - publie.loc[commun, c]).abs().median())
+                      for c in ["tba", "tbs", "taux_achevement", "reussite_cep"] if c in publie and c in recalcul})
 
 
 def controles(panel: pd.DataFrame, province_2025: pd.DataFrame, region: pd.DataFrame,
@@ -163,9 +357,18 @@ def controles(panel: pd.DataFrame, province_2025: pd.DataFrame, region: pd.DataF
                     - somme(region[region["region_ancienne_pcode"] != "BF"], "effectif_primaire")).abs().max()
     origine = panel.set_index(["province_ancienne_pcode", "annee_scolaire"])["abandon_suivant"]
     repris = origine.reindex(pd.MultiIndex.from_frame(province_2025[["province_ancienne_pcode", "annee_scolaire"]]))
-    cible = province_2025["abandon_suivant"].to_numpy()
+    cible = province_2025["abandon_suivant_province_origine"].to_numpy()
     cible_identique = pd.Series((cible == repris.to_numpy()) | (pd.isna(cible) & repris.isna().to_numpy()))
+    ecarts = ecarts_recalcul_regional(region)
+    scindees = province_2025[~province_2025["methode_passage"].str.contains("identique")]
+    differencies = scindees.groupby(["province_ancienne_pcode", "annee_scolaire"])["tbs_province"].nunique()
     resultats = [
+        ("decoupage_2025_recalcul_regional_valide", bool((ecarts <= 1.0).all()),
+         "taux recalculés depuis les provinces contre taux publiés des 10 régions inchangées, écart médian (points) : "
+         + ", ".join(f"{k} {v:.2f}" for k, v in ecarts.items())),
+        ("decoupage_2025_provinces_scindees_differenciees", bool((differencies == 2).mean() >= 0.8),
+         f"TBS distincts entre les deux moitiés pour {int((differencies == 2).sum())} couples "
+         f"province × année sur {len(differencies)} (clés communales INSD)"),
         ("decoupage_2025_47_provinces", province_2025["province_pcode"].nunique() == 47
          and len(province_2025) == 47 * annees and province_2025["province_nom"].notna().all(),
          f"{province_2025['province_pcode'].nunique()} provinces de 2025 × {annees} années, noms du COD-AB"),
@@ -176,8 +379,9 @@ def controles(panel: pd.DataFrame, province_2025: pd.DataFrame, region: pd.DataF
          f"somme des 17 régions = somme des 13 (écart {ecart_region:.2f})"),
         ("decoupage_2025_deplaces_conserves", bool(ecart_deplaces <= 1),
          f"déplacés recomptés sur les communes : total national inchangé (écart maximal {ecart_deplaces:.0f})"),
-        ("decoupage_2025_cible_heritee", bool(cible_identique.all()),
-         f"cible (abandon de t à t+1) des 47 provinces égale à celle de leur province d'origine : "
-         f"{int(cible_identique.sum())} lignes sur {len(cible_identique)}"),
+        ("decoupage_2025_cible_origine_conservee", bool(cible_identique.all()),
+         f"cible de la province d'origine conservée pour le recalage : {int(cible_identique.sum())} lignes sur "
+         f"{len(cible_identique)} ; cible observée (entraînement) pour "
+         f"{int(province_2025['cible_observee'].sum())} lignes"),
     ]
     return pd.DataFrame(resultats, columns=["controle", "conforme", "detail"])
