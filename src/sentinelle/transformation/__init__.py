@@ -98,6 +98,16 @@ VARIABLES = {
     "part_enseignants_debutants": ("explicative", "Part des enseignants ayant de 1 à 5 ans d'expérience", "DGESS, annuaires du primaire, enseignants par sexe, âge et expérience"),
     "abandons_orpaillage_pour_1000_region": ("explicative", "Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire", "DGESS, tableaux de bord du primaire"),
     "abandons_mariage_grossesse_pour_1000_region": ("explicative", "Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire", "DGESS, tableaux de bord du primaire"),
+    "tba_6e_province": ("explicative", "Taux brut d'admission en 6e de la province, année t", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.1"),
+    "tbs_post_primaire_province": ("explicative", "Taux brut de scolarisation au post-primaire de la province, année t", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.4"),
+    "achevement_post_primaire_province": ("explicative", "Taux d'achèvement du post-primaire de la province, année t", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.9"),
+    "parite_tbs_post_primaire_province": ("explicative", "Indice de parité filles / garçons du TBS du post-primaire, année t", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.4"),
+    "abandon_post_primaire_province": ("explicative", "Abandon moyen en 6e, 5e et 4e (passage de t-1 à t), enseignement général", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.11"),
+    "redoublement_3e_province": ("explicative", "Redoublement en 3e (passage de t-1 à t), enseignement général", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.11"),
+    "ratio_eleves_classe_post_primaire_region": ("explicative", "Élèves par classe au post-primaire public de la région, année t", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.1.11"),
+    "part_etab_secondaires_publics_electricite_region": ("explicative", "Part des établissements publics du post-primaire et du secondaire disposant de l'électricité (région)", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1"),
+    "part_etab_secondaires_publics_cantine_region": ("explicative", "Part des établissements publics du post-primaire et du secondaire disposant d'une cantine (région)", "DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1"),
+    "ecart_achevement_entree_6e": ("explicative", "Achèvement du primaire moins entrée en 6e (points) : élèves perdus au passage vers le post-primaire", "DGESS, annuaires du primaire et du post-primaire"),
     "reussite_cep_precedente_region": ("explicative", "Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %", "DGESS, base principale, feuille 9"),
 }
 

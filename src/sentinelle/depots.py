@@ -169,6 +169,11 @@ TABLES_NETTOYAGE = [
     ("fait_causes_abandon.csv", "engineer", "abandons-orpaillage-mariage-grossesse-region-2017-2023-propre",
      "Abandons déclarés pour orpaillage, mariage et grossesse par région, primaire 2016-2017 à 2022-2023 et "
      "post-primaire 2021-2022 et 2022-2023 (tableaux de bord DGESS)."),
+    ("fait_secondaire_province.csv", "engineer", "tba-tbs-achevement-flux-secondaire-province-2018-2023-propre",
+     "Post-primaire et secondaire par province : TBA en 6e et 2nde, TBS, taux nets, achèvement et flux par classe, "
+     "2018-2019 à 2022-2023 (annuaires DGESS)."),
+    ("fait_secondaire_region.csv", "engineer", "commodites-salles-ratios-secondaire-region-2018-2023-propre",
+     "Commodités, état des salles et ratio élèves par classe du secondaire général public, par région."),
     ("fait_mines_region.csv", "engineer", "permis-sites-miniers-region-propre",
      "Permis d'exploitation et sites miniers par typologie et par région (annuaires régionaux INSD), série lacunaire "
      "conservée pour mémoire."),

@@ -381,6 +381,41 @@ def _causes_abandon() -> pd.DataFrame:
     return resultat
 
 
+def _post_primaire() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Après le CM2 : entrée en 6e, scolarisation, achèvement et abandons au post-primaire, année t.
+
+    Toutes ces valeurs sont connues à la rentrée de t : les inscrits en 6e et les élèves de t,
+    et des taux de flux qui, dans l'annuaire de t, décrivent le passage de t-1 à t.
+    """
+    table = lire("fait_secondaire_province")
+    province = table[(table["niveau"] == "province_ancienne") & (table["sexe"] == "T")]
+    taux = province[province["mesure"] == "taux"].pivot_table(index=["entite_pcode", "annee_scolaire"],
+                                                              columns="indicateur", values="valeur")
+    parite = province[(province["mesure"] == "indice_parite") & (province["indicateur"] == "tbs_post_primaire")]
+    parite = parite.set_index(["entite_pcode", "annee_scolaire"])["valeur"]
+    flux = province[province["indicateur"].str.startswith("flux_")].pivot_table(
+        index=["entite_pcode", "annee_scolaire"], columns=["indicateur", "mesure"], values="valeur")
+    abandons = flux.xs("abandon", axis=1, level="mesure")[["flux_6e", "flux_5e", "flux_4e"]]
+    resultat = pd.DataFrame({
+        "tba_6e_province": taux["tba_6e"],
+        "tbs_post_primaire_province": taux["tbs_post_primaire"],
+        "achevement_post_primaire_province": taux["tach_post_primaire"],
+        "parite_tbs_post_primaire_province": parite,
+        "abandon_post_primaire_province": abandons.mean(axis=1),
+        "redoublement_3e_province": flux[("flux_3e", "redoublement")],
+    }).reset_index().rename(columns={"entite_pcode": "province_ancienne_pcode"})
+    region = lire("fait_secondaire_region")
+    region = region[region["niveau"] == "region_ancienne"].pivot_table(
+        index=["entite_pcode", "annee_scolaire"], columns=["tableau", "indicateur"], values="valeur")
+    commodites = region["commodites"]
+    contexte = pd.DataFrame({
+        "ratio_eleves_classe_post_primaire_region": region[("ratio_eleves_classe", "ratio_post_primaire")],
+        "part_etab_secondaires_publics_electricite_region": commodites["electricite"] / commodites["etablissements"],
+        "part_etab_secondaires_publics_cantine_region": commodites["cantine"] / commodites["etablissements"],
+    }).reset_index().rename(columns={"entite_pcode": "region_ancienne_pcode"})
+    return resultat, contexte
+
+
 def construire_panel() -> pd.DataFrame:
     effectifs = _effectifs()
     flux = _flux(effectifs)
@@ -442,6 +477,13 @@ def construire_panel() -> pd.DataFrame:
     panel["deficit_places_pour_100_eleves"] = 100 * panel.pop("deficit_places_assises") / panel["effectif"]
     panel = panel.merge(_repartitions(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
     panel = panel.merge(_causes_abandon(), on=["region_ancienne_pcode", "annee_scolaire"], how="left")
+
+    # Après le primaire : post-primaire de l'année t (annuaires DGESS 2018-2019 à 2022-2023).
+    post_province, post_region = _post_primaire()
+    panel = panel.merge(post_province, on=["province_ancienne_pcode", "annee_scolaire"], how="left")
+    panel = panel.merge(post_region, on=["region_ancienne_pcode", "annee_scolaire"], how="left")
+    # Fuite au passage en 6e : achèvement du primaire moins entrée en 6e, en points (deux taux bruts).
+    panel["ecart_achevement_entree_6e"] = panel["achevement_province"] - panel["tba_6e_province"]
 
     # Pauvreté et conditions de vie (RGPH 2019) : caractéristiques structurelles, constantes dans le temps.
     panel = panel.merge(_structurelles(), on="province_ancienne_pcode", how="left")

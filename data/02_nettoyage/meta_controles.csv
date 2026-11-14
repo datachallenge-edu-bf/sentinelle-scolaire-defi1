@@ -36,4 +36,9 @@ repartitions_sexes_egal_total;True;filles + garçons (femmes + hommes) = total p
 causes_abandon_13_regions;True;"2016-2017 : 13; 2017-2018 : 13; 2018-2019 : 13; 2019-2020 : 13; 2020-2021 : 13; 2021-2022 : 13; 2022-2023 : 13"
 causes_abandon_regions_egal_national;True;somme des régions = total national pour 7 années sur 7
 mines_couverture;True;"8 régions sur 13, années 2014 à 2024 selon les régions ; conservé pour mémoire, hors du modèle"
+post_primaire_cinq_annees;True;années lues : 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023
+post_primaire_45_provinces;True;50 indicateurs × années, provinces : minimum 45, maximum 45
+post_primaire_taux_recalcule;True;taux = 100 × effectif / population à 0,15 point près pour 8850 lignes sur 8850
+post_primaire_flux_somme_100;True;promotion + redoublement + abandon = 100 % à 0,3 point près pour 3530 lignes sur 3530
+post_primaire_commodites_sous_total;True;aucune commodité ne dépasse le nombre d'établissements : 70 régions × années sur 70
 metadonnees_completes;True;toutes les tables et variables sont décrites

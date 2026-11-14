@@ -449,12 +449,15 @@ CATALOGUE: tuple[Jeu, ...] = (
         usage="Chiffres clés nationaux pour vérifier les totaux",
     ),
     Jeu(
-        identifiant="dgess_post_primaire_2019_2020",
-        libelle="Annuaire statistique du post-primaire et du secondaire 2019-2020",
+        identifiant="dgess_annuaires_post_primaire",
+        libelle="Annuaires statistiques du post-primaire et du secondaire 2018-2019 à 2022-2023",
         theme="education",
         niveau_geo="region et province",
-        fichiers=("01_Education_MENAPLN_DGESS/Post_Primaire_Secondaire/*.csv",),
-        usage="Passage du primaire au post-primaire",
+        # 2019-2020 dans le Data Pack ; les quatre autres éditions fournies par l'équipe (sources externes).
+        fichiers=("01_Education_MENAPLN_DGESS/Post_Primaire_Secondaire/*.csv",
+                  "externe:dgess_post_primaire_secondaire/DGESS_Annuaire_*.csv"),
+        periode="2018-2023",
+        usage="Entrée en 6e, scolarisation, achèvement et abandons après le primaire, par province",
     ),
     # Référentiels géographiques.
     Jeu(
@@ -530,7 +533,7 @@ NOMS_DEPOT = {
     "dgess_tableaux_de_bord_post_primaire": "tableaux-de-bord-post-primaire-region-2023-2024",
     "dgess_syntheses_primaire": "syntheses-annuaires-primaire-region-2017-2022",
     "dgess_depliants_primaire": "depliants-chiffres-cles-primaire-2017-2024",
-    "dgess_post_primaire_2019_2020": "annuaire-post-primaire-2019-2020",
+    "dgess_annuaires_post_primaire": "annuaires-post-primaire-secondaire-2018-2023",
     "esu_rapports_mensuels": "ecoles-fermees-esu-mensuel-2021-2026",
     "insd_primaire_commune": "ecoles-eleves-enseignants-commune-insd-2014-2024",
     "insd_mines_region": "permis-sites-miniers-typologie-region-2014-2024",

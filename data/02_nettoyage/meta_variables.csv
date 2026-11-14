@@ -53,7 +53,7 @@ fait_flux_publie;niveau_geo;texte;;Niveau géographique de l'entité
 fait_flux_publie;nom_source;texte;;Nom de l'entité tel qu'écrit dans la source
 fait_flux_publie;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
 fait_flux_publie;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
-fait_flux_publie;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines)"
+fait_flux_publie;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
 fait_flux_publie;valeur_pct;décimal;%;"Taux publié ; les valeurs négatives sont ramenées à zéro par la DGESS"
 fait_flux_publie;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_flux_publie;page;texte;;Page du fichier d'origine
@@ -96,7 +96,7 @@ fait_offre_province;eleves_par_maitre;décimal;élèves par maître;Élèves par
 fait_offre_province;eleves_par_salle;décimal;élèves par salle;Élèves par salle de classe, recalculé
 fait_base_principale;tableau;texte;;Feuille et numéro du tableau dans la base principale
 fait_base_principale;ordre;texte;;Ordre d'enseignement : prescolaire, primaire ou post_primaire
-fait_base_principale;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines)"
+fait_base_principale;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
 fait_base_principale;unite;texte;;Unité : nombre, pour cent ou indice (rapport filles / garçons)
 fait_base_principale;niveau_geo;texte;;Niveau géographique de l'entité
 fait_base_principale;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
@@ -229,11 +229,29 @@ fait_causes_abandon;page;entier;;Page du fichier d'origine
 fait_causes_abandon;abandons_trois_causes;décimal;élèves;Abandons déclarés pour orpaillage, mariage ou grossesse
 fait_mines_region;annee;entier;année;Année civile (permis et sites miniers)
 fait_mines_region;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
-fait_mines_region;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines)"
+fait_mines_region;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
 fait_mines_region;typologie;texte;;Typologie d'exploitation minière : industrielle, semi_mecanisee, artisanale, ensemble
 fait_mines_region;valeur;décimal;;Valeur publiée, dans l'unité indiquée
 fait_mines_region;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_mines_region;page;texte;;Page du fichier d'origine
+fait_secondaire_province;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_secondaire_province;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_secondaire_province;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
+fait_secondaire_province;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_secondaire_province;page;texte;;Page du fichier d'origine
+fait_secondaire_province;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
+fait_secondaire_province;mesure;texte;;"Mesure : population de référence, effectif au numérateur, taux, indice de parité (indicateurs) ; promotion, redoublement, abandon (flux, en %)"
+fait_secondaire_province;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
+fait_secondaire_province;valeur;décimal;;Valeur publiée, dans l'unité indiquée
+fait_secondaire_region;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_secondaire_region;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_secondaire_region;niveau;texte;;"Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias"
+fait_secondaire_region;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_secondaire_region;page;texte;;Page du fichier d'origine
+fait_secondaire_region;tableau;texte;;Feuille et numéro du tableau dans la base principale
+fait_secondaire_region;statut;texte;;Statut des écoles : public, prive, communautaire (préscolaire) ou total
+fait_secondaire_region;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
+fait_secondaire_region;valeur;décimal;;Valeur publiée, dans l'unité indiquée
 fait_esu_province;mois;texte;;Mois du rapport (AAAA-MM ou AAAA-MM-JJ)
 fait_esu_province;type;texte;;Type de situation : établissements fermés ou rouverts
 fait_esu_province;province_ancienne_pcode;texte;;P-code de la province dans l'ancien découpage (45 provinces)

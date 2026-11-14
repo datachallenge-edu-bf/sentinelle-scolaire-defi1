@@ -87,6 +87,17 @@ TABLES = {
                             "primaire et post-primaire", "année × ordre × entité", "annee_scolaire, ordre, entite_pcode",
                             "DGESS, tableaux de bord de l'enseignement primaire (éditions 2017-2018 à 2023-2024) et du "
                             "post-primaire et secondaire (2023, 2024)", "2016-2017 à 2022-2023"),
+    "fait_secondaire_province": ("Post-primaire et secondaire par province, région et pays : TBA en 6e et en 2nde, "
+                                 "TBS et taux nets (12-15, 16-18, 12-18 ans), taux d'achèvement, avec population "
+                                 "et effectif, et taux de flux par classe de la 6e à la terminale",
+                                 "année × entité × indicateur × mesure × sexe",
+                                 "annee_scolaire, entite_pcode, indicateur, mesure, sexe",
+                                 "DGESS, annuaires statistiques du post-primaire et du secondaire 2018-2019 à 2022-2023 (2019-2020 du Data Pack, les autres fournis par l'équipe) ; flux de 2019-2020 non lus (pages pivotées dans la conversion du Data Pack)",
+                                 "2018-2019 à 2022-2023"),
+    "fait_secondaire_region": ("Conditions d'accueil du post-primaire et du secondaire général public par région : "
+                               "commodités des établissements, état des salles, ratio élèves par classe",
+                               "année × région × tableau × indicateur", "annee_scolaire, entite_pcode, tableau, indicateur",
+                               "DGESS, annuaires statistiques du post-primaire et du secondaire 2018-2019 à 2022-2023 (2019-2020 du Data Pack, les autres fournis par l'équipe)", "2018-2019 à 2022-2023"),
     "fait_mines_region": ("Permis d'exploitation et sites miniers par typologie (industrielle, semi-mécanisée, "
                           "artisanale), par région ; série lacunaire conservée pour mémoire",
                           "année × région × indicateur × typologie", "annee, entite_pcode, indicateur, typologie",
@@ -146,8 +157,12 @@ VARIABLES = {
     "sexe": ("Sexe : G (garçons), F (filles), T (total ou ensemble)", ""),
     "indicateur": ("Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, "
                    "taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles "
-                   "(base principale) ; permis ou sites (mines)", ""),
+                   "(base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, "
+                   "secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle "
+                   "(fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)", ""),
     "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
+    "mesure": ("Mesure : population de référence, effectif au numérateur, taux, indice de parité (indicateurs) ; "
+               "promotion, redoublement, abandon (flux, en %)", ""),
     "incidence": ("Part de la population sous le seuil de pauvreté (P0)", "%"),
     "contribution": ("Contribution de l'entité à la pauvreté de la région (C0)", "%"),
     "profondeur": ("Écart moyen au seuil de pauvreté (P1)", "%"),
