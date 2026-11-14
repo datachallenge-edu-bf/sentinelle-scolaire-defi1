@@ -90,6 +90,18 @@ FICHES: dict[str, tuple[str, str, str, str]] = {
                                                   "apprenants pour 1 000 élèves", "1000 × adolescents_non_formelle / effectif", ""),
     "taux_prescolarisation_province": ("Taux de préscolarisation (province)", "%", PUBLIE, "2023-2024 et 2024-2025 seulement"),
     "grande_section_province": ("Grande section (province)", "enfants", PUBLIE, "2023-2024 et 2024-2025 seulement"),
+    # Conditions de vie (RGPH 2019).
+    "pauvrete_province": ("Incidence de la pauvreté dans la province", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "profondeur_pauvrete_province": ("Profondeur de la pauvreté dans la province", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "travail_enfants_7_14_province": ("Enfants de 7 à 14 ans occupés", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "hors_ecole_6_11_province": ("Enfants de 6 à 11 ans hors de l'école", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "hors_ecole_12_15_province": ("Enfants de 12 à 15 ans hors de l'école", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "filles_17_ans_mariees_province": ("Filles de 17 ans mariées", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "alphabetisation_adultes_province": ("Alphabétisation des 15-64 ans", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "acte_naissance_province": ("Personnes disposant d'un acte de naissance", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "parite_scolarisation_province": ("Rapport filles / garçons scolarisés au primaire", "rapport", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "electricite_province": ("Ménages accédant à l'électricité", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
+    "telephone_province": ("Ménages accédant à un téléphone", "%", "valeur publiée pour la province en 2019, répétée chaque année", "Mesure unique de 2019 : explique les écarts entre provinces, pas les évolutions ; ne voit pas la crise après 2019"),
     # Tables régionale et nationale.
     "effectif_primaire": ("Élèves du primaire", "élèves", PUBLIE, ""),
     "effectif_primaire_filles": ("Élèves du primaire, filles", "élèves", PUBLIE, ""),

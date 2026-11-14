@@ -58,6 +58,17 @@ VARIABLES = {
     "adolescents_non_formelle_pour_1000_eleves": ("explicative", "Adolescents de l'éducation non formelle pour 1 000 élèves du primaire", "DGESS ; calculs des auteurs"),
     "taux_prescolarisation_province": ("explicative", "Taux de préscolarisation de la province en t, en %", "DGESS, annuaires du préscolaire, tableau 02"),
     "grande_section_province": ("explicative", "Enfants en grande section dans la province en t (futurs entrants au CP1)", "DGESS, annuaires du préscolaire, tableau 9"),
+    "pauvrete_province": ("explicative", "Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "profondeur_pauvrete_province": ("explicative", "Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "travail_enfants_7_14_province": ("explicative", "Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "hors_ecole_6_11_province": ("explicative", "Enfants de 6 à 11 ans hors de l'école (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "hors_ecole_12_15_province": ("explicative", "Enfants de 12 à 15 ans hors de l'école (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "filles_17_ans_mariees_province": ("explicative", "Filles de 17 ans mariées (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "alphabetisation_adultes_province": ("explicative", "Alphabétisation des 15-64 ans (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "acte_naissance_province": ("explicative", "Personnes disposant d'un acte de naissance (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "parite_scolarisation_province": ("explicative", "Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "electricite_province": ("explicative", "Ménages accédant à l'électricité (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
+    "telephone_province": ("explicative", "Ménages accédant à un téléphone (RGPH 2019, constant dans le temps)", "INSD, RGPH 2019, volume 3 (pauvreté)"),
     "reussite_cep_precedente_region": ("explicative", "Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %", "DGESS, base principale, feuille 9"),
 }
 

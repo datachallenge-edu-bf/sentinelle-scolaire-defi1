@@ -16,7 +16,7 @@ import pyogrio
 from .. import config
 from ..indicateurs import effectifs_retenus
 from . import base_principale as principale
-from . import enf_prescolaire
+from . import conditions_vie, enf_prescolaire
 from . import controles, dgess, esu, geographie, metadonnees, pdi
 from .offre import lire_offre
 from .outils import Journal
@@ -54,6 +54,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     tableaux_dgess = principale.lire_base_principale(alias, journal)
     enf = enf_prescolaire.lire_enf(identifier, journal)
     prescolaire = enf_prescolaire.lire_prescolaire(identifier, alias, journal)
+    vie = conditions_vie.construire(communes, alias, journal)
 
     # Rapports ESU et déplacés internes.
     esu_provinces, esu_totaux = esu.lire_esu(identifier, journal)
@@ -119,6 +120,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
           enf_prescolaire.controler(enf, prescolaire, tableaux_dgess,
                                     dict(zip(communes["province_ancienne_pcode"],
                                              communes["region_ancienne_pcode"]))).items()],
+        *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
+          conditions_vie.controler(vie, communes, config.CONTROLE_PAUVRETE).items()],
         {"controle": "metadonnees_completes", "conforme": False, "detail": ""},
     ])], ignore_index=True)
 
@@ -148,6 +151,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_base_principale": tableaux_dgess,
         "fait_enf_province": enf,
         "fait_prescolaire_province": prescolaire,
+        "fait_conditions_vie": vie,
         "fait_esu_province": esu_provinces,
         "fait_esu_region": esu_regions,
         "fait_pdi_commune": deplaces,

@@ -81,3 +81,11 @@ Les quatre tables d'analyse (`panel_province_annee`, `panel_mensuel_province`, `
 | `dictionnaire_bases_modele.html` | Version lisible, à ouvrir dans un navigateur ou à imprimer en PDF |
 
 Les libellés, unités, modes de calcul et limites sont rédigés dans `src/sentinelle/transformation/fiche.py` ; le contrôle `fiches_completes` vérifie qu'aucune variable n'en manque.
+
+## Pauvreté et conditions de vie (RGPH 2019)
+
+La table `fait_conditions_vie` reprend les 33 indicateurs du volume 3 du RGPH 2019 (INSD, *Mesure et cartographie de la pauvreté*, 2022) pour les 351 communes, les 45 provinces, les 13 régions et le pays, à partir du PDF du Data Pack (NADA275). Elle est comparée à l'extraction indépendante d'un membre de l'équipe (`Sentinelle_Scolaire_Pauvrete_INSD_2019.xlsx`, à placer dans `Competition_EducationBurkina/`) : 4 485 valeurs identiques sur 4 485. Onze de ces indicateurs entrent dans la table d'analyse comme caractéristiques structurelles de la province (mesure unique de 2019).
+
+## Sources externes
+
+Les annuaires régionaux 2024 de l'INSD pour le Centre-Est, le Centre-Nord et l'Est, absents du Data Pack, sont dans `Competition_EducationBurkina/sources_externes/` : PDF d'origine, CSV au format du Data Pack, manifeste (adresse, date, empreinte) et script de conversion `convertir_pdf.py`.

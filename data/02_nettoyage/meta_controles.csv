@@ -21,4 +21,8 @@ enf_somme_provinces_egal_region;True;52 régions × campagnes identiques sur 52
 prescolaire_provinces_par_annee;True;"2023-2024 : 45; 2024-2025 : 45"
 prescolaire_tableaux_02_et_9_coherents;True;"préscolarisés (tableau 02) = inscrits (tableau 9) : 354 sur 354 ; somme des sections = total : 354 sur 354"
 prescolaire_regions_egal_base_principale;True;24 régions × années identiques à la base principale sur 26
+conditions_vie_couverture;True;13 régions, 45 provinces, 351 communes sur 351
+conditions_vie_population_communes_egal_province;True;45 provinces sur 45 identiques
+conditions_vie_indicateurs_renseignes;True;part renseignée de 33 indicateurs : minimum 99.3% (ratio_filles_garcons_post_primaire)
+conditions_vie_identique_extraction_equipe;True;pays, régions, provinces et communes : 4485 valeurs identiques sur 4485 comparées (11 indicateurs) avec l'extraction indépendante d'un membre de l'équipe
 metadonnees_completes;True;toutes les tables et variables sont décrites

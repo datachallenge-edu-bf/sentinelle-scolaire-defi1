@@ -58,8 +58,23 @@ def manifeste() -> pd.DataFrame:
     return m.drop_duplicates("fichier").set_index("fichier")
 
 
+def est_externe(chemin: Path) -> bool:
+    return chemin.is_relative_to(config.EXTERNES_CSV)
+
+
+def manifeste_externe() -> pd.DataFrame:
+    """Manifeste des sources externes, indexé par nom de fichier d'origine."""
+    if not config.MANIFESTE_EXTERNE.exists():
+        return pd.DataFrame()
+    m = pd.read_csv(config.MANIFESTE_EXTERNE, sep=";", dtype=str, encoding="utf-8-sig", keep_default_na=False)
+    return m.assign(nom=m["fichier"].map(lambda f: Path(f).name)).set_index("nom")
+
+
 def fichier_source(csv_pack: Path) -> Path | None:
     """Retrouve le fichier d'origine (PDF, XLSX...) dont un CSV du pack est l'extraction."""
+    if est_externe(csv_pack):
+        source = config.SOURCES_EXTERNES / csv_pack.relative_to(config.EXTERNES_CSV).with_suffix(".pdf")
+        return source if source.exists() else None
     relatif = csv_pack.relative_to(config.PACK_CSV)
     dossier = config.DATA_PACK / relatif.parent
     if not dossier.is_dir():
@@ -82,6 +97,11 @@ def infos_manifeste(nom_fichier: str | None) -> dict[str, str]:
         return vide
     m = manifeste()
     if nom_fichier not in m.index:
+        externe = manifeste_externe()
+        if nom_fichier in externe.index:
+            ligne = externe.loc[nom_fichier]
+            return {"producteur": ligne["producteur"], "description_source": ligne["publication"],
+                    "url": ligne["url"]}
         return vide
     ligne = m.loc[nom_fichier]
     return {

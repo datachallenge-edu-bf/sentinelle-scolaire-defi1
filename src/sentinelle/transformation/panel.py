@@ -13,7 +13,10 @@ Une ligne par ancienne province (45) et par année scolaire t. La ligne réunit 
   bruts d'admission et de scolarisation, taux d'achèvement, parité, préscolaire,
   réussite au CEP de la session précédente), l'éducation non formelle des
   adolescents (campagnes 2018 à 2020 et 2024) et le préscolaire (2023-2024 et
-  2024-2025) de la province.
+  2024-2025) de la province, et ses caractéristiques structurelles mesurées au
+  recensement de 2019 (pauvreté, travail des enfants, enfants hors de l'école,
+  mariage précoce, alphabétisation, actes de naissance, électricité, téléphone),
+  constantes d'une année à l'autre.
 
 Deux tables complètent le panel : ``panel_region_annee`` reprend tous les
 indicateurs régionaux de la base principale (13 régions et le pays), et
@@ -275,6 +278,18 @@ def _non_formelle_et_prescolaire() -> pd.DataFrame:
     return resultat.rename(columns={"entite_pcode": "province_ancienne_pcode"})
 
 
+# Caractéristiques structurelles mesurées au recensement de 2019 : variable du RGPH -> colonne du panel.
+STRUCTURELLES = {"incidence_pauvrete": "pauvrete_province", "profondeur_pauvrete": "profondeur_pauvrete_province", "emploi_7_14": "travail_enfants_7_14_province", "hors_ecole_6_11": "hors_ecole_6_11_province", "hors_ecole_12_15": "hors_ecole_12_15_province", "filles_17_ans_mariees": "filles_17_ans_mariees_province", "alphabetisation_15_64": "alphabetisation_adultes_province", "acte_naissance": "acte_naissance_province", "ratio_filles_garcons_primaire": "parite_scolarisation_province", "electricite": "electricite_province", "telephone": "telephone_province"}
+
+
+def _structurelles() -> pd.DataFrame:
+    """Pauvreté et conditions de vie de la province en 2019, identiques pour toutes les années."""
+    vie = lire("fait_conditions_vie")
+    vie = vie[vie["niveau_geo"] == "province_ancienne"]
+    return vie[["entite_pcode", *STRUCTURELLES]].rename(columns={"entite_pcode": "province_ancienne_pcode",
+                                                                  **STRUCTURELLES})
+
+
 def construire_panel() -> pd.DataFrame:
     effectifs = _effectifs()
     flux = _flux(effectifs)
@@ -330,6 +345,9 @@ def construire_panel() -> pd.DataFrame:
     # Éducation non formelle (seconde chance des déscolarisés) et préscolaire, par province.
     panel = panel.merge(_non_formelle_et_prescolaire(), on=["province_ancienne_pcode", "annee_scolaire"], how="left")
     panel["adolescents_non_formelle_pour_1000_eleves"] = 1000 * panel["adolescents_non_formelle"] / panel["effectif"]
+
+    # Pauvreté et conditions de vie (RGPH 2019) : caractéristiques structurelles, constantes dans le temps.
+    panel = panel.merge(_structurelles(), on="province_ancienne_pcode", how="left")
 
     colonnes_arrondies = panel.select_dtypes("float").columns
     panel[colonnes_arrondies] = panel[colonnes_arrondies].round(4)

@@ -222,10 +222,13 @@ CATALOGUE: tuple[Jeu, ...] = (
     # Éducation par commune (annuaires statistiques régionaux de l'INSD).
     Jeu(
         identifiant="insd_primaire_commune",
-        libelle="Écoles, salles, élèves et enseignants du primaire par commune (annuaires régionaux 2024)",
+        libelle="Écoles, salles, élèves et enseignants du primaire par commune (annuaires régionaux 2024, 13 régions)",
         theme="education",
         niveau_geo="commune",
-        fichiers=("02_Demographie_INSD/Annuaires_Statistiques_Regionaux_2024/*.csv",),
+        # Les annuaires 2024 du Centre-Est, du Centre-Nord et de l'Est, absents du Data Pack, ont été
+        # téléchargés sur le site de l'INSD (sources externes, voir leur manifeste).
+        fichiers=("02_Demographie_INSD/Annuaires_Statistiques_Regionaux_2024/*.csv",
+                  "externe:insd_annuaires_regionaux_2024/*.csv"),
         regle=Regle(
             "texte",
             r"primaire.{0,80}commune|commune.{0,80}primaire|ferm\w* pour (?:cause d.)?ins[ée]curit",

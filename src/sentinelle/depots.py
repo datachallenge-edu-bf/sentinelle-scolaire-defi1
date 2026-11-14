@@ -153,6 +153,9 @@ TABLES_NETTOYAGE = [
     ("fait_prescolaire_province.csv", "engineer", "prescolaire-taux-sections-province-2023-2025-propre",
      "Préscolaire par province et sexe, 2023-2024 et 2024-2025 : population préscolarisable, enfants préscolarisés, "
      "taux de préscolarisation, enfants par section."),
+    ("fait_conditions_vie.csv", "engineer", "pauvrete-conditions-vie-commune-province-rgph-2019-propre",
+     "Pauvreté, emploi, travail des enfants, enfants hors de l'école, alphabétisation, mariage précoce, actes de "
+     "naissance, eau, électricité, téléphone : 351 communes, 45 provinces, 13 régions, pays (INSD, RGPH 2019, vol. 3)."),
     ("fait_offre_province.csv", "engineer", "ecoles-salles-maitres-eleves-province-2017-2025-propre",
      "Écoles, salles, groupes pédagogiques, maîtres et élèves par province et statut, avec les élèves par maître "
      "et par salle."),

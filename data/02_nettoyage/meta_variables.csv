@@ -145,6 +145,45 @@ fait_prescolaire_province;grande_section;décimal;enfants;Enfants inscrits en gr
 fait_prescolaire_province;enfants_inscrits;décimal;enfants;Enfants inscrits au préscolaire (tableau 9, contrôle du tableau 02)
 fait_prescolaire_province;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_prescolaire_province;page;texte;;Page du fichier d'origine
+fait_conditions_vie;niveau_geo;texte;;Niveau géographique de l'entité
+fait_conditions_vie;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_conditions_vie;libelle;texte;;Libellé : nom du jeu de données (registre des sources) ou de l'entité dans la publication (conditions de vie)
+fait_conditions_vie;code_rgph;texte;;"Code de l'entité dans le RGPH 2019 ; plusieurs codes quand des arrondissements sont regroupés"
+fait_conditions_vie;nb_unites_rgph;entier;unités;Nombre d'unités du RGPH regroupées dans la ligne (arrondissements de Ouagadougou et de Bobo-Dioulasso)
+fait_conditions_vie;annee_reference;entier;année;Année de référence des indicateurs
+fait_conditions_vie;population;décimal;personnes;Population résidente au recensement
+fait_conditions_vie;menages;décimal;ménages;Ménages au recensement
+fait_conditions_vie;incidence_pauvrete;décimal;%;Part de la population sous le seuil de pauvreté (P0)
+fait_conditions_vie;profondeur_pauvrete;décimal;%;Écart moyen au seuil de pauvreté (P1)
+fait_conditions_vie;nombre_pauvres;décimal;personnes;Personnes pauvres
+fait_conditions_vie;emploi_7_14;décimal;%;Enfants de 7 à 14 ans occupés (travail des enfants)
+fait_conditions_vie;emploi_15_24;décimal;%;Jeunes de 15 à 24 ans occupés
+fait_conditions_vie;emploi_25_64;décimal;%;Adultes de 25 à 64 ans occupés
+fait_conditions_vie;chomage_15_24;décimal;%;Chômage des 15-24 ans
+fait_conditions_vie;chomage_25_64;décimal;%;Chômage des 25-64 ans
+fait_conditions_vie;travailleurs_autonomes_15_24;décimal;%;Travailleurs autonomes parmi les 15-24 ans occupés
+fait_conditions_vie;travailleurs_autonomes_25_64;décimal;%;Travailleurs autonomes parmi les 25-64 ans occupés
+fait_conditions_vie;frequentation_postprimaire;décimal;%;Taux net de fréquentation du post-primaire
+fait_conditions_vie;frequentation_lycee;décimal;%;Taux net de fréquentation du lycée
+fait_conditions_vie;ratio_filles_garcons_primaire;décimal;rapport;Rapport filles / garçons scolarisés au primaire
+fait_conditions_vie;ratio_filles_garcons_post_primaire;décimal;rapport;Rapport filles / garçons scolarisés au post-primaire
+fait_conditions_vie;ratio_filles_garcons_secondaire;décimal;rapport;Rapport filles / garçons scolarisés au secondaire
+fait_conditions_vie;hors_ecole_6_11;décimal;%;Enfants de 6 à 11 ans hors de l'école
+fait_conditions_vie;hors_ecole_12_15;décimal;%;Enfants de 12 à 15 ans hors de l'école
+fait_conditions_vie;hors_ecole_16_18;décimal;%;Jeunes de 16 à 18 ans hors de l'école
+fait_conditions_vie;ni_ecole_ni_travail_15_24;décimal;%;Jeunes de 15 à 24 ans ni à l'école ni au travail
+fait_conditions_vie;alphabetisation_15_64;décimal;%;Alphabétisation des 15-64 ans
+fait_conditions_vie;dependance_demographique;décimal;%;Rapport de dépendance démographique
+fait_conditions_vie;filles_17_ans_mariees;décimal;%;Filles de 17 ans mariées
+fait_conditions_vie;acte_naissance;décimal;%;Personnes disposant d'un acte de naissance
+fait_conditions_vie;sanitaires_ameliores;décimal;%;Ménages disposant de sanitaires améliorés
+fait_conditions_vie;eau_amelioree;décimal;%;Ménages accédant à une eau améliorée
+fait_conditions_vie;electricite;décimal;%;Ménages accédant à l'électricité
+fait_conditions_vie;energie_cuisson_amelioree;décimal;%;Ménages utilisant une énergie de cuisson améliorée
+fait_conditions_vie;telephone;décimal;%;Ménages accédant à un téléphone
+fait_conditions_vie;valeurs_hors_domaine;texte;;Indicateurs dont la valeur publiée sort de son domaine (taux > 100, rapport > 3), conservés tels quels
+fait_conditions_vie;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_conditions_vie;page;entier;;Page du fichier d'origine
 fait_esu_province;mois;texte;;Mois du rapport (AAAA-MM ou AAAA-MM-JJ)
 fait_esu_province;type;texte;;Type de situation : établissements fermés ou rouverts
 fait_esu_province;province_ancienne_pcode;texte;;P-code de la province dans l'ancien découpage (45 provinces)
@@ -186,7 +225,7 @@ meta_controles;controle;texte;;Nom du contrôle
 meta_controles;conforme;booléen;booléen;Vrai si le contrôle est satisfait
 meta_controles;detail;texte;;Détail du résultat
 meta_source;jeu;texte;;Jeu de données de la collecte
-meta_source;libelle;texte;;Libellé du jeu
+meta_source;libelle;texte;;Libellé : nom du jeu de données (registre des sources) ou de l'entité dans la publication (conditions de vie)
 meta_source;theme;texte;;Thème du jeu
 meta_source;niveau_geo;texte;;Niveau géographique de l'entité
 meta_source;source_fichier;texte;;Fichier d'origine remis par les organisateurs

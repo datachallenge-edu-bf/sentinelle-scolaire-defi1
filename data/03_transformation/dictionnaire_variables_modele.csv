@@ -44,3 +44,14 @@ centres_non_formelle_adolescents;explicative;Centres d'éducation non formelle d
 taux_prescolarisation_province;explicative;Taux de préscolarisation de la province en t, en %;DGESS, annuaires du préscolaire, tableau 02;0.778;2023-2024;2024-2025
 grande_section_province;explicative;Enfants en grande section dans la province en t (futurs entrants au CP1);DGESS, annuaires du préscolaire, tableau 9;0.778;2023-2024;2024-2025
 adolescents_non_formelle_pour_1000_eleves;explicative;Adolescents de l'éducation non formelle pour 1 000 élèves du primaire;"DGESS ; calculs des auteurs";0.556;2018-2019;2024-2025
+pauvrete_province;explicative;Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+profondeur_pauvrete_province;explicative;Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+travail_enfants_7_14_province;explicative;Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+hors_ecole_6_11_province;explicative;Enfants de 6 à 11 ans hors de l'école (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+hors_ecole_12_15_province;explicative;Enfants de 12 à 15 ans hors de l'école (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+filles_17_ans_mariees_province;explicative;Filles de 17 ans mariées (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+alphabetisation_adultes_province;explicative;Alphabétisation des 15-64 ans (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+acte_naissance_province;explicative;Personnes disposant d'un acte de naissance (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+parite_scolarisation_province;explicative;Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+electricite_province;explicative;Ménages accédant à l'électricité (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+telephone_province;explicative;Ménages accédant à un téléphone (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025

@@ -13,6 +13,13 @@ RACINE = Path(__file__).resolve().parents[2]
 DOSSIER_ORGANISATEURS = Path(os.environ.get("SENTINELLE_DONNEES", RACINE.parent)).resolve()
 DATA_PACK = DOSSIER_ORGANISATEURS / "DataPack_DCB_2026"
 PACK_CSV = DATA_PACK / "data"
+# Sources publiques ajoutées par les équipes (hors Data Pack) : PDF d'origine, CSV au format du pack, manifeste.
+SOURCES_EXTERNES = DOSSIER_ORGANISATEURS / "sources_externes"
+EXTERNES_CSV = SOURCES_EXTERNES / "data"
+MANIFESTE_EXTERNE = SOURCES_EXTERNES / "manifeste_sources_externes.csv"
+PREFIXE_EXTERNE = "externe:"
+# Extraction indépendante du RGPH 2019 (volume 3) par un membre de l'équipe : sert de contrôle.
+CONTROLE_PAUVRETE = DOSSIER_ORGANISATEURS / "Sentinelle_Scolaire_Pauvrete_INSD_2019.xlsx"
 MANIFESTE = DATA_PACK / "00_Documentation_et_Referentiels" / "manifeste_telechargements.csv"
 BASE_PRINCIPALE = DOSSIER_ORGANISATEURS / "DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx"
 DOCUMENT_CHALLENGE = DOSSIER_ORGANISATEURS / "Document_du_challenge_Data_Challenge_Burkina.pdf"

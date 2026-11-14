@@ -38,6 +38,56 @@ fait_enf_province;ligne écartée;valeurs sans libellé de milieu;CNS516_Annuair
 fait_enf_province;signalement;la campagne de l'en-tête diffère de l'année du nom du fichier;CNS517_Annuaire_statistique_de_leducation_non_formelle_2019.pdf;;;;2020
 fait_enf_province;signalement;la campagne de l'en-tête diffère de l'année du nom du fichier;CNS518_Annuaire_statistique_de_leducation_non_formelle_2020.pdf;;;;2019
 fait_enf_province;fichier écarté;doublon : même campagne déjà lue dans un autre fichier;CNS519_Annuaire_statistique_de_leducation_non_formelle_2021.pdf;;;2020;CNS517_Annuaire_statistique_de_leducation_non_formelle_2019.pdf
+fait_conditions_vie;signalement;annexe 5 : entités sans ligne rattachée, valeurs laissées vides;NADA275_RGPH2019_Cartographie_pauvrete.pdf;;;Secteur 4, Secteur 7;2
+fait_conditions_vie;signalement;annexe 6 : entités sans ligne rattachée, valeurs laissées vides;NADA275_RGPH2019_Cartographie_pauvrete.pdf;;;Sono, Secteur 8, Secteur 6, Secteur 4, Secteur 2, Secteur 2, Secteur 9, Secteur 7;8
+fait_conditions_vie;signalement;annexe 7 : entités sans ligne rattachée, valeurs laissées vides;NADA275_RGPH2019_Cartographie_pauvrete.pdf;;;Sono, Secteur 9, Secteur 10, Secteur 4, Secteur 2, Secteur 2, Diguel, Secteur 6, Secteur 9, Secteur 4, Secteur 5, Tankougounadie;13
+fait_conditions_vie;signalement;annexe 8 : entités sans ligne rattachée, valeurs laissées vides;NADA275_RGPH2019_Cartographie_pauvrete.pdf;;;Secteur 4, Secteur 7;2
+fait_conditions_vie;signalement;annexe 9 : entités sans ligne rattachée, valeurs laissées vides;NADA275_RGPH2019_Cartographie_pauvrete.pdf;;;Secteur 4, Secteur 7;2
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bomborokuy;BOMBOROKUI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Dokuy;DOKUI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bondokuy;BONDOKUI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Oury;OURI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Tanghin Dassouri;TANGUENDASSOURI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bittou;BITOU
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Niaogo;NIAOGHO
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Gounghin;GOUNGUEN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Comin-Yanga;KOMINYANGA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Sanga;SANGHA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Sabce;SABSE
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Zimtenga;ZIMTANGA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Zeguedeguin;ZEGUEDEGUEN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Kokoloko;KOKOLOGO
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Soaw;SOA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Thyou;THIOU
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Cassou;KASSOU
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Ipelce;IPELSE
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Coalla;KOALA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Matiacoali;MATIAKOALI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Logobou;LOGBOU
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Namounou;NAMOUNO
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bartibougou;BARTIEBOUGOU
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Karankasso Sambla;KARANGASSOSAMBLA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Karankasso-Vigue;KARANGASSOVIGUE
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Kourignon;KOURINION
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Morolaba;MORLABA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Samogohiri;SAMOGOYIRI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Samorogouan;SAMOGOGOUAN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bekuy;BEKUI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bony;BONI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Arbole;ARBOLLE
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bokin;BOKEN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;La-Todin;LATODEN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Seguenega;SENGUENEGA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Banh;BAHN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Boudry;BOUDRI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Meguet;MEGUE
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Salogo;SAOLGO
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Absouya;AMBSOUYA
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Dapelogo;DAPEOLGO
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Toeghin;TOEGUEN
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Bondigui;GBONDJIGUI
+fait_conditions_vie;rapprochement;commune rapprochée par orthographe voisine;;;;Dissin;DISSIHN
+fait_conditions_vie;signalement;valeur hors de son domaine dans la publication, conservée;NADA275_RGPH2019_Cartographie_pauvrete.pdf;124;;Zoungou : alphabetisation_15_64 = 70800;
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;27;CENTRELEST KOULPELOGO 2 302 4 12 46;
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;32;EST GOURMA 1 40 48 88 O0;
 fait_esu_province;ligne ignorée;2 valeurs au lieu de 7;RAPPORT_STATISTIQUE_MENSUEL_ESU_AVRIL_2023.pdf;10;22;BOUCLE DU MOUHOUN KOSSI 17 1475;

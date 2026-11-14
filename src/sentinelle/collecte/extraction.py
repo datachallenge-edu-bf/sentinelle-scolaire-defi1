@@ -68,7 +68,10 @@ def selectionner_pages(df: pd.DataFrame, regle: Regle) -> list[int] | None:
 def _resoudre_fichiers(jeu: Jeu) -> list[Path]:
     trouves: set[Path] = set()
     for motif in jeu.fichiers:
-        trouves.update(config.PACK_CSV.glob(motif))
+        if motif.startswith(config.PREFIXE_EXTERNE):
+            trouves.update(config.EXTERNES_CSV.glob(motif[len(config.PREFIXE_EXTERNE):]))
+        else:
+            trouves.update(config.PACK_CSV.glob(motif))
     if jeu.exclure_fichiers:
         trouves = {p for p in trouves if not re.search(jeu.exclure_fichiers, p.name)}
     return sorted(trouves)
@@ -87,7 +90,8 @@ def extraire_jeu(jeu: Jeu, date_collecte: str) -> tuple[pd.DataFrame, list[dict]
         source = fichier_source(csv)
         nom_source = source.name if source else csv.name
         periode = PERIODES_CONNUES.get(nom_source) or periode_depuis_nom(nom_source) or jeu.periode
-        relatif = csv.relative_to(config.PACK_CSV).as_posix()
+        relatif = (csv.relative_to(config.DOSSIER_ORGANISATEURS).as_posix() if csv.is_relative_to(config.EXTERNES_CSV)
+                   else csv.relative_to(config.PACK_CSV).as_posix())
 
         extrait = extrait.copy()
         extrait.insert(0, "source_periode", periode)
