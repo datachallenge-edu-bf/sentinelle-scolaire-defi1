@@ -1,0 +1,302 @@
+%%%% passage_decoupage_2025.tex
+%%%% Data Challenge Burkina 2026, édition Éducation, défi 1 : passage au découpage administratif de 2025
+%%%% Mise en page reprise du gabarit de la note d'intention.
+%%%% Évaluation anonyme : ne mettre aucun nom, aucune affiliation, aucun lien personnel.
+
+\documentclass{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+
+\usepackage{ijcai26}
+
+\usepackage{times}
+\usepackage{url}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,french]{babel}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[colorlinks=true,
+            citecolor=blue!70!black,
+            linkcolor=red!60!black,
+            urlcolor=blue!70!black,
+            pdfauthor={},
+            pdftitle={Sentinelle Scolaire : passage au découpage administratif de 2025},
+            pdfcreator={},
+            pdfproducer={}]{hyperref}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{placeins}
+\urlstyle{same}
+\emergencystretch=1.5em
+
+\addto\captionsfrench{%
+  \renewcommand{\tablename}{Tableau}%
+  \renewcommand{\figurename}{Figure}%
+  \renewcommand{\refname}{Références}%
+}
+
+\newcommand{\sol}{Sentinelle Scolaire}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\pdfinfo{
+/TemplateVersion (IJCAI.2026.0)
+}
+
+\title{\sol{}\\[3pt]
+{\large\mdseries Passage du panel au découpage administratif de 2025}}
+\author{
+Data Challenge Burkina 2026, édition Éducation, défi 1\\
+\affiliations
+Documentation technique, étape 03 (transformation) : méthodes de calcul
+}
+
+\begin{document}
+\renewcommand{\tablename}{Tableau}\renewcommand{\figurename}{Figure}\renewcommand{\refname}{Références}
+\raggedbottom
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+%======================================================================
+\section{Objet}
+%======================================================================
+
+La réorganisation administrative de juillet 2025 a porté le Burkina Faso de 13 à 17 régions et de 45 à 47 provinces ; les 351 communes sont restées les mêmes. Toutes les données de \sol{}, des annuaires de la DGESS~\cite{dgess_annuaires} aux rapports du ST-ESU~\cite{stesu}, sont publiées dans l'ancien découpage, alors que la carte du risque de décrochage et les alertes doivent parler aux décideurs dans les unités de 2025.
+
+Le modèle de décrochage doit apprendre sur ces unités, avec des variables qui les décrivent vraiment. Changer les noms ne suffit pas : là où une unité a été coupée, l'ancienne valeur ne décrit aucune des nouvelles. En 2022-2023, le taux brut de scolarisation de 23\,\% de l'ancienne région de l'Est cache 10\,\% dans la Sirba et 51\,\% dans le Goulmou ; le contexte régional d'une province du Gnagna n'est donc plus le même que celui d'une province du Gourma. Ce document décrit comment chaque variable du panel est reconstruite pour l'unité de 2025, avec ses formules, ses contrôles et ses limites, et comment la cible du modèle est traitée là où elle n'est pas observée.
+
+%======================================================================
+\section{La table de passage}
+%======================================================================
+
+La table de passage se lit sur les communes : le COD-AB~\cite{codab} donne, pour chacune, ses codes et noms de 2025 et ceux de l'ancien découpage. Trois propriétés, vérifiées sur les 351 communes, fixent la méthode.
+
+\begin{enumerate}
+\item Aucune province de 2025 ne réunit deux anciennes provinces : chacune reprend la ligne de sa province d'origine.
+\item Aucune ancienne province n'est coupée entre deux régions de 2025 : chaque région de 2025 réunit des provinces anciennes entières, et ses indicateurs se recalculent exactement à partir des provinces.
+\item Seules deux provinces et trois régions ont été scindées (tableau~\ref{tab:scissions}).
+\end{enumerate}
+
+\begin{table}[!t]
+\centering
+\small
+\begin{tabularx}{\columnwidth}{@{}L{2.4cm} Y r r@{}}
+\toprule
+Ancienne unité & Unités de 2025 & Communes & Pop. \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Provinces}}\\
+Soum & Djelgodji & 7 & 66\,\% \\
+     & Karo-Peli & 2 & 34\,\% \\
+Tapoa & Gobnangou & 6 & 69\,\% \\
+      & Dyamongou & 2 & 31\,\% \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Régions}}\\
+Boucle du Mouhoun & Sourou & 24 & 45\,\% \\
+                  & Bankui & 23 & 55\,\% \\
+Est & Sirba & 10 & 40\,\% \\
+    & Tapoa & 8 & 31\,\% \\
+    & Goulmou & 9 & 29\,\% \\
+Sahel & Soum & 9 & 33\,\% \\
+      & Liptako & 17 & 67\,\% \\
+\bottomrule
+\end{tabularx}
+\caption{Unités scindées en 2025 : nombre de communes et part de la population de l'ancienne unité au RGPH de 2019. Sources : COD-AB~\cite{codab}, RGPH 2019~\cite{insd_rgph}.}
+\label{tab:scissions}
+\end{table}
+
+Les 43 autres provinces et les 10 autres régions n'ont changé que de code ou de nom. Les noms de 2025 sont ceux du COD-AB, sans accents, y compris pour les provinces renommées (Oubritenga devient Bassitenga, Sanmatenga Sandbondtenga, Kossi Kossin).
+
+%======================================================================
+\section{Notations et méthodes}
+%======================================================================
+
+On note $a$ une unité ancienne, $n$ une unité de 2025 issue de $a$, $c$ une commune et $t$ une année scolaire. Avec $P_c$ la population de 2019 de la commune, le poids de passage est
+\begin{equation}
+w_{a \to n} = \frac{\sum_{c \in n} P_c}{\sum_{c \in a} P_c},
+\end{equation}
+égal à 1 pour une unité non scindée. Chaque variable reçoit l'une des méthodes suivantes, et la colonne \texttt{methode\_passage} dit, pour chaque ligne, comment elle a été obtenue :
+
+\begin{description}
+\item[E, recalcul exact] à partir des communes ou des provinces ;
+\item[C, clé communale] : un effectif ou un rapport publié pour l'unité ancienne est corrigé par une grandeur de même nature connue par commune ;
+\item[H, valeur héritée] : aucune donnée plus fine n'existe ;
+\item[M, estimation par modèle] : réservée à la cible des provinces scindées (section~\ref{sec:cible}).
+\end{description}
+
+%======================================================================
+\section{Méthodes de calcul}
+%======================================================================
+
+\subsection{Provinces non scindées}
+
+Les 43 provinces non scindées reprennent leur ligne avec les codes et noms de 2025. Leurs variables propres ne changent pas ; leur contexte régional prend la valeur de la région de 2025 (section~\ref{sec:regions}), ce qui modifie les 15 provinces des trois régions scindées.
+
+\subsection{Effectifs d'une province scindée}
+
+Les effectifs provinciaux (élèves, écoles fermées, apprenants de l'éducation non formelle, grande section) sont d'abord répartis selon la population, $X_n = w_{a \to n} X_a$, puis corrigés par une clé communale quand il en existe une. Les annuaires régionaux de l'INSD donnent, par commune et par année, les élèves (au total, filles, privé), les enseignants, les salles, les écoles fermées et les élèves du post-primaire~\cite{insd_annuaires} ; ces effectifs communaux, nettoyés par l'équipe du défi~3, sont une donnée partagée entre les deux projets, lue telle quelle. Pour une clé $k$, la part de $n$ dans $a$ est
+\begin{equation}
+s^{k}_{n}(t) = \frac{\sum_{c \in n} K^{k}_{c}(t)}{\sum_{c \in a} K^{k}_{c}(t)},
+\end{equation}
+calculée les années où toutes les communes de $a$ sont renseignées, sinon à l'année renseignée la plus proche. Les élèves de $t$, $t-1$ et $t+1$ sont répartis avec la clé des élèves de l'année correspondante, les écoles fermées et les élèves touchés avec celle des écoles fermées :
+\begin{equation}
+X_n(t) = s^{k(X)}_{n}(t)\; X_a(t).
+\end{equation}
+Quand la clé des élèves n'est complète aucune année, la clé des enseignants est prise, puis celle des salles ; la ligne le signale.
+
+\subsection{Rapports d'une province scindée}
+
+Un rapport $r = U/V$ publié pour la province d'origine est corrigé par le rapport des clés de son numérateur et de son dénominateur :
+\begin{equation}
+r_n = r_a \; \frac{s^{k(U)}_{n}}{s^{k(V)}_{n}},
+\end{equation}
+ce qui revient à répartir séparément $U$ et $V$. Le tableau~\ref{tab:corrections} donne les clés utilisées ; pour les taux, le dénominateur (enfants de l'âge) suit la population, $s^{k(V)}_{n} = w_{a \to n}$.
+
+\begin{table}[!t]
+\centering
+\small
+\begin{tabularx}{\columnwidth}{@{}L{3.3cm} Y@{}}
+\toprule
+Rapport & Clé du numérateur / du dénominateur \\
+\midrule
+Part des filles & filles / élèves \\
+Élèves par maître & élèves / enseignants \\
+Élèves par salle & élèves / salles \\
+Part des élèves du privé & privé / élèves \\
+TBA, TBS, taux net, achèvement & élèves / population \\
+TBS du post-primaire & élèves du post-primaire / population \\
+\bottomrule
+\end{tabularx}
+\caption{Correction des rapports d'une province scindée. Source : annuaires régionaux de l'INSD~\cite{insd_annuaires}.}
+\label{tab:corrections}
+\end{table}
+
+\subsection{Sommes sur les communes}
+
+Les déplacés internes sont recomptés sur les communes de chaque nouvelle province, à la dernière date de situation des six mois qui précèdent le 31 décembre de l'année de rentrée, comme dans le panel~\cite{conasur}. Les variables du RGPH 2019 (pauvreté, enfants hors de l'école, mariage des filles, alphabétisation, électricité…) sont recalculées en moyenne pondérée par la population des communes~\cite{insd_rgph} :
+\begin{equation}
+\tau_n = \frac{\sum_{c \in n} P_c\, \tau_c}{\sum_{c \in n} P_c}.
+\end{equation}
+Les rapports qui en dépendent sont recalculés : déplacés pour 100 élèves, apprenants pour 1\,000 élèves, évolution des effectifs et choc d'effectifs (variation de plus de 30\,\%), écart entre l'achèvement du primaire et l'entrée en 6e.
+
+\subsection{Régions de 2025}
+\label{sec:regions}
+
+Les annuaires du primaire publient le numérateur et le dénominateur de chaque taux provincial~\cite{dgess_annuaires}. Les taux d'une région de 2025 se recalculent donc exactement :
+\begin{equation}
+\tau_R(t) = 100\,\frac{\sum_{p \in R} N_p(t)}{\sum_{p \in R} D_p(t)},
+\end{equation}
+pour le TBA, le TBS et le taux d'achèvement (ensemble, filles, garçons), la réussite au CEP (admis sur présents), le préscolaire (enfants préscolarisés sur population de 3 à 5 ans) et la part des écoles privées. Les indices de parité sont les rapports des taux des filles et des garçons ainsi recalculés. Pour les dix régions non scindées, la valeur publiée est gardée et le recalcul sert de contrôle ; pour les trois régions scindées, il remplace la valeur héritée. Les effectifs régionaux de la base principale~\cite{dgess_base} sont répartis, pour les régions scindées, selon les élèves de leurs provinces l'année considérée, à défaut selon la population.
+
+Le contexte régional de chaque province prend ensuite la valeur de sa région de 2025 : TBA, TBS, achèvement, parité du TBS et de l'achèvement, préscolaire, part du privé, et réussite au CEP de la session précédente, seule connue à la rentrée.
+
+%======================================================================
+\section{La cible du modèle}
+\label{sec:cible}
+%======================================================================
+
+La cible est le taux d'abandon de $t$ à $t+1$, calculé à partir des effectifs et des redoublants par classe, publiés par province seulement. Elle n'est donc pas observée pour les quatre provinces issues du Soum et de la Tapoa. Reprendre la cible de l'ancienne province pour chaque moitié dupliquerait une même observation et fausserait l'apprentissage. Le panel de 2025 la traite ainsi :
+
+\begin{itemize}
+\item la cible et ses valeurs retardées (abandon, redoublement et promotion de $t-1$ à $t$) sont laissées vides pour les provinces scindées ; la colonne \texttt{cible\_observee} marque les 310 lignes où la cible est observée, seules utilisées pour l'entraînement et l'évaluation ;
+\item la valeur de la province d'origine est gardée dans des colonnes \texttt{…\_province\_origine}, pour le recalage.
+\end{itemize}
+
+À l'étape de modélisation, deux modèles seront comparés sur les mêmes cibles observées. Le modèle A apprend sur les seules provinces à cible observée. Le modèle B y ajoute les provinces scindées, avec une cible estimée $\hat{y}_n$ : prédite par le modèle A à partir des variables propres à chaque moitié, puis recalée pour que la moyenne pondérée par les élèves $e_n$ retrouve la cible observée de l'ancienne province,
+\begin{equation}
+\hat{y}^{\,\text{recalé}}_{n} = \hat{y}_n + \left( y_a - \frac{\sum_{m \subset a} e_m\, \hat{y}_m}{\sum_{m \subset a} e_m} \right),
+\end{equation}
+et un poids d'apprentissage égal à la part des élèves, $e_n / \sum_{m \subset a} e_m$, de sorte que les deux moitiés pèsent ensemble comme une province. Le modèle B n'est retenu que s'il fait au moins aussi bien que le modèle A ; dans les deux cas, les 47 provinces reçoivent une prédiction calculée sur leurs propres variables.
+
+%======================================================================
+\section{Méthode de chaque variable}
+%======================================================================
+
+\begin{table*}[!t]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}L{3.2cm} L{1.0cm} Y@{}}
+\toprule
+Unités & Méthode & Variables du panel \\
+\midrule
+Provinces scindées & M & \texttt{abandon\_suivant}, \texttt{abandon\_brut\_suivant} et leurs valeurs retardées (\texttt{abandon\_precedent}, \texttt{redoublement\_precedent}, \texttt{promotion\_precedente}) : à estimer à l'étape 04 \\
+ & C & effectifs de $t-1$, $t$, $t+1$ ; part des filles, élèves par maître, élèves par salle, part du privé ; TBA, TBS, taux net, achèvement du primaire, TBS du post-primaire ; écoles fermées et élèves touchés \\
+ & E & déplacés, 11 variables du RGPH 2019 ; déplacés pour 100 élèves, apprenants pour 1\,000 élèves, évolution et choc d'effectifs, écart achèvement et entrée en 6e \\
+ & H & conditions des écoles (cantines, latrines, eau, électricité, distance, manuels, état des salles), répartitions par âge, enseignantes et débutants, CEP, entrée en 6e et indicateurs du post-primaire hors TBS, préscolaire et éducation non formelle (taux), consommation et inégalités \\
+\midrule
+Régions de 2025 & E & TBA, TBS, achèvement, CEP (ensemble, filles, garçons), indices de parité, préscolaire, part des écoles privées \\
+ & C & effectifs de la base principale des régions scindées (clé : élèves des provinces de l'année) \\
+ & H & causes déclarées d'abandon (orpaillage, mariage), commodités et ratio élèves par classe du secondaire, publiés par région seulement \\
+\midrule
+Provinces des régions scindées & E & contexte régional (\texttt{\_region}) : valeurs de la région de 2025 \\
+\bottomrule
+\end{tabularx}
+\caption{Méthode de passage par variable pour les unités touchées. E : recalcul exact ; C : clé communale ; H : valeur héritée ; M : estimation par modèle. Les 28 provinces des régions non scindées ne changent que de code et de nom.}
+\label{tab:variables}
+\end{table*}
+
+Le tableau~\ref{tab:variables} résume la méthode appliquée à chaque variable des unités touchées.
+
+%======================================================================
+\section{Contrôles}
+%======================================================================
+
+\begin{table*}[!t]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}L{5.6cm} Y L{1.6cm}@{}}
+\toprule
+Contrôle & Résultat & Statut \\
+\midrule
+Unités de 2025 & 47 provinces × 9 années, 17 régions et le pays, noms du COD-AB & Conforme \\
+Effectifs conservés & Élèves : somme des 47 provinces = somme des 45 anciennes, somme des 17 régions = somme des 13, écart nul & Conforme \\
+Déplacés conservés & Recomptés sur les communes, total national inchangé & Conforme \\
+Formule régionale validée & Taux recalculés contre taux publiés des 10 régions non scindées, écart médian : TBA 0,02 point, TBS, achèvement et CEP 0,00 & Conforme \\
+Provinces scindées différenciées & TBS distincts entre les deux moitiés pour 16 couples province × année sur 18 & Conforme \\
+Cible & Cible de la province d'origine conservée sur 423 lignes ; cible observée sur 310 lignes & Conforme \\
+\bottomrule
+\end{tabularx}
+\caption{Contrôles du passage au découpage de 2025. Source : calculs des auteurs.}
+\label{tab:controles}
+\end{table*}
+
+Les contrôles sont rejoués à chaque exécution (tableau~\ref{tab:controles}). Appliquée aux dix régions non scindées, la formule régionale retrouve les taux publiés de la base principale à quelques centièmes de point : les régions scindées sont recalculées par la même règle que la DGESS.
+
+%======================================================================
+\section{Ce que le passage change}
+%======================================================================
+
+En 2022-2023, le TBS du primaire vaut 10\,\% dans la Sirba, 13\,\% dans la Tapoa et 51\,\% dans le Goulmou ; 24\,\% dans le Sourou et 59\,\% dans le Bankui ; 13\,\% dans le Soum et 20\,\% dans le Liptako. Les taux d'achèvement s'écartent autant : 10\,\% dans la Sirba, 39\,\% dans le Goulmou. Le modèle voit désormais ces contextes, et non plus une moyenne qui les confondait.
+
+Les provinces scindées se distinguent aussi. Djelgodji, qui compte Djibo, a un TBS de 17\,\% et 282\,700 déplacés, Karo-Peli, autour d'Arbinda, un TBS de 4\,\% et 15\,300 déplacés ; la pauvreté y est de 56\,\% et 66\,\%. Dans la Tapoa, Gobnangou compte 58 élèves par maître et Dyamongou 75.
+
+%======================================================================
+\section{Limites}
+%======================================================================
+
+\begin{itemize}
+\item Dans l'annuaire régional du Sahel, les élèves du primaire ne sont publiés que pour 2 des 9 communes du Soum : la clé des enseignants les remplace. Les élèves par maître des deux moitiés du Soum restent alors égaux, et seuls les taux et effectifs les distinguent.
+\item Les élèves du post-primaire manquent pour une commune du Soum (Pobé-Mengao) : le TBS du post-primaire des deux moitiés du Soum reste hérité.
+\item Les taux par classe ou par âge, les conditions des écoles et le CEP ne sont pas publiés par commune : ils restent hérités pour les provinces scindées.
+\item Les variables publiées seulement par ancienne région restent héritées pour les régions scindées.
+\item La cible des provinces scindées n'est pas observée ; son estimation par modèle et recalage sera évaluée à part et documentée avec le modèle.
+\item Toutes les sources sont antérieures à la réforme : le panel de 2025 décrit les années 2016 à 2025 dans les limites de 2025.
+\end{itemize}
+
+%======================================================================
+\section{Reproduction}
+%======================================================================
+
+Le passage est la dernière opération de l'étape de transformation : \texttt{python -m sentinelle.transformation} produit, à côté du panel dans l'ancien découpage, \texttt{panel\_province\_2025} et \texttt{panel\_region\_2025}, leurs fiches de métadonnées et les contrôles dans \texttt{controles\_transformation}. Le code se trouve dans le module \texttt{sentinelle.transformation.decoupage\_2025}. Les effectifs communaux de l'INSD sont lus dans la base nettoyée du défi~3 (paramètre \texttt{COMMUNES\_INSD}), qui doit donc être construite avant. Chaque ligne garde ses codes et noms dans l'ancien découpage.
+
+\bibliographystyle{named}
+\bibliography{references}
+
+\end{document}
