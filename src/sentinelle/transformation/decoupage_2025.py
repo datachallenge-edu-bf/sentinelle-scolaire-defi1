@@ -40,7 +40,8 @@ import numpy as np
 import pandas as pd
 
 from .. import config
-from .panel import SEUIL_RUPTURE, STRUCTURELLES, annee_scolaire, debut, lire
+from . import recensement
+from .panel import SEUIL_RUPTURE, annee_scolaire, debut, lire
 
 EFFECTIFS_PROVINCE = ["effectif", "effectif_precedent", "effectif_suivant", "deplaces", "ecoles_fermees_province",
                       "eleves_touches_province", "adolescents_non_formelle", "centres_non_formelle_adolescents",
@@ -70,19 +71,9 @@ def correspondance_provinces(communes: pd.DataFrame) -> pd.DataFrame:
 
 
 def _rgph_par_province(communes: pd.DataFrame, codes: list[str]) -> pd.DataFrame:
-    vie = lire("fait_conditions_vie")
-    vie = vie[vie["niveau_geo"] == "commune"].merge(communes[["commune_pcode", "province_pcode"]],
-                                                    left_on="entite_pcode", right_on="commune_pcode")
-    vie = vie[vie["province_pcode"].isin(codes)]
-    lignes = []
-    for code, groupe in vie.groupby("province_pcode"):
-        ligne = {"province_pcode": code}
-        for source, cible in STRUCTURELLES.items():
-            valide = groupe[source].notna()
-            poids = groupe.loc[valide, "population"]
-            ligne[cible] = float((groupe.loc[valide, source] * poids).sum() / poids.sum()) if valide.any() else np.nan
-        lignes.append(ligne)
-    return pd.DataFrame(lignes).set_index("province_pcode")
+    """Indicateurs du RGPH 2019 des provinces indiquées, recalculés sur leurs communes."""
+    choisies = communes[communes["province_pcode"].isin(codes)]
+    return recensement.agreger_communes(choisies, "province_pcode", "province").set_index("province_pcode")
 
 
 def _deplaces_par_province_2025(communes: pd.DataFrame, codes: list[str]) -> pd.DataFrame:

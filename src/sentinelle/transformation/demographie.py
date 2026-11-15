@@ -163,12 +163,6 @@ def _deplaces_communes() -> pd.DataFrame:
     return pd.concat(lignes).rename(columns={"pdi_total": "deplaces"})[["commune_pcode", "annee_scolaire", "deplaces"]]
 
 
-RGPH_COMMUNE = {"incidence_pauvrete": "pauvrete_commune_2019", "hors_ecole_6_11": "hors_ecole_6_11_commune_2019",
-                "hors_ecole_12_15": "hors_ecole_12_15_commune_2019", "filles_17_ans_mariees": "filles_17_ans_mariees_commune_2019",
-                "alphabetisation_15_64": "alphabetisation_adultes_commune_2019", "electricite": "electricite_commune_2019",
-                "emploi_7_14": "travail_enfants_7_14_commune_2019"}
-
-
 def panel_communes() -> pd.DataFrame:
     """Commune × année scolaire (2016-2017 à 2024-2025) : base de la carte communale de vulnérabilité."""
     communes = lire("commune")[["commune_pcode", "commune_nom", "province_pcode", "province_nom", "region_pcode",
@@ -179,10 +173,8 @@ def panel_communes() -> pd.DataFrame:
     panel = panel.merge(_insd_communes(), on=["commune_pcode", "annee_scolaire"], how="left")
     panel = ajouter(panel, "commune_pcode")
     panel = panel.merge(_deplaces_communes(), on=["commune_pcode", "annee_scolaire"], how="left")
-    vie = lire("fait_conditions_vie")
-    vie = vie[vie["niveau_geo"] == "commune"][["entite_pcode", *RGPH_COMMUNE]].rename(
-        columns={"entite_pcode": "commune_pcode", **RGPH_COMMUNE})
-    panel = panel.merge(vie, on="commune_pcode", how="left")
+    from . import recensement
+    panel = panel.merge(recensement.commune(), on="commune_pcode", how="left")
     # Taux et rapports communaux : élèves comptés dans la commune de l'école.
     panel["tbs_primaire_commune"] = 100 * panel["eleves_primaire_insd"] / panel["enfants_6_11"]
     panel["tbs_post_primaire_commune"] = 100 * panel["eleves_post_primaire_insd"] / panel["enfants_12_15"]

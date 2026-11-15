@@ -51,6 +51,36 @@ panel_region_annee;methode_population;Méthode de la population : projection pub
 panel_region_annee;rapport_dependance;Moins de 15 ans et 65 ans et plus pour 100 personnes de 15 à 64 ans;DGESS, base principale;0.164
 panel_region_annee;part_moins_15;Part des moins de 15 ans dans la population, en %;DGESS, base principale;0.164
 panel_region_annee;croissance_enfants_6_11;Croissance des enfants de 6 à 11 ans depuis t-1, en %;DGESS, base principale;0.257
+panel_region_annee;pauvrete_region_2019;Incidence de la pauvreté (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;profondeur_pauvrete_region_2019;Profondeur de la pauvreté (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;travail_enfants_7_14_region_2019;Enfants de 7 à 14 ans qui travaillent (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;emploi_15_24_region_2019;Jeunes de 15 à 24 ans en emploi (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;emploi_25_64_region_2019;Adultes de 25 à 64 ans en emploi (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;chomage_15_24_region_2019;Chômage des 15-24 ans (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;chomage_25_64_region_2019;Chômage des 25-64 ans (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;travailleurs_autonomes_15_24_region_2019;Travailleurs autonomes parmi les 15-24 ans en emploi (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;travailleurs_autonomes_25_64_region_2019;Travailleurs autonomes parmi les 25-64 ans en emploi (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;frequentation_post_primaire_region_2019;Fréquentation du post-primaire (enfants d'âge officiel scolarisés) (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;frequentation_secondaire_region_2019;Fréquentation du lycée (jeunes d'âge officiel scolarisés au secondaire) (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;parite_scolarisation_primaire_region_2019;Rapport filles / garçons de la scolarisation au primaire (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;parite_scolarisation_post_primaire_region_2019;Rapport filles / garçons de la scolarisation au post-primaire (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;parite_scolarisation_secondaire_region_2019;Rapport filles / garçons de la scolarisation au secondaire (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;hors_ecole_6_11_region_2019;Enfants de 6 à 11 ans hors de l'école (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;hors_ecole_12_15_region_2019;Enfants de 12 à 15 ans hors de l'école (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;hors_ecole_16_18_region_2019;Jeunes de 16 à 18 ans hors de l'école (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;ni_ecole_ni_emploi_15_24_region_2019;Jeunes de 15 à 24 ans ni à l'école ni en emploi (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;alphabetisation_adultes_region_2019;Alphabétisation des 15-64 ans (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;dependance_demographique_region_2019;Rapport de dépendance démographique au recensement (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;filles_17_ans_mariees_region_2019;Filles de 17 ans mariées (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;acte_naissance_region_2019;Enfants ayant un acte de naissance (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;sanitaires_ameliores_region_2019;Ménages disposant de sanitaires améliorés (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;eau_amelioree_region_2019;Ménages ayant accès à une eau améliorée (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;electricite_region_2019;Ménages ayant l'électricité (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;cuisson_amelioree_region_2019;Ménages utilisant une énergie de cuisson améliorée (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;telephone_region_2019;Ménages accédant à un téléphone (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;population_rgph_region_2019;Population recensée en 2019 (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;menages_rgph_region_2019;Ménages recensés en 2019 (la région, 2019);DGESS, base principale;0.0
+panel_region_annee;nombre_pauvres_region_2019;Personnes pauvres en 2019 (la région, 2019);DGESS, base principale;0.0
 serie_nationale_annee;annee_scolaire;Année scolaire;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire;Élèves du primaire;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire_filles;Élèves du primaire, filles;DGESS, base principale;0.0

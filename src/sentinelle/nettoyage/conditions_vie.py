@@ -249,12 +249,13 @@ def controler(table: pd.DataFrame, communes_ref: pd.DataFrame, fichier_controle)
         ext = ext[ext["niveau"].isin(["Pays", "Région", "Province", "Commune / arrondissement"])]
         ext["code_rgph"] = ext["code_rgph"].replace({"NATIONAL": "BF"})
         nous = table[(table["niveau_geo"] != "commune") | (table["nb_unites_rgph"] == 1)].set_index("code_rgph")
-        correspondance = {"population": "population_2019", "menages": "nombre_menages_2019",
-                          "incidence_pauvrete": "incidence_pauvrete_pct", "profondeur_pauvrete": "profondeur_pauvrete_pct",
-                          "nombre_pauvres": "nombre_pauvres", "emploi_7_14": "emploi_7_14_pct",
-                          "hors_ecole_6_11": "hors_ecole_6_11_pct", "filles_17_ans_mariees": "filles_17_ans_mariees_pct",
-                          "alphabetisation_15_64": "alphabetisation_15_64_pct", "electricite": "electricite_pct",
-                          "telephone": "telephone_pct"}
+        # Les 30 indicateurs de l'annexe : nom Sentinelle -> colonne du classeur de l'équipe (même nom, suffixe _pct).
+        speciaux = {"population": "population_2019", "menages": "nombre_menages_2019", "nombre_pauvres": "nombre_pauvres",
+                    "ratio_filles_garcons_post_primaire": "ratio_filles_garcons_moyen"}
+        indicateurs = [c for c in table.columns if c in speciaux or f"{c}_pct" in ext.columns or c in ext.columns]
+        correspondance = {c: speciaux.get(c, f"{c}_pct" if f"{c}_pct" in ext.columns else c) for c in indicateurs
+                          if c not in ("code_rgph", "niveau_geo", "libelle", "population_2019")}
+        correspondance = {a: b for a, b in correspondance.items() if b in ext.columns}
         ext = ext.set_index("code_rgph")
         commun = nous.index.intersection(ext.index)
         egal = total = 0
@@ -264,6 +265,6 @@ def controler(table: pd.DataFrame, communes_ref: pd.DataFrame, fichier_controle)
             egal += int(((x - y).abs() <= 0.05).sum())
         resultats["conditions_vie_identique_extraction_equipe"] = (
             total > 0 and egal / total >= 0.98,
-            f"pays, régions, provinces et communes : {egal} valeurs identiques sur {total} comparées (11 indicateurs) "
+            f"pays, régions, provinces et communes : {egal} valeurs identiques sur {total} comparées ({len(correspondance)} indicateurs) "
             "avec l'extraction indépendante d'un membre de l'équipe")
     return resultats

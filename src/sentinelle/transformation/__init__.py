@@ -7,7 +7,7 @@ import pandas as pd
 
 from .. import config
 from . import metadonnees_modele
-from . import decoupage_2025, demographie, nommage
+from . import decoupage_2025, demographie, nommage, recensement
 from .fiche import FICHES
 from .panel import (SEUIL_RUPTURE, construire_panel, construire_panel_mensuel, construire_panel_region,
                     construire_serie_nationale)
@@ -228,6 +228,12 @@ VARIABLES_REGION.update({nom: VARIABLES[nom][1] for nom in (
     "population_totale", "moins_15", "age_15_64", "plus_64", "enfants_3_5", "enfants_5", "enfants_6_11",
     "enfants_6_11_filles", "enfants_6_11_garcons", "enfants_12_15", "enfants_12_15_filles", "enfants_12_15_garcons",
     "jeunes_16_18", "methode_population", "rapport_dependance", "part_moins_15", "croissance_enfants_6_11")})
+# Indicateurs du RGPH 2019 à chaque niveau (module recensement).
+for _niveau in ("province", "region", "commune"):
+    for _nom, (_libelle, _unite, _calcul, _limites) in recensement.descriptions(_niveau).items():
+        FICHES.setdefault(_nom, (_libelle, _unite, _calcul, _limites))
+        VARIABLES.setdefault(_nom, ("explicative", _libelle, recensement.SOURCE))
+        VARIABLES_REGION.setdefault(_nom, _libelle)
 nommage.etendre(FICHES, VARIABLES, VARIABLES_REGION)
 
 # Relations entre tables, pour le schéma de la base (rôle architecte).
@@ -362,6 +368,7 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
     panel = demographie.ajouter(construire_panel(), "province_ancienne_pcode")
     mensuel = construire_panel_mensuel()
     region = demographie.ajouter(construire_panel_region(), "region_ancienne_pcode")
+    region = recensement.ajouter(region, recensement.region_ancienne(), "region_ancienne_pcode")
     communes = demographie.panel_communes()
     nationale = construire_serie_nationale()
     dico = dictionnaire(panel)
@@ -378,6 +385,8 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
                                      "province_pcode")
     region_2025 = demographie.ajouter(region_2025.drop(columns=[c for c in colonnes_demo if c in region_2025]),
                                       "region_pcode")
+    # RGPH 2019 des régions de 2025 : publié si la région est inchangée, sinon recalculé sur ses communes.
+    region_2025 = recensement.ajouter(region_2025, recensement.region_2025(decoupage_2025._communes()), "region_pcode")
     internes = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
                 "serie_nationale_annee": nationale, "panel_province_2025": panel_2025, "panel_region_2025": region_2025,
                 "panel_commune_annee": communes}
@@ -388,6 +397,9 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
                                controles_region(region, nationale, dico_region, panel),
                                decoupage_2025.controles(panel, panel_2025, region, region_2025),
                                controles_demographie(panel, panel_2025, communes),
+                               pd.DataFrame([{"controle": "recensement_2019_tous_niveaux",
+                                              "conforme": recensement.controle(panel, panel_2025, communes)[0],
+                                              "detail": recensement.controle(panel, panel_2025, communes)[1]}]),
                                pd.DataFrame([{"controle": "fiches_completes", "conforme": conforme, "detail": detail}])],
                               ignore_index=True)
     resultat = {**bases, "dictionnaire_variables_modele": dictionnaire(bases["panel_province_annee"]),

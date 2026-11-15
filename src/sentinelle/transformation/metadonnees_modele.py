@@ -73,7 +73,8 @@ def _role_description_source(table: str, variable: str, variables: dict, variabl
     identifiants = {"region_ancienne_pcode", "region_ancienne_nom", "annee_scolaire"}
     role = "identifiant" if variable in identifiants else "contexte"
     source = "OpenStreetMap (HOT)" if variable == "region_ancienne_nom" else (
-        "COD-AB" if variable == "region_ancienne_pcode" else "DGESS, base principale")
+        "COD-AB" if variable == "region_ancienne_pcode" else (
+            variables[variable][2] if variable in variables else "DGESS, base principale"))
     return role, description, source
 
 

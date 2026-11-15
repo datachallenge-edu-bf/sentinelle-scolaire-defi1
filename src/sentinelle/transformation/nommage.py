@@ -95,7 +95,7 @@ REGLES = [
     (r"prescola|section", "préscolaire"),
     (r"non_formelle", "non formel"),
     (r"post_primaire|(^|_)(6e|3e)(_|$)|hors_ecole_12_15", "post-primaire"),
-    (r"secondaire", "secondaire"),
+    (r"secondaire|hors_ecole_16_18", "secondaire"),
     (r"primaire|(^|_)cp1(_|$)|cm2|(^|_)cep(_|$)|hors_ecole_6_11", "primaire"),
 ]
 

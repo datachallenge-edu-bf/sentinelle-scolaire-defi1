@@ -24,7 +24,7 @@ prescolaire_regions_egal_base_principale;True;24 régions × années identiques 
 conditions_vie_couverture;True;13 régions, 45 provinces, 351 communes sur 351
 conditions_vie_population_communes_egal_province;True;45 provinces sur 45 identiques
 conditions_vie_indicateurs_renseignes;True;part renseignée de 33 indicateurs : minimum 99.3% (ratio_filles_garcons_post_primaire)
-conditions_vie_identique_extraction_equipe;True;pays, régions, provinces et communes : 4485 valeurs identiques sur 4485 comparées (11 indicateurs) avec l'extraction indépendante d'un membre de l'équipe
+conditions_vie_identique_extraction_equipe;True;pays, régions, provinces et communes : 12220 valeurs identiques sur 12220 comparées (30 indicateurs) avec l'extraction indépendante d'un membre de l'équipe
 conditions_scolarisation_45_provinces;True;"16 sections × 8 éditions ; toutes à 44 ou 45 provinces"
 conditions_scolarisation_public_plus_prive;True;équipement : public + privé = ensemble pour 2824 valeurs sur 2824
 conditions_scolarisation_taille_somme_ecoles;True;écoles par nombre de salles = total des écoles pour 359 provinces × éditions sur 359

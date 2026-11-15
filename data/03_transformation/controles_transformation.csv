@@ -2,7 +2,7 @@
 une_ligne_par_province_et_annee;True;405 lignes = 45 provinces × 9 années, sans doublon
 cible_renseignee;True;abandon observé : 321, à prévoir : 45, rupture de scolarisation : 39
 aucune_variable_explicative_venant_du_futur;True;les variables de t+1 servent seulement à définir la cible
-toutes_les_variables_decrites;True;112 variables décrites
+toutes_les_variables_decrites;True;131 variables décrites
 jointure_carte_2025;True;les 45 provinces du panel couvrent les 47 provinces de 2025
 panel_mensuel_sans_doublon;True;1764 lignes, 44 mois (2019-01 à 2023-03)
 panel_region_une_ligne_par_region_et_annee;True;140 lignes = 13 régions et le pays × 10 années
@@ -10,7 +10,7 @@ somme_des_regions_egale_national;True;écart maximal 0 élève sur 10 années
 public_plus_prive_egal_total_national;True;écart maximal 0 élève
 taux_achevement_national_2024_2025;True;51.6 % en 2024-2025, valeur citée dans la note d'intention
 contexte_regional_joint_au_panel;True;taux d'achèvement régional renseigné pour 100% des lignes du panel
-variables_regionales_decrites;True;112 variables décrites
+variables_regionales_decrites;True;142 variables décrites
 decoupage_2025_recalcul_regional_valide;True;taux recalculés depuis les provinces contre taux publiés des 10 régions inchangées, écart médian (points) : tba 0.02, tbs 0.00, taux_achevement 0.00, reussite_cep 0.00
 decoupage_2025_provinces_scindees_differenciees;True;TBS distincts entre les deux moitiés pour 16 couples province × année sur 18 (clés communales INSD)
 decoupage_2025_47_provinces;True;47 provinces de 2025 × 9 années, noms du COD-AB
@@ -22,4 +22,5 @@ demographie_communes_provinces_identiques;True;enfants de 6 à 11 ans : 351 comm
 demographie_retroprojection_validee;True;"6-11 ans rétroprojetés au niveau national, rapportés aux anciennes projections (base RGPH 2006) : 2016 0.915, 2017 0.929, 2018 0.940 ; écart attendu, les anciennes projections surestimaient la population recensée en 2019"
 demographie_panel_renseigne;True;population de 6 à 11 ans renseignée pour 100% des lignes du panel (2016-2017 à 2024-2025)
 panel_communal_351_communes;True;"351 communes × 9 années ; TBS communal du primaire calculable pour 2641 lignes"
-fiches_completes;True;459 variables de 7 tables : libellé, description, unité et source renseignés
+recensement_2019_tous_niveaux;True;"30 indicateurs du RGPH 2019 (30 complets pour les 45 provinces) ; population 2019 : 45 provinces 20 505 155  47 provinces de 2025 20 505 155  351 communes 20 505 155"
+fiches_completes;True;580 variables de 7 tables : libellé, description, unité et source renseignés

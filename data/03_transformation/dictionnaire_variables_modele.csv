@@ -83,14 +83,33 @@ ecart_achevement_primaire_entree_6e;explicative;Achèvement du primaire moins en
 pauvrete_province;explicative;Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 profondeur_pauvrete_province;explicative;Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 travail_enfants_7_14_province;explicative;Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+emploi_15_24_province;explicative;Jeunes de 15 à 24 ans en emploi (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+emploi_25_64_province;explicative;Adultes de 25 à 64 ans en emploi (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+chomage_15_24_province;explicative;Chômage des 15-24 ans (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+chomage_25_64_province;explicative;Chômage des 25-64 ans (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+travailleurs_autonomes_15_24_province;explicative;Travailleurs autonomes parmi les 15-24 ans en emploi (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+travailleurs_autonomes_25_64_province;explicative;Travailleurs autonomes parmi les 25-64 ans en emploi (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+frequentation_post_primaire_province;explicative;Fréquentation du post-primaire (enfants d'âge officiel scolarisés) (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+frequentation_secondaire_province;explicative;Fréquentation du lycée (jeunes d'âge officiel scolarisés au secondaire) (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+parite_scolarisation_primaire_province;explicative;Rapport filles / garçons de la scolarisation au primaire (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+parite_scolarisation_post_primaire_province;explicative;Rapport filles / garçons de la scolarisation au post-primaire (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+parite_scolarisation_secondaire_province;explicative;Rapport filles / garçons de la scolarisation au secondaire (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
 hors_ecole_6_11_province;explicative;Enfants de 6 à 11 ans hors de l'école (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 hors_ecole_12_15_province;explicative;Enfants de 12 à 15 ans hors de l'école (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
-filles_17_ans_mariees_province;explicative;Filles de 17 ans mariées (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+hors_ecole_16_18_province;explicative;Jeunes de 16 à 18 ans hors de l'école (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+ni_ecole_ni_emploi_15_24_province;explicative;Jeunes de 15 à 24 ans ni à l'école ni en emploi (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
 alphabetisation_adultes_province;explicative;Alphabétisation des 15-64 ans (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+dependance_demographique_province;explicative;Rapport de dépendance démographique au recensement (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+filles_17_ans_mariees_province;explicative;Filles de 17 ans mariées (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 acte_naissance_province;explicative;Personnes disposant d'un acte de naissance (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
-parite_scolarisation_primaire_province;explicative;Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+sanitaires_ameliores_province;explicative;Ménages disposant de sanitaires améliorés (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+eau_amelioree_province;explicative;Ménages ayant accès à une eau améliorée (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
 electricite_province;explicative;Ménages accédant à l'électricité (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+cuisson_amelioree_province;explicative;Ménages utilisant une énergie de cuisson améliorée (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
 telephone_province;explicative;Ménages accédant à un téléphone (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+population_rgph_province;explicative;Population recensée en 2019 (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+menages_rgph_province;explicative;Ménages recensés en 2019 (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
+nombre_pauvres_province;explicative;Personnes pauvres en 2019 (la province, 2019);INSD, RGPH 2019, volume 3 (pauvreté), annexes;0.0;2016-2017;2024-2025
 consommation_par_personne_province;explicative;Consommation annuelle moyenne par personne dans la province (2019, constante dans le temps);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.267;2016-2017;2024-2025
 gini_province;explicative;Indice de Gini de la consommation dans la province (2019, constant dans le temps);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.244;2016-2017;2024-2025
 rapport_q90_q10_province;explicative;Rapport entre le 9e et le 1er décile de consommation dans la province (2019);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.244;2016-2017;2024-2025

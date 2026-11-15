@@ -281,15 +281,10 @@ def _non_formelle_et_prescolaire() -> pd.DataFrame:
     return resultat.rename(columns={"entite_pcode": "province_ancienne_pcode"})
 
 
-# Caractéristiques structurelles mesurées au recensement de 2019 : variable du RGPH -> colonne du panel.
-STRUCTURELLES = {"incidence_pauvrete": "pauvrete_province", "profondeur_pauvrete": "profondeur_pauvrete_province", "emploi_7_14": "travail_enfants_7_14_province", "hors_ecole_6_11": "hors_ecole_6_11_province", "hors_ecole_12_15": "hors_ecole_12_15_province", "filles_17_ans_mariees": "filles_17_ans_mariees_province", "alphabetisation_15_64": "alphabetisation_adultes_province", "acte_naissance": "acte_naissance_province", "ratio_filles_garcons_primaire": "parite_scolarisation_province", "electricite": "electricite_province", "telephone": "telephone_province"}
-
-
 def _structurelles() -> pd.DataFrame:
     """Pauvreté, conditions de vie, consommation et inégalités de la province en 2019, identiques chaque année."""
-    vie = lire("fait_conditions_vie")
-    vie = vie[vie["niveau_geo"] == "province_ancienne"]
-    vie = vie[["entite_pcode", *STRUCTURELLES]].rename(columns=STRUCTURELLES)
+    from . import recensement
+    vie = recensement.province_ancienne().rename(columns={"province_ancienne_pcode": "entite_pcode"})
     profils = lire("fait_profils_pauvrete")
     profils = profils[profils["niveau_geo"] == "province_ancienne"][
         ["entite_pcode", "consommation_par_personne", "gini", "rapport_q90_q10"]].rename(columns={
