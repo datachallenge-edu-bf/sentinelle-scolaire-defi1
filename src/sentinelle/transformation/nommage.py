@@ -8,8 +8,10 @@ d'enseignement qu'elle décrit, avec un vocabulaire fixe :
     prescolaire, primaire (CP1 à CM2), post_primaire (6e à 3e), secondaire (2nde à
     terminale), post_primaire_secondaire (6e à terminale), non_formelle
 
-Les variables qui ne décrivent pas l'école (RGPH 2019, déplacés, consommation) relèvent du
-contexte. Les écoles fermées des synthèses régionales du ST-ESU couvrent tous les ordres :
+Une variable du recensement qui mesure la scolarisation d'un groupe d'âge relève de l'ordre de
+cet âge (6-11 ans hors de l'école : primaire ; 12-15 ans : post-primaire). Les variables qui
+ne décrivent pas l'école (pauvreté, équipement des ménages, déplacés, consommation) relèvent
+du contexte. Les écoles fermées des synthèses régionales du ST-ESU couvrent tous les ordres :
 leur nom le dit.
 
 Le calcul, les contrôles et le futur modèle gardent les noms internes ; les tables écrites,
@@ -87,9 +89,9 @@ REGLES = [
     (r"post_primaire_secondaire", "post-primaire et secondaire"),
     (r"prescola|section", "préscolaire"),
     (r"non_formelle", "non formel"),
-    (r"post_primaire|(^|_)(6e|3e)(_|$)", "post-primaire"),
+    (r"post_primaire|(^|_)(6e|3e)(_|$)|hors_ecole_12_15", "post-primaire"),
     (r"secondaire", "secondaire"),
-    (r"primaire|(^|_)cp1(_|$)|cm2|(^|_)cep(_|$)", "primaire"),
+    (r"primaire|(^|_)cp1(_|$)|cm2|(^|_)cep(_|$)|hors_ecole_6_11", "primaire"),
 ]
 
 
@@ -128,7 +130,11 @@ def publier(tables: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
 
 
 def classeur_base_finale(tables: dict[str, pd.DataFrame], dictionnaire: pd.DataFrame, chemin: Path) -> list[str]:
-    """Un onglet par panel et par ordre d'enseignement : identifiants, puis les variables de cet ordre."""
+    """Pour chaque panel : un onglet global (le panel entier) et un onglet par ordre d'enseignement.
+
+    Un onglet d'ordre reprend les identifiants, les variables de l'ordre et le contexte du
+    territoire (pauvreté, ménages, déplacés, consommation), pour se lire seul.
+    """
     ordres = ["primaire", "préscolaire", "non formel", "post-primaire", "secondaire", "post-primaire et secondaire",
               "tous ordres", "contexte"]
     courts = {"primaire": "primaire", "préscolaire": "prescolaire", "non formel": "non_formel",
@@ -137,9 +143,10 @@ def classeur_base_finale(tables: dict[str, pd.DataFrame], dictionnaire: pd.DataF
     onglets = []
     with pd.ExcelWriter(chemin, engine="openpyxl") as classeur:
         pd.DataFrame({"Sentinelle Scolaire : base finale, découpage administratif de 2025": [
-            "Un onglet par panel (province de 2025, région de 2025) et par ordre d'enseignement.",
-            "Chaque onglet reprend les identifiants (codes et noms de 2025 et de l'ancien découpage, année, méthode de "
-            "passage, statut de la cible) puis les seules variables de l'ordre.",
+            "Pour chaque panel (province de 2025, région de 2025) : un onglet global, le panel entier, puis un onglet "
+            "par ordre d'enseignement.",
+            "Chaque onglet d'ordre reprend les identifiants (codes et noms de 2025 et de l'ancien découpage, année, "
+            "méthode de passage, statut de la cible), les variables de l'ordre, puis le contexte du territoire.",
             "La cible du modèle, abandon_primaire_suivant, est dans l'onglet du primaire ; cible_observee indique les "
             "lignes utilisables pour l'entraînement.",
             "L'onglet « variables » décrit chaque variable et son ordre d'enseignement."]}).to_excel(
@@ -147,11 +154,14 @@ def classeur_base_finale(tables: dict[str, pd.DataFrame], dictionnaire: pd.DataF
         for nom, table in tables.items():
             prefixe = nom.replace("panel_", "").replace("_2025", "")
             identifiants = [c for c in table.columns if ordre_enseignement(c) == "identifiant"]
+            contexte = [c for c in table.columns if ordre_enseignement(c) == "contexte"]
+            table.to_excel(classeur, sheet_name=f"{prefixe}_global"[:31], index=False)
+            onglets.append(f"{prefixe}_global")
             for o in ordres:
                 colonnes = [c for c in table.columns if ordre_enseignement(c) == o]
-                if colonnes:
+                if colonnes and o != "contexte":
                     onglet = f"{prefixe}_{courts[o]}"[:31]
-                    table[identifiants + colonnes].to_excel(classeur, sheet_name=onglet, index=False)
+                    table[identifiants + colonnes + contexte].to_excel(classeur, sheet_name=onglet, index=False)
                     onglets.append(onglet)
         variables = dictionnaire[dictionnaire["table"].isin(tables)].copy()
         if "ordre_enseignement" not in variables:
