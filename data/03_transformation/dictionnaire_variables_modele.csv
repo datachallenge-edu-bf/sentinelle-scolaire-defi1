@@ -5,71 +5,71 @@ region_ancienne_pcode;identifiant;Code de la région (ancien découpage);COD-AB;
 region_ancienne_nom;identifiant;Nom de la région;OpenStreetMap (HOT);0.0;2016-2017;2024-2025
 provinces_actuelles;identifiant;Provinces du découpage de 2025 issues de la province;COD-AB;0.0;2016-2017;2024-2025
 annee_scolaire;identifiant;Année scolaire t;DGESS, annuaires du primaire;0.0;2016-2017;2024-2025
-abandon_brut_suivant;cible (brute);Abandon apparent du cycle CP1-CM1 entre t et t+1, en %;DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
-abandon_precedent;explicative;Abandon entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-redoublement_precedent;explicative;Redoublement entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-promotion_precedente;explicative;Promotion entre t-1 et t, en %;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-effectif;explicative;Effectif total du primaire en t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-part_filles;explicative;"Part des filles dans l'effectif ; vide quand la répartition publiée est invraisemblable";DGESS, tableau VIII.3;0.106;2016-2017;2024-2025
+abandon_primaire_brut_suivant;cible (brute);Abandon apparent du cycle CP1-CM1 entre t et t+1, en %;DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
+abandon_primaire_precedent;explicative;Abandon entre t-1 et t, en % (primaire);DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+redoublement_primaire_precedent;explicative;Redoublement entre t-1 et t, en % (primaire);DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+promotion_primaire_precedente;explicative;Promotion entre t-1 et t, en % (primaire);DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+eleves_primaire;explicative;Effectif total du primaire en t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+part_filles_primaire;explicative;"Part des filles dans l'effectif ; vide quand la répartition publiée est invraisemblable (primaire)";DGESS, tableau VIII.3;0.106;2016-2017;2024-2025
 part_cp1;explicative;Part du CP1 dans l'effectif;DGESS, tableau VIII.3;0.002;2016-2017;2024-2025
 rapport_cm2_cp1;explicative;Effectif du CM2 rapporté à celui du CP1;DGESS, tableau VIII.3;0.002;2016-2017;2024-2025
-effectif_precedent;explicative;Effectif total en t-1;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-effectif_suivant;cible (contexte);"Effectif total en t+1 ; jamais comme variable explicative";DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
-evolution_effectifs;explicative;Évolution des effectifs entre t-1 et t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-evolution_effectifs_suivante;cible (contexte);"Évolution des effectifs entre t et t+1 ; sert à repérer les ruptures, jamais comme variable explicative";DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
-choc_effectifs;explicative;Vrai si les effectifs ont varié de plus de 30% entre t-1 et t;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+eleves_primaire_precedent;explicative;Effectif total en t-1 (primaire);DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+eleves_primaire_suivant;cible (contexte);"Effectif total en t+1 ; jamais comme variable explicative (primaire)";DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
+evolution_eleves_primaire;explicative;Évolution des effectifs entre t-1 et t (primaire);DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
+evolution_eleves_primaire_suivante;cible (contexte);"Évolution des effectifs entre t et t+1 ; sert à repérer les ruptures, jamais comme variable explicative (primaire)";DGESS, tableau VIII.3;0.111;2016-2017;2023-2024
+choc_eleves_primaire;explicative;Vrai si les effectifs ont varié de plus de 30% entre t-1 et t (primaire);DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
 rupture_cible;cible;Vrai si les effectifs varient de plus de 30% entre t et t+1;DGESS, tableau VIII.3;0.0;2016-2017;2024-2025
-abandon_suivant;cible;"Abandon entre t et t+1, en % ; vide en cas de rupture de scolarisation ou pour la dernière année";DGESS, tableau VIII.3;0.207;2016-2017;2023-2024
+abandon_primaire_suivant;cible;"Abandon entre t et t+1, en % ; vide en cas de rupture de scolarisation ou pour la dernière année (primaire)";DGESS, tableau VIII.3;0.207;2016-2017;2023-2024
 statut_cible;cible;abandon observé, rupture de scolarisation ou à prévoir;calculs des auteurs;0.0;2016-2017;2024-2025
-eleves_par_maitre;explicative;Élèves par maître chargé de cours, public et privé;DGESS, tableau I.1;0.114;2017-2018;2024-2025
-eleves_par_salle;explicative;Élèves par salle de classe, public et privé;DGESS, tableau I.1;0.114;2017-2018;2024-2025
-part_eleves_prive;explicative;Part des élèves scolarisés dans le privé;DGESS, tableau I.1;0.114;2017-2018;2024-2025
+eleves_par_maitre_primaire;explicative;Élèves par maître chargé de cours, public et privé (primaire);DGESS, tableau I.1;0.114;2017-2018;2024-2025
+eleves_par_salle_primaire;explicative;Élèves par salle de classe, public et privé (primaire);DGESS, tableau I.1;0.114;2017-2018;2024-2025
+part_eleves_primaire_prive;explicative;Part des élèves scolarisés dans le privé (primaire);DGESS, tableau I.1;0.114;2017-2018;2024-2025
 deplaces;explicative;Déplacés internes accueillis dans la province, dernière situation connue au 31 décembre de l'année de rentrée;SP/CONASUR;0.563;2019-2020;2022-2023
 date_deplaces;qualité;Date de la situation des déplacés retenue;SP/CONASUR;0.563;2019-2020;2022-2023
-deplaces_pour_100_eleves;explicative;Déplacés accueillis pour 100 élèves inscrits;"SP/CONASUR ; DGESS";0.563;2019-2020;2022-2023
-ecoles_fermees_province;explicative;Écoles primaires fermées, moyenne des rapports fiables de l'année scolaire;ST-ESU;0.921;2021-2022;2023-2024
-eleves_touches_province;explicative;Élèves des écoles primaires fermées, moyenne des rapports fiables de l'année;ST-ESU;0.921;2021-2022;2023-2024
-ecoles_fermees_region;explicative;Établissements fermés dans la région (tous ordres), moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
-eleves_affectes_region;explicative;Élèves affectés par les fermetures dans la région, moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
-tba_region;explicative;Taux brut d'admission au CP1 de la région en t, en %;DGESS, base principale, feuille 6;0.0;2016-2017;2024-2025
-tbs_region;explicative;Taux brut de scolarisation au primaire de la région en t, en %;DGESS, base principale, feuille 7;0.0;2016-2017;2024-2025
-taux_achevement_region;explicative;Taux d'achèvement du primaire de la région en t, en %;DGESS, base principale, feuille 8;0.0;2016-2017;2024-2025
-ips_tbs_region;explicative;Indice de parité filles / garçons du TBS de la région en t;DGESS, base principale, feuille 11;0.0;2016-2017;2024-2025
-ips_tap_region;explicative;Indice de parité filles / garçons du taux d'achèvement de la région en t;DGESS, base principale, feuille 12;0.0;2016-2017;2024-2025
+deplaces_pour_100_eleves_primaire;explicative;Déplacés accueillis pour 100 élèves inscrits (primaire);"SP/CONASUR ; DGESS";0.563;2019-2020;2022-2023
+ecoles_primaires_fermees_province;explicative;Écoles primaires fermées, moyenne des rapports fiables de l'année scolaire;ST-ESU;0.921;2021-2022;2023-2024
+eleves_primaire_touches_province;explicative;Élèves des écoles primaires fermées, moyenne des rapports fiables de l'année;ST-ESU;0.921;2021-2022;2023-2024
+etablissements_fermes_tous_ordres_region;explicative;Établissements fermés dans la région (tous ordres), moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
+eleves_affectes_tous_ordres_region;explicative;Élèves affectés par les fermetures dans la région, moyenne des rapports de l'année;ST-ESU;0.815;2021-2022;2022-2023
+tba_primaire_region;explicative;Taux brut d'admission au CP1 de la région en t, en %;DGESS, base principale, feuille 6;0.0;2016-2017;2024-2025
+tbs_primaire_region;explicative;Taux brut de scolarisation au primaire de la région en t, en %;DGESS, base principale, feuille 7;0.0;2016-2017;2024-2025
+taux_achevement_primaire_region;explicative;Taux d'achèvement du primaire de la région en t, en %;DGESS, base principale, feuille 8;0.0;2016-2017;2024-2025
+ips_tbs_primaire_region;explicative;Indice de parité filles / garçons du TBS de la région en t (primaire);DGESS, base principale, feuille 11;0.0;2016-2017;2024-2025
+ips_tap_primaire_region;explicative;Indice de parité filles / garçons du taux d'achèvement de la région en t (primaire);DGESS, base principale, feuille 12;0.0;2016-2017;2024-2025
 tbs_prescolaire_region;explicative;Taux brut de scolarisation au préscolaire de la région en t, en %;DGESS, base principale, feuille PRESCOLAIRE, tableau 5;0.0;2016-2017;2024-2025
-part_ecoles_privees_region;explicative;Part des écoles primaires privées de la région en t;DGESS, base principale, feuille 13;0.0;2016-2017;2024-2025
+part_ecoles_primaires_privees_region;explicative;Part des écoles primaires privées de la région en t;DGESS, base principale, feuille 13;0.0;2016-2017;2024-2025
 reussite_cep_precedente_region;explicative;Taux de réussite au CEP de la région à la session qui clôt t-1 (celle de t n'est pas connue à la rentrée), en %;DGESS, base principale, feuille 9;0.0;2016-2017;2024-2025
 adolescents_non_formelle;explicative;Adolescents inscrits dans l'éducation non formelle de la province (campagne achevée à la rentrée de t);DGESS, annuaires de l'éducation non formelle, tableau 1.3;0.556;2018-2019;2024-2025
 centres_non_formelle_adolescents;explicative;Centres d'éducation non formelle des adolescents de la province (campagne achevée à la rentrée de t);DGESS, annuaires de l'éducation non formelle, tableau 1.1;0.556;2018-2019;2024-2025
 taux_prescolarisation_province;explicative;Taux de préscolarisation de la province en t, en %;DGESS, annuaires du préscolaire, tableau 02;0.778;2023-2024;2024-2025
-grande_section_province;explicative;Enfants en grande section dans la province en t (futurs entrants au CP1);DGESS, annuaires du préscolaire, tableau 9;0.778;2023-2024;2024-2025
-adolescents_non_formelle_pour_1000_eleves;explicative;Adolescents de l'éducation non formelle pour 1 000 élèves du primaire;"DGESS ; calculs des auteurs";0.556;2018-2019;2024-2025
-part_ecoles_cantine;explicative;Part des écoles disposant d'une cantine scolaire;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
-part_ecoles_latrines;explicative;Part des écoles disposant de latrines;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
-part_ecoles_eau_potable;explicative;Part des écoles disposant d'un point d'eau potable;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
-part_ecoles_electricite;explicative;Part des écoles disposant de l'électricité;DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
-part_eleves_plus_3km;explicative;Part des élèves effectuant un trajet de plus de 3 km pour aller à l'école;DGESS, annuaires du primaire, distance parcourue;0.114;2017-2018;2024-2025
-part_ecoles_cycle_incomplet;explicative;Part des écoles de moins de six salles fonctionnelles (cycle incomplet probable);DGESS, annuaires du primaire, taille des écoles;0.114;2017-2018;2024-2025
-logements_pour_100_maitres;explicative;Logements de maîtres disponibles pour 100 maîtres chargés de cours;DGESS, annuaires du primaire, logements de maîtres;0.114;2017-2018;2024-2025
-manuels_lecture_par_eleve;explicative;Manuels de lecture disponibles par élève;DGESS, annuaires du primaire, manuels des élèves;0.123;2017-2018;2024-2025
-manuels_calcul_par_eleve;explicative;Manuels de calcul disponibles par élève;DGESS, annuaires du primaire, manuels des élèves;0.123;2017-2018;2024-2025
-part_parents_agriculteurs;explicative;Part des élèves dont les parents sont cultivateurs ou éleveurs;DGESS, annuaires du primaire, profession des parents;0.114;2017-2018;2024-2025
-part_salles_murs_precaires;explicative;Part des salles aux murs semi-durs, en paille ou en banco;DGESS, annuaires du primaire, nature et état des murs;0.114;2017-2018;2024-2025
-part_salles_toit_precaire;explicative;Part des salles couvertes de banco, de paille ou sans toit;DGESS, annuaires du primaire, nature et état des toitures;0.114;2017-2018;2024-2025
-part_salles_recentes;explicative;Part des salles de classe mises en service après 2015;DGESS, annuaires du primaire, année de mise en service;0.114;2017-2018;2024-2025
-tba_province;explicative;Taux brut d'admission au CP1 de la province;DGESS, annuaires du primaire, taux brut d'admission;0.111;2017-2018;2024-2025
-tbs_province;explicative;Taux brut de scolarisation de la province;DGESS, annuaires du primaire, taux brut de scolarisation;0.111;2017-2018;2024-2025
-tns_province;explicative;Taux net de scolarisation de la province (enfants de 6 à 11 ans scolarisés);DGESS, annuaires du primaire, taux net de scolarisation;0.111;2017-2018;2024-2025
-ecart_tbs_filles_garcons;explicative;Écart entre le TBS des filles et celui des garçons;DGESS, annuaires du primaire, taux brut de scolarisation;0.111;2017-2018;2024-2025
-achevement_province;explicative;Taux d'achèvement du primaire de la province;DGESS, annuaires du primaire, taux d'achèvement;0.111;2017-2018;2024-2025
+grande_section_prescolaire_province;explicative;Enfants en grande section dans la province en t (futurs entrants au CP1);DGESS, annuaires du préscolaire, tableau 9;0.778;2023-2024;2024-2025
+adolescents_non_formelle_pour_1000_eleves_primaire;explicative;Adolescents de l'éducation non formelle pour 1 000 élèves du primaire;"DGESS ; calculs des auteurs";0.556;2018-2019;2024-2025
+part_ecoles_primaires_cantine;explicative;Part des écoles disposant d'une cantine scolaire (primaire);DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_ecoles_primaires_latrines;explicative;Part des écoles disposant de latrines (primaire);DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_ecoles_primaires_eau_potable;explicative;Part des écoles disposant d'un point d'eau potable (primaire);DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_ecoles_primaires_electricite;explicative;Part des écoles disposant de l'électricité (primaire);DGESS, annuaires du primaire, équipement des écoles;0.114;2017-2018;2024-2025
+part_eleves_primaire_plus_3km;explicative;Part des élèves effectuant un trajet de plus de 3 km pour aller à l'école (primaire);DGESS, annuaires du primaire, distance parcourue;0.114;2017-2018;2024-2025
+part_ecoles_primaires_cycle_incomplet;explicative;Part des écoles de moins de six salles fonctionnelles (cycle incomplet probable) (primaire);DGESS, annuaires du primaire, taille des écoles;0.114;2017-2018;2024-2025
+logements_pour_100_maitres_primaire;explicative;Logements de maîtres disponibles pour 100 maîtres chargés de cours (primaire);DGESS, annuaires du primaire, logements de maîtres;0.114;2017-2018;2024-2025
+manuels_lecture_par_eleve_primaire;explicative;Manuels de lecture disponibles par élève (primaire);DGESS, annuaires du primaire, manuels des élèves;0.123;2017-2018;2024-2025
+manuels_calcul_par_eleve_primaire;explicative;Manuels de calcul disponibles par élève (primaire);DGESS, annuaires du primaire, manuels des élèves;0.123;2017-2018;2024-2025
+part_parents_agriculteurs_eleves_primaire;explicative;Part des élèves dont les parents sont cultivateurs ou éleveurs (primaire);DGESS, annuaires du primaire, profession des parents;0.114;2017-2018;2024-2025
+part_salles_primaire_murs_precaires;explicative;Part des salles aux murs semi-durs, en paille ou en banco (primaire);DGESS, annuaires du primaire, nature et état des murs;0.114;2017-2018;2024-2025
+part_salles_primaire_toit_precaire;explicative;Part des salles couvertes de banco, de paille ou sans toit (primaire);DGESS, annuaires du primaire, nature et état des toitures;0.114;2017-2018;2024-2025
+part_salles_primaire_recentes;explicative;Part des salles de classe mises en service après 2015 (primaire);DGESS, annuaires du primaire, année de mise en service;0.114;2017-2018;2024-2025
+tba_primaire_province;explicative;Taux brut d'admission au CP1 de la province;DGESS, annuaires du primaire, taux brut d'admission;0.111;2017-2018;2024-2025
+tbs_primaire_province;explicative;Taux brut de scolarisation de la province (primaire);DGESS, annuaires du primaire, taux brut de scolarisation;0.111;2017-2018;2024-2025
+tns_primaire_province;explicative;Taux net de scolarisation de la province (enfants de 6 à 11 ans scolarisés) (primaire);DGESS, annuaires du primaire, taux net de scolarisation;0.111;2017-2018;2024-2025
+ecart_tbs_primaire_filles_garcons;explicative;Écart entre le TBS des filles et celui des garçons (primaire);DGESS, annuaires du primaire, taux brut de scolarisation;0.111;2017-2018;2024-2025
+achevement_primaire_province;explicative;Taux d'achèvement du primaire de la province;DGESS, annuaires du primaire, taux d'achèvement;0.111;2017-2018;2024-2025
 reussite_cep_precedente_province;explicative;Taux d'admission au CEP de la province à la session qui clôt t-1;DGESS, annuaires du primaire, résultats au CEP;0.225;2018-2019;2024-2025
-deficit_places_pour_100_eleves;explicative;Places assises manquantes pour 100 élèves;DGESS, annuaires du primaire, mobilier des élèves;0.121;2017-2018;2024-2025
-part_eleves_12_ans_et_plus;explicative;Part des élèves du primaire âgés de 12 ans ou plus (retard scolaire);DGESS, annuaires du primaire, élèves par âge;0.114;2017-2018;2024-2025
+deficit_places_pour_100_eleves_primaire;explicative;Places assises manquantes pour 100 élèves (primaire);DGESS, annuaires du primaire, mobilier des élèves;0.121;2017-2018;2024-2025
+part_eleves_primaire_12_ans_et_plus;explicative;Part des élèves du primaire âgés de 12 ans ou plus (retard scolaire);DGESS, annuaires du primaire, élèves par âge;0.114;2017-2018;2024-2025
 part_entrants_cp1_8_ans_et_plus;explicative;Part des nouveaux entrants au CP1 âgés de 8 ans ou plus (entrée tardive);DGESS, annuaires du primaire, nouveaux entrants par âge;0.116;2017-2018;2024-2025
-part_enseignantes;explicative;Part des femmes parmi les enseignants;DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
-part_enseignants_debutants;explicative;Part des enseignants ayant de 1 à 5 ans d'expérience;DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
-abandons_orpaillage_pour_1000_region;explicative;Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire;DGESS, tableaux de bord du primaire;0.222;2017-2018;2023-2024
-abandons_mariage_grossesse_pour_1000_region;explicative;Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire;DGESS, tableaux de bord du primaire;0.222;2017-2018;2023-2024
+part_enseignantes_primaire;explicative;Part des femmes parmi les enseignants (primaire);DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
+part_enseignants_primaire_debutants;explicative;Part des enseignants ayant de 1 à 5 ans d'expérience (primaire);DGESS, annuaires du primaire, enseignants par sexe, âge et expérience;0.114;2017-2018;2024-2025
+abandons_primaire_orpaillage_pour_1000_region;explicative;Abandons déclarés pour orpaillage dans la région en t-1, pour 1 000 élèves du primaire;DGESS, tableaux de bord du primaire;0.222;2017-2018;2023-2024
+abandons_primaire_mariage_grossesse_pour_1000_region;explicative;Abandons déclarés pour mariage ou grossesse dans la région en t-1, pour 1 000 élèves du primaire;DGESS, tableaux de bord du primaire;0.222;2017-2018;2023-2024
 tba_6e_province;explicative;Taux brut d'admission en 6e de la province, année t;DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.1;0.444;2018-2019;2022-2023
 tbs_post_primaire_province;explicative;Taux brut de scolarisation au post-primaire de la province, année t;DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.4;0.444;2018-2019;2022-2023
 achevement_post_primaire_province;explicative;Taux d'achèvement du post-primaire de la province, année t;DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.9;0.444;2018-2019;2022-2023
@@ -77,9 +77,9 @@ parite_tbs_post_primaire_province;explicative;Indice de parité filles / garçon
 abandon_post_primaire_province;explicative;Abandon moyen en 6e, 5e et 4e (passage de t-1 à t), enseignement général;DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.11;0.556;2018-2019;2022-2023
 redoublement_3e_province;explicative;Redoublement en 3e (passage de t-1 à t), enseignement général;DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section II.3.11;0.556;2018-2019;2022-2023
 ratio_eleves_classe_post_primaire_region;explicative;Élèves par classe au post-primaire public de la région, année t;DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.1.11;0.444;2018-2019;2022-2023
-part_etab_secondaires_publics_electricite_region;explicative;Part des établissements publics du post-primaire et du secondaire disposant de l'électricité (région);DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1;0.444;2018-2019;2022-2023
-part_etab_secondaires_publics_cantine_region;explicative;Part des établissements publics du post-primaire et du secondaire disposant d'une cantine (région);DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1;0.444;2018-2019;2022-2023
-ecart_achevement_entree_6e;explicative;Achèvement du primaire moins entrée en 6e (points) : élèves perdus au passage vers le post-primaire;DGESS, annuaires du primaire et du post-primaire;0.444;2018-2019;2022-2023
+part_etab_post_primaire_secondaire_publics_electricite_region;explicative;Part des établissements publics du post-primaire et du secondaire disposant de l'électricité (région);DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1;0.444;2018-2019;2022-2023
+part_etab_post_primaire_secondaire_publics_cantine_region;explicative;Part des établissements publics du post-primaire et du secondaire disposant d'une cantine (région);DGESS, annuaires du post-primaire et du secondaire 2018-2019 à 2022-2023, section III.5.1;0.444;2018-2019;2022-2023
+ecart_achevement_primaire_entree_6e;explicative;Achèvement du primaire moins entrée en 6e (points) : élèves perdus au passage vers le post-primaire;DGESS, annuaires du primaire et du post-primaire;0.444;2018-2019;2022-2023
 pauvrete_province;explicative;Incidence de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 profondeur_pauvrete_province;explicative;Profondeur de la pauvreté dans la province (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 travail_enfants_7_14_province;explicative;Enfants de 7 à 14 ans occupés (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
@@ -88,7 +88,7 @@ hors_ecole_12_15_province;explicative;Enfants de 12 à 15 ans hors de l'école (
 filles_17_ans_mariees_province;explicative;Filles de 17 ans mariées (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 alphabetisation_adultes_province;explicative;Alphabétisation des 15-64 ans (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 acte_naissance_province;explicative;Personnes disposant d'un acte de naissance (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
-parite_scolarisation_province;explicative;Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
+parite_scolarisation_primaire_province;explicative;Rapport filles / garçons scolarisés au primaire (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 electricite_province;explicative;Ménages accédant à l'électricité (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 telephone_province;explicative;Ménages accédant à un téléphone (RGPH 2019, constant dans le temps);INSD, RGPH 2019, volume 3 (pauvreté);0.0;2016-2017;2024-2025
 consommation_par_personne_province;explicative;Consommation annuelle moyenne par personne dans la province (2019, constante dans le temps);INSD, profils régionaux de pauvreté (2023), mesure EHCVM 2018 et RGPH 2019;0.267;2016-2017;2024-2025

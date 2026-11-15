@@ -6,21 +6,21 @@ panel_region_annee;effectif_primaire;Élèves du primaire;DGESS, base principale
 panel_region_annee;effectif_primaire_filles;Élèves du primaire, filles;DGESS, base principale;0.0
 panel_region_annee;nouveaux_inscrits_cp1;Nouveaux inscrits au CP1;DGESS, base principale;0.0
 panel_region_annee;nouveaux_inscrits_cp1_filles;Nouveaux inscrits au CP1, filles;DGESS, base principale;0.0
-panel_region_annee;tba;Taux brut d'admission, en %;DGESS, base principale;0.0
-panel_region_annee;tba_filles;Taux brut d'admission des filles, en %;DGESS, base principale;0.0
-panel_region_annee;tba_garcons;Taux brut d'admission des garçons, en %;DGESS, base principale;0.0
-panel_region_annee;tbs;Taux brut de scolarisation, en %;DGESS, base principale;0.0
-panel_region_annee;tbs_filles;Taux brut de scolarisation des filles, en %;DGESS, base principale;0.0
-panel_region_annee;tbs_garcons;Taux brut de scolarisation des garçons, en %;DGESS, base principale;0.0
-panel_region_annee;taux_achevement;Taux d'achèvement du primaire, en %;DGESS, base principale;0.0
-panel_region_annee;taux_achevement_filles;Taux d'achèvement des filles, en %;DGESS, base principale;0.0
-panel_region_annee;taux_achevement_garcons;Taux d'achèvement des garçons, en %;DGESS, base principale;0.0
+panel_region_annee;tba_primaire;Taux brut d'admission, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;tba_primaire_filles;Taux brut d'admission des filles, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;tba_primaire_garcons;Taux brut d'admission des garçons, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;tbs_primaire;Taux brut de scolarisation, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;tbs_primaire_filles;Taux brut de scolarisation des filles, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;tbs_primaire_garcons;Taux brut de scolarisation des garçons, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;taux_achevement_primaire;Taux d'achèvement du primaire, en %;DGESS, base principale;0.0
+panel_region_annee;taux_achevement_primaire_filles;Taux d'achèvement des filles, en % (primaire);DGESS, base principale;0.0
+panel_region_annee;taux_achevement_primaire_garcons;Taux d'achèvement des garçons, en % (primaire);DGESS, base principale;0.0
 panel_region_annee;reussite_cep;Taux de réussite au CEP (session qui clôt l'année), en %;DGESS, base principale;0.0
 panel_region_annee;reussite_cep_filles;Taux de réussite des filles au CEP, en %;DGESS, base principale;0.0
 panel_region_annee;reussite_cep_garcons;Taux de réussite des garçons au CEP, en %;DGESS, base principale;0.0
-panel_region_annee;ips_tba;Indice de parité filles / garçons du TBA;DGESS, base principale;0.0
-panel_region_annee;ips_tbs;Indice de parité filles / garçons du TBS;DGESS, base principale;0.0
-panel_region_annee;ips_tap;Indice de parité filles / garçons du taux d'achèvement;DGESS, base principale;0.0
+panel_region_annee;ips_tba_primaire;Indice de parité filles / garçons du TBA (primaire);DGESS, base principale;0.0
+panel_region_annee;ips_tbs_primaire;Indice de parité filles / garçons du TBS (primaire);DGESS, base principale;0.0
+panel_region_annee;ips_tap_primaire;Indice de parité filles / garçons du taux d'achèvement (primaire);DGESS, base principale;0.0
 panel_region_annee;ecoles_primaires;Écoles primaires;DGESS, base principale;0.0
 panel_region_annee;ecoles_primaires_publiques;Écoles primaires publiques;DGESS, base principale;0.0
 panel_region_annee;ecoles_primaires_privees;Écoles primaires privées;DGESS, base principale;0.0
@@ -31,29 +31,29 @@ panel_region_annee;structures_prescolaire;Structures du préscolaire;DGESS, base
 panel_region_annee;structures_prescolaire_publiques;Structures publiques du préscolaire;DGESS, base principale;0.071
 panel_region_annee;salles_prescolaire;Salles du préscolaire;DGESS, base principale;0.0
 panel_region_annee;part_filles_primaire;Part des filles parmi les élèves du primaire;DGESS, base principale;0.0
-panel_region_annee;part_ecoles_privees;Part des écoles primaires privées;DGESS, base principale;0.0
-panel_region_annee;eleves_par_ecole;Élèves du primaire par école;DGESS, base principale;0.0
+panel_region_annee;part_ecoles_primaires_privees;Part des écoles primaires privées;DGESS, base principale;0.0
+panel_region_annee;eleves_primaire_par_ecole;Élèves du primaire par école;DGESS, base principale;0.0
 panel_region_annee;prescolaire_pour_100_nouveaux_cp1;Enfants du préscolaire pour 100 nouveaux inscrits au CP1;DGESS, base principale;0.0
 serie_nationale_annee;annee_scolaire;Année scolaire;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire;Élèves du primaire;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire_filles;Élèves du primaire, filles;DGESS, base principale;0.0
 serie_nationale_annee;nouveaux_inscrits_cp1;Nouveaux inscrits au CP1;DGESS, base principale;0.0
 serie_nationale_annee;nouveaux_inscrits_cp1_filles;Nouveaux inscrits au CP1, filles;DGESS, base principale;0.0
-serie_nationale_annee;tba;Taux brut d'admission, en %;DGESS, base principale;0.0
-serie_nationale_annee;tba_filles;Taux brut d'admission des filles, en %;DGESS, base principale;0.0
-serie_nationale_annee;tba_garcons;Taux brut d'admission des garçons, en %;DGESS, base principale;0.0
-serie_nationale_annee;tbs;Taux brut de scolarisation, en %;DGESS, base principale;0.0
-serie_nationale_annee;tbs_filles;Taux brut de scolarisation des filles, en %;DGESS, base principale;0.0
-serie_nationale_annee;tbs_garcons;Taux brut de scolarisation des garçons, en %;DGESS, base principale;0.0
-serie_nationale_annee;taux_achevement;Taux d'achèvement du primaire, en %;DGESS, base principale;0.0
-serie_nationale_annee;taux_achevement_filles;Taux d'achèvement des filles, en %;DGESS, base principale;0.0
-serie_nationale_annee;taux_achevement_garcons;Taux d'achèvement des garçons, en %;DGESS, base principale;0.0
+serie_nationale_annee;tba_primaire;Taux brut d'admission, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;tba_primaire_filles;Taux brut d'admission des filles, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;tba_primaire_garcons;Taux brut d'admission des garçons, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;tbs_primaire;Taux brut de scolarisation, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;tbs_primaire_filles;Taux brut de scolarisation des filles, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;tbs_primaire_garcons;Taux brut de scolarisation des garçons, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;taux_achevement_primaire;Taux d'achèvement du primaire, en %;DGESS, base principale;0.0
+serie_nationale_annee;taux_achevement_primaire_filles;Taux d'achèvement des filles, en % (primaire);DGESS, base principale;0.0
+serie_nationale_annee;taux_achevement_primaire_garcons;Taux d'achèvement des garçons, en % (primaire);DGESS, base principale;0.0
 serie_nationale_annee;reussite_cep;Taux de réussite au CEP (session qui clôt l'année), en %;DGESS, base principale;0.0
 serie_nationale_annee;reussite_cep_filles;Taux de réussite des filles au CEP, en %;DGESS, base principale;0.0
 serie_nationale_annee;reussite_cep_garcons;Taux de réussite des garçons au CEP, en %;DGESS, base principale;0.0
-serie_nationale_annee;ips_tba;Indice de parité filles / garçons du TBA;DGESS, base principale;0.0
-serie_nationale_annee;ips_tbs;Indice de parité filles / garçons du TBS;DGESS, base principale;0.0
-serie_nationale_annee;ips_tap;Indice de parité filles / garçons du taux d'achèvement;DGESS, base principale;0.0
+serie_nationale_annee;ips_tba_primaire;Indice de parité filles / garçons du TBA (primaire);DGESS, base principale;0.0
+serie_nationale_annee;ips_tbs_primaire;Indice de parité filles / garçons du TBS (primaire);DGESS, base principale;0.0
+serie_nationale_annee;ips_tap_primaire;Indice de parité filles / garçons du taux d'achèvement (primaire);DGESS, base principale;0.0
 serie_nationale_annee;ecoles_primaires;Écoles primaires;DGESS, base principale;0.0
 serie_nationale_annee;ecoles_primaires_publiques;Écoles primaires publiques;DGESS, base principale;0.0
 serie_nationale_annee;ecoles_primaires_privees;Écoles primaires privées;DGESS, base principale;0.0
@@ -64,8 +64,8 @@ serie_nationale_annee;structures_prescolaire;Structures du préscolaire;DGESS, b
 serie_nationale_annee;structures_prescolaire_publiques;Structures publiques du préscolaire;DGESS, base principale;1.0
 serie_nationale_annee;salles_prescolaire;Salles du préscolaire;DGESS, base principale;0.0
 serie_nationale_annee;part_filles_primaire;Part des filles parmi les élèves du primaire;DGESS, base principale;0.0
-serie_nationale_annee;part_ecoles_privees;Part des écoles primaires privées;DGESS, base principale;0.0
-serie_nationale_annee;eleves_par_ecole;Élèves du primaire par école;DGESS, base principale;0.0
+serie_nationale_annee;part_ecoles_primaires_privees;Part des écoles primaires privées;DGESS, base principale;0.0
+serie_nationale_annee;eleves_primaire_par_ecole;Élèves du primaire par école;DGESS, base principale;0.0
 serie_nationale_annee;prescolaire_pour_100_nouveaux_cp1;Enfants du préscolaire pour 100 nouveaux inscrits au CP1;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire_public;Élèves du primaire public;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire_prive;Élèves du primaire privé;DGESS, base principale;0.0

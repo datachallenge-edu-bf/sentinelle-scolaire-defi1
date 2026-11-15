@@ -1,4 +1,4 @@
-﻿province_ancienne_pcode;region_ancienne_pcode;mois;date_situation;deplaces;enfants_deplaces;variation_un_releve;variation_trois_releves;ecoles_fermees_region;eleves_affectes_region
+﻿province_ancienne_pcode;region_ancienne_pcode;mois;date_situation;deplaces;enfants_deplaces;variation_un_releve;variation_trois_releves;etablissements_fermes_tous_ordres_region;eleves_affectes_tous_ordres_region
 BF1300;BF13;2019-01;2019-01-27;0.0;;;;;
 BF1300;BF13;2019-02;2019-02-28;431.0;;inf;;;
 BF1300;BF13;2019-03;2019-03-25;431.0;;0.0;;;

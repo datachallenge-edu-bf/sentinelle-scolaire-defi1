@@ -17,6 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 from .. import config
+from .nommage import ordre_enseignement
 from .fiche import DESCRIPTIONS_MENSUEL, FICHES, LIENS, TABLES
 
 MAX_MODALITES = 12
@@ -85,7 +86,8 @@ def construire(tables: dict[str, pd.DataFrame], variables: dict, variables_regio
         for variable in table.columns:
             libelle, unite, calcul, limites = FICHES.get(variable, ("", "", "", ""))
             role, description, source = _role_description_source(nom, variable, variables, variables_region)
-            lignes.append({"table": nom, "variable": variable, "libelle": libelle, "description": description,
+            lignes.append({"table": nom, "variable": variable, "ordre_enseignement": ordre_enseignement(variable),
+                           "libelle": libelle, "description": description,
                            "role": role, "unite": unite, **_profil(table[variable], annees),
                            "calcul": calcul, "source": source, "limites": limites})
     dico = pd.DataFrame(lignes)

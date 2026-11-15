@@ -7,7 +7,8 @@ import pandas as pd
 
 from .. import config
 from . import metadonnees_modele
-from . import decoupage_2025
+from . import decoupage_2025, nommage
+from .fiche import FICHES
 from .panel import (SEUIL_RUPTURE, construire_panel, construire_panel_mensuel, construire_panel_region,
                     construire_serie_nationale)
 
@@ -182,6 +183,9 @@ VARIABLES_REGION = {
     "rapport_cm2_cp1_national": "Élèves du CM2 rapportés à ceux du CP1",
 }
 
+# Noms publiés : chaque variable scolaire nomme son ordre d'enseignement (module nommage).
+nommage.etendre(FICHES, VARIABLES, VARIABLES_REGION)
+
 # Relations entre tables, pour le schéma de la base (rôle architecte).
 RELATIONS = [
     ("panel_province_2025", "province_pcode", "province", "province_pcode", "plusieurs à un"),
@@ -295,8 +299,9 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
     panel_2025 = decoupage_2025.panel_province_2025(panel)
     region_2025 = decoupage_2025.panel_region_2025(region, panel_2025)
     panel_2025 = decoupage_2025.contexte_regional_2025(panel_2025, region_2025)
-    bases = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
-             "serie_nationale_annee": nationale, "panel_province_2025": panel_2025, "panel_region_2025": region_2025}
+    internes = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
+                "serie_nationale_annee": nationale, "panel_province_2025": panel_2025, "panel_region_2025": region_2025}
+    bases = nommage.publier(internes)
     metadonnees = metadonnees_modele.ecrire(bases, VARIABLES, VARIABLES_REGION, sortie / "metadonnees")
     conforme, detail = metadonnees["controle"]
     verifications = pd.concat([controles(panel, mensuel, dico),
@@ -304,11 +309,14 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
                                decoupage_2025.controles(panel, panel_2025, region, region_2025),
                                pd.DataFrame([{"controle": "fiches_completes", "conforme": conforme, "detail": detail}])],
                               ignore_index=True)
-    resultat = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
-                "serie_nationale_annee": nationale, "panel_province_2025": panel_2025,
-                "panel_region_2025": region_2025, "dictionnaire_variables_modele": dico,
-                "dictionnaire_variables_region": dico_region, "schema_relations": relations,
+    resultat = {**bases, "dictionnaire_variables_modele": dictionnaire(bases["panel_province_annee"]),
+                "dictionnaire_variables_region": dictionnaire_region(
+                    {n: bases[n] for n in ("panel_region_annee", "serie_nationale_annee")}),
+                "schema_relations": relations,
                 "controles_transformation": verifications}
     for nom, table in resultat.items():
         table.to_csv(sortie / f"{nom}.csv", sep=config.SEPARATEUR, encoding=config.ENCODAGE_SORTIE, index=False)
+    # Base finale du découpage de 2025 : un onglet par panel et par ordre d'enseignement.
+    nommage.classeur_base_finale({n: bases[n] for n in ("panel_province_2025", "panel_region_2025")},
+                                 metadonnees["dictionnaire"], sortie / "sentinelle_base_finale_decoupage_2025.xlsx")
     return resultat

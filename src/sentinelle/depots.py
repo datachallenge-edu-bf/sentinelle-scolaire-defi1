@@ -251,6 +251,10 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
          "Une ligne par région (13, ancien découpage) et pour le pays, par année de 2015-2016 à 2024-2025 : "
          "effectifs, nouveaux inscrits au CP1, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, "
          "écoles, préscolaire (effectifs, TBS, structures, salles)."),
+        (source / "sentinelle_base_finale_decoupage_2025.xlsx", "engineer", "base-finale-decoupage-2025-par-ordre",
+         "Base finale du découpage de 2025 en classeur : un onglet par panel (province, région) et par ordre "
+         "d'enseignement (primaire, préscolaire, non formel, post-primaire, post-primaire et secondaire, tous ordres, "
+         "contexte), et un onglet décrivant chaque variable."),
         (source / "panel_province_2025.csv", "engineer", "table-analyse-province-decoupage-2025",
          "Panel du modèle dans le découpage de juillet 2025 (47 provinces, noms et codes du COD-AB) ; Soum et Tapoa "
          "scindés : effectifs répartis selon la population 2019, déplacés et RGPH recalculés sur les communes, cible héritée."),
