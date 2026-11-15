@@ -642,6 +642,624 @@ fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 
 fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 8;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;183;;Total | NORD;
 fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 8;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;184;;Total | SAHEL;
 fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 8;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;184;;Total | SUD-OUEST;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;75;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;8 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;78;;Privé 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;93;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;correction;année impossible dans l'en-tête, remplacée d'après la précédente;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;71;;14/15 15/16 16/17 17/18 17/19 19/20 20/21 21/22 22/23 23/24;2014-2015 2015-2016 2016-2017 2017-2018 2018-2019 2019-2020 2020-2021 2021-2022 2022-2023 2023-2024
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 11 10;
+fait_insd_commune;ligne écartée;8 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;nd 9 738 220 165 984 2 293 1 422 1 580;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;339 879;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Filles 3 673 nd 3 265 3 055 0 373 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Garçons 5 264 nd 3 442 3 129 0 379 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 8 937 nd 6 707 6 184 0 752 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Filles 562 592 nd 564 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Garçons 645 635 nd 642 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 1 207 1 227 nd 1 206 0 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 12 10 11 14;
+fait_insd_commune;ligne écartée;6 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;5 712 nd 11 643 9 905 6 887 9 483;
+fait_insd_commune;ligne écartée;4 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;599 506 296 090;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Filles 892 813 885 760 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Garçons 1 177 1 176 1 019 986 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 2 069 1 989 1 904 1 746 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Filles 1 098 1 122 578 1 105 0 113 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Garçons 1 163 1 092 572 1 126 0 109 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 2 261 2 214 1 150 2 231 0 222 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Filles 3 960 4 068 3 719 4 383 0 630 0 0 54;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Garçons 4 380 4 635 3 997 4 803 0 588 0 0 61;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;86;;Ensemble 8 340 8 703 7 716 9 186 0 1 218 0 0 115;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Filles 1 109 1 202 826 1 069 22 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Garçons 1 305 1 470 1 051 1 323 24 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Ensemble 2 414 2 672 1 877 2 392 46 0 0 0 0;
+fait_insd_commune;ligne écartée;1 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Solhan 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Filles 806 817 677 941 958 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Garçons 817 873 766 1 015 937 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;87;;Ensemble 1 623 1 690 1 443 1 956 1 895 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;90;;Hommes 77 nd 82 90 3 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;90;;Femmes 61 nd 24 30 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;90;;Ensemble 138 nd 106 120 3 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;90;;Hommes 50 nd 66 70 65 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;90;;Femmes 15 nd 19 27 28 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;90;;Ensemble 65 nd 85 97 93 0 0 0 0;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 27 27 28 27 27 27 27 27 27 27;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 2 2 4 4 2 4 4 3 3 3;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 29 29 32 31 29 31 31 30 30 30;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 35 35 36 36 39 40 40 40 40 40;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 7 7 3 5 7 7 9 8 6 8;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 42 42 39 41 46 47 49 48 46 48;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 32 32 34 34 34 34 34 34 34 34;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 0 0 0 0 5 8 10 11 12 15;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 32 32 34 34 39 42 44 45 46 49;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 40 40 42 43 42 43 41 41 40 41;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 9 11 9 13 27 28 29 30 29 28;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 49 51 51 55 69 71 70 71 69 69;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 25 25 26 26 27 28 28 29 29 29;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 6 6 6 5 5 6 7 6 9 11;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 31 31 32 31 32 34 35 35 38 40;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 25 26 26 26 26 26 28 28 28 29;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 7 7 7 7 7 9 9 9 9 9;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 32 33 33 33 33 35 37 37 37 38;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Public 35 35 37 38 38 38 38 40 40 40;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Privé 1 1 2 1 5 7 8 9 9 10;
+fait_insd_commune;ligne écartée;10 valeurs pour 8 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;73;;Ensemble 36 36 39 39 43 45 46 49 49 50;
+fait_insd_commune;correction;année impossible dans l'en-tête, remplacée d'après la précédente;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;81;;14/15 15/16 16/17 17/16 18/19 19/20 20/21 21/22 22/23 23/24;2014-2015 2015-2016 2016-2017 2017-2018 2018-2019 2019-2020 2020-2021 2021-2022 2022-2023 2023-2024
+fait_insd_commune;ligne écartée;7 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;86;;Ensemble 9 852 10338 11219 12629 13216 13600 14566;
+fait_insd_commune;ligne écartée;3 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;86;;10441 13441 13793;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;106;;Privé 491 491 599 943;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;131;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;97;;Ensemble 90 96 130 116;
+fait_insd_commune;ligne écartée;2 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;65;;Pella 39 39;
+fait_insd_commune;ligne écartée;3 valeurs pour 4 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;76;;Privé 0 0 0;
+fait_insd_commune;ligne écartée;3 valeurs pour 4 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;81;;Privé 0 0 31;
+fait_insd_commune;ligne écartée;3 valeurs pour 4 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;81;;Privé 0 0 0;
+fait_insd_commune;ligne écartée;1 valeurs pour 4 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;88;;Godyr 2 304;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Est.pdf;81;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;7 valeurs pour 8 années;INSD_Annuaire_statistique_2024_Centre-Est.pdf;90;;Privé nd 0 1 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;93;;Privé 345 342 396 396 380 nd 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;91;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;99;;Ensemble 42 47 53 57 62 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;119;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;120;;Privé 0 0 0 0 0 0 - 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;123;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;115;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;116;;1 1343;
+fait_insd_commune;ligne écartée;8 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;116;;Ensemble 1476 1469 1588 1 362 1292 1562 1245 1334;
+fait_insd_commune;ligne écartée;1 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;116;;817;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;123;;Public 59 54;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;123;;Privé 0 0;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;123;;Ensemble 59 54;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;124;;Public 70 63;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;124;;Privé 0 0;
+fait_insd_commune;ligne écartée;2 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;124;;Ensemble 70 63;
+fait_insd_commune;ligne écartée;3 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;127;;Garçons - - - - - - - 71 33 28;
+fait_insd_commune;ligne écartée;3 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;127;;Filles - - - - - - - 0 26 26;
+fait_insd_commune;ligne écartée;3 valeurs pour 10 années;Annuaire_Statistique_2024_de_la_région_du_Centre-Sud.pdf;127;;Ensemble - - - - - - - 71 59 54;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;179;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;180;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;191;;Privé 0 7 7 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;192;;Public 134 175 74 22;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;192;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_de_la_Boucle_du_Mouhoun_0.pdf;192;;Ensemble 134 175 74 22;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;133;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;135;;Privé 0 32 36 18;
+fait_insd_commune;ligne écartée;7 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;129;;Privé 0 0 232 350 396 295 0;
+fait_insd_commune;ligne écartée;7 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;133;;Privé 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;6 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;133;;Privé 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;7 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;133;;Privé 14 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;7 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;133;;Privé 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;1 valeurs pour 8 années;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;133;;Sapouy 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;128;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;132;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;4 valeurs pour 5 années;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;138;;Privé 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;130;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;130;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;130;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;130;;Privé 0 0 0 0 0 26 12 23 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;130;;Privé 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;153;;Garçons nc 0 0 0 19 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;153;;Filles nc 0 0 0 3 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;153;;Ensemble nc 0 0 0 22 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;154;;Garçons nc 16 11 11 13 16 14 17 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;154;;Filles nc 9 7 6 6 9 10 10 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;154;;Ensemble nc 25 18 17 19 25 24 27 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Garçons nc 0 0 4 5 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Filles nc 0 0 0 1 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Ensemble nc 0 0 4 6 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Garçons nc 0 0 0 9 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Filles nc 0 0 0 0 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Ensemble nc 0 0 0 9 0 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Garçons nc 34 47 61 69 73 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Filles nc 6 9 11 9 25 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;155;;Ensemble nc 40 56 72 78 98 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Garçons nc 0 77 133 177 263 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Filles nc 0 16 76 85 150 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Ensemble nc 0 94 209 252 413 0 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Garçons nc 0 39 71 65 133 107 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Filles nc 0 34 43 44 72 65 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Ensemble nc 0 73 114 109 205 172 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Garçons nc 0 14 67 76 123 95 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Filles nc 0 7 15 22 43 32 0 0 0;
+fait_insd_commune;ligne écartée;9 valeurs pour 10 années;INSD_Annuaire_statistique_2024_Est.pdf;156;;Ensemble nc 0 21 82 98 166 127 0 0 0;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;71;;BF640202 2023-2024 ecoles T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;71;;BF640201 2023-2024 ecoles T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;71;;BF640204 2023-2024 ecoles T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;71;;BF640205 2023-2024 ecoles T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;72;;BF590103 2023-2024 ecoles T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_Statistique_2024_Région_du_Sahel_0.pdf;73;;BF640306 2023-2024 ecoles T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470101 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470101 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470101 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470102 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470102 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470102 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470103 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470103 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470103 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470104 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470104 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470104 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470105 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470105 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470105 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470106 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470106 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470106 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470107 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470107 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470107 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470108 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470108 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470108 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470109 2015-2016 eleves_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470109 2015-2016 eleves_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Cascades.pdf;70;;BF470109 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530113 2017-2018 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530113 2018-2019 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530113 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530113 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530113 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530213 2017-2018 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530213 2018-2019 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530213 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530213 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530213 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530307 2017-2018 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530307 2018-2019 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530307 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530307 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;81;;BF530307 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530102 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530103 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530105 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530108 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530109 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530110 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;111;;BF530112 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;112;;BF530204 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;112;;BF530205 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;112;;BF530207 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;112;;BF530208 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;112;;BF530212 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;112;;BF530213 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;113;;BF530305 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;113;;BF530301 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;113;;BF530302 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;113;;BF530303 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;113;;BF530304 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_des_Hauts_Bassins.pdf;113;;BF530307 2022-2023 ecoles_fermees T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2016-2017 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2017-2018 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2018-2019 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2019-2020 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2016-2017 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2017-2018 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2018-2019 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;98;;BF500303 2019-2020 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2020-2021 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2021-2022 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2022-2023 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2023-2024 enseignants_par_sexe F;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2020-2021 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2021-2022 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2022-2023 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Centre_Ouest.pdf;99;;BF500303 2023-2024 enseignants_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570105 2019-2020 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570105 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570105 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570105 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570105 2023-2024 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570208 2019-2020 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570208 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570208 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570208 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570208 2023-2024 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570305 2019-2020 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570305 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570305 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570305 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570305 2023-2024 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570410 2019-2020 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570410 2020-2021 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570410 2021-2022 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570410 2022-2023 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;Annuaire_statistique_2024_de_la_région_du_Sud_Ouest.pdf;79;;BF570410 2023-2024 salles_paillote T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2014-2015 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2015-2016 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2016-2017 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2017-2018 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2018-2019 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2020-2021 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2021-2022 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2022-2023 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;94;;BF490301 2023-2024 eleves_par_statut T;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;128;;BF490204 2019-2020 eleves_post_primaire_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;128;;BF490204 2020-2021 eleves_post_primaire_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;128;;BF490204 2021-2022 eleves_post_primaire_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;131;;BF490204 2019-2020 eleves_secondaire_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;131;;BF490204 2020-2021 eleves_secondaire_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;131;;BF490204 2021-2022 eleves_secondaire_par_statut public;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;131;;BF490204 2019-2020 eleves_secondaire_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;131;;BF490204 2020-2021 eleves_secondaire_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;131;;BF490204 2021-2022 eleves_secondaire_par_statut prive;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;134;;BF490204 2019-2020 eleves_secondaire_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;134;;BF490204 2020-2021 eleves_secondaire_par_sexe G;
+fait_insd_commune;valeur écartée;valeurs contradictoires pour une même commune, année et modalité;INSD_Annuaire_statistique_2024_Centre-Nord.pdf;134;;BF490204 2021-2022 eleves_secondaire_par_sexe G;
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;Latodin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de POBEMENGAO (0.952);;;;Pobbe-Mengao;BF590106
+fait_insd_commune;rapprochement;orthographe voisine de POBEMENGAO (0.952);;;;Pobbe-Mengao;BF590106
+fait_insd_commune;rapprochement;orthographe voisine de POBEMENGAO (0.952);;;;Pobbe-Mengao;BF590106
+fait_insd_commune;rapprochement;orthographe voisine de POBEMENGAO (0.952);;;;Pobbe-Mengao;BF590106
+fait_insd_commune;rapprochement;orthographe voisine de GOROMGOROM (0.947);;;;Grom-gorom;BF640102
+fait_insd_commune;rapprochement;orthographe voisine de POBEMENGAO (0.952);;;;Pobbe-Mengao;BF590106
+fait_insd_commune;rapprochement;orthographe voisine de GAONGO (0.923);;;;Gaongho;BF510102
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GAONGO (0.923);;;;Gaongho;BF510102
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GAONGO (0.923);;;;Gaongho;BF510102
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GAONGO (0.923);;;;Gaongho;BF510102
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GAONGO (0.923);;;;Gaongho;BF510102
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de LEGMOIN (0.923);;;;Lemoin;BF570304
+fait_insd_commune;rapprochement;orthographe voisine de LEGMOIN (0.923);;;;Lemoin;BF570304
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-Yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de KOMPIENGA (0.857);;;;KOMPIENGA ........................................................................................................................................................ 117;BF630201
+fait_insd_commune;rapprochement;orthographe voisine de KOMPIENGA (0.857);;;;KOMPIENGA ................................................................................................................................................... 125;BF630201
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de ARBOLLE (0.923);;;;Arbolé;BF540201
+fait_insd_commune;rapprochement;orthographe voisine de LATODEN (0.857);;;;La-todin;BF540207
+fait_insd_commune;rapprochement;orthographe voisine de SENGUENEGA (0.947);;;;Séguénéga;BF540310
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de MEGUE (0.909);;;;Méguet;BF550103
+fait_insd_commune;rapprochement;orthographe voisine de AMBSOUYA (0.933);;;;Absouya;BF550301
+fait_insd_commune;rapprochement;orthographe voisine de DAPEOLGO (0.875);;;;Dapélogo;BF550302
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de GOMBOUSSOUGOU (0.923);;;;Gon-Boussougou;BF510304
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de KOMKIIPALA (0.9);;;;Komki-lpala;BF130001
+fait_insd_commune;rapprochement;orthographe voisine de TANGUENDASSOURI (0.867);;;;Tanghin-Dassouri;BF130007
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BOMBOROKUI (0.9);;;;Bomborokuy;BF610102
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de BONDOKUI (0.875);;;;Bondokuy;BF620301
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de WOLONKOTO (0.889);;;;Wolokonto;BF470208
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOURINION (0.889);;;;Kourignon;BF530206
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de MORLABA (0.933);;;;Morolaba;BF530208
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOYIRI (0.9);;;;Samogohiri;BF530211
+fait_insd_commune;rapprochement;orthographe voisine de SAMOGOGOUAN (0.909);;;;Samorogouan;BF530212
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de KOKOLOGO (0.941);;;;Kokologho;BF500104
+fait_insd_commune;rapprochement;orthographe voisine de SOA (0.857);;;;Soaw;BF500113
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de GBONDJIGUI (0.889);;;;Bondigui;BF570101
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de DISSIHN (0.923);;;;Dissin;BF570202
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de BITOU (0.909);;;;Bittou;BF480105
+fait_insd_commune;rapprochement;orthographe voisine de KOMINYANGA (0.9);;;;Comin-yanga;BF480201
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de ZIMTANGA (0.875);;;;Zimtenga;BF490109
+fait_insd_commune;rapprochement;orthographe voisine de ZEGUEDEGUEN (0.909);;;;Zeguedeguin;BF490208
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
+fait_insd_commune;rapprochement;orthographe voisine de MANI (0.889);;;;Manni;BF580105
+fait_insd_commune;rapprochement;orthographe voisine de MATIAKOALI (0.9);;;;Matiacoali;BF630104
+fait_insd_commune;rapprochement;orthographe voisine de BARTIEBOUGOU (0.923);;;;Bartiébougou11;BF580201
+fait_insd_commune;rapprochement;orthographe voisine de LOGBOU (0.923);;;;Logobou;BF600202
+fait_insd_commune;rapprochement;orthographe voisine de NAMOUNO (0.933);;;;Namounou;BF600203
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;27;CENTRELEST KOULPELOGO 2 302 4 12 46;
 fait_esu_province;ligne ignorée;5 valeurs au lieu de 7;RAPPORT_MENSUEL_ESU_FEVRIER_2024.pdf;3;32;EST GOURMA 1 40 48 88 O0;
 fait_esu_province;ligne ignorée;2 valeurs au lieu de 7;RAPPORT_STATISTIQUE_MENSUEL_ESU_AVRIL_2023.pdf;10;22;BOUCLE DU MOUHOUN KOSSI 17 1475;

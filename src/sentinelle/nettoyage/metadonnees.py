@@ -98,6 +98,14 @@ TABLES = {
                                "commodités des établissements, état des salles, ratio élèves par classe",
                                "année × région × tableau × indicateur", "annee_scolaire, entite_pcode, tableau, indicateur",
                                "DGESS, annuaires statistiques du post-primaire et du secondaire 2018-2019 à 2022-2023 (2019-2020 du Data Pack, les autres fournis par l'équipe)", "2018-2019 à 2022-2023"),
+    "fait_insd_commune": ("Écoles, salles, salles sous paillote, écoles fermées, élèves et enseignants du primaire ; "
+                          "élèves du post-primaire et du secondaire général, par commune",
+                          "année × commune × indicateur × modalité", "annee_scolaire, commune_pcode, indicateur, modalite",
+                          "INSD, annuaires statistiques régionaux 2024 (13 régions, dont 3 téléchargées sur insd.bf)", "2014-2015 à 2023-2024"),
+    "fait_population": ("Population par âge simple (0 à 79 ans, 80 = 80 ans et plus) et sexe : communes et provinces "
+                        "de 2025, régions et pays", "année × niveau × entité × âge × sexe",
+                        "annee, niveau_geo, entite_pcode, age, sexe", "INSD, projections de population actualisées par âge simple (portail OpenDataForAfrica), découpage de 2025 ; anciennes projections nationales 2007-2018",
+                        "2007-2018 (pays), 2020-2025 (communes), 2020-2035 (provinces, régions, pays)"),
     "fait_mines_region": ("Permis d'exploitation et sites miniers par typologie (industrielle, semi-mécanisée, "
                           "artisanale), par région ; série lacunaire conservée pour mémoire",
                           "année × région × indicateur × typologie", "annee, entite_pcode, indicateur, typologie",
@@ -161,6 +169,9 @@ VARIABLES = {
                    "secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle "
                    "(fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)", ""),
     "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
+    "modalite": ("Modalité : F (filles ou femmes), G (garçons ou hommes), T (ensemble), public, prive, communautaire", ""),
+    "age": ("Âge révolu en années (80 = 80 ans et plus)", "années"),
+    "population": ("Effectif de la population", "personnes"),
     "mesure": ("Mesure : population de référence, effectif au numérateur, taux, indice de parité (indicateurs) ; "
                "promotion, redoublement, abandon (flux, en %)", ""),
     "incidence": ("Part de la population sous le seuil de pauvreté (P0)", "%"),

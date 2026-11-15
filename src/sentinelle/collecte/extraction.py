@@ -200,6 +200,48 @@ def extraire_base_principale(date_collecte: str) -> tuple[pd.DataFrame, dict]:
     return donnees, registre
 
 
+def extraire_projections_population(date_collecte: str) -> tuple[pd.DataFrame, list[dict]]:
+    """Copie brute des classeurs de projections de population de l'INSD (communes, provinces, pays).
+
+    Un classeur téléchargé deux fois (« … (1).xlsx ») a la même empreinte : il n'est copié qu'une fois.
+    """
+    morceaux, registre, empreintes = [], [], set()
+    for chemin in sorted(config.DONNEES_POPULATION.glob("*.xlsx")):
+        signature = empreinte(chemin)
+        if signature in empreintes:
+            continue
+        empreintes.add(signature)
+        classeur = load_workbook(chemin, read_only=True, data_only=True)
+        lignes_fichier = 0
+        for feuille in classeur.worksheets:
+            lignes = [["" if v is None else str(v) for v in valeurs] for valeurs in feuille.iter_rows(values_only=True)]
+            if not lignes:
+                continue
+            largeur = max(len(l) for l in lignes)
+            df = pd.DataFrame([l + [""] * (largeur - len(l)) for l in lignes],
+                              columns=[f"col{i}" for i in range(1, largeur + 1)])
+            df.insert(0, "ligne", range(1, len(df) + 1))
+            df.insert(0, "feuille", feuille.title)
+            df.insert(0, "source_periode", "2007-2035")
+            df.insert(0, "source_fichier", chemin.name)
+            morceaux.append(df)
+            lignes_fichier += len(df)
+        classeur.close()
+        registre.append({
+            "jeu": "insd_projections_actualisees",
+            "libelle": "Projections de population actualisées par âge simple et sexe (communes, provinces, pays)",
+            "theme": "demographie", "niveau_geo": "commune, province et pays", "source_fichier": chemin.name,
+            "source_chemin": chemin.relative_to(config.DOSSIER_ORGANISATEURS).as_posix(), "source_csv_pack": "",
+            "periode": "2007-2035", "regle": "toutes les feuilles", "pages_retenues": "toutes", "nb_pages": "",
+            "nb_lignes": lignes_fichier, "sha256_source": signature, "sha256_csv_pack": "", "producteur": "INSD",
+            "description_source": "Portail OpenDataForAfrica de l'INSD, projections de population, téléchargé par l'équipe",
+            "url": "https://burkinafaso.opendataforafrica.org/fgqejcc/projections-de-population",
+            "date_collecte": date_collecte,
+            "usage": "Population annuelle par âge : dénominateurs des taux, contexte démographique, clés communales"})
+    donnees = pd.concat(morceaux, ignore_index=True, sort=False).fillna("") if morceaux else pd.DataFrame()
+    return donnees, registre
+
+
 def inventaire_fichiers() -> pd.DataFrame:
     """Inventaire de tous les fichiers remis par les organisateurs."""
     lignes = []
@@ -284,6 +326,11 @@ def executer_collecte(sortie: Path | None = None, avec_inventaire: bool = True) 
     base, registre_base = extraire_base_principale(date_collecte)
     lignes_registre.insert(0, registre_base)
     ecrire_csv(base, sortie / "extraits" / "dgess_base_principale.csv")
+
+    projections, registre_projections = extraire_projections_population(date_collecte)
+    lignes_registre.extend(registre_projections)
+    if not projections.empty:
+        ecrire_csv(projections, sortie / "extraits" / "insd_projections_actualisees.csv")
 
     registre = pd.DataFrame(lignes_registre)
     couverture = controle_couverture(registre)

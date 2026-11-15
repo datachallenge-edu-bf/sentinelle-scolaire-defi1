@@ -174,6 +174,12 @@ TABLES_NETTOYAGE = [
      "2018-2019 à 2022-2023 (annuaires DGESS)."),
     ("fait_secondaire_region.csv", "engineer", "commodites-salles-ratios-secondaire-region-2018-2023-propre",
      "Commodités, état des salles et ratio élèves par classe du secondaire général public, par région."),
+    ("fait_insd_commune.csv", "engineer", "ecoles-eleves-enseignants-commune-insd-2014-2024-propre",
+     "Effectifs scolaires par commune (13 régions) : écoles, salles, élèves et enseignants du primaire, élèves du "
+     "post-primaire et du secondaire, d'après les annuaires régionaux 2024 de l'INSD."),
+    ("fait_population.csv", "engineer", "population-age-simple-sexe-communes-provinces-2007-2035-propre",
+     "Population par âge simple et sexe des 351 communes (2020-2025), des 47 provinces et 17 régions de 2025 "
+     "(2020-2035) et du pays (2007-2018, 2020-2035), projections actualisées de l'INSD."),
     ("fait_mines_region.csv", "engineer", "permis-sites-miniers-region-propre",
      "Permis d'exploitation et sites miniers par typologie et par région (annuaires régionaux INSD), série lacunaire "
      "conservée pour mémoire."),
@@ -255,6 +261,9 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
          "Base finale du découpage de 2025 en classeur : un onglet par panel (province, région) et par ordre "
          "d'enseignement (primaire, préscolaire, non formel, post-primaire, post-primaire et secondaire, tous ordres, "
          "contexte), et un onglet décrivant chaque variable."),
+        (source / "panel_commune_annee.csv", "engineer", "panel-communal-vulnerabilite-2016-2025",
+         "Panel des 351 communes, 2016-2017 à 2024-2025 : élèves, enseignants et salles des annuaires de l'INSD, "
+         "population par âge, taux de scolarisation communaux, déplacés, conditions de vie de 2019."),
         (source / "panel_province_2025.csv", "engineer", "table-analyse-province-decoupage-2025",
          "Panel du modèle dans le découpage de juillet 2025 (47 provinces, noms et codes du COD-AB) ; Soum et Tapoa "
          "scindés : effectifs répartis selon la population 2019, déplacés et RGPH recalculés sur les communes, cible héritée."),

@@ -41,4 +41,13 @@ post_primaire_45_provinces;True;50 indicateurs × années, provinces : minimum 4
 post_primaire_taux_recalcule;True;taux = 100 × effectif / population à 0,15 point près pour 8850 lignes sur 8850
 post_primaire_flux_somme_100;True;promotion + redoublement + abandon = 100 % à 0,3 point près pour 3530 lignes sur 3530
 post_primaire_commodites_sous_total;True;aucune commodité ne dépasse le nombre d'établissements : 70 régions × années sur 70
+communes_insd_couverture;True;"13 régions ; communes lues / attendues : BF13 100%, BF46 100%, BF47 100%, BF48 100%, BF49 100%, BF50 100%, BF51 100%, BF52 96%, BF53 100%, BF54 100%, BF55 100%, BF56 62%, BF57 100%"
+communes_insd_filles_plus_garcons;True;filles + garçons = ensemble pour 3164 lignes sur 3197
+communes_insd_post_primaire;True;élèves du post-primaire lus pour 348 communes
+population_ages_egal_total_publie;True;10236 tableaux × années × sexes sur 10236
+population_garcons_plus_filles;True;254502 lignes sur 254502
+population_communes_egal_province;True;68526 province × année × âge × sexe sur 68526
+population_provinces_egal_pays;True;2020-2035 : 3888 sur 3888 à 0,1 % près
+population_couverture;True;351 communes, 47 provinces de 2025, pays de 2007 à 2035
+population_2020_proche_rgph_2019;True;population 2020 / RGPH 2019 par commune : médiane 1.009
 metadonnees_completes;True;toutes les tables et variables sont décrites

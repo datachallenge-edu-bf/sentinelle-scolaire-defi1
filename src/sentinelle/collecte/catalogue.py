@@ -313,6 +313,21 @@ CATALOGUE: tuple[Jeu, ...] = (
         usage="Variables communales agrégées par province : chocs d'effectifs, salles sous paillote",
     ),
     Jeu(
+        identifiant="insd_post_primaire_commune",
+        libelle="Établissements, salles, élèves et enseignants du post-primaire et du secondaire par commune "
+                "(annuaires régionaux 2024, 13 régions)",
+        theme="education",
+        niveau_geo="commune",
+        fichiers=("02_Demographie_INSD/Annuaires_Statistiques_Regionaux_2024/*.csv",
+                  "externe:insd_annuaires_regionaux_2024/*.csv"),
+        # Titres souvent coupés sur deux lignes : la page est retenue sur « post-primaire » ou « secondaire
+        # général » ; le lecteur vérifie ensuite que le tableau est communal.
+        regle=Regle("texte", r"post.?primaire|secondaire g[ée]n[ée]ral|du secondaire",
+                    ignorer_casse=True, exclure=TABLES_DES_MATIERES + r"|technique|petite enfance|BEPC|BAC",
+                    continuation=True),
+        usage="Élèves du post-primaire par commune : clé de répartition des provinces scindées en 2025",
+    ),
+    Jeu(
         identifiant="insd_mines_region",
         libelle="Permis d'exploitation et sites miniers par typologie (industrielle, semi-mécanisée, artisanale), par région",
         theme="economie",
@@ -509,6 +524,7 @@ CATALOGUE: tuple[Jeu, ...] = (
 # Description employée dans le nom du fichier déposé : contenu, niveau géographique, période.
 NOMS_DEPOT = {
     "dgess_base_principale": "base-principale-dgess-region-2016-2025",
+    "insd_projections_actualisees": "population-age-simple-communes-provinces-pays-2007-2035",
     "dgess_flux_province": "taux-abandon-redoublement-province-2017-2025",
     "dgess_effectifs_redoublants_province": "effectifs-redoublants-classe-province-2017-2025",
     "dgess_effectifs_historique_province": "effectifs-historique-province-2017-2025",
@@ -534,6 +550,7 @@ NOMS_DEPOT = {
     "dgess_syntheses_primaire": "syntheses-annuaires-primaire-region-2017-2022",
     "dgess_depliants_primaire": "depliants-chiffres-cles-primaire-2017-2024",
     "dgess_annuaires_post_primaire": "annuaires-post-primaire-secondaire-2018-2023",
+    "insd_post_primaire_commune": "post-primaire-secondaire-commune-insd-2014-2024",
     "esu_rapports_mensuels": "ecoles-fermees-esu-mensuel-2021-2026",
     "insd_primaire_commune": "ecoles-eleves-enseignants-commune-insd-2014-2024",
     "insd_mines_region": "permis-sites-miniers-typologie-region-2014-2024",

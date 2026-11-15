@@ -61,7 +61,7 @@ def _profil(serie: pd.Series, annees: pd.Series | None) -> dict:
 
 
 def _role_description_source(table: str, variable: str, variables: dict, variables_region: dict) -> tuple[str, str, str]:
-    if table in ("panel_province_annee", "panel_mensuel_province", "panel_province_2025"):
+    if table in ("panel_province_annee", "panel_mensuel_province", "panel_province_2025", "panel_commune_annee"):
         if variable in variables:
             return variables[variable]
         if variable in DESCRIPTIONS_MENSUEL:

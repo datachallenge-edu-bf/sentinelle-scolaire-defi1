@@ -7,7 +7,7 @@ import pandas as pd
 
 from .. import config
 from . import metadonnees_modele
-from . import decoupage_2025, nommage
+from . import decoupage_2025, demographie, nommage
 from .fiche import FICHES
 from .panel import (SEUIL_RUPTURE, construire_panel, construire_panel_mensuel, construire_panel_region,
                     construire_serie_nationale)
@@ -16,6 +16,45 @@ SORTIE = config.DONNEES / "03_transformation"
 
 # Rôle, description, source de chaque variable de la table d'analyse.
 VARIABLES = {
+    "population_totale": ('explicative', "Population totale de l'unité, année t", 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "moins_15": ('explicative', 'Population de moins de 15 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "age_15_64": ('explicative', 'Population de 15 à 64 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "plus_64": ('explicative', 'Population de 65 ans et plus', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_3_5": ('explicative', 'Enfants de 3 à 5 ans (âge du préscolaire)', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_5": ('explicative', "Enfants de 5 ans (entrants potentiels au CP1 l'année suivante)", 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_6_11": ('explicative', 'Enfants de 6 à 11 ans (âge du primaire)', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_6_11_filles": ('explicative', 'Filles de 6 à 11 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_6_11_garcons": ('explicative', 'Garçons de 6 à 11 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_12_15": ('explicative', 'Enfants de 12 à 15 ans (âge du post-primaire)', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_12_15_filles": ('explicative', 'Filles de 12 à 15 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "enfants_12_15_garcons": ('explicative', 'Garçons de 12 à 15 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "jeunes_16_18": ('explicative', 'Jeunes de 16 à 18 ans (âge du secondaire)', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "methode_population": ('identifiant', 'Méthode de la population : projection publiée ou rétroprojection par cohortes (avant 2020)', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "rapport_dependance": ('explicative', 'Moins de 15 ans et 65 ans et plus pour 100 personnes de 15 à 64 ans', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "part_moins_15": ('explicative', 'Part des moins de 15 ans dans la population, en %', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "croissance_enfants_6_11": ('explicative', 'Croissance des enfants de 6 à 11 ans depuis t-1, en %', 'INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "commune_pcode": ('identifiant', 'Code de la commune (découpage de 2025)', 'COD-AB'),
+    "commune_nom": ('identifiant', 'Nom de la commune', 'COD-AB'),
+    "eleves_primaire_insd": ('explicative', 'Élèves du primaire de la commune', 'INSD, annuaires statistiques régionaux 2024'),
+    "enseignants_primaire_insd": ('explicative', 'Enseignants du primaire de la commune', 'INSD, annuaires statistiques régionaux 2024'),
+    "salles_primaire_insd": ('explicative', 'Salles de classe du primaire de la commune', 'INSD, annuaires statistiques régionaux 2024'),
+    "salles_primaire_paillote_insd": ('explicative', 'Salles du primaire sous paillote', 'INSD, annuaires statistiques régionaux 2024'),
+    "ecoles_primaires_fermees_insd": ('explicative', 'Écoles primaires fermées pour insécurité', 'INSD, annuaires statistiques régionaux 2024'),
+    "eleves_post_primaire_insd": ('explicative', 'Élèves du post-primaire (enseignement général) de la commune', 'INSD, annuaires statistiques régionaux 2024'),
+    "deplaces": ('explicative', 'Personnes déplacées internes (dernière situation avant le 31 décembre de t)', 'CONASUR'),
+    "tbs_primaire_commune": ('explicative', 'Taux brut de scolarisation du primaire de la commune, en %', 'INSD, annuaires statistiques régionaux 2024 ; INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "tbs_post_primaire_commune": ('explicative', 'Taux brut de scolarisation du post-primaire de la commune, en %', 'INSD, annuaires statistiques régionaux 2024 ; INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "eleves_par_enseignant_primaire_insd": ('explicative', 'Élèves par enseignant du primaire de la commune', 'INSD, annuaires statistiques régionaux 2024'),
+    "part_salles_primaire_paillote_insd": ('explicative', 'Part des salles du primaire sous paillote', 'INSD, annuaires statistiques régionaux 2024'),
+    "deplaces_pour_100_habitants": ('explicative', 'Déplacés internes pour 100 habitants de la commune', 'CONASUR ; INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
+    "evolution_eleves_primaire_insd": ('explicative', 'Évolution des élèves du primaire de la commune depuis t-1, en %', 'INSD, annuaires statistiques régionaux 2024'),
+    "pauvrete_commune_2019": ('explicative', 'Incidence de la pauvreté de la commune (2019)', 'INSD, RGPH 2019'),
+    "hors_ecole_6_11_commune_2019": ('explicative', "Enfants de 6 à 11 ans hors de l'école (2019)", 'INSD, RGPH 2019'),
+    "hors_ecole_12_15_commune_2019": ('explicative', "Enfants de 12 à 15 ans hors de l'école (2019)", 'INSD, RGPH 2019'),
+    "filles_17_ans_mariees_commune_2019": ('explicative', 'Filles de 17 ans mariées (2019)', 'INSD, RGPH 2019'),
+    "alphabetisation_adultes_commune_2019": ('explicative', 'Alphabétisation des 15-64 ans (2019)', 'INSD, RGPH 2019'),
+    "electricite_commune_2019": ('explicative', "Ménages ayant l'électricité (2019)", 'INSD, RGPH 2019'),
+    "travail_enfants_7_14_commune_2019": ('explicative', 'Enfants de 7 à 14 ans qui travaillent (2019)', 'INSD, RGPH 2019'),
     "province_ancienne_pcode": ("identifiant", "Code de la province (ancien découpage, 45 provinces)", "COD-AB"),
     "province_ancienne_nom": ("identifiant", "Nom de la province", "OpenStreetMap (HOT)"),
     "region_ancienne_pcode": ("identifiant", "Code de la région (ancien découpage)", "COD-AB"),
@@ -184,6 +223,11 @@ VARIABLES_REGION = {
 }
 
 # Noms publiés : chaque variable scolaire nomme son ordre d'enseignement (module nommage).
+# Démographie : mêmes descriptions dans les panels régionaux que dans le panel provincial.
+VARIABLES_REGION.update({nom: VARIABLES[nom][1] for nom in (
+    "population_totale", "moins_15", "age_15_64", "plus_64", "enfants_3_5", "enfants_5", "enfants_6_11",
+    "enfants_6_11_filles", "enfants_6_11_garcons", "enfants_12_15", "enfants_12_15_filles", "enfants_12_15_garcons",
+    "jeunes_16_18", "methode_population", "rapport_dependance", "part_moins_15", "croissance_enfants_6_11")})
 nommage.etendre(FICHES, VARIABLES, VARIABLES_REGION)
 
 # Relations entre tables, pour le schéma de la base (rôle architecte).
@@ -285,12 +329,40 @@ def controles_region(region: pd.DataFrame, nationale: pd.DataFrame, dico_region:
     return pd.DataFrame(resultats, columns=["controle", "conforme", "detail"])
 
 
+def controles_demographie(panel: pd.DataFrame, panel_2025: pd.DataFrame, communes: pd.DataFrame) -> pd.DataFrame:
+    a = panel.groupby("annee_scolaire")["enfants_6_11"].sum()
+    b = panel_2025.groupby("annee_scolaire")["enfants_6_11"].sum()
+    c = communes.groupby("annee_scolaire")["enfants_6_11"].sum()
+    ecart = max((a - b).abs().max(), (a - c).abs().max())
+    validation = demographie.valider()
+    renseigne = panel["enfants_6_11"].notna().mean()
+    tbs = communes["tbs_primaire_commune"].notna()
+    resultats = [
+        ("demographie_communes_provinces_identiques", bool(ecart <= 1),
+         f"enfants de 6 à 11 ans : 351 communes = 45 anciennes provinces = 47 provinces de 2025, chaque année "
+         f"(écart maximal {ecart:.0f})"),
+        ("demographie_retroprojection_validee", bool(all(0.80 <= v <= 1.05 for v in validation.values())),
+         "6-11 ans rétroprojetés au niveau national, rapportés aux anciennes projections (base RGPH 2006) : "
+         + ", ".join(f"{k} {v:.3f}" for k, v in sorted(validation.items()))
+         + " ; écart attendu, les anciennes projections surestimaient la population recensée en 2019"),
+        ("demographie_panel_renseigne", bool(renseigne == 1),
+         f"population de 6 à 11 ans renseignée pour {renseigne:.0%} des lignes du panel (2016-2017 à 2024-2025)"),
+        ("panel_communal_351_communes", communes["commune_pcode"].nunique() == 351
+         and not communes.duplicated(["commune_pcode", "annee_scolaire"]).any(),
+         f"{communes['commune_pcode'].nunique()} communes × {communes['annee_scolaire'].nunique()} années ; TBS "
+         f"communal du primaire calculable pour {int(tbs.sum())} lignes"),
+    ]
+    return pd.DataFrame(resultats, columns=["controle", "conforme", "detail"])
+
+
 def executer_transformation() -> dict[str, pd.DataFrame]:
     sortie = config.verifier_ecriture(SORTIE)
     sortie.mkdir(parents=True, exist_ok=True)
-    panel = construire_panel()
+    # Population annuelle par âge (projections actualisées de l'INSD, rétroprojetées avant 2020).
+    panel = demographie.ajouter(construire_panel(), "province_ancienne_pcode")
     mensuel = construire_panel_mensuel()
-    region = construire_panel_region()
+    region = demographie.ajouter(construire_panel_region(), "region_ancienne_pcode")
+    communes = demographie.panel_communes()
     nationale = construire_serie_nationale()
     dico = dictionnaire(panel)
     dico_region = dictionnaire_region({"panel_region_annee": region, "serie_nationale_annee": nationale})
@@ -299,14 +371,23 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
     panel_2025 = decoupage_2025.panel_province_2025(panel)
     region_2025 = decoupage_2025.panel_region_2025(region, panel_2025)
     panel_2025 = decoupage_2025.contexte_regional_2025(panel_2025, region_2025)
+    # Unités de 2025 : population exacte (somme de leurs communes), jamais héritée ni répartie.
+    colonnes_demo = [c for c in demographie.demographie("province_pcode").columns
+                     if c not in ("province_pcode", "annee_scolaire")]
+    panel_2025 = demographie.ajouter(panel_2025.drop(columns=[c for c in colonnes_demo if c in panel_2025]),
+                                     "province_pcode")
+    region_2025 = demographie.ajouter(region_2025.drop(columns=[c for c in colonnes_demo if c in region_2025]),
+                                      "region_pcode")
     internes = {"panel_province_annee": panel, "panel_mensuel_province": mensuel, "panel_region_annee": region,
-                "serie_nationale_annee": nationale, "panel_province_2025": panel_2025, "panel_region_2025": region_2025}
+                "serie_nationale_annee": nationale, "panel_province_2025": panel_2025, "panel_region_2025": region_2025,
+                "panel_commune_annee": communes}
     bases = nommage.publier(internes)
     metadonnees = metadonnees_modele.ecrire(bases, VARIABLES, VARIABLES_REGION, sortie / "metadonnees")
     conforme, detail = metadonnees["controle"]
     verifications = pd.concat([controles(panel, mensuel, dico),
                                controles_region(region, nationale, dico_region, panel),
                                decoupage_2025.controles(panel, panel_2025, region, region_2025),
+                               controles_demographie(panel, panel_2025, communes),
                                pd.DataFrame([{"controle": "fiches_completes", "conforme": conforme, "detail": detail}])],
                               ignore_index=True)
     resultat = {**bases, "dictionnaire_variables_modele": dictionnaire(bases["panel_province_annee"]),
@@ -317,6 +398,7 @@ def executer_transformation() -> dict[str, pd.DataFrame]:
     for nom, table in resultat.items():
         table.to_csv(sortie / f"{nom}.csv", sep=config.SEPARATEUR, encoding=config.ENCODAGE_SORTIE, index=False)
     # Base finale du découpage de 2025 : un onglet par panel et par ordre d'enseignement.
-    nommage.classeur_base_finale({n: bases[n] for n in ("panel_province_2025", "panel_region_2025")},
+    nommage.classeur_base_finale({n: bases[n] for n in ("panel_province_2025", "panel_region_2025",
+                                                         "panel_commune_annee")},
                                  metadonnees["dictionnaire"], sortie / "sentinelle_base_finale_decoupage_2025.xlsx")
     return resultat

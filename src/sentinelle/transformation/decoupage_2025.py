@@ -21,7 +21,8 @@ régionaux sont répartis selon les élèves de leurs provinces l'année consid�
 
 Reconstruction des indicateurs des unités touchées (le modèle s'entraîne sur ces unités) :
 
-- provinces scindées : les rapports qui dépendent d'effectifs (élèves par maître, par
+- provinces scindées (effectifs communaux lus par la Sentinelle dans les annuaires régionaux
+  de l'INSD, table fait_insd_commune) : les rapports qui dépendent d'effectifs (élèves par maître, par
   salle, part des filles, du privé, taux bruts et nets, scolarisation au post-primaire) sont
   corrigés par le rapport des clés communales de l'INSD (élèves, filles, privé, enseignants,
   salles, élèves du post-primaire) à la population ; les écoles fermées sont réparties
@@ -116,24 +117,24 @@ CORRECTIONS = {
 
 def _effectifs_communaux() -> pd.DataFrame:
     """Élèves (total, filles, privé), enseignants, salles, écoles fermées et élèves du post-primaire par commune."""
-    primaire = pd.read_csv(config.COMMUNES_INSD / "communes_primaire.csv", sep=";", encoding="utf-8-sig")
-    secondaire = pd.read_csv(config.COMMUNES_INSD / "communes_secondaire.csv", sep=";", encoding="utf-8-sig")
-    def serie(t, indicateurs, modalite):
-        partie = t[t["indicateur"].isin(indicateurs) & (t["modalite"] == modalite)]
+    insd = lire("fait_insd_commune")
+    def serie(indicateurs, modalite):
+        partie = insd[insd["indicateur"].isin(indicateurs) & (insd["modalite"] == modalite)]
         # Le premier tableau publié prime ; l'autre (par sexe ou par statut) complète ses manques.
         partie = partie.assign(rang=partie["indicateur"].map({k: i for i, k in enumerate(indicateurs)}))
-        return partie.sort_values("rang").drop_duplicates(["commune_code", "annee"]).set_index(
-            ["commune_code", "annee"])["valeur"]
-    return pd.DataFrame({
-        "eleves": serie(primaire, ["eleves_par_sexe", "eleves_par_statut"], "ensemble"),
-        "filles": serie(primaire, ["eleves_par_sexe"], "filles"),
-        "prive": serie(primaire, ["eleves_par_statut"], "prive"),
-        "enseignants": serie(primaire, ["enseignants_par_sexe", "enseignants_par_statut"], "ensemble"),
-        "salles": serie(primaire, ["salles"], "ensemble"),
-        "ecoles_fermees": serie(primaire, ["ecoles_fermees"], "ensemble"),
-        "eleves_post_primaire": serie(secondaire, ["eleves_post_primaire_par_statut",
-                                                   "eleves_post_primaire_par_sexe"], "ensemble"),
-    }).reset_index()
+        return partie.sort_values("rang").drop_duplicates(["commune_pcode", "annee_scolaire"]).set_index(
+            ["commune_pcode", "annee_scolaire"])["valeur"]
+    table = pd.DataFrame({
+        "eleves": serie(["eleves_par_sexe", "eleves_par_statut"], "T"),
+        "filles": serie(["eleves_par_sexe"], "F"),
+        "prive": serie(["eleves_par_statut"], "prive"),
+        "enseignants": serie(["enseignants_par_sexe", "enseignants_par_statut"], "T"),
+        "salles": serie(["salles"], "T"),
+        "ecoles_fermees": serie(["ecoles_fermees"], "T"),
+        "eleves_post_primaire": serie(["eleves_post_primaire_par_statut", "eleves_post_primaire_par_sexe"], "T"),
+    })
+    table.index = table.index.set_names(["commune_code", "annee"])
+    return table.reset_index()
 
 
 def _parts_communales(communes: pd.DataFrame, codes: list[str]) -> dict:

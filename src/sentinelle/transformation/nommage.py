@@ -84,7 +84,12 @@ ANCIENS = {nouveau: ancien for ancien, nouveau in NOMS_PUBLIES.items()}
 # (motif sur le nom publié, ordre), du plus précis au plus général.
 REGLES = [
     (r"^(province|region|commune)(_ancienne)?_(pcode|nom)$|^annee_scolaire$|^methode_passage$|^statut_cible$"
+     r"|^methode_population$"
      r"|^rupture_cible$|^cible_observee$|^date_deplaces$|^provinces_actuelles$|^mois$", "identifiant"),
+    (r"^enfants_3_5", "préscolaire"),
+    (r"^(enfants_5|enfants_6_11)", "primaire"),
+    (r"^enfants_12_15", "post-primaire"),
+    (r"^jeunes_16_18", "secondaire"),
     (r"tous_ordres", "tous ordres"),
     (r"post_primaire_secondaire", "post-primaire et secondaire"),
     (r"prescola|section", "préscolaire"),
@@ -152,7 +157,7 @@ def classeur_base_finale(tables: dict[str, pd.DataFrame], dictionnaire: pd.DataF
             "L'onglet « variables » décrit chaque variable et son ordre d'enseignement."]}).to_excel(
             classeur, sheet_name="lisez-moi", index=False)
         for nom, table in tables.items():
-            prefixe = nom.replace("panel_", "").replace("_2025", "")
+            prefixe = nom.replace("panel_", "").replace("_2025", "").replace("_annee", "")
             identifiants = [c for c in table.columns if ordre_enseignement(c) == "identifiant"]
             contexte = [c for c in table.columns if ordre_enseignement(c) == "contexte"]
             table.to_excel(classeur, sheet_name=f"{prefixe}_global"[:31], index=False)

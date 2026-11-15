@@ -252,6 +252,20 @@ fait_secondaire_region;tableau;texte;;Feuille et numéro du tableau dans la base
 fait_secondaire_region;statut;texte;;Statut des écoles : public, prive, communautaire (préscolaire) ou total
 fait_secondaire_region;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
 fait_secondaire_region;valeur;décimal;;Valeur publiée, dans l'unité indiquée
+fait_insd_commune;annee_scolaire;texte;;Année scolaire à laquelle se rapporte la valeur
+fait_insd_commune;commune_pcode;texte;;P-code de la commune (découpage 2025)
+fait_insd_commune;indicateur;texte;;"Indicateur : promotion, redoublement ou abandon (flux publiés) ; effectifs, TBA, TBS, taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles (base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle (fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)"
+fait_insd_commune;modalite;texte;;Ligne du tableau : F (filles ou femmes), G (garçons), H (hommes), T (total), pct (pourcentage)
+fait_insd_commune;valeur;décimal;;Valeur publiée, dans l'unité indiquée
+fait_insd_commune;source_fichier;texte;;Fichier d'origine remis par les organisateurs
+fait_insd_commune;page;texte;;Page du fichier d'origine
+fait_population;annee;entier;année;Année civile (permis et sites miniers)
+fait_population;niveau_geo;texte;;Niveau géographique de l'entité
+fait_population;entite_pcode;texte;;P-code de l'entité de l'ancien découpage (province, région, ou BF pour le pays)
+fait_population;age;entier;années;Âge révolu en années (80 = 80 ans et plus)
+fait_population;sexe;texte;;Sexe : G (garçons), F (filles), T (total ou ensemble)
+fait_population;population;décimal;personnes;Population résidente au recensement
+fait_population;source_fichier;texte;;Fichier d'origine remis par les organisateurs
 fait_esu_province;mois;texte;;Mois du rapport (AAAA-MM ou AAAA-MM-JJ)
 fait_esu_province;type;texte;;Type de situation : établissements fermés ou rouverts
 fait_esu_province;province_ancienne_pcode;texte;;P-code de la province dans l'ancien découpage (45 provinces)
