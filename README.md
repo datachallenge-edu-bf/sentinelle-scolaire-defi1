@@ -31,6 +31,7 @@ Competition_EducationBurkina/
 | 01 Collecte | `sentinelle.collecte` | `notebooks/01_collecte.ipynb` | `data/01_collecte/`, `depots/01-collecte/` |
 | 02 Nettoyage | `sentinelle.nettoyage` | `notebooks/02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02-nettoyage/` |
 | 03 Transformation | `sentinelle.transformation` | `notebooks/03_transformation.ipynb` | `data/03_transformation/` (table d'analyse province × année, panel mensuel, indicateurs régionaux et série nationale de la base principale), `depots/03-transformation/` |
+| 03b Apurement | `sentinelle.apurement` | `notebooks/03b_apurement.ipynb` | `data/03_transformation/base_apuree/` (base provinciale de 2025 sans cellule vide, statut de chaque cellule, journal, classeur coloré) |
 
 ## Démarrer après un clonage
 
@@ -57,6 +58,7 @@ $env:PYTHONPATH = "src"
 python -m sentinelle.collecte       # étape 01
 python -m sentinelle.nettoyage      # étape 02
 python -m sentinelle.transformation # étape 03
+python -m sentinelle.apurement      # étape 03b
 ```
 
 Si les données des organisateurs sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.

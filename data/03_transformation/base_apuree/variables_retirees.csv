@@ -1,0 +1,63 @@
+﻿variable;motif
+abandon_primaire_brut_suivant;année t+1 : la même série est gardée sous sa forme « précédente »
+eleves_primaire_precedent;identifiant, statut ou doublon d'une variable gardée
+eleves_primaire_suivant;année t+1 : la même série est gardée sous sa forme « précédente »
+evolution_eleves_primaire_suivante;année t+1 : la même série est gardée sous sa forme « précédente »
+rupture_cible;identifiant, statut ou doublon d'une variable gardée
+abandon_primaire_suivant;année t+1 : la même série est gardée sous sa forme « précédente »
+statut_cible;identifiant, statut ou doublon d'une variable gardée
+part_eleves_primaire_prive;hors du périmètre retenu pour la base apurée
+deplaces;crise : série courte (2019 à 2023), gardée dans la base de l'étape 03
+date_deplaces;identifiant, statut ou doublon d'une variable gardée
+deplaces_pour_100_eleves_primaire;crise : série courte (2019 à 2023), gardée dans la base de l'étape 03
+ecoles_primaires_fermees_province;crise : série courte (2019 à 2023), gardée dans la base de l'étape 03
+eleves_primaire_touches_province;crise : série courte (2019 à 2023), gardée dans la base de l'étape 03
+etablissements_fermes_tous_ordres_region;crise : série courte (2019 à 2023), gardée dans la base de l'étape 03
+eleves_affectes_tous_ordres_region;crise : série courte (2019 à 2023), gardée dans la base de l'étape 03
+tba_primaire_region;valeur régionale doublée par la valeur provinciale
+tbs_primaire_region;valeur régionale doublée par la valeur provinciale
+taux_achevement_primaire_region;valeur régionale doublée par la valeur provinciale
+reussite_cep_precedente_region;valeur régionale doublée par la valeur provinciale
+adolescents_non_formelle;hors du périmètre retenu pour la base apurée
+centres_non_formelle_adolescents;hors du périmètre retenu pour la base apurée
+taux_prescolarisation_province;hors du périmètre retenu pour la base apurée
+grande_section_prescolaire_province;hors du périmètre retenu pour la base apurée
+adolescents_non_formelle_pour_1000_eleves_primaire;hors du périmètre retenu pour la base apurée
+part_salles_primaire_recentes;hors du périmètre retenu pour la base apurée
+ecart_tbs_primaire_filles_garcons;hors du périmètre retenu pour la base apurée
+profondeur_pauvrete_province;indicateur du recensement de 2019 ou de consommation non retenu
+emploi_25_64_province;indicateur du recensement de 2019 ou de consommation non retenu
+chomage_15_24_province;indicateur du recensement de 2019 ou de consommation non retenu
+travailleurs_autonomes_15_24_province;indicateur du recensement de 2019 ou de consommation non retenu
+travailleurs_autonomes_25_64_province;indicateur du recensement de 2019 ou de consommation non retenu
+acte_naissance_province;indicateur du recensement de 2019 ou de consommation non retenu
+sanitaires_ameliores_province;indicateur du recensement de 2019 ou de consommation non retenu
+eau_amelioree_province;indicateur du recensement de 2019 ou de consommation non retenu
+electricite_province;indicateur du recensement de 2019 ou de consommation non retenu
+cuisson_amelioree_province;indicateur du recensement de 2019 ou de consommation non retenu
+telephone_province;indicateur du recensement de 2019 ou de consommation non retenu
+population_rgph_province;indicateur du recensement de 2019 ou de consommation non retenu
+menages_rgph_province;indicateur du recensement de 2019 ou de consommation non retenu
+nombre_pauvres_province;indicateur du recensement de 2019 ou de consommation non retenu
+consommation_par_personne_province;indicateur du recensement de 2019 ou de consommation non retenu
+gini_province;indicateur du recensement de 2019 ou de consommation non retenu
+rapport_q90_q10_province;indicateur du recensement de 2019 ou de consommation non retenu
+abandon_primaire_suivant_province_origine;année t+1 : la même série est gardée sous sa forme « précédente »
+abandon_primaire_brut_suivant_province_origine;année t+1 : la même série est gardée sous sa forme « précédente »
+promotion_primaire_precedente_province_origine;identifiant, statut ou doublon d'une variable gardée
+population_totale;population annuelle : complète, gardée dans la base de l'étape 03
+moins_15;population annuelle : complète, gardée dans la base de l'étape 03
+age_15_64;population annuelle : complète, gardée dans la base de l'étape 03
+plus_64;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_3_5;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_5;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_6_11;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_6_11_filles;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_6_11_garcons;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_12_15;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_12_15_filles;population annuelle : complète, gardée dans la base de l'étape 03
+enfants_12_15_garcons;population annuelle : complète, gardée dans la base de l'étape 03
+jeunes_16_18;population annuelle : complète, gardée dans la base de l'étape 03
+rapport_dependance;population annuelle : complète, gardée dans la base de l'étape 03
+part_moins_15;population annuelle : complète, gardée dans la base de l'étape 03
+croissance_enfants_6_11;population annuelle : complète, gardée dans la base de l'étape 03

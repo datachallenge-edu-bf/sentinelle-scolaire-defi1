@@ -1,0 +1,7 @@
+﻿controle;conforme;detail
+aucune_cellule_vide;True;423 lignes × 69 variables, 0 cellule(s) vide(s)
+valeurs_observees_inchangees;True;25595 cellules observées comparées au panel de l'étape 03 : 0 écart(s)
+flux_somme_100;True;abandon + redoublement + promotion = 100 à 0,05 près pour 423 lignes sur 423
+proportions_entre_0_et_1;True;17 variables de proportion
+sources_insd_controlees;True;348 valeurs INSD retenues, 18 rejetées au contrôle
+statut_de_chaque_cellule;True;observée 25595, imputée 1752, complétée à l'étape 3 1492, valeur publiée INSD 348

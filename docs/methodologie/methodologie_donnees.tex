@@ -346,6 +346,28 @@ Métadonnées complètes & Toutes les tables et variables sont décrites & Confo
 \end{figure}
 
 %======================================================================
+\section{L'apurement de la base provinciale}
+\label{sec:apurement}
+%======================================================================
+
+L'apurement part du panel provincial de 2025 de l'étape de transformation (47 provinces $\times$ 9 années scolaires, 423 lignes) et en fait une base sans cellule vide, dont chaque valeur est tracée. La base garde 10 identifiants et 69 variables ; les colonnes retirées restent dans le panel, chacune avec son motif (valeurs de l'année $t+1$, doublons régionaux, séries de crise trop courtes, population, indicateurs du recensement non retenus). Une valeur du panel n'est jamais remplacée.
+
+\textbf{Recodage.} Avant toute imputation, 68 valeurs impossibles sont recodées en manquant : 7 divisions par zéro, 5 taux calculés sur une province sans élève (Komandjari, 2022-2023), 55 taux d'abandon, de redoublement ou de promotion hors de $[-5\,;\,105]$\,\% (les trois taux de la ligne sont recodés ensemble) et une réussite au CEP supérieure à 105\,\%.
+
+\textbf{Étape 1 : imputation par variable.} La part de manquants hors provinces scindées décide de ce qui est imputé : jusqu'à 40\,\%, toutes les cellules ; de 40 à 50\,\%, les trous intérieurs seulement ; au-delà, rien à cette étape. Chaque cellule vide est classée début de série, fin de série ou trou intérieur. Pour chaque variable et chaque type, des valeurs connues de même nature sont masquées, puis estimées par chaque méthode candidate (report de l'année voisine, interpolation, moyenne ou médiane de la province, tendance locale ; régression et plus proches voisins pour un trou partiel la dernière année). La méthode à la plus faible erreur est retenue ; l'erreur est l'écart absolu moyen rapporté à l'écart typique de la variable. La valeur imputée reste dans la plage observée et garde la précision de la variable. La promotion se déduit de l'identité promotion $=$ 100 $-$ abandon $-$ redoublement.
+
+\textbf{Étape 2 : valeurs publiées par l'INSD.} Les annuaires statistiques régionaux 2024 de l'INSD publient, par province, le TBS du post-primaire par sexe et son taux d'achèvement pour cinq années, dont trois absentes des annuaires de la DGESS. Ces valeurs, transcrites avec leur document, leurs tableaux et leur lien, sont comparées au panel en 2018-2019 et en 2022-2023 (à 0,6 point près ; 0,03 pour la parité) ; les années voisines ne sont retenues que si la comparaison est conforme. 348 valeurs sont retenues, 18 rejetées.
+
+\textbf{Étape 3 : complétion.} Les cellules restantes sont comblées, dans cet ordre de préférence : une donnée publiée ou observée (post-primaire de la province d'origine pour les provinces scindées) ; une relation exacte vérifiée sur les lignes observées (écart d'achèvement $=$ achèvement du primaire $-$ TBA en 6e) ; sinon une méthode choisie par le même test, parmi lesquelles une régression à effets fixes provinciaux sur le TBS et l'achèvement du post-primaire, devenus complets à l'étape 2 :
+\begin{equation}
+y_{pt} - \bar{y}_p = \beta^\top (x_{pt} - \bar{x}_p) + \varepsilon_{pt}.
+\end{equation}
+
+\textbf{Statut de chaque cellule.} Sur les 29\,187 cellules de variables, 25\,595 sont observées, 348 sont des valeurs publiées par l'INSD, 1\,752 sont imputées aux étapes 1 et 2 et 1\,492 complétées à l'étape 3. Le statut est publié cellule par cellule (table \texttt{statut\_cellules}) et en couleur dans le classeur. Il sert à la modélisation : la cible de l'année $t$ est la valeur \texttt{abandon\_primaire\_precedent} de l'année $t+1$, et seules ses 374 valeurs observées entraînent et évaluent un modèle. Les imputations utilisent aussi des années postérieures (interpolation, report de l'année suivante) : la base convient à la description, et un modèle validé dans le temps impute ses variables explicatives avec le seul passé.
+
+\textbf{Contrôles.} Aucune cellule vide ; valeurs observées identiques au panel ; abandon $+$ redoublement $+$ promotion $=$ 100 à 0,05 près sur les 423 lignes ; proportions dans $[0\,;\,1]$. Sur les 43 provinces non scindées, la chaîne reproduit à l'identique, cellule par cellule, la première version de la base apurée établie par l'équipe.
+
+%======================================================================
 \section{Limites et anomalies signalées}
 %======================================================================
 
@@ -366,7 +388,7 @@ D'autres limites tiennent à la nature des données. Aucune donnée n'est dispon
 \section{Reproduction}
 %======================================================================
 
-La chaîne se relance depuis le dossier du projet, rangé dans le dossier des données des organisateurs, qui restent intactes. Elle demande Python 3.11 ou plus récent et les bibliothèques listées dans \texttt{requirements.txt} (pandas, geopandas, shapely, pyogrio, openpyxl, matplotlib). La commande \texttt{python -m sentinelle.collecte} produit les extractions et le dépôt 01 ; \texttt{python -m sentinelle.nettoyage} construit la base, rejoue les contrôles et produit le dépôt 02. Les notebooks \texttt{01\_collecte} et \texttt{02\_nettoyage} présentent les mêmes étapes avec leurs résultats. Les deux étapes s'exécutent en environ trois minutes.
+La chaîne se relance depuis le dossier du projet, rangé dans le dossier des données des organisateurs, qui restent intactes. Elle demande Python 3.11 ou plus récent et les bibliothèques listées dans \texttt{requirements.txt} (pandas, geopandas, shapely, pyogrio, openpyxl, matplotlib). La commande \texttt{python -m sentinelle.collecte} produit les extractions et le dépôt 01 ; \texttt{python -m sentinelle.nettoyage} construit la base, rejoue les contrôles et produit le dépôt 02. Les commandes \texttt{python -m sentinelle.transformation} puis \texttt{python -m sentinelle.apurement} produisent les tables d'analyse et la base apurée (dépôt 03). Les notebooks \texttt{01\_collecte}, \texttt{02\_nettoyage}, \texttt{03\_transformation} et \texttt{03b\_apurement} présentent les mêmes étapes avec leurs résultats.
 
 \textbf{Usage d'outils d'intelligence artificielle.} Conformément au règlement~\cite{dcb_document}, un assistant de programmation a été utilisé pour écrire et relire le code de la chaîne de traitement. Les données traitées sont des statistiques publiques agrégées ; aucune donnée personnelle n'a été manipulée. Chaque résultat a été vérifié par les contrôles décrits ci-dessus et relu par l'équipe.
 

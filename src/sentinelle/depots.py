@@ -268,7 +268,22 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
          "population par âge, taux de scolarisation communaux, déplacés, conditions de vie de 2019."),
         (source / "panel_province_2025.csv", "engineer", "table-analyse-province-decoupage-2025",
          "Panel du modèle dans le découpage de juillet 2025 (47 provinces, noms et codes du COD-AB) ; Soum et Tapoa "
-         "scindés : effectifs répartis selon la population 2019, déplacés et RGPH recalculés sur les communes, cible héritée."),
+         "scindés : effectifs répartis par clés communales de l'INSD, déplacés et RGPH recalculés sur les communes, "
+         "cible non observée (valeur de la province d'origine gardée à part)."),
+        (source / "base_apuree" / "base_apuree.csv", "engineer", "base-apuree-province-2025-sans-cellule-vide",
+         "Base apurée : panel provincial de 2025 réduit à 79 colonnes, sans cellule vide ; valeurs impossibles "
+         "recodées, manquants imputés (méthode choisie par test), valeurs publiées de l'INSD pour le post-primaire."),
+        (source / "base_apuree" / "statut_cellules.csv", "engineer", "statut-cellules-base-apuree",
+         "Statut de chaque cellule de la base apurée (observée, valeur publiée INSD, imputée, complétée) et méthode : "
+         "seules les cibles observées servent à entraîner et évaluer un modèle."),
+        (source / "base_apuree" / "journal_apurement.csv", "engineer", "journal-apurement",
+         "Une ligne par cellule recodée, sourcée ou imputée : étape, valeur avant et après, méthode, justification."),
+        (source / "base_apuree" / "base_defi1_apuree.xlsx", "engineer", "classeur-base-apuree",
+         "Classeur de la base apurée : cellules colorées selon leur statut, rapport par variable, synthèse des "
+         "méthodes, journal, sources INSD retenues et rejetées, variables retirées, contrôles."),
+        (source / "base_apuree" / "controles_apurement.csv", "engineer", "controles-apurement",
+         "Contrôles de l'apurement : aucune cellule vide, valeurs observées inchangées, flux = 100, proportions "
+         "dans [0 ; 1], sources INSD contrôlées."),
         (source / "panel_region_2025.csv", "engineer", "indicateurs-regionaux-decoupage-2025",
          "Indicateurs régionaux dans les 17 régions de 2025 et pour le pays ; régions scindées : effectifs répartis "
          "selon les élèves des provinces, taux hérités."),
@@ -313,6 +328,10 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
         "Les valeurs absentes des sources restent vides. Pour la carte, chaque province de 2025 reçoit",
         "la valeur de la province dont elle est issue (colonne provinces_actuelles).",
         "",
-        "Relancer : python -m sentinelle.transformation (avec src dans le PYTHONPATH) ou notebooks/03_transformation.ipynb.",
+        "La base apurée (dossier base_apuree) part du panel de 2025 : 79 colonnes, aucune cellule vide, et le",
+        "statut de chaque cellule (observée, valeur publiée INSD, imputée, complétée).",
+        "",
+        "Relancer : python -m sentinelle.transformation puis python -m sentinelle.apurement (avec src dans le",
+        "PYTHONPATH), ou notebooks/03_transformation.ipynb puis notebooks/03b_apurement.ipynb.",
     ]
     return deposer(3, fichiers, entete, version)
