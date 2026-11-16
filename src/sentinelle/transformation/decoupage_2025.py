@@ -278,6 +278,9 @@ def panel_region_2025(region: pd.DataFrame, province_2025: pd.DataFrame) -> pd.D
         index=table.index))
     nb = passage.groupby("region_ancienne_pcode")["region_pcode"].nunique()
     scindee = table["region_ancienne_pcode"].map(nb) > 1
+    # Effectifs des tableaux de bord : aucune clé communale récente pour les répartir entre régions de 2025.
+    compte_secondaire = [c for c in table if c.startswith(("effectif_post_primaire", "effectif_secondaire"))]
+    table.loc[scindee, compte_secondaire] = np.nan
     effectifs = [c for c in EFFECTIFS_REGION if c in table]
     table.loc[scindee, effectifs] = table.loc[scindee, effectifs].multiply(table.loc[scindee, "part"], axis=0)
     table["methode_passage"] = np.where(scindee, "région scindée : effectifs répartis selon les élèves des provinces "

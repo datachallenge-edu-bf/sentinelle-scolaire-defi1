@@ -642,6 +642,15 @@ fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 
 fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 8;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;183;;Total | NORD;
 fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 8;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;184;;Total | SAHEL;
 fait_repartitions_province;ligne écartée;ages_entrants : 1 valeurs au lieu de 8;CNS530_Annuaire_statistique_de_lenseignement_primaire_2024_2025.pdf;184;;Total | SUD-OUEST;
+fait_tableau_bord_secondaire;signalement;0 entités lues sur 14 (13 régions et le pays);CNS564_Tableau_de_bord_statistique_de_lenseignement_Post_Primaire_et_Secondaire_2024.pdf;18;;;
+fait_tableau_bord_secondaire;signalement;0 entités lues sur 14 (13 régions et le pays);CNS566_Tableau_de_bord_statistique_de_lenseignement_post_primaire_et_secondaire_2023.pdf;18;;;
+fait_tableau_bord_secondaire;signalement;année introuvable dans le sous-titre;DGESS_Tableau_de_bord_post_primaire_secondaire_2024-2025.pdf;19;;;
+fait_tableau_bord_secondaire;signalement;année introuvable dans le sous-titre;DGESS_Tableau_de_bord_post_primaire_secondaire_2024-2025.pdf;21;;;
+fait_tableau_bord_secondaire;signalement;année introuvable dans le sous-titre;DGESS_Tableau_de_bord_post_primaire_secondaire_2024-2025.pdf;23;;;
+fait_tableau_bord_secondaire;signalement;année introuvable dans le sous-titre;DGESS_Tableau_de_bord_post_primaire_secondaire_2024-2025.pdf;28;;;
+fait_tableau_bord_secondaire;signalement;année introuvable dans le sous-titre;DGESS_Tableau_de_bord_post_primaire_secondaire_2024-2025.pdf;34;;;
+fait_tableau_bord_secondaire;signalement;année introuvable dans le sous-titre;DGESS_Tableau_de_bord_post_primaire_secondaire_2024-2025.pdf;36;;;
+fait_tableau_bord_secondaire;signalement;29 valeurs déjà lues sur une page régionale : la première est gardée;;;;;
 fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;75;;Privé 0 0 0 0 0 0 0 0 0;
 fait_insd_commune;ligne écartée;8 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;78;;Privé 0 0 0 0 0 0 0 0;
 fait_insd_commune;ligne écartée;9 valeurs pour 10 années;Annuaire_Statistique_2024_Region_du_Nord_.pdf;93;;Privé 0 0 0 0 0 0 0 0 0;

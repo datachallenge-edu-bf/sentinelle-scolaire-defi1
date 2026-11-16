@@ -98,6 +98,13 @@ TABLES = {
                                "commodités des établissements, état des salles, ratio élèves par classe",
                                "année × région × tableau × indicateur", "annee_scolaire, entite_pcode, tableau, indicateur",
                                "DGESS, annuaires statistiques du post-primaire et du secondaire 2018-2019 à 2022-2023 (2019-2020 du Data Pack, les autres fournis par l'équipe)", "2018-2019 à 2022-2023"),
+    "fait_tableau_bord_secondaire": ("Indicateurs du post-primaire et du secondaire par région et pour le pays : "
+                                     "élèves, TBA, TBS, taux d'achèvement, par sexe",
+                                     "année × entité × ordre × indicateur × sexe",
+                                     "annee_scolaire, entite_pcode, ordre, indicateur, sexe",
+                                     "DGESS, tableaux de bord du post-primaire et du secondaire 2023 et 2024 (Data Pack), "
+                                     "2025 (fourni par l'équipe) : pages régionales et table nationale des indicateurs clés",
+                                     "2020-2021 à 2024-2025"),
     "fait_insd_commune": ("Écoles, salles, salles sous paillote, écoles fermées, élèves et enseignants du primaire ; "
                           "élèves du post-primaire et du secondaire général, par commune",
                           "année × commune × indicateur × modalité", "annee_scolaire, commune_pcode, indicateur, modalite",
@@ -153,7 +160,8 @@ VARIABLES = {
     "geometry": ("Contour (WGS 84)", ""),
     "nom_normalise": ("Nom en majuscules, sans accent, espace ni ponctuation", ""),
     "pcode": ("P-code de l'entité désignée par le nom", ""),
-    "niveau": ("Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique dans l'alias", ""),
+    "niveau": ("Niveau : classe (CP1 à CM2, Total) dans les tables de faits ; niveau géographique (region, pays) "
+               "dans l'alias et les tableaux de bord", ""),
     "nom_reference": ("Nom de référence de l'entité", ""),
     "origine": ("Origine de l'alias", ""),
     "annee_publication": ("Édition de l'annuaire dont provient la valeur (année scolaire)", ""),
@@ -167,7 +175,8 @@ VARIABLES = {
                    "taux d'achèvement, réussite au CEP, indices de parité, écoles, structures, salles "
                    "(base principale) ; permis ou sites (mines) ; tba_6e, tba_2nde, tbs_* et tns_* (post_primaire, "
                    "secondaire, ensemble), tach_post_primaire, tach_secondaire, flux_6e à flux_tle "
-                   "(fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region)", ""),
+                   "(fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region) ; "
+                   "eleves, tba, tbs, taux_achevement (fait_tableau_bord_secondaire)", ""),
     "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
     "modalite": ("Modalité : F (filles ou femmes), G (garçons ou hommes), T (ensemble), public, prive, communautaire", ""),
     "age": ("Âge révolu en années (80 = 80 ans et plus)", "années"),
@@ -255,7 +264,7 @@ VARIABLES = {
     "grande_section": ("Enfants inscrits en grande section, futurs entrants au CP1", "enfants"),
     "enfants_inscrits": ("Enfants inscrits au préscolaire (tableau 9, contrôle du tableau 02)", "enfants"),
     "tableau": ("Feuille et numéro du tableau dans la base principale", ""),
-    "ordre": ("Ordre d'enseignement : prescolaire, primaire ou post_primaire", ""),
+    "ordre": ("Ordre d'enseignement : prescolaire, primaire, post_primaire ou secondaire", ""),
     "milieu": ("Milieu : urbain, rural, indetermine ou total", ""),
     "classe": ("Classe : CP1 à CM2, petite, moyenne ou grande section, ou total", ""),
     "feuille": ("Feuille du classeur d'origine", ""),

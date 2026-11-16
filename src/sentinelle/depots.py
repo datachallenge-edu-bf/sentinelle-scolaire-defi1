@@ -172,6 +172,8 @@ TABLES_NETTOYAGE = [
     ("fait_secondaire_province.csv", "engineer", "tba-tbs-achevement-flux-secondaire-province-2018-2023-propre",
      "Post-primaire et secondaire par province : TBA en 6e et 2nde, TBS, taux nets, achèvement et flux par classe, "
      "2018-2019 à 2022-2023 (annuaires DGESS)."),
+    ("fait_tableau_bord_secondaire.csv", "engineer", "indicateurs-post-primaire-secondaire-region-pays-2020-2025",
+     "Indicateurs des tableaux de bord DGESS, régions et pays ; séries nationales complémentaires sans extrapolation territoriale."),
     ("fait_secondaire_region.csv", "engineer", "commodites-salles-ratios-secondaire-region-2018-2023-propre",
      "Commodités, état des salles et ratio élèves par classe du secondaire général public, par région."),
     ("fait_insd_commune.csv", "engineer", "ecoles-eleves-enseignants-commune-insd-2014-2024-propre",

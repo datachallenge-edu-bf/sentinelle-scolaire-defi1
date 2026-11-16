@@ -278,10 +278,11 @@ CATALOGUE: tuple[Jeu, ...] = (
     ),
     Jeu(
         identifiant="dgess_tableaux_de_bord_post_primaire",
-        libelle="Tableaux de bord du post-primaire et du secondaire 2023 et 2024",
+        libelle="Tableaux de bord du post-primaire et du secondaire 2023 à 2025",
         theme="education",
         niveau_geo="region",
-        fichiers=("01_Education_MENAPLN_DGESS/CNS_DGESS/Tableaux_de_bord/CNS56[46]_*.csv",),
+        fichiers=("01_Education_MENAPLN_DGESS/CNS_DGESS/Tableaux_de_bord/CNS56[46]_*.csv",
+                  "externe:dgess_post_primaire_secondaire/DGESS_Tableau_de_bord_*.csv"),
         usage="Transition du primaire vers le post-primaire",
     ),
     Jeu(

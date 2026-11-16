@@ -1,10 +1,10 @@
 ﻿nom_normalise;pcode;niveau;nom_reference;origine
+NATIONAL;BF;pays;NATIONAL;libellé du total national
 BURKINAFASO;BF;pays;BURKINAFASO;libellé du total national
-ENSEMBLE;BF;pays;ENSEMBLE;libellé du total national
-BURKINA;BF;pays;BURKINA;libellé du total national
 TOTAL;BF;pays;TOTAL;libellé du total national
 TOTALNATIONAL;BF;pays;TOTALNATIONAL;libellé du total national
-NATIONAL;BF;pays;NATIONAL;libellé du total national
+BURKINA;BF;pays;BURKINA;libellé du total national
+ENSEMBLE;BF;pays;ENSEMBLE;libellé du total national
 KADIOGO;BF1300;province_ancienne;Kadiogo;OpenStreetMap
 BALE;BF4601;province_ancienne;Balé;OpenStreetMap
 LESBALE;BF4601;province_ancienne;LESBALE;variante relevée dans les publications DGESS

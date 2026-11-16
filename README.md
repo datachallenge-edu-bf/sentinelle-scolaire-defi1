@@ -89,3 +89,19 @@ La table `fait_conditions_vie` reprend les 33 indicateurs du volume 3 du RGPH 20
 ## Sources externes
 
 Les annuaires régionaux 2024 de l'INSD pour le Centre-Est, le Centre-Nord et l'Est, absents du Data Pack, sont dans `Competition_EducationBurkina/sources_externes/` : PDF d'origine, CSV au format du Data Pack, manifeste (adresse, date, empreinte) et script de conversion `convertir_pdf.py`.
+
+## Couverture de l'année 2024-2025
+
+- Années : l'année scolaire 2024-2025 correspond, pour la population, à l'année civile de la rentrée (2024).
+- Le tableau de bord DGESS 2025 donne les indicateurs du post-primaire et du secondaire par région et pour le
+  pays jusqu'en 2024-2025 (table `fait_tableau_bord_secondaire`). Sa table des indicateurs clés indique un TBA
+  du secondaire de 18,2 % en 2024-2025, contre 18,1 % dans le texte (pages 31-32) : la valeur du tableau est
+  gardée et l'écart signalé.
+- Un total national n'est jamais réparti entre provinces ou communes.
+- Les annuaires régionaux de l'INSD s'arrêtent en 2023-2024 : dans le panel communal, les effectifs, enseignants
+  et salles de 2024-2025 restent vides ; la population et le recensement y sont renseignés.
+- Le fichier de déplacements de mai 2025 décrit des événements, pas un stock comparable aux situations du
+  CONASUR, et le rapport ESU de mai 2025 donne des réouvertures par région : ni l'un ni l'autre ne prolonge
+  les séries existantes.
+
+Le détail de cette vérification est dans `Competition_EducationBurkina/audit_couverture_2025/`.

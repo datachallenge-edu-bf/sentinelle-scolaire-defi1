@@ -218,6 +218,11 @@ def construire_panel_region() -> pd.DataFrame:
     large["part_ecoles_privees"] = large["ecoles_primaires_privees"] / large["ecoles_primaires"]
     large["eleves_par_ecole"] = large["effectif_primaire"] / large["ecoles_primaires"]
     large["prescolaire_pour_100_nouveaux_cp1"] = 100 * large["effectif_prescolaire"] / large["nouveaux_inscrits_cp1"]
+    secondaire = lire("fait_tableau_bord_secondaire")
+    secondaire["variable"] = secondaire["indicateur"].replace({"eleves": "effectif"}) + "_" + secondaire["ordre"]
+    secondaire["variable"] += secondaire["sexe"].map({"ensemble": "", "filles": "_filles", "garcons": "_garcons"})
+    secondaire = secondaire.pivot_table(index=["entite_pcode", "annee_scolaire"], columns="variable", values="valeur")
+    large = large.join(secondaire, how="left", validate="one_to_one")
     large = large.reset_index().rename(columns={"entite_pcode": "region_ancienne_pcode"})
     regions = lire("region_ancienne")[["region_ancienne_pcode", "region_ancienne_nom"]]
     large = regions.merge(large, on="region_ancienne_pcode", how="right")

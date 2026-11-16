@@ -93,6 +93,12 @@ def demographie(niveau: str) -> pd.DataFrame:
         lien = lire("commune").set_index("commune_pcode")[niveau]
         pop = pop.assign(entite_pcode=pop["entite_pcode"].map(lien))
     numeriques = list(range(81))
+    if niveau in {"region_pcode", "region_ancienne_pcode"}:
+        # Ligne du pays (BF) des panels régionaux : somme de toutes les communes.
+        national = pop.groupby(["annee", "sexe"])[numeriques].sum().reset_index()
+        national["entite_pcode"] = "BF"
+        national["methode_population"] = pop.groupby(["annee", "sexe"])["methode_population"].first().to_numpy()
+        pop = pd.concat([pop, national], ignore_index=True)
     agregee = pop.groupby(["entite_pcode", "annee", "sexe"])[numeriques].sum().reset_index()
     agregee["methode_population"] = pop.groupby(["entite_pcode", "annee", "sexe"])["methode_population"].first().to_numpy()
     resultat = _groupes(agregee, ["entite_pcode", "annee"]).reset_index()

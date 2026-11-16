@@ -234,6 +234,22 @@ for _niveau in ("province", "region", "commune"):
         FICHES.setdefault(_nom, (_libelle, _unite, _calcul, _limites))
         VARIABLES.setdefault(_nom, ("explicative", _libelle, recensement.SOURCE))
         VARIABLES_REGION.setdefault(_nom, _libelle)
+
+# Indicateurs des tableaux de bord du post-primaire et du secondaire : régions et pays seulement.
+_SOURCE_TDB = "DGESS, tableaux de bord du post-primaire et du secondaire 2023 à 2025"
+_LIMITES_TDB = ("Valeur publiée pour la région ou le pays, jamais répartie d'un total national ; les régions "
+                "scindées en 2025 n'ont pas d'effectif (aucune ventilation communale contemporaine)")
+for _ordre, _nom_ordre in (("post_primaire", "du post-primaire"), ("secondaire", "du secondaire")):
+    for _indicateur, _libelle, _unite in (("effectif", "Élèves", "élèves"), ("tba", "Taux brut d'admission", "%"),
+                                          ("tbs", "Taux brut de scolarisation", "%"),
+                                          ("taux_achevement", "Taux d'achèvement", "%")):
+        for _sexe, _suffixe in (("ensemble", ""), ("filles", "_filles"), ("garçons", "_garcons")):
+            _nom = f"{_indicateur}_{_ordre}{_suffixe}"
+            _texte = f"{_libelle} {_nom_ordre}" + ("" if _sexe == "ensemble" else f", {_sexe}")
+            VARIABLES[_nom] = ("contexte", _texte, _SOURCE_TDB)
+            VARIABLES_REGION[_nom] = _texte
+            FICHES[_nom] = (_texte, _unite, "valeur publiée", _LIMITES_TDB)
+
 nommage.etendre(FICHES, VARIABLES, VARIABLES_REGION)
 
 # Relations entre tables, pour le schéma de la base (rôle architecte).
@@ -322,6 +338,12 @@ def controles_region(region: pd.DataFrame, nationale: pd.DataFrame, dico_region:
         ("panel_region_une_ligne_par_region_et_annee",
          not region.duplicated(["region_ancienne_pcode", "annee_scolaire"]).any() and len(region) == 14 * 10,
          f"{len(region)} lignes = 13 régions et le pays × 10 années"),
+        ("population_pays_jointe_2024_2025", pays.loc["2024-2025", "population_totale"] > 0,
+         "population du pays jointe à la ligne BF, au même grain que les régions"),
+        ("population_regions_egale_pays",
+         (regions.groupby("annee_scolaire")["population_totale"].sum(min_count=1)
+          - pays["population_totale"]).dropna().abs().le(1).all(),
+         "somme des 13 régions = pays ; aucune moyenne de rapports démographiques"),
         ("somme_des_regions_egale_national", ecart <= 0.5, f"écart maximal {ecart:g} élève sur 10 années"),
         ("public_plus_prive_egal_total_national", statuts <= 0.5, f"écart maximal {statuts:g} élève"),
         ("taux_achevement_national_2024_2025", abs(achevement - 51.6) < 0.05,

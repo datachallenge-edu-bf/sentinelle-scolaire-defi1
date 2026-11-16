@@ -50,4 +50,7 @@ population_communes_egal_province;True;68526 province × année × âge × sexe 
 population_provinces_egal_pays;True;2020-2035 : 3888 sur 3888 à 0,1 % près
 population_couverture;True;351 communes, 47 provinces de 2025, pays de 2007 à 2035
 population_2020_proche_rgph_2019;True;population 2020 / RGPH 2019 par commune : médiane 1.009
+tableaux_de_bord_secondaire_14_entites;True;17 indicateurs × ordres × années régionaux, tous à 13 régions et le pays
+tableaux_de_bord_secondaire_garcons_plus_filles;True;garçons + filles = ensemble (à 1 près) pour 70 lignes sur 70
+tableaux_de_bord_secondaire_regions_egal_pays;True;élèves, somme des 13 régions / pays : 2022-2023 post_primaire 0.00%, 2022-2023 secondaire 0.00%, 2023-2024 post_primaire 0.00%, 2023-2024 secondaire 0.00%, 2024-2025 post_primaire 0.00%
 metadonnees_completes;True;toutes les tables et variables sont décrites

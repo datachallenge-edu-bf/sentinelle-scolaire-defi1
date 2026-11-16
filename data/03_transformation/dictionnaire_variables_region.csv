@@ -34,23 +34,47 @@ panel_region_annee;part_filles_primaire;Part des filles parmi les élèves du pr
 panel_region_annee;part_ecoles_primaires_privees;Part des écoles primaires privées;DGESS, base principale;0.0
 panel_region_annee;eleves_primaire_par_ecole;Élèves du primaire par école;DGESS, base principale;0.0
 panel_region_annee;prescolaire_pour_100_nouveaux_cp1;Enfants du préscolaire pour 100 nouveaux inscrits au CP1;DGESS, base principale;0.0
-panel_region_annee;population_totale;Population totale de l'unité, année t;DGESS, base principale;0.164
-panel_region_annee;moins_15;Population de moins de 15 ans;DGESS, base principale;0.164
-panel_region_annee;age_15_64;Population de 15 à 64 ans;DGESS, base principale;0.164
-panel_region_annee;plus_64;Population de 65 ans et plus;DGESS, base principale;0.164
-panel_region_annee;enfants_3_5;Enfants de 3 à 5 ans (âge du préscolaire);DGESS, base principale;0.164
-panel_region_annee;enfants_5;Enfants de 5 ans (entrants potentiels au CP1 l'année suivante);DGESS, base principale;0.164
-panel_region_annee;enfants_6_11;Enfants de 6 à 11 ans (âge du primaire);DGESS, base principale;0.164
-panel_region_annee;enfants_6_11_filles;Filles de 6 à 11 ans;DGESS, base principale;0.164
-panel_region_annee;enfants_6_11_garcons;Garçons de 6 à 11 ans;DGESS, base principale;0.164
-panel_region_annee;enfants_12_15;Enfants de 12 à 15 ans (âge du post-primaire);DGESS, base principale;0.164
-panel_region_annee;enfants_12_15_filles;Filles de 12 à 15 ans;DGESS, base principale;0.164
-panel_region_annee;enfants_12_15_garcons;Garçons de 12 à 15 ans;DGESS, base principale;0.164
-panel_region_annee;jeunes_16_18;Jeunes de 16 à 18 ans (âge du secondaire);DGESS, base principale;0.164
-panel_region_annee;methode_population;Méthode de la population : projection publiée ou rétroprojection par cohortes (avant 2020);DGESS, base principale;0.164
-panel_region_annee;rapport_dependance;Moins de 15 ans et 65 ans et plus pour 100 personnes de 15 à 64 ans;DGESS, base principale;0.164
-panel_region_annee;part_moins_15;Part des moins de 15 ans dans la population, en %;DGESS, base principale;0.164
-panel_region_annee;croissance_enfants_6_11;Croissance des enfants de 6 à 11 ans depuis t-1, en %;DGESS, base principale;0.257
+panel_region_annee;effectif_post_primaire;Élèves du post-primaire;DGESS, base principale;0.686
+panel_region_annee;effectif_post_primaire_filles;Élèves du post-primaire, filles;DGESS, base principale;0.7
+panel_region_annee;effectif_post_primaire_garcons;Élèves du post-primaire, garçons;DGESS, base principale;0.7
+panel_region_annee;effectif_secondaire;Élèves du secondaire;DGESS, base principale;0.779
+panel_region_annee;effectif_secondaire_filles;Élèves du secondaire, filles;DGESS, base principale;0.8
+panel_region_annee;effectif_secondaire_garcons;Élèves du secondaire, garçons;DGESS, base principale;0.8
+panel_region_annee;taux_achevement_post_primaire;Taux d'achèvement du post-primaire;DGESS, base principale;0.779
+panel_region_annee;taux_achevement_post_primaire_filles;Taux d'achèvement du post-primaire, filles;DGESS, base principale;0.779
+panel_region_annee;taux_achevement_post_primaire_garcons;Taux d'achèvement du post-primaire, garçons;DGESS, base principale;0.8
+panel_region_annee;taux_achevement_secondaire;Taux d'achèvement du secondaire;DGESS, base principale;0.779
+panel_region_annee;taux_achevement_secondaire_filles;Taux d'achèvement du secondaire, filles;DGESS, base principale;0.779
+panel_region_annee;taux_achevement_secondaire_garcons;Taux d'achèvement du secondaire, garçons;DGESS, base principale;0.8
+panel_region_annee;tba_post_primaire;Taux brut d'admission du post-primaire;DGESS, base principale;0.779
+panel_region_annee;tba_post_primaire_filles;Taux brut d'admission du post-primaire, filles;DGESS, base principale;0.779
+panel_region_annee;tba_post_primaire_garcons;Taux brut d'admission du post-primaire, garçons;DGESS, base principale;0.8
+panel_region_annee;tba_secondaire;Taux brut d'admission du secondaire;DGESS, base principale;0.779
+panel_region_annee;tba_secondaire_filles;Taux brut d'admission du secondaire, filles;DGESS, base principale;0.779
+panel_region_annee;tba_secondaire_garcons;Taux brut d'admission du secondaire, garçons;DGESS, base principale;0.8
+panel_region_annee;tbs_post_primaire;Taux brut de scolarisation du post-primaire;DGESS, base principale;0.779
+panel_region_annee;tbs_post_primaire_filles;Taux brut de scolarisation du post-primaire, filles;DGESS, base principale;0.779
+panel_region_annee;tbs_post_primaire_garcons;Taux brut de scolarisation du post-primaire, garçons;DGESS, base principale;0.8
+panel_region_annee;tbs_secondaire;Taux brut de scolarisation du secondaire;DGESS, base principale;0.779
+panel_region_annee;tbs_secondaire_filles;Taux brut de scolarisation du secondaire, filles;DGESS, base principale;0.779
+panel_region_annee;tbs_secondaire_garcons;Taux brut de scolarisation du secondaire, garçons;DGESS, base principale;0.8
+panel_region_annee;population_totale;Population totale de l'unité, année t;DGESS, base principale;0.1
+panel_region_annee;moins_15;Population de moins de 15 ans;DGESS, base principale;0.1
+panel_region_annee;age_15_64;Population de 15 à 64 ans;DGESS, base principale;0.1
+panel_region_annee;plus_64;Population de 65 ans et plus;DGESS, base principale;0.1
+panel_region_annee;enfants_3_5;Enfants de 3 à 5 ans (âge du préscolaire);DGESS, base principale;0.1
+panel_region_annee;enfants_5;Enfants de 5 ans (entrants potentiels au CP1 l'année suivante);DGESS, base principale;0.1
+panel_region_annee;enfants_6_11;Enfants de 6 à 11 ans (âge du primaire);DGESS, base principale;0.1
+panel_region_annee;enfants_6_11_filles;Filles de 6 à 11 ans;DGESS, base principale;0.1
+panel_region_annee;enfants_6_11_garcons;Garçons de 6 à 11 ans;DGESS, base principale;0.1
+panel_region_annee;enfants_12_15;Enfants de 12 à 15 ans (âge du post-primaire);DGESS, base principale;0.1
+panel_region_annee;enfants_12_15_filles;Filles de 12 à 15 ans;DGESS, base principale;0.1
+panel_region_annee;enfants_12_15_garcons;Garçons de 12 à 15 ans;DGESS, base principale;0.1
+panel_region_annee;jeunes_16_18;Jeunes de 16 à 18 ans (âge du secondaire);DGESS, base principale;0.1
+panel_region_annee;methode_population;Méthode de la population : projection publiée ou rétroprojection par cohortes (avant 2020);DGESS, base principale;0.1
+panel_region_annee;rapport_dependance;Moins de 15 ans et 65 ans et plus pour 100 personnes de 15 à 64 ans;DGESS, base principale;0.1
+panel_region_annee;part_moins_15;Part des moins de 15 ans dans la population, en %;DGESS, base principale;0.1
+panel_region_annee;croissance_enfants_6_11;Croissance des enfants de 6 à 11 ans depuis t-1, en %;DGESS, base principale;0.2
 panel_region_annee;pauvrete_region_2019;Incidence de la pauvreté (la région, 2019);DGESS, base principale;0.0
 panel_region_annee;profondeur_pauvrete_region_2019;Profondeur de la pauvreté (la région, 2019);DGESS, base principale;0.0
 panel_region_annee;travail_enfants_7_14_region_2019;Enfants de 7 à 14 ans qui travaillent (la région, 2019);DGESS, base principale;0.0
@@ -114,6 +138,30 @@ serie_nationale_annee;part_filles_primaire;Part des filles parmi les élèves du
 serie_nationale_annee;part_ecoles_primaires_privees;Part des écoles primaires privées;DGESS, base principale;0.0
 serie_nationale_annee;eleves_primaire_par_ecole;Élèves du primaire par école;DGESS, base principale;0.0
 serie_nationale_annee;prescolaire_pour_100_nouveaux_cp1;Enfants du préscolaire pour 100 nouveaux inscrits au CP1;DGESS, base principale;0.0
+serie_nationale_annee;effectif_post_primaire;Élèves du post-primaire;DGESS, base principale;0.5
+serie_nationale_annee;effectif_post_primaire_filles;Élèves du post-primaire, filles;DGESS, base principale;0.7
+serie_nationale_annee;effectif_post_primaire_garcons;Élèves du post-primaire, garçons;DGESS, base principale;0.7
+serie_nationale_annee;effectif_secondaire;Élèves du secondaire;DGESS, base principale;0.5
+serie_nationale_annee;effectif_secondaire_filles;Élèves du secondaire, filles;DGESS, base principale;0.8
+serie_nationale_annee;effectif_secondaire_garcons;Élèves du secondaire, garçons;DGESS, base principale;0.8
+serie_nationale_annee;taux_achevement_post_primaire;Taux d'achèvement du post-primaire;DGESS, base principale;0.5
+serie_nationale_annee;taux_achevement_post_primaire_filles;Taux d'achèvement du post-primaire, filles;DGESS, base principale;0.5
+serie_nationale_annee;taux_achevement_post_primaire_garcons;Taux d'achèvement du post-primaire, garçons;DGESS, base principale;0.8
+serie_nationale_annee;taux_achevement_secondaire;Taux d'achèvement du secondaire;DGESS, base principale;0.5
+serie_nationale_annee;taux_achevement_secondaire_filles;Taux d'achèvement du secondaire, filles;DGESS, base principale;0.5
+serie_nationale_annee;taux_achevement_secondaire_garcons;Taux d'achèvement du secondaire, garçons;DGESS, base principale;0.8
+serie_nationale_annee;tba_post_primaire;Taux brut d'admission du post-primaire;DGESS, base principale;0.5
+serie_nationale_annee;tba_post_primaire_filles;Taux brut d'admission du post-primaire, filles;DGESS, base principale;0.5
+serie_nationale_annee;tba_post_primaire_garcons;Taux brut d'admission du post-primaire, garçons;DGESS, base principale;0.8
+serie_nationale_annee;tba_secondaire;Taux brut d'admission du secondaire;DGESS, base principale;0.5
+serie_nationale_annee;tba_secondaire_filles;Taux brut d'admission du secondaire, filles;DGESS, base principale;0.5
+serie_nationale_annee;tba_secondaire_garcons;Taux brut d'admission du secondaire, garçons;DGESS, base principale;0.8
+serie_nationale_annee;tbs_post_primaire;Taux brut de scolarisation du post-primaire;DGESS, base principale;0.5
+serie_nationale_annee;tbs_post_primaire_filles;Taux brut de scolarisation du post-primaire, filles;DGESS, base principale;0.5
+serie_nationale_annee;tbs_post_primaire_garcons;Taux brut de scolarisation du post-primaire, garçons;DGESS, base principale;0.8
+serie_nationale_annee;tbs_secondaire;Taux brut de scolarisation du secondaire;DGESS, base principale;0.5
+serie_nationale_annee;tbs_secondaire_filles;Taux brut de scolarisation du secondaire, filles;DGESS, base principale;0.5
+serie_nationale_annee;tbs_secondaire_garcons;Taux brut de scolarisation du secondaire, garçons;DGESS, base principale;0.8
 serie_nationale_annee;effectif_primaire_public;Élèves du primaire public;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire_prive;Élèves du primaire privé;DGESS, base principale;0.0
 serie_nationale_annee;effectif_primaire_urbain;Élèves du primaire en milieu urbain;DGESS, base principale;0.0

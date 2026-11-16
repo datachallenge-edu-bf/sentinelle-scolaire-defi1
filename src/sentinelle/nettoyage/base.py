@@ -17,7 +17,7 @@ from .. import config
 from ..indicateurs import effectifs_retenus
 from . import base_principale as principale
 from . import (causes_abandon, communes_insd, conditions_scolarisation, conditions_vie, enf_prescolaire,
-               population_insd, post_primaire, profils_pauvrete, repartitions_province)
+               population_insd, post_primaire, profils_pauvrete, repartitions_province, tableau_bord_secondaire)
 from . import controles, dgess, esu, geographie, metadonnees, pdi
 from .offre import lire_offre
 from .outils import Journal
@@ -61,6 +61,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
     repartitions = repartitions_province.lire_repartitions(identifier, journal)
     causes = causes_abandon.lire_causes(identifier, journal)
     mines = causes_abandon.lire_mines(identifier, journal)
+    tableau_secondaire = tableau_bord_secondaire.lire(identifier, journal)
     secondaire_province, secondaire_region = post_primaire.lire_post_primaire(identifier, alias, journal)
     referentiel = communes.drop(columns="geometry", errors="ignore")
     insd_communes = communes_insd.lire_communes_insd(referentiel, journal)
@@ -146,6 +147,8 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
           communes_insd.controler(insd_communes, referentiel).items()],
         *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
           population_insd.controler(population, totaux_population, referentiel, vie).items()],
+        *[{"controle": nom, "conforme": bool(conforme), "detail": detail} for nom, (conforme, detail) in
+          tableau_bord_secondaire.controler(tableau_secondaire).items()],
         {"controle": "metadonnees_completes", "conforme": False, "detail": ""},
     ])], ignore_index=True)
 
@@ -183,6 +186,7 @@ def executer_nettoyage(sortie: Path | None = None) -> dict[str, pd.DataFrame]:
         "fait_mines_region": mines,
         "fait_secondaire_province": secondaire_province,
         "fait_secondaire_region": secondaire_region,
+        "fait_tableau_bord_secondaire": tableau_secondaire,
         "fait_insd_commune": insd_communes,
         "fait_population": population.drop_duplicates(["annee", "niveau_geo", "entite_pcode", "age", "sexe"]),
         "fait_esu_province": esu_provinces,
