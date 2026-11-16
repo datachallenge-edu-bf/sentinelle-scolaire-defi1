@@ -10,7 +10,9 @@ Quatre temps :
    (module ``imputation``) ;
 2. valeurs publiées par l'INSD pour le post-primaire, retenues après contrôle contre le panel
    (module ``sources_insd``) ;
-3. complétion des cellules restantes (module ``completion``).
+3. complétion des cellules restantes (module ``completion``) ;
+4. base par sexe : les variables publiées par sexe, ancrées sur l'ensemble de la base apurée
+   (module ``par_sexe``).
 
 Chaque cellule reçoit un statut : observée, valeur publiée INSD, imputée (étapes 1 et 2) ou
 complétée à l'étape 3. Ce statut permet d'écarter de l'apprentissage d'un modèle toute cible
@@ -23,7 +25,7 @@ import numpy as np
 import pandas as pd
 
 from .. import config
-from . import classeur, completion, imputation, selection, sources_insd
+from . import classeur, completion, imputation, par_sexe, selection, sources_insd
 from .etat import COMPLETEE, IMPUTEE, OBSERVEE, SOURCE_INSD, Apurement
 
 ENTREE = config.DONNEES / "03_transformation" / "panel_province_2025.csv"
@@ -107,6 +109,7 @@ def executer_apurement() -> dict[str, pd.DataFrame]:
     for nom, table in tables.items():
         table.to_csv(sortie / f"{nom}.csv", sep=config.SEPARATEUR, encoding=config.ENCODAGE_SORTIE, index=False)
     classeur.ecrire(etat, e1, e2, e3, tables, sortie / "base_defi1_apuree.xlsx")
+    tables.update(par_sexe.executer(d, statuts, sortie))
     return tables
 
 

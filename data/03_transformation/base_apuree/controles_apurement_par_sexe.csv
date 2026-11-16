@@ -1,0 +1,7 @@
+﻿controle;conforme;detail
+aucune_cellule_vide;True;846 lignes × 26 variables par sexe, 0 vide(s)
+valeurs_observees_egales_aux_sources;True;13244 cellules observées comparées aux annuaires : 0 écart(s)
+filles_plus_garcons_egal_ensemble_effectifs;True;"F + G à 1 % de l'ensemble de la base apurée pour 422 lignes sur 423 ; dans les annuaires : 350 sur 350 à un élève près"
+abandon_filles_garcons_pondere_egal_ensemble;True;moyenne des abandons F et G pondérée par les effectifs à 1 point de l'ensemble pour 343 passages sur 343 (écart médian 0.022)
+statut_de_chaque_cellule;True;imputée 7666, observée 14330
+cibles_observees_par_sexe;True;640 cibles observées (province × année × sexe)

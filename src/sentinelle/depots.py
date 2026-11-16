@@ -284,6 +284,15 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
         (source / "base_apuree" / "controles_apurement.csv", "engineer", "controles-apurement",
          "Contrôles de l'apurement : aucune cellule vide, valeurs observées inchangées, flux = 100, proportions "
          "dans [0 ; 1], sources INSD contrôlées."),
+        (source / "base_apuree" / "base_apuree_par_sexe.csv", "engineer", "base-apuree-par-sexe",
+         "Base apurée par sexe : 47 provinces × 9 années × filles et garçons ; 26 variables publiées par sexe "
+         "(flux, effectifs, taux, âges, post-primaire, secondaire) ancrées sur l'ensemble de la base apurée, et "
+         "variables communes aux deux sexes."),
+        (source / "base_apuree" / "statut_cellules_par_sexe.csv", "engineer", "statut-cellules-par-sexe",
+         "Statut de chaque cellule par sexe (observée ou imputée) et méthode."),
+        (source / "base_apuree" / "controles_apurement_par_sexe.csv", "engineer", "controles-apurement-par-sexe",
+         "Contrôles de la base par sexe : aucune cellule vide, valeurs observées égales aux annuaires, filles et "
+         "garçons redonnent l'ensemble."),
         (source / "panel_region_2025.csv", "engineer", "indicateurs-regionaux-decoupage-2025",
          "Indicateurs régionaux dans les 17 régions de 2025 et pour le pays ; régions scindées : effectifs répartis "
          "selon les élèves des provinces, taux hérités."),
@@ -329,7 +338,8 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
         "la valeur de la province dont elle est issue (colonne provinces_actuelles).",
         "",
         "La base apurée (dossier base_apuree) part du panel de 2025 : 79 colonnes, aucune cellule vide, et le",
-        "statut de chaque cellule (observée, valeur publiée INSD, imputée, complétée).",
+        "statut de chaque cellule (observée, valeur publiée INSD, imputée, complétée). La base par sexe",
+        "(base_apuree_par_sexe) donne les mêmes provinces et années pour les filles et les garçons.",
         "",
         "Relancer : python -m sentinelle.transformation puis python -m sentinelle.apurement (avec src dans le",
         "PYTHONPATH), ou notebooks/03_transformation.ipynb puis notebooks/03b_apurement.ipynb.",
