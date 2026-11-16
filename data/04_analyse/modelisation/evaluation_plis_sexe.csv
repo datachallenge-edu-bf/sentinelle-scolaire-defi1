@@ -1,49 +1,57 @@
 ﻿horizon;annee_cible;role;modele;lignes_apprentissage;lignes_test;erreur_absolue_moyenne;correlation_rang;rappel_quintile_le_plus_a_risque
-1;2020-2021;sélection;reference_annee_precedente;240;82;7.7989;0.2403;0.2353
-1;2020-2021;sélection;reference_niveau_habituel;240;82;3.9756;0.4972;0.5294
-1;2020-2021;sélection;elastic_net;240;82;3.9948;0.4972;0.5294
-1;2020-2021;sélection;ridge_effet_province;240;82;7.2494;0.3433;0.4118
-1;2020-2021;sélection;lightgbm;240;82;5.7069;0.3635;0.4118
-1;2020-2021;sélection;moyenne_elastic_lightgbm;240;82;4.749;0.4158;0.4706
-1;2021-2022;sélection;reference_annee_precedente;322;72;6.4456;0.2064;0.2667
+1;2020-2021;sélection;reference_annee_precedente;240;82;7.66;0.2404;0.2353
+1;2020-2021;sélection;reference_niveau_habituel;240;82;3.8367;0.4986;0.5294
+1;2020-2021;sélection;reference_niveau_retreci;240;82;3.9403;0.4057;0.4118
+1;2020-2021;sélection;elastic_net;240;82;3.8604;0.4986;0.5294
+1;2020-2021;sélection;ridge_effet_province;240;82;3.9168;0.5277;0.5882
+1;2020-2021;sélection;lightgbm;240;82;4.2765;0.4384;0.4118
+1;2020-2021;sélection;moyenne_elastic_lightgbm;240;82;4.0675;0.4696;0.5294
+1;2021-2022;sélection;reference_annee_precedente;322;72;6.2851;0.2081;0.2667
 1;2021-2022;sélection;reference_niveau_habituel;322;72;5.4055;0.5979;0.4667
-1;2021-2022;sélection;elastic_net;322;72;5.4179;0.5979;0.4667
-1;2021-2022;sélection;ridge_effet_province;322;72;6.3243;0.6116;0.4667
-1;2021-2022;sélection;lightgbm;322;72;6.0032;0.477;0.4
-1;2021-2022;sélection;moyenne_elastic_lightgbm;322;72;5.6716;0.554;0.4667
+1;2021-2022;sélection;reference_niveau_retreci;322;72;5.2371;0.5613;0.4
+1;2021-2022;sélection;elastic_net;322;72;5.3609;0.5979;0.4667
+1;2021-2022;sélection;ridge_effet_province;322;72;5.8678;0.6165;0.5333
+1;2021-2022;sélection;lightgbm;322;72;4.8232;0.5363;0.4
+1;2021-2022;sélection;moyenne_elastic_lightgbm;322;72;5.0429;0.5707;0.4667
 1;2022-2023;sélection;reference_annee_precedente;394;64;7.3917;0.5349;0.3846
 1;2022-2023;sélection;reference_niveau_habituel;394;64;9.7783;0.5506;0.4615
-1;2022-2023;sélection;elastic_net;394;64;9.8046;0.5506;0.4615
-1;2022-2023;sélection;ridge_effet_province;394;64;11.6738;0.4635;0.4615
-1;2022-2023;sélection;lightgbm;394;64;11.3428;0.5384;0.4615
-1;2022-2023;sélection;moyenne_elastic_lightgbm;394;64;10.5536;0.5568;0.4615
-1;2023-2024;test final;reference_annee_precedente;458;64;8.8311;0.4841;0.6923
-1;2023-2024;test final;reference_niveau_habituel;458;64;3.9381;0.6602;0.5385
-1;2023-2024;test final;elastic_net;458;64;3.9392;0.6602;0.5385
-1;2023-2024;test final;ridge_effet_province;458;64;4.5346;0.6136;0.6154
-1;2023-2024;test final;lightgbm;458;64;5.1622;0.6412;0.6154
-1;2023-2024;test final;moyenne_elastic_lightgbm;458;64;4.2581;0.6606;0.6154
+1;2022-2023;sélection;reference_niveau_retreci;394;64;9.4066;0.5689;0.4615
+1;2022-2023;sélection;elastic_net;394;64;9.7419;0.5506;0.4615
+1;2022-2023;sélection;ridge_effet_province;394;64;12.0385;0.4201;0.2308
+1;2022-2023;sélection;lightgbm;394;64;10.3653;0.5569;0.3846
+1;2022-2023;sélection;moyenne_elastic_lightgbm;394;64;9.9847;0.552;0.4615
+1;2023-2024;test final;reference_annee_precedente;458;64;8.7247;0.4838;0.6923
+1;2023-2024;test final;reference_niveau_habituel;458;64;3.8317;0.6595;0.5385
+1;2023-2024;test final;reference_niveau_retreci;458;64;4.2494;0.5226;0.3846
+1;2023-2024;test final;elastic_net;458;64;3.8292;0.6595;0.5385
+1;2023-2024;test final;ridge_effet_province;458;64;4.8671;0.4137;0.2308
+1;2023-2024;test final;lightgbm;458;64;4.1264;0.6387;0.5385
+1;2023-2024;test final;moyenne_elastic_lightgbm;458;64;3.8912;0.6563;0.5385
 2;2021-2022;sélection;reference_annee_precedente;156;72;6.2188;0.6703;0.4667
 2;2021-2022;sélection;reference_niveau_habituel;156;72;5.4086;0.6025;0.4667
-2;2021-2022;sélection;elastic_net;156;72;5.6302;0.6025;0.4667
-2;2021-2022;sélection;ridge_effet_province;156;72;9.5827;0.2463;0.3333
-2;2021-2022;sélection;lightgbm;156;72;7.9334;0.6439;0.6
-2;2021-2022;sélection;moyenne_elastic_lightgbm;156;72;6.7786;0.6335;0.6
-2;2022-2023;sélection;reference_annee_precedente;238;64;10.1023;0.2775;0.3077
+2;2021-2022;sélection;reference_niveau_retreci;156;72;5.1807;0.6031;0.4
+2;2021-2022;sélection;elastic_net;156;72;6.3182;0.4895;0.4667
+2;2021-2022;sélection;ridge_effet_province;156;72;6.8496;0.4865;0.4
+2;2021-2022;sélection;lightgbm;156;72;6.2111;0.6544;0.6
+2;2021-2022;sélection;moyenne_elastic_lightgbm;156;72;6.2479;0.6234;0.6
+2;2022-2023;sélection;reference_annee_precedente;238;64;10.0212;0.2775;0.3077
 2;2022-2023;sélection;reference_niveau_habituel;238;64;10.3361;0.5424;0.4615
-2;2022-2023;sélection;elastic_net;238;64;10.481;0.5424;0.4615
-2;2022-2023;sélection;ridge_effet_province;238;64;8.0023;0.5205;0.5385
-2;2022-2023;sélection;lightgbm;238;64;10.9146;0.5532;0.4615
-2;2022-2023;sélection;moyenne_elastic_lightgbm;238;64;10.6734;0.5613;0.4615
-2;2023-2024;test final;reference_annee_precedente;310;64;5.4245;0.6077;0.6154
-2;2023-2024;test final;reference_niveau_habituel;310;64;3.8803;0.7048;0.5385
-2;2023-2024;test final;elastic_net;310;64;3.9009;0.7048;0.5385
-2;2023-2024;test final;ridge_effet_province;310;64;4.4974;0.667;0.5385
-2;2023-2024;test final;lightgbm;310;64;4.0065;0.7184;0.6154
-2;2023-2024;test final;moyenne_elastic_lightgbm;310;64;3.8814;0.7065;0.5385
-3;2023-2024;test final;reference_annee_precedente;160;64;4.6864;0.5544;0.3077
-3;2023-2024;test final;reference_niveau_habituel;160;64;4.3816;0.6726;0.5385
-3;2023-2024;test final;elastic_net;160;64;4.4296;0.6726;0.5385
-3;2023-2024;test final;ridge_effet_province;160;64;6.7094;0.598;0.6154
-3;2023-2024;test final;lightgbm;160;64;5.5785;0.6329;0.6154
-3;2023-2024;test final;moyenne_elastic_lightgbm;160;64;4.8467;0.6568;0.5385
+2;2022-2023;sélection;reference_niveau_retreci;238;64;9.8884;0.5728;0.4615
+2;2022-2023;sélection;elastic_net;238;64;10.4038;0.5424;0.4615
+2;2022-2023;sélection;ridge_effet_province;238;64;10.488;0.5176;0.4615
+2;2022-2023;sélection;lightgbm;238;64;9.4041;0.5974;0.5385
+2;2022-2023;sélection;moyenne_elastic_lightgbm;238;64;9.9204;0.5744;0.4615
+2;2023-2024;test final;reference_annee_precedente;310;64;5.3181;0.6074;0.6154
+2;2023-2024;test final;reference_niveau_habituel;310;64;3.7739;0.7041;0.5385
+2;2023-2024;test final;reference_niveau_retreci;310;64;4.1542;0.5807;0.3846
+2;2023-2024;test final;elastic_net;310;64;3.7913;0.7077;0.5385
+2;2023-2024;test final;ridge_effet_province;310;64;4.1705;0.6636;0.5385
+2;2023-2024;test final;lightgbm;310;64;3.8104;0.6862;0.5385
+2;2023-2024;test final;moyenne_elastic_lightgbm;310;64;3.7977;0.6927;0.5385
+3;2023-2024;test final;reference_annee_precedente;160;64;4.5227;0.5562;0.3077
+3;2023-2024;test final;reference_niveau_habituel;160;64;4.2752;0.6716;0.5385
+3;2023-2024;test final;reference_niveau_retreci;160;64;4.4935;0.5048;0.3077
+3;2023-2024;test final;elastic_net;160;64;4.2719;0.6716;0.5385
+3;2023-2024;test final;ridge_effet_province;160;64;4.2175;0.685;0.6923
+3;2023-2024;test final;lightgbm;160;64;4.2624;0.6046;0.4615
+3;2023-2024;test final;moyenne_elastic_lightgbm;160;64;4.2374;0.6453;0.5385

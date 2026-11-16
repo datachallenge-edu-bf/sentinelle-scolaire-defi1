@@ -30,6 +30,7 @@ PARAMETRES_LGB = dict(n_estimators=300, learning_rate=0.03, num_leaves=4, max_de
                       subsample=0.8, subsample_freq=1, colsample_bytree=0.7, reg_lambda=1.0, verbose=-1,
                       random_state=42, n_jobs=1)
 PLIS_GROUPES = 5
+GRILLE_K = [5, 8, 12, None]
 
 
 def table_niveaux(d: pd.DataFrame, t: pd.DataFrame, entite: list[str], variables: list[str]):
@@ -58,20 +59,36 @@ def _ajuster(modele: str, xa, ya, xt):
     return m.predict(st), pd.DataFrame(st.values * m.coef_, columns=st.columns, index=st.index)
 
 
+def _rang(x: pd.DataFrame, y: pd.Series) -> list[str]:
+    """Variables par contribution SHAP absolue moyenne d'un LightGBM appris sur (x, y)."""
+    _, contrib = _ajuster("lightgbm", x, y, x)
+    return list(contrib.abs().mean().sort_values(ascending=False).index)
+
+
+def _choisir(rang: list[str], k) -> list[str]:
+    return rang if k is None else rang[:k]
+
+
 def valider(niveaux: pd.DataFrame, variables: list[str]) -> pd.DataFrame:
-    """Part de variance expliquée et corrélation de rang sur des provinces non vues."""
+    """Part de variance expliquée et corrélation de rang sur des provinces non vues, pour chaque modèle et
+    chaque nombre k de variables ; le classement des variables est refait dans chaque pli."""
     connus = niveaux[niveaux["niveau_habituel_observe"].notna()]
     x, y = connus[variables], connus["niveau_habituel_observe"]
     groupes = connus.index.get_level_values("province_pcode")
+    decoupes = list(GroupKFold(PLIS_GROUPES).split(x, y, groupes))
+    rangs = [_rang(x.iloc[a], y.iloc[a]) for a, _ in decoupes]
     lignes = []
     for modele in ["lightgbm", "elastic_net"]:
-        prevu = pd.Series(np.nan, index=connus.index)
-        for a, b in GroupKFold(PLIS_GROUPES).split(x, y, groupes):
-            prevu.iloc[b], _ = _ajuster(modele, x.iloc[a], y.iloc[a], x.iloc[b])
-        r2 = 1 - ((y - prevu) ** 2).sum() / ((y - y.mean()) ** 2).sum()
-        lignes.append({"modele": modele, "unites": len(y), "r2_provinces_non_vues": round(float(r2), 3),
-                       "correlation_rang_provinces_non_vues": round(float(spearmanr(y, prevu).statistic), 3),
-                       "erreur_absolue_moyenne": round(float((y - prevu).abs().mean()), 3)})
+        for k in GRILLE_K:
+            prevu = pd.Series(np.nan, index=connus.index)
+            for (a, b), rang in zip(decoupes, rangs):
+                v = _choisir(rang, k)
+                prevu.iloc[b], _ = _ajuster(modele, x.iloc[a][v], y.iloc[a], x.iloc[b][v])
+            r2 = 1 - ((y - prevu) ** 2).sum() / ((y - y.mean()) ** 2).sum()
+            lignes.append({"modele": modele, "k": k if k else len(variables), "unites": len(y),
+                           "r2_provinces_non_vues": round(float(r2), 3),
+                           "correlation_rang_provinces_non_vues": round(float(spearmanr(y, prevu).statistic), 3),
+                           "erreur_absolue_moyenne": round(float((y - prevu).abs().mean()), 3)})
     return pd.DataFrame(lignes)
 
 
@@ -82,6 +99,27 @@ def expliquer(niveaux: pd.DataFrame, variables: list[str], modele: str):
     return pd.Series(prevu, index=niveaux.index, name="niveau_explique"), contrib
 
 
+def effets_lineaires(niveaux: pd.DataFrame, variables: list[str]) -> pd.DataFrame:
+    """Effet de chaque variable sur le niveau habituel (points de taux), par l'elastic net : coefficient
+    standardisé dénormalisé (divisé par l'écart-type de la variable), pour un point de pourcentage d'une part
+    ou une unité des autres variables."""
+    connus = niveaux[niveaux["niveau_habituel_observe"].notna()]
+    x = connus[variables].fillna(connus[variables].median())
+    ecart = x.std().replace(0, 1)
+    m = ElasticNetCV(l1_ratio=0.5, cv=5, max_iter=50000, random_state=42).fit((x - x.mean()) / ecart,
+                                                                              connus["niveau_habituel_observe"])
+    # Les parts (entre 0 et 1) se lisent par point de pourcentage, les autres variables par unité.
+    part = (x.max() <= 1.0001) & (x.min() >= 0)
+    par_unite = m.coef_ / ecart.values
+    t = pd.DataFrame({"variable": variables, "libelle": [libelle(v) for v in variables],
+                      "effet_pour_un_ecart_type_points": np.round(m.coef_, 3),
+                      "ecart_type_de_la_variable": np.round(ecart.values, 4),
+                      "unite": np.where(part, "point de pourcentage", "unité de la variable"),
+                      "effet_par_unite_points": np.round(np.where(part, par_unite / 100, par_unite), 4)})
+    return t[t["effet_pour_un_ecart_type_points"] != 0].sort_values(
+        "effet_pour_un_ecart_type_points", key=abs, ascending=False).reset_index(drop=True)
+
+
 def facteurs(contrib: pd.DataFrame, n: int = 3) -> pd.DataFrame:
     """Les n variables qui poussent le plus le niveau vers le haut et celle qui le freine le plus."""
     lignes = []
@@ -89,6 +127,8 @@ def facteurs(contrib: pd.DataFrame, n: int = 3) -> pd.DataFrame:
         hausse = r[r > 0].sort_values(ascending=False).head(n)
         baisse = r[r < 0].sort_values().head(1)
         ligne = {f"facteur_{k + 1}": f"{libelle(v)} (+{c:.1f} pt)" for k, (v, c) in enumerate(hausse.items())}
+        if not len(hausse):
+            ligne["facteur_1"] = "aucun facteur au-dessus de la moyenne des provinces"
         ligne["frein_principal"] = f"{libelle(baisse.index[0])} ({baisse.iloc[0]:.1f} pt)" if len(baisse) else ""
         lignes.append(ligne)
     return pd.DataFrame(lignes, index=contrib.index)
@@ -110,10 +150,13 @@ def importance(contrib: pd.DataFrame, niveaux: pd.DataFrame) -> pd.DataFrame:
 def executer(d, t, entite, variables) -> dict[str, pd.DataFrame]:
     niveaux, variables = table_niveaux(d, t, entite, variables)
     validation = valider(niveaux, variables)
-    modele = validation.sort_values("r2_provinces_non_vues", ascending=False)["modele"].iloc[0]
-    prevu, contrib = expliquer(niveaux, variables, modele)
+    meilleure = validation.sort_values(["r2_provinces_non_vues", "k"], ascending=[False, True]).iloc[0]
+    modele, k = meilleure["modele"], int(meilleure["k"])
+    connus = niveaux[niveaux["niveau_habituel_observe"].notna()]
+    retenues = _rang(connus[variables], connus["niveau_habituel_observe"])[:k]
+    prevu, contrib = expliquer(niveaux, retenues, modele)
     sortie = niveaux[["province_nom", "region_nom", "niveau_habituel_observe"]].join(prevu.round(2)).join(
         facteurs(contrib))
-    validation["retenu"] = validation["modele"] == modele
+    validation["retenu"] = (validation["modele"] == modele) & (validation["k"] == k)
     return {"validation": validation, "facteurs": sortie.reset_index(), "importance": importance(contrib, niveaux),
-            "contributions": contrib.round(3).reset_index()}
+            "contributions": contrib.round(3).reset_index(), "effets_lineaires": effets_lineaires(niveaux, retenues)}

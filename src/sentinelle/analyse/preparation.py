@@ -8,6 +8,14 @@ Plis : pour une cible de l'année Y, l'apprentissage n'utilise que des cibles co
 des variables, soit des années au plus égales à Y − h. Les trois premiers plis servent aux
 choix ; le test final n'est utilisé qu'une fois.
 
+Normalisation de la cible : le taux (en %) est ramené dans [0,5 ; 99,5] puis transformé par
+z = logit(taux / 100). Les modèles apprennent sur z ; leurs prévisions et leurs intervalles sont
+dénormalisés par taux = 100 / (1 + exp(−z)), toujours entre 0 et 100. Les taux apparents négatifs
+(arrivées nettes d'élèves, ramenés à zéro par la DGESS) prennent la valeur plancher.
+
+Niveau habituel rétréci : la moyenne passée de la province est tirée vers celle de sa région,
+d'autant plus qu'elle repose sur peu d'années : (n × province + κ × région) / (n + κ).
+
 Variables du post-primaire (observées une année sur deux) : leurs valeurs imputées dans la base
 apurée utilisent parfois des années postérieures ; elles sont remises à vide puis complétées par
 la dernière valeur observée, qui ne dépend que du passé.
@@ -30,6 +38,19 @@ DERNIERE_ANNEE = "2024-2025"
 PLIS = {"ensemble": ["2021-2022", "2022-2023", "2023-2024"], "sexe": ["2020-2021", "2021-2022", "2022-2023"]}
 TEST_FINAL = {"ensemble": "2024-2025", "sexe": "2023-2024"}
 PERSISTANCE = ["moyenne_passee_abandon", "ecart_abandon_a_la_moyenne", "rupture_annee_precedente"]
+PLANCHER, PLAFOND = 0.5, 99.5
+GRILLE_KAPPA = [1.0, 2.0, 4.0, 8.0]
+
+
+def normaliser(taux):
+    """Taux en % vers l'échelle logit."""
+    p = np.clip(np.asarray(taux, dtype=float), PLANCHER, PLAFOND) / 100
+    return np.log(p / (1 - p))
+
+
+def denormaliser(z):
+    """Échelle logit vers taux en %."""
+    return 100 / (1 + np.exp(-np.asarray(z, dtype=float)))
 
 
 def annee_plus(annee: str, ecart: int) -> str:
@@ -76,6 +97,13 @@ def preparer(jeu: dict, nom: str, listes: pd.DataFrame) -> tuple[pd.DataFrame, l
     tout = d[CIBLE].groupby(groupes).transform(lambda s: s.expanding().mean())
     d["moyenne_passee_abandon"] = (somme / nombre.replace(0, np.nan)).fillna(tout)
     d["ecart_abandon_a_la_moyenne"] = d[CIBLE] - d["moyenne_passee_abandon"]
+    # Niveau habituel rétréci vers la région (même année, même sexe), pour chaque κ.
+    n = nombre.astype(float)
+    cles_region = ["region_nom", "annee_scolaire"] + (["sexe"] if "sexe" in d else [])
+    region = d.groupby(cles_region)["moyenne_passee_abandon"].transform("mean")
+    for k in GRILLE_KAPPA:
+        d[f"niveau_retreci_{k:g}"] = (n * d["moyenne_passee_abandon"] + k * region) / (n + k)
+    d["base_z"] = normaliser(d["moyenne_passee_abandon"])
     d["ruptures_passees"] = d["rupture_annee_precedente"].groupby(groupes).cumsum()
     d["baisse_effectifs"] = (-d["evolution_eleves_primaire"]).clip(lower=0)
     d["poids"] = np.sqrt(d["eleves_primaire"].clip(lower=1))
@@ -87,7 +115,8 @@ def avec_cible(d: pd.DataFrame, jeu: dict, nom: str, horizon: int) -> pd.DataFra
     entite = jeu["entite"]
     t = d.copy()
     t["annee_cible"] = t["annee_scolaire"].map(lambda a: annee_plus(a, horizon))
-    t["y"] = t.groupby(entite)[CIBLE].shift(-horizon)
+    t["y"] = t.groupby(entite)[CIBLE].shift(-horizon).clip(lower=0)
+    t["z"] = normaliser(t["y"])
     statut = statut_source(jeu, nom)
     sexe = t["sexe"] if "sexe" in t else pd.Series("", index=t.index)
     t["y_observee"] = [statut(p, s, a, CIBLE) == OBSERVEE

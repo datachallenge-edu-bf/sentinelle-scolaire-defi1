@@ -1,2 +1,2 @@
-﻿alpha_elastic;alpha_ridge;modele_retenu
-3.0;3000.0;reference_niveau_habituel
+﻿kappa;alpha_elastic;k_elastic;alpha_ridge;k_ridge;lightgbm;k_lightgbm;modele_retenu
+4.0;0.3;;1000.0;5;0;15;reference_niveau_habituel

@@ -1,4 +1,4 @@
-﻿horizon;modele;marge_conforme;couverture_test_final;largeur_moyenne;lignes
-1;reference_niveau_habituel;10.031;0.9;20.062;40
-2;reference_niveau_habituel;10.552;0.9;21.104;40
-3;reference_niveau_habituel;10.063;0.95;20.126;40
+﻿horizon;modele;marge_conforme_logit;couverture_test_final;largeur_moyenne_points;lignes
+1;reference_niveau_habituel;0.875;0.85;17.203;40
+2;reference_niveau_habituel;1.005;0.875;20.134;40
+3;reference_niveau_habituel;0.937;0.85;17.127;40

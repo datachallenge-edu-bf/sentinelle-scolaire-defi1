@@ -1,0 +1,8 @@
+﻿variable;libelle;effet_pour_un_ecart_type_points;ecart_type_de_la_variable;unite;effet_par_unite_points
+achevement_post_primaire_province;achèvement du post-primaire;-1.872;14.0512;unité de la variable;-0.1332
+part_eleves_primaire_12_ans_et_plus;élèves de 12 ans et plus;-1.729;0.0301;point de pourcentage;-0.5737
+eleves_par_maitre_primaire;élèves par maître;1.595;7.3401;unité de la variable;0.2173
+ips_tbs_primaire_region;parité de scolarisation (région);-0.953;0.0298;unité de la variable;-31.9656
+rapport_cm2_cp1;rapport CM2 / CP1;-0.784;0.1573;unité de la variable;-4.9867
+parite_scolarisation_post_primaire_province;parité filles / garçons au post-primaire (2019);-0.396;0.1684;unité de la variable;-2.353
+achevement_primaire_province;achèvement du primaire;-0.387;22.0337;unité de la variable;-0.0176

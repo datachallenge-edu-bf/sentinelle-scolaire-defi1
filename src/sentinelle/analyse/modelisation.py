@@ -22,25 +22,32 @@ HORIZONS = [1, 2, 3]
 def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFrame]:
     entite = jeu["entite"]
     d, lineaire, arbres = P.preparer(jeu, nom, listes)
-    resultats, evaluations, couvertures, previsions = {}, [], [], []
+    resultats, evaluations, couvertures, previsions, frequences = {}, [], [], [], []
     reglages = modele = t1 = None
     for h in HORIZONS:
         t = P.avec_cible(d, jeu, nom, h)
         if h == 1:
-            reglages = prevision.choisir_reglages(t, lineaire, nom)
+            reglages, info = prevision.choisir_reglages(t, lineaire, arbres, nom)
+            resultats[f"grille_reglages_{nom}"] = info["grille"]
             t1 = t
-        evaluation, prev = prevision.evaluer(t, lineaire, arbres, reglages, entite, nom, h)
+        evaluation, prev, choix_plis = prevision.evaluer(t, lineaire, arbres, reglages, entite, nom, h)
         if evaluation.empty:
             continue
         evaluations.append(evaluation)
         if h == 1:
             modele = prevision.choisir_modele(evaluation)
+        # Variables du modèle final : retenues dans au moins la moitié des plis.
+        choix = {}
+        for m in ["elastic_net", "ridge_effet_province", "lightgbm"]:
+            stables, frequence = prevision.variables_stables(choix_plis, m)
+            choix[m] = stables or choix_plis[-1][m]
+            frequences.append(frequence.assign(horizon=h))
         selection, finale = prev[prev["role"] == "sélection"], prev[prev["role"] == "test final"]
         marge = prevision.marge_conforme(selection if len(selection) else prev, modele)
         if len(finale):
             couvertures.append(prevision.couverture(finale, modele, marge, h))
         annees_x = [P.DERNIERE_ANNEE] + (["2023-2024"] if nom == "sexe" and h == 1 else [])
-        sortie, seuils = prevision.prevoir(d, t, nom, lineaire, arbres, reglages, modele,
+        sortie, seuils = prevision.prevoir(d, t, nom, choix, reglages, modele,
                                            prevision.marge_conforme(prev, modele), h, annees_x)
         previsions.append(sortie)
         if h == 1:
@@ -52,6 +59,7 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFra
     resultats[f"synthese_modeles_{nom}"] = prevision.synthese(evaluation)
     resultats[f"intervalle_{nom}"] = pd.DataFrame(couvertures)
     resultats[f"reglages_{nom}"] = pd.DataFrame([{**reglages, "modele_retenu": modele}])
+    resultats[f"variables_retenues_{nom}"] = pd.concat(frequences, ignore_index=True)
     resultats[f"previsions_{nom}"] = pd.concat(previsions, ignore_index=True)
 
     for cle, table in explication.executer(d, t1, entite, arbres).items():
