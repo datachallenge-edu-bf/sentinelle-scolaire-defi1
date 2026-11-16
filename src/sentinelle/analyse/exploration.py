@@ -10,6 +10,12 @@ les cibles observées sont analysées.
 Règle contre la fuite d'information : les analyses qui n'utilisent pas la cible (qualité,
 colinéarité) portent sur toutes les années ; celles qui l'utilisent (variance, liens) portent
 sur les années d'apprentissage seulement, avant l'année gardée pour le test final.
+
+Ruptures de scolarisation : quand les effectifs du primaire de la province varient de plus de
+30 % entre t et t+1 (règle de l'étape 03), l'abandon apparent mesure surtout la fermeture
+d'écoles et le départ d'élèves, pas le décrochage. Ces lignes (8 % des cibles, 73 % de leur
+variance) sont écartées des analyses de la cible et de l'apprentissage du modèle du décrochage ;
+elles servent à l'alerte de rupture.
 """
 
 from __future__ import annotations
@@ -31,6 +37,13 @@ ANNEE_TEST = {"ensemble": "2023-2024", "sexe": "2022-2023"}
 SEUIL_CORRELATION = 0.85
 SEUIL_VIF = 10.0
 SEUIL_OBSERVEE = 0.5
+SEUIL_RUPTURE = 0.30
+# Lien faible et instable : |ρ global| et |ρ sachant l'abandon de t| au plus 0,10, même signe moins de 70 % des années.
+SEUIL_LIEN_FAIBLE = 0.10
+SEUIL_STABILITE = 0.70
+# Variables retirées par le VIF mais rendues aux modèles d'arbres, que la colinéarité ne gêne pas.
+SEUIL_RETOUR_ARBRES = 0.15
+SEUIL_OBSERVEE_ARBRES = 0.75
 GRAINE = 42
 
 TECHNIQUES = {
@@ -49,14 +62,26 @@ PRIORITAIRES = [CIBLE]
 
 # Table d'apprentissage.
 
-def table_apprentissage(base: pd.DataFrame, statut_cible: pd.Series, entite: list[str]) -> pd.DataFrame:
-    """Variables de l'année t et cible (abandon de t à t+1), avec son statut."""
+def annee_plus(annee: str, ecart: int) -> str:
+    debut = int(annee[:4]) + ecart
+    return f"{debut}-{debut + 1}"
+
+
+def table_apprentissage(base: pd.DataFrame, statut_cible: pd.Series, entite: list[str],
+                        evolution: pd.Series) -> pd.DataFrame:
+    """Variables de l'année t et cible (abandon de t à t+1), avec son statut et la rupture éventuelle.
+
+    ``evolution`` : évolution des effectifs du primaire (ensemble) par (province_pcode, année).
+    """
     d = base.sort_values(entite + ["annee_scolaire"]).reset_index(drop=True)
     d[SUIVANTE] = d.groupby(entite)[CIBLE].shift(-1)
     suivante = d.groupby(entite)["annee_scolaire"].shift(-1)
     cles = list(zip(*(d[c] for c in entite), suivante))
     d["cible_statut"] = [statut_cible.get(k) for k in cles]
     d["cible_observee_suivante"] = d["cible_statut"] == OBSERVEE
+    d["evolution_effectifs_suivante"] = [evolution.get((p, annee_plus(a, 1)), np.nan)
+                                         for p, a in zip(d["province_pcode"], d["annee_scolaire"])]
+    d["rupture"] = d["evolution_effectifs_suivante"].abs() > SEUIL_RUPTURE
     return d[d[SUIVANTE].notna()].reset_index(drop=True)
 
 
@@ -87,13 +112,15 @@ def charger(dossier) -> dict[str, dict]:
                 parts[v] = float((statuts.loc[statuts["variable"] == v, "statut"] == OBSERVEE).mean())
         return pd.Series(parts)
 
+    evolution = base.set_index(["province_pcode", "annee_scolaire"])["evolution_eleves_primaire"]
     return {
         "ensemble": {"base": base, "variables": candidates, "entite": ["province_pcode"],
-                     "table": table_apprentissage(base, cible, ["province_pcode"]),
-                     "part_observee": part_observee(base, candidates, False)},
+                     "table": table_apprentissage(base, cible, ["province_pcode"], evolution),
+                     "part_observee": part_observee(base, candidates, False), "statuts": statuts},
         "sexe": {"base": base_sexe, "variables": candidates_sexe, "entite": ["province_pcode", "sexe"],
-                 "table": table_apprentissage(base_sexe, cible_sexe, ["province_pcode", "sexe"]),
-                 "part_observee": part_observee(base_sexe, candidates_sexe, True)},
+                 "table": table_apprentissage(base_sexe, cible_sexe, ["province_pcode", "sexe"], evolution),
+                 "part_observee": part_observee(base_sexe, candidates_sexe, True), "statuts": statuts,
+                 "statuts_sexe": statuts_sexe},
     }
 
 
@@ -101,9 +128,12 @@ def numerique(table: pd.DataFrame, variables: list[str]) -> pd.DataFrame:
     return table[variables].apply(lambda s: s.astype(float))
 
 
-def apprentissage(jeu: dict, nom: str) -> pd.DataFrame:
+def apprentissage(jeu: dict, nom: str, avec_ruptures: bool = False) -> pd.DataFrame:
     t = jeu["table"]
-    return t[t["cible_observee_suivante"] & (t["annee_scolaire"] < ANNEE_TEST[nom])].reset_index(drop=True)
+    garde = t["cible_observee_suivante"] & (t["annee_scolaire"] < ANNEE_TEST[nom])
+    if not avec_ruptures:
+        garde &= ~t["rupture"]
+    return t[garde].reset_index(drop=True)
 
 
 # 1. La cible.
@@ -112,7 +142,9 @@ def decrire_cible(table: pd.DataFrame, par: list[str]) -> pd.DataFrame:
     obs = table[table["cible_observee_suivante"]]
     g = obs.groupby(par)[SUIVANTE]
     return pd.DataFrame({
-        "cibles_observees": g.size(), "moyenne": g.mean(), "mediane": g.median(),
+        "cibles_observees": g.size(), "ruptures": obs.groupby(par)["rupture"].sum(),
+        "moyenne_hors_ruptures": obs[~obs["rupture"]].groupby(par)[SUIVANTE].mean(),
+        "moyenne": g.mean(), "mediane": g.median(),
         "p10": g.quantile(0.1), "p90": g.quantile(0.9), "minimum": g.min(), "maximum": g.max(),
         "negatives": g.apply(lambda s: int((s < 0).sum())), "superieures_a_30": g.apply(lambda s: int((s > 30).sum())),
     }).round(2).reset_index()
@@ -268,17 +300,32 @@ def decider(variables: list[str], qual: pd.DataFrame, rho: pd.DataFrame, lien: p
             garde = m.split(" ")[2]
             if decision.get(garde) == "retirée":
                 motif[v] = m + " ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables"
+    # Lien à la fois faible et instable : la variable n'apporte que du bruit.
+    for v in list(restantes):
+        if v in PRIORITAIRES:
+            continue
+        partiel = l.at[v, "rho_partiel_sachant_abandon_t"]
+        faible = abs(l.at[v, "rho_global"]) <= SEUIL_LIEN_FAIBLE and (pd.isna(partiel) or abs(partiel) <= SEUIL_LIEN_FAIBLE)
+        instable = pd.notna(l.at[v, "annees_meme_signe"]) and l.at[v, "annees_meme_signe"] < SEUIL_STABILITE
+        if faible and instable:
+            decision[v] = "retirée"
+            motif[v] = (f"lien faible et instable : ρ = {l.at[v, 'rho_global']:+.2f}, même signe "
+                        f"{l.at[v, 'annees_meme_signe']:.0%} des années")
+            restantes.remove(v)
     f_final = vif(x[restantes])
     for v in restantes:
-        faible = all(abs(l.at[v, c]) < 0.1 for c in ["rho_global", "rho_dans_le_temps", "rho_entre_provinces"]
-                     if pd.notna(l.at[v, c]))
-        decision[v] = "gardée"
-        motif[v] = "candidate pour le modèle" + (" (lien faible avec la cible : le modèle tranchera)" if faible else "")
+        decision[v], motif[v] = "gardée", "candidate pour le modèle"
     table = (pd.DataFrame({"variable": variables, "decision": [decision[v] for v in variables],
                            "motif": [motif[v] for v in variables]})
              .merge(qual, on="variable", how="left").merge(lien, on="variable", how="left"))
     table["groupe_colineaire"] = table["variable"].map(groupes)
     table["vif_final"] = table["variable"].map(f_final.round(2))
+    # Deux listes : modèles linéaires (après VIF) ; modèles d'arbres (variables retirées par le seul VIF
+    # rendues si elles sont nettement liées à la cible et assez observées).
+    table["liste_lineaire"] = table["decision"] == "gardée"
+    retour = (table["motif"].str.startswith("VIF") & (table["rho_global"].abs() >= SEUIL_RETOUR_ARBRES)
+              & (table["part_observee"] >= SEUIL_OBSERVEE_ARBRES))
+    table["liste_arbres"] = table["liste_lineaire"] | retour
     ordre = {"gardée": 0, "retirée": 1}
     table = table.sort_values(["decision", "rho_global"], key=lambda s: s.map(ordre) if s.name == "decision"
                               else -s.abs()).reset_index(drop=True)
@@ -296,11 +343,22 @@ def analyser(jeu: dict, nom: str) -> dict[str, pd.DataFrame]:
     rho = correlations(base, variables)
     lien = liens(app, variables, entite)
     decision, groupes = decider(variables, qual, rho, lien, base)
-    techniques = pd.DataFrame([{"variable": v, "decision": "retirée", "motif": f"technique : {m}"}
+    techniques = pd.DataFrame([{"variable": v, "decision": "retirée", "motif": f"technique : {m}",
+                                "liste_lineaire": False, "liste_arbres": False}
                                for v, m in TECHNIQUES.items() if v in base])
     decision = pd.concat([decision, techniques], ignore_index=True)
+    variance = decomposer_variance(app, entite).rename(columns={"valeur": "sans_ruptures"})
+    variance.insert(1, "avec_ruptures", decomposer_variance(apprentissage(jeu, nom, True), entite)["valeur"])
+    t = jeu["table"]
+    ruptures = t[t["cible_observee_suivante"] & t["rupture"]][
+        ["province_nom", "region_nom", "annee_scolaire"] + (["sexe"] if nom == "sexe" else [])
+        + [SUIVANTE, CIBLE, "evolution_effectifs_suivante"]].round(3)
+    listes = decision[decision["liste_arbres"]][["variable", "liste_lineaire", "liste_arbres", "rho_global",
+                                                  "part_observee"]].reset_index(drop=True)
     return {f"cible_par_annee_{nom}": decrire_cible(jeu["table"], par),
-            f"variance_cible_{nom}": decomposer_variance(app, entite),
+            f"variance_cible_{nom}": variance,
+            f"ruptures_{nom}": ruptures,
+            f"variables_modele_{nom}": listes,
             f"correlations_{nom}": rho.round(4).rename_axis("variable").reset_index(),
             f"groupes_colineaires_{nom}": groupes,
             f"decision_variables_{nom}": decision}

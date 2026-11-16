@@ -1,9 +1,9 @@
-﻿mesure;valeur;definition
-variance_totale;197.0682;variance de la cible (points²)
-variance_entre_provinces;75.4397;variance des moyennes par province
-variance_dans_le_temps;121.6286;variance des écarts à la moyenne de la province
-part_entre_provinces;0.3828;part de la variance due aux écarts entre provinces
-persistance_spearman;0.5725;corrélation de rang entre l'abandon de t et celui de t+1
-erreur_reference_annee_precedente;6.6502;erreur absolue moyenne (points) si l'on prédit l'abandon de t
-erreur_reference_moyenne_passee;6.7519;erreur absolue moyenne si l'on prédit la moyenne des abandons passés de la province
-erreur_reference_mediane_annee;8.0522;erreur absolue moyenne si l'on prédit la médiane des provinces de l'année t
+﻿mesure;avec_ruptures;sans_ruptures;definition
+variance_totale;197.0682;68.3352;variance de la cible (points²)
+variance_entre_provinces;75.4397;25.5826;variance des moyennes par province
+variance_dans_le_temps;121.6286;42.7526;variance des écarts à la moyenne de la province
+part_entre_provinces;0.3828;0.3744;part de la variance due aux écarts entre provinces
+persistance_spearman;0.5725;0.5306;corrélation de rang entre l'abandon de t et celui de t+1
+erreur_reference_annee_precedente;6.6502;5.1325;erreur absolue moyenne (points) si l'on prédit l'abandon de t
+erreur_reference_moyenne_passee;6.7519;4.6965;erreur absolue moyenne si l'on prédit la moyenne des abandons passés de la province
+erreur_reference_mediane_annee;8.0522;5.3743;erreur absolue moyenne si l'on prédit la médiane des provinces de l'année t

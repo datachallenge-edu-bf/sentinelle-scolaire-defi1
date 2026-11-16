@@ -1,0 +1,3 @@
+﻿modele;unites;r2_provinces_non_vues;correlation_rang_provinces_non_vues;erreur_absolue_moyenne;retenu
+lightgbm;86;0.422;0.756;2.957;True
+elastic_net;86;0.291;0.711;3.093;False

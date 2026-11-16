@@ -1,0 +1,37 @@
+﻿horizon;role;modele;erreur_absolue_moyenne;correlation_rang;rappel_quintile_le_plus_a_risque
+1;sélection;elastic_net;6.36;0.537;0.548
+1;sélection;lightgbm;7.385;0.536;0.506
+1;sélection;moyenne_elastic_lightgbm;6.768;0.536;0.506
+1;sélection;reference_annee_precedente;7.825;0.34;0.506
+1;sélection;reference_niveau_habituel;6.348;0.541;0.548
+1;sélection;ridge_effet_province;7.527;0.533;0.548
+1;test final;elastic_net;3.401;0.557;0.75
+1;test final;lightgbm;3.658;0.557;0.625
+1;test final;moyenne_elastic_lightgbm;3.471;0.551;0.75
+1;test final;reference_annee_precedente;4.658;0.363;0.625
+1;test final;reference_niveau_habituel;3.426;0.557;0.75
+1;test final;ridge_effet_province;6.868;0.479;0.75
+2;sélection;elastic_net;7.064;0.573;0.458
+2;sélection;lightgbm;7.712;0.58;0.548
+2;sélection;moyenne_elastic_lightgbm;7.354;0.597;0.548
+2;sélection;reference_annee_precedente;7.348;0.423;0.542
+2;sélection;reference_niveau_habituel;6.522;0.575;0.5
+2;sélection;ridge_effet_province;7.432;0.439;0.506
+2;test final;elastic_net;3.627;0.554;0.75
+2;test final;lightgbm;4.662;0.524;0.75
+2;test final;moyenne_elastic_lightgbm;3.987;0.531;0.75
+2;test final;reference_annee_precedente;15.174;0.324;0.5
+2;test final;reference_niveau_habituel;3.569;0.563;0.75
+2;test final;ridge_effet_province;13.809;0.544;0.625
+3;sélection;elastic_net;4.978;0.544;0.571
+3;sélection;lightgbm;5.566;0.553;0.571
+3;sélection;moyenne_elastic_lightgbm;5.247;0.557;0.571
+3;sélection;reference_annee_precedente;4.581;0.532;0.429
+3;sélection;reference_niveau_habituel;4.221;0.568;0.571
+3;sélection;ridge_effet_province;7.015;0.535;0.571
+3;test final;elastic_net;3.264;0.627;0.75
+3;test final;lightgbm;3.947;0.641;0.75
+3;test final;moyenne_elastic_lightgbm;3.522;0.626;0.75
+3;test final;reference_annee_precedente;10.636;0.349;0.625
+3;test final;reference_niveau_habituel;3.032;0.649;0.75
+3;test final;ridge_effet_province;9.56;0.073;0.5

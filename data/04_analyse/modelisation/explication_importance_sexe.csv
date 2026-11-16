@@ -1,0 +1,42 @@
+﻿variable;libelle;contribution_absolue_moyenne_points;sens
+hors_ecole_16_18_province;jeunes de 16-18 ans hors de l'école;1.166;plus elle est élevée, plus le risque est élevé
+rapport_cm2_cp1;rapport CM2 / CP1;0.858;plus elle est élevée, plus le risque est faible
+achevement_post_primaire_province;achèvement du post-primaire;0.701;plus elle est élevée, plus le risque est faible
+eleves_par_maitre_primaire;élèves par maître;0.493;plus elle est élevée, plus le risque est élevé
+parite_scolarisation_post_primaire_province;parité filles / garçons au post-primaire (2019);0.492;plus elle est élevée, plus le risque est faible
+part_eleves_primaire_12_ans_et_plus;élèves de 12 ans et plus;0.462;plus elle est élevée, plus le risque est faible
+abandons_primaire_orpaillage_pour_1000_region;abandons pour l'orpaillage (région);0.367;plus elle est élevée, plus le risque est élevé
+achevement_primaire_province;achèvement du primaire;0.36;plus elle est élevée, plus le risque est faible
+fille;fille;0.346;plus elle est élevée, plus le risque est faible
+ips_tbs_primaire_region;parité de scolarisation (région);0.344;plus elle est élevée, plus le risque est faible
+evolution_eleves_primaire;évolution des effectifs;0.228;plus elle est élevée, plus le risque est élevé
+parite_tbs_post_primaire_province;parité au post-primaire;0.213;lien non monotone
+parite_scolarisation_primaire_province;parité filles / garçons au primaire (2019);0.208;plus elle est élevée, plus le risque est faible
+part_etab_post_primaire_secondaire_publics_cantine_region;cantines au secondaire (région);0.195;plus elle est élevée, plus le risque est élevé
+deficit_places_pour_100_eleves_primaire;déficit de places assises;0.193;plus elle est élevée, plus le risque est élevé
+ratio_eleves_classe_post_primaire_region;élèves par classe au post-primaire (région);0.19;plus elle est élevée, plus le risque est faible
+part_salles_primaire_murs_precaires;salles aux murs précaires;0.188;plus elle est élevée, plus le risque est élevé
+manuels_lecture_par_eleve_primaire;manuels de lecture par élève;0.183;plus elle est élevée, plus le risque est faible
+pauvrete_province;pauvreté;0.17;plus elle est élevée, plus le risque est élevé
+ni_ecole_ni_emploi_15_24_province;jeunes ni à l'école ni en emploi;0.142;plus elle est élevée, plus le risque est élevé
+part_ecoles_primaires_electricite;écoles électrifiées;0.13;plus elle est élevée, plus le risque est élevé
+parite_scolarisation_secondaire_province;parité filles / garçons au secondaire (2019);0.116;plus elle est élevée, plus le risque est faible
+chomage_25_64_province;chômage des adultes;0.109;plus elle est élevée, plus le risque est faible
+dependance_demographique_province;dépendance démographique;0.104;plus elle est élevée, plus le risque est élevé
+ecart_achevement_primaire_entree_6e;fuite à l'entrée en 6e;0.1;plus elle est élevée, plus le risque est faible
+tbs_primaire_province;scolarisation au primaire (TBS);0.081;plus elle est élevée, plus le risque est élevé
+part_ecoles_primaires_privees_region;écoles privées (région);0.08;lien non monotone
+part_salles_primaire_toit_precaire;salles au toit précaire;0.08;plus elle est élevée, plus le risque est élevé
+part_ecoles_primaires_latrines;écoles avec latrines;0.07;plus elle est élevée, plus le risque est faible
+redoublement_primaire_precedent;redoublement;0.068;plus elle est élevée, plus le risque est faible
+part_ecoles_primaires_cycle_incomplet;écoles à cycle incomplet;0.063;plus elle est élevée, plus le risque est élevé
+filles_17_ans_mariees_province;filles mariées à 17 ans;0.044;plus elle est élevée, plus le risque est élevé
+part_entrants_cp1_8_ans_et_plus;entrée tardive au CP1;0.033;plus elle est élevée, plus le risque est élevé
+part_ecoles_primaires_eau_potable;écoles avec eau potable;0.03;plus elle est élevée, plus le risque est élevé
+ips_tap_primaire_region;parité d'achèvement (région);0.028;plus elle est élevée, plus le risque est faible
+manuels_calcul_par_eleve_primaire;manuels de calcul par élève;0.023;plus elle est élevée, plus le risque est élevé
+part_enseignants_primaire_debutants;enseignants débutants;0.019;plus elle est élevée, plus le risque est faible
+part_enseignantes_primaire;part des enseignantes;0.012;plus elle est élevée, plus le risque est élevé
+part_etab_post_primaire_secondaire_publics_electricite_region;établissements secondaires électrifiés (région);0.001;plus elle est élevée, plus le risque est faible
+abandons_primaire_mariage_grossesse_pour_1000_region;abandons pour mariage ou grossesse (région);0.0;lien non monotone
+tbs_prescolaire_region;préscolarisation (région);0.0;lien non monotone

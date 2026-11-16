@@ -5,6 +5,6 @@ if __name__ == "__main__":
     for nom in ["variance_cible_ensemble", "variance_cible_sexe"]:
         print(nom)
         print(tables[nom].to_string(index=False))
-    for nom in ["decision_variables_ensemble", "decision_variables_sexe"]:
+    for nom in ["variables_modele_ensemble", "variables_modele_sexe"]:
         print(nom)
-        print(tables[nom][["variable", "decision", "motif"]].to_string(index=False))
+        print(tables[nom].to_string(index=False))

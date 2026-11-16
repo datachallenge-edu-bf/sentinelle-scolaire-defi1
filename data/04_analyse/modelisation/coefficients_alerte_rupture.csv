@@ -1,0 +1,8 @@
+﻿variable;libelle;coefficient_standardise
+hors_ecole_16_18_province;jeunes de 16-18 ans hors de l'école;1.326
+evolution_eleves_primaire;évolution des effectifs;-1.044
+rupture_annee_precedente;rupture l'année précédente;-0.923
+abandon_primaire_precedent;abandon de l'année;0.905
+ruptures_passees;ruptures passées;0.422
+abandons_primaire_orpaillage_pour_1000_region;abandons pour l'orpaillage (région);-0.406
+baisse_effectifs;baisse des effectifs;-0.008
