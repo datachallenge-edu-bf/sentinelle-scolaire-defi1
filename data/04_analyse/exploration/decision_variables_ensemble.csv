@@ -1,0 +1,70 @@
+﻿variable;decision;motif;part_observee;valeurs_distinctes;constante_dans_le_temps;coefficient_variation;rho_global;p_valeur;rho_entre_provinces;rho_dans_le_temps;rho_partiel_sachant_abandon_t;information_mutuelle;annees_meme_signe;groupe_colineaire;vif_final
+hors_ecole_16_18_province;gardée;candidate pour le modèle;1.0;45.0;True;0.191;0.5595;0.0;0.8495;;0.3921;0.214;1.0;43.0;7.93
+abandons_primaire_orpaillage_pour_1000_region;gardée;candidate pour le modèle;0.778;91.0;False;0.857;0.5021;0.0;0.2721;0.376;0.3007;0.194;1.0;16.0;6.36
+abandon_primaire_precedent;gardée;candidate pour le modèle;0.884;349.0;False;1.023;0.4804;0.0;0.8994;0.2387;;0.2055;1.0;14.0;2.93
+part_cp1;gardée;candidate pour le modèle;0.998;330.0;False;0.23;0.4211;0.0;0.8023;-0.112;0.251;0.0626;1.0;46.0;5.26
+parite_scolarisation_primaire_province;gardée;candidate pour le modèle;1.0;22.0;True;0.098;-0.4064;0.0;-0.5878;;-0.2385;0.1906;1.0;40.0;5.21
+ratio_eleves_classe_post_primaire_region;gardée;candidate pour le modèle;0.556;27.0;False;0.09;-0.3852;0.0;-0.0797;-0.3426;-0.2054;0.1453;0.8571;17.0;5.48
+abandons_primaire_mariage_grossesse_pour_1000_region;gardée;candidate pour le modèle;0.778;103.0;False;1.056;0.3712;0.0;0.5428;0.1906;0.1896;0.1953;1.0;35.0;4.22
+part_eleves_primaire_12_ans_et_plus;gardée;candidate pour le modèle;0.887;299.0;False;0.288;-0.3482;0.0;-0.6208;0.0961;-0.1727;0.1215;0.8571;47.0;3.16
+parite_scolarisation_secondaire_province;gardée;candidate pour le modèle;1.0;33.0;True;0.208;-0.324;0.0;-0.4149;;-0.1751;0.173;1.0;32.0;5.98
+redoublement_primaire_precedent;gardée;candidate pour le modèle;0.884;298.0;False;0.481;-0.3138;0.0;-0.5741;-0.1257;-0.1248;0.1242;1.0;48.0;3.08
+part_enseignantes_primaire;gardée;candidate pour le modèle;0.887;333.0;False;0.205;-0.3012;0.0;-0.4579;-0.1852;-0.2156;0.0934;1.0;10.0;4.37
+eleves_par_maitre_primaire;gardée;candidate pour le modèle;0.887;351.0;False;0.226;-0.2917;0.0;-0.2933;-0.0347;-0.1354;0.1503;0.8571;4.0;3.28
+part_salles_primaire_toit_precaire;gardée;candidate pour le modèle;0.887;326.0;False;0.701;0.2858;0.0;0.6622;-0.387;0.1797;0.0947;1.0;23.0;3.5
+parite_scolarisation_post_primaire_province;gardée;candidate pour le modèle;1.0;35.0;True;0.174;-0.2849;0.0;-0.4144;;-0.1579;0.2334;1.0;31.0;6.05
+eleves_primaire;gardée;candidate pour le modèle;1.0;422.0;False;1.232;-0.2812;0.0;-0.4985;0.1796;-0.0994;0.1793;1.0;39.0;8.79
+part_ecoles_primaires_cycle_incomplet;gardée;candidate pour le modèle;0.887;334.0;False;0.222;0.234;0.0001;0.2726;-0.2734;0.1656;0.0392;1.0;13.0;2.57
+part_etab_post_primaire_secondaire_publics_electricite_region;gardée;candidate pour le modèle;0.556;64.0;False;0.345;0.2285;0.0001;0.1174;0.3228;0.1282;0.1238;0.7143;18.0;2.35
+evolution_eleves_primaire;gardée;candidate pour le modèle;0.998;383.0;False;14.421;-0.2227;0.0001;-0.7468;-0.2899;0.1597;0.0685;0.7143;15.0;1.44
+chomage_25_64_province;gardée;candidate pour le modèle;1.0;38.0;True;0.8;0.2126;0.0003;0.3137;;0.1429;0.1164;1.0;28.0;4.16
+part_filles_primaire;gardée;candidate pour le modèle;0.894;265.0;False;0.033;-0.2123;0.0003;-0.4625;0.3184;-0.1432;0.0;1.0;38.0;3.06
+ips_tbs_primaire_region;gardée;candidate pour le modèle;1.0;141.0;False;0.042;-0.2109;0.0003;-0.2726;0.079;-0.1538;0.1873;0.8571;36.0;3.8
+part_enseignants_primaire_debutants;gardée;candidate pour le modèle;0.887;350.0;False;0.484;0.2063;0.0004;0.6706;-0.3244;0.1669;0.0747;1.0;12.0;4.25
+ips_tap_primaire_region;gardée;candidate pour le modèle;1.0;144.0;False;0.089;-0.1962;0.0008;-0.2272;0.0967;-0.114;0.0558;0.8571;37.0;5.53
+manuels_lecture_par_eleve_primaire;gardée;candidate pour le modèle;0.877;349.0;False;0.333;0.1783;0.0023;0.0947;0.0699;0.0821;0.0535;0.8571;5.0;4.9
+part_ecoles_primaires_electricite;gardée;candidate pour le modèle;0.887;325.0;False;0.534;-0.1718;0.0034;-0.5909;0.3626;-0.1081;0.0;1.0;11.0;4.74
+part_entrants_cp1_8_ans_et_plus;gardée;candidate pour le modèle;0.884;357.0;False;0.392;-0.1701;0.0037;-0.2193;-0.1582;-0.082;0.0342;0.8571;34.0;2.93
+ecart_achevement_primaire_entree_6e;gardée;candidate pour le modèle;0.556;310.0;False;0.614;-0.1371;0.0198;-0.4934;0.0573;0.0343;0.0386;1.0;42.0;3.05
+part_ecoles_primaires_privees_region;gardée;candidate pour le modèle;1.0;148.0;False;0.669;-0.1336;0.0232;-0.2527;0.3118;-0.0466;0.1173;1.0;7.0;4.57
+manuels_calcul_par_eleve_primaire;gardée;candidate pour le modèle;0.877;355.0;False;0.388;0.1331;0.0237;-0.0296;-0.0051;0.0072;0.0182;0.8571;6.0;6.26
+tbs_prescolaire_region;gardée;candidate pour le modèle;1.0;123.0;False;0.998;-0.1266;0.0314;-0.6482;0.4209;-0.0561;0.133;0.7143;25.0;4.3
+part_etab_post_primaire_secondaire_publics_cantine_region;gardée;candidate pour le modèle;0.556;107.0;False;0.355;0.1222;0.0379;0.3731;-0.2466;0.0932;0.0336;0.7143;30.0;3.63
+dependance_demographique_province;gardée;candidate pour le modèle;1.0;37.0;True;0.069;0.1112;0.0591;0.1603;;0.0889;0.1588;0.8571;27.0;2.93
+logements_pour_100_maitres_primaire;gardée;candidate pour le modèle;0.887;356.0;False;0.359;0.0899;0.1272;0.1826;-0.3807;0.0429;0.0814;0.8571;1.0;3.27
+deficit_places_pour_100_eleves_primaire;gardée;candidate pour le modèle;0.879;361.0;False;0.339;0.0876;0.1376;0.6429;-0.3483;0.0876;0.0141;1.0;24.0;2.16
+part_ecoles_primaires_eau_potable;gardée;candidate pour le modèle;0.887;334.0;False;0.188;0.0754;0.201;-0.2851;0.4007;0.002;0.0023;0.0;21.0;4.23
+pauvrete_province;gardée;candidate pour le modèle;1.0;45.0;True;0.344;0.0645;0.2746;0.141;;0.0581;0.1788;0.7143;26.0;2.38
+parite_tbs_post_primaire_province;gardée;candidate pour le modèle;0.556;190.0;False;0.195;-0.0579;0.3266;-0.2143;0.3711;0.0082;0.0045;0.8571;33.0;6.34
+part_eleves_primaire_plus_3km;gardée;candidate pour le modèle;0.887;310.0;False;0.592;-0.0528;0.3715;-0.2998;0.0533;-0.0322;0.1087;0.7143;8.0;2.31
+part_ecoles_primaires_cantine;gardée;candidate pour le modèle;0.887;352.0;False;0.176;-0.0206;0.727;-0.3037;-0.0091;-0.0278;0.0666;0.8571;3.0;1.39
+reussite_cep_precedente_province;gardée;candidate pour le modèle (lien faible avec la cible : le modèle tranchera);0.773;236.0;False;0.172;0.0154;0.7944;-0.0572;-0.0027;-0.0072;0.0178;0.5714;19.0;2.56
+part_ecoles_primaires_latrines;gardée;candidate pour le modèle;0.887;325.0;False;0.126;0.0131;0.8251;-0.2233;0.228;-0.0142;0.0531;0.1429;20.0;3.65
+tbs_post_primaire_province;retirée;"colinéaire avec achevement_primaire_province (ρ = +0.93), gardée car plus observée ou plus liée à la cible ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables";0.556;283.0;False;0.514;-0.5642;0.0;-0.8467;-0.2834;-0.3798;0.263;1.0;44.0;
+frequentation_post_primaire_province;retirée;colinéaire avec hors_ecole_16_18_province (ρ = -0.97), gardée car plus observée ou plus liée à la cible;1.0;44.0;True;0.472;-0.5513;0.0;-0.8415;;-0.3905;0.2394;1.0;43.0;
+hors_ecole_12_15_province;retirée;colinéaire avec hors_ecole_16_18_province (ρ = +0.99), gardée car plus observée ou plus liée à la cible;1.0;47.0;True;0.295;0.5423;0.0;0.8499;;0.3829;0.2273;1.0;43.0;
+hors_ecole_6_11_province;retirée;colinéaire avec hors_ecole_16_18_province (ρ = +0.98), gardée car plus observée ou plus liée à la cible;1.0;45.0;True;0.302;0.5401;0.0;0.8553;;0.3775;0.2618;1.0;43.0;
+achevement_post_primaire_province;retirée;"colinéaire avec achevement_primaire_province (ρ = +0.86), gardée car plus observée ou plus liée à la cible ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables";0.556;247.0;False;0.562;-0.5312;0.0;-0.7776;-0.176;-0.3163;0.2029;1.0;44.0;
+tba_6e_province;retirée;"colinéaire avec achevement_primaire_province (ρ = +0.95), gardée car plus observée ou plus liée à la cible ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables";0.556;269.0;False;0.499;-0.516;0.0;-0.8639;-0.0829;-0.3561;0.1426;1.0;44.0;
+alphabetisation_adultes_province;retirée;colinéaire avec hors_ecole_16_18_province (ρ = -0.89), gardée car plus observée ou plus liée à la cible;1.0;42.0;True;0.368;-0.5016;0.0;-0.7066;;-0.3236;0.2118;1.0;43.0;
+frequentation_secondaire_province;retirée;colinéaire avec hors_ecole_16_18_province (ρ = -0.90), gardée car plus observée ou plus liée à la cible;1.0;34.0;True;0.606;-0.4888;0.0;-0.7721;;-0.3221;0.2286;1.0;43.0;
+achevement_primaire_province;retirée;VIF = 23.3 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;0.889;311.0;False;0.483;-0.458;0.0;-0.8332;0.0229;-0.2583;0.2676;1.0;44.0;
+filles_17_ans_mariees_province;retirée;VIF = 11.8 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;1.0;45.0;True;0.432;0.4458;0.0;0.6156;;0.2813;0.2437;1.0;45.0;
+ni_ecole_ni_emploi_15_24_province;retirée;VIF = 17.6 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;1.0;46.0;True;0.286;0.4216;0.0;0.5702;;0.2796;0.2013;1.0;29.0;
+promotion_primaire_precedente;retirée;redondante par construction : identité comptable : 100 − abandon − redoublement;0.884;369.0;False;0.164;-0.4208;0.0;-0.8077;-0.2153;0.0924;0.1548;1.0;;
+rapport_cm2_cp1;retirée;colinéaire avec part_cp1 (ρ = -0.95), gardée car plus observée ou plus liée à la cible;0.995;395.0;False;0.536;-0.4025;0.0;-0.7785;0.221;-0.2416;0.0823;1.0;46.0;
+tbs_primaire_province;retirée;VIF = 43.4 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;0.889;316.0;False;0.426;-0.3928;0.0;-0.7617;-0.0607;-0.2087;0.1764;1.0;41.0;
+tns_primaire_province;retirée;"colinéaire avec tbs_primaire_province (ρ = +0.99), gardée car plus observée ou plus liée à la cible ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables";0.889;310.0;False;0.419;-0.3636;0.0;-0.7324;-0.0932;-0.1911;0.1245;1.0;41.0;
+abandon_post_primaire_province;retirée;trop estimée : 44% de valeurs observées;0.444;280.0;False;0.778;0.3568;0.0;0.5072;0.2657;0.1077;0.1678;1.0;;
+tba_primaire_province;retirée;"colinéaire avec tbs_primaire_province (ρ = +0.91), gardée car plus observée ou plus liée à la cible ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables";0.889;327.0;False;0.381;-0.2796;0.0;-0.5861;-0.089;-0.1297;0.1028;1.0;41.0;
+eleves_par_salle_primaire;retirée;colinéaire avec eleves_par_maitre_primaire (ρ = +0.95), gardée car plus observée ou plus liée à la cible;0.887;348.0;False;0.224;-0.2704;0.0;-0.3416;0.0461;-0.1138;0.1385;0.7143;4.0;
+travail_enfants_7_14_province;retirée;VIF = 30.9 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;1.0;45.0;True;0.514;0.235;0.0001;0.482;;0.1665;0.1328;1.0;9.0;
+choc_eleves_primaire;retirée;redondante par construction : seuil de evolution_eleves_primaire (|évolution| > 30 %) : même information;1.0;2.0;False;2.902;0.1789;0.0023;0.6639;0.1549;-0.071;0.0454;0.8;;
+part_salles_primaire_murs_precaires;retirée;VIF = 10.2 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;0.887;338.0;False;0.5;0.1698;0.0038;0.5282;-0.2969;0.1343;0.0161;1.0;22.0;
+part_parents_agriculteurs_eleves_primaire;retirée;VIF = 11.3 > 10 : combinaison linéaire des autres variables, la moins liée à la cible parmi celles au-dessus du seuil;0.887;312.0;False;0.107;0.0602;0.3076;0.1167;-0.2654;0.0676;0.0519;1.0;2.0;
+emploi_15_24_province;retirée;"colinéaire avec travail_enfants_7_14_province (ρ = +0.89), gardée car plus observée ou plus liée à la cible ; celle-ci est ensuite retirée par le VIF : l'information reste dans les autres variables";1.0;45.0;True;0.329;0.0518;0.3804;0.1827;;0.0469;0.1141;0.7143;9.0;
+redoublement_3e_province;retirée;trop estimée : 44% de valeurs observées;0.444;205.0;False;0.264;-0.007;0.9062;-0.1004;0.137;0.0533;0.0;0.7143;;
+cible_observee;retirée;technique : indicateur de travail (cible observée ou non);;;;;;;;;;;;;
+methode_population;retirée;technique : indicateur de travail (méthode de la population);;;;;;;;;;;;;
+abandon_primaire_precedent_province_origine;retirée;technique : valeur de la province d'origine, réservée aux provinces scindées;;;;;;;;;;;;;
+redoublement_primaire_precedent_province_origine;retirée;technique : valeur de la province d'origine, réservée aux provinces scindées;;;;;;;;;;;;;

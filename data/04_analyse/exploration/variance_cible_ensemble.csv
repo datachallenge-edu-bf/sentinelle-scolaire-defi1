@@ -1,0 +1,9 @@
+﻿mesure;valeur;definition
+variance_totale;236.6637;variance de la cible (points²)
+variance_entre_provinces;83.0231;variance des moyennes par province
+variance_dans_le_temps;153.6407;variance des écarts à la moyenne de la province
+part_entre_provinces;0.3508;part de la variance due aux écarts entre provinces
+persistance_spearman;0.4804;corrélation de rang entre l'abandon de t et celui de t+1
+erreur_reference_annee_precedente;7.8808;erreur absolue moyenne (points) si l'on prédit l'abandon de t
+erreur_reference_moyenne_passee;7.1866;erreur absolue moyenne si l'on prédit la moyenne des abandons passés de la province
+erreur_reference_mediane_annee;8.5348;erreur absolue moyenne si l'on prédit la médiane des provinces de l'année t
