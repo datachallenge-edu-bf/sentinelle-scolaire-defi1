@@ -1,10 +1,10 @@
-﻿modele;k;unites;r2_provinces_non_vues;correlation_rang_provinces_non_vues;erreur_absolue_moyenne;retenu
-lightgbm;5;43;0.492;0.807;2.293;False
-lightgbm;8;43;0.473;0.743;2.498;False
-lightgbm;12;43;0.457;0.734;2.584;False
-lightgbm;40;43;0.48;0.74;2.313;False
-elastic_net;5;43;0.637;0.804;2.16;True
-elastic_net;8;43;0.566;0.783;2.46;False
-elastic_net;12;43;0.494;0.705;2.474;False
-elastic_net;40;43;0.319;0.745;2.651;False
-lightgbm_elimination;8;43;0.5224;;2.4994;False
+﻿modele;k;unites;r2_provinces_non_vues;correlation_rang_provinces_non_vues;erreur_absolue_moyenne;role
+lightgbm;5;43;0.492;0.807;2.293;
+lightgbm;8;43;0.473;0.743;2.498;
+lightgbm;12;43;0.457;0.734;2.584;
+lightgbm;40;43;0.48;0.74;2.313;
+elastic_net;5;43;0.637;0.804;2.16;effets chiffrés
+elastic_net;8;43;0.566;0.783;2.46;
+elastic_net;12;43;0.494;0.705;2.474;
+elastic_net;40;43;0.319;0.745;2.651;
+lightgbm_elimination;8;43;0.5224;;2.4994;facteurs par province

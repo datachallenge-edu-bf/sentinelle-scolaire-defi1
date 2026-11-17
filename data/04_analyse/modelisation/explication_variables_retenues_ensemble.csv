@@ -1,0 +1,14 @@
+﻿volet;rang;variable;libelle
+effets chiffrés (elastic net);1;part_cp1;poids du CP1
+effets chiffrés (elastic net);2;ni_ecole_ni_emploi_15_24_province;jeunes ni à l'école ni en emploi
+effets chiffrés (elastic net);3;hors_ecole_16_18_province;jeunes de 16-18 ans hors de l'école
+effets chiffrés (elastic net);4;part_etab_post_primaire_secondaire_publics_cantine_region;cantines au secondaire (région)
+effets chiffrés (elastic net);5;deficit_places_pour_100_eleves_primaire;déficit de places assises
+facteurs par province (LightGBM);1;hors_ecole_16_18_province;jeunes de 16-18 ans hors de l'école
+facteurs par province (LightGBM);2;part_cp1;poids du CP1
+facteurs par province (LightGBM);3;eleves_par_maitre_primaire;élèves par maître
+facteurs par province (LightGBM);4;part_enseignantes_primaire;part des enseignantes
+facteurs par province (LightGBM);5;parite_scolarisation_post_primaire_province;parité filles / garçons au post-primaire (2019)
+facteurs par province (LightGBM);6;chomage_25_64_province;chômage des adultes
+facteurs par province (LightGBM);7;part_etab_post_primaire_secondaire_publics_cantine_region;cantines au secondaire (région)
+facteurs par province (LightGBM);8;ni_ecole_ni_emploi_15_24_province;jeunes ni à l'école ni en emploi

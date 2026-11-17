@@ -19,11 +19,12 @@ from . import preparation as P
 HORIZONS = [1, 2, 3]
 
 
-def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFrame]:
+def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> tuple[dict[str, pd.DataFrame], dict]:
     entite = jeu["entite"]
     d, lineaire, arbres = P.preparer(jeu, nom, listes)
     resultats, evaluations, couvertures, previsions, frequences, courbes = {}, [], [], [], [], []
-    reglages = modele = t1 = None
+    reglages = modele = t1 = seuils_1 = None
+    marges, variables_1 = {}, {}
     for h in HORIZONS:
         t = P.avec_cible(d, jeu, nom, h)
         if h == 1:
@@ -48,10 +49,11 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFra
         if len(finale):
             couvertures.append(prevision.couverture(finale, modele, marge, h))
         annees_x = [P.DERNIERE_ANNEE] + (["2023-2024"] if nom == "sexe" and h == 1 else [])
-        sortie, seuils = prevision.prevoir(d, t, nom, choix, reglages, modele,
-                                           prevision.marge_conforme(prev, modele), h, annees_x)
+        marges[h] = prevision.marge_conforme(prev, modele)
+        sortie, seuils = prevision.prevoir(d, t, nom, choix, reglages, modele, marges[h], h, annees_x)
         previsions.append(sortie)
         if h == 1:
+            seuils_1, variables_1 = seuils, choix
             resultats[f"seuils_classes_{nom}"] = pd.DataFrame(
                 {"classe": ["moyen à partir de (médiane)", "élevé à partir de (80e centile)"],
                  "taux_abandon_prevu": seuils.round(2)})
@@ -64,11 +66,16 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFra
     resultats[f"courbe_elimination_prevision_{nom}"] = pd.concat(courbes, ignore_index=True)
     resultats[f"previsions_{nom}"] = pd.concat(previsions, ignore_index=True)
 
-    for cle, table in explication.executer(d, t1, entite, arbres).items():
+    tables, objets_explication = explication.executer(d, t1, entite, arbres)
+    for cle, table in tables.items():
         resultats[f"explication_{cle}_{nom}"] = table
+    objets = {"prevision": {"modele": modele, "reglages": reglages, "marges": marges,
+                            "seuils": [float(s) for s in seuils_1], "variables": variables_1},
+              "explication": objets_explication}
     if nom == "ensemble":
-        resultats.update(alerte.executer(d, t1))
-    return resultats
+        tables_alerte, objets["alerte"] = alerte.executer(d, t1)
+        resultats.update(tables_alerte)
+    return resultats, objets
 
 
 def tableau_de_bord(resultats: dict[str, pd.DataFrame], nom: str) -> pd.DataFrame:

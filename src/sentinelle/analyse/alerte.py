@@ -23,11 +23,23 @@ VARIABLES = ["evolution_eleves_primaire", "baisse_effectifs", "rupture_annee_pre
 SEUILS = (0.3, 0.6)
 
 
+def _normalisation(train: pd.DataFrame) -> dict:
+    x = train[VARIABLES].astype(float)
+    mediane = x.median()
+    x = x.fillna(mediane)
+    return {"mediane": mediane.to_dict(), "moyenne": x.mean().to_dict(), "ecart_type": x.std().replace(0, 1).to_dict()}
+
+
+def normaliser(x: pd.DataFrame, n: dict) -> pd.DataFrame:
+    x = x[VARIABLES].astype(float).fillna(pd.Series(n["mediane"]))
+    return (x - pd.Series(n["moyenne"])) / pd.Series(n["ecart_type"])
+
+
 def _ajuster(train, test):
-    xa, xt = P.matrice_lineaire(train, test, VARIABLES)
+    n = _normalisation(train)
     m = LogisticRegression(C=0.5, class_weight="balanced", max_iter=5000)
-    m.fit(xa, train["rupture"])
-    return m.predict_proba(xt)[:, 1], m, list(xt.columns)
+    m.fit(normaliser(train, n), train["rupture"])
+    return m.predict_proba(normaliser(test, n))[:, 1], m, VARIABLES, n
 
 
 def executer(d: pd.DataFrame, t: pd.DataFrame) -> dict[str, pd.DataFrame]:
@@ -40,19 +52,26 @@ def executer(d: pd.DataFrame, t: pd.DataFrame) -> dict[str, pd.DataFrame]:
         ligne = {"annee_cible": annee, "role": "test final" if annee == P.TEST_FINAL["ensemble"] else "sélection",
                  "provinces": len(test), "ruptures": int(test["rupture"].sum())}
         if test["rupture"].nunique() == 2 and train["rupture"].sum() > 0:
-            score, _, _ = _ajuster(train, test)
+            score, _, _, _ = _ajuster(train, test)
             quart = test["rupture"].values[np.argsort(-score)[:max(1, len(test) // 4)]]
             ligne.update({"auc": round(roc_auc_score(test["rupture"], score), 3),
                           "ruptures_dans_le_quart_le_plus_a_risque": int(quart.sum())})
         evaluation.append(ligne)
     x = d[d["annee_scolaire"] == P.DERNIERE_ANNEE].copy()
-    score, m, colonnes = _ajuster(lignes, x)
+    score, m, colonnes, normalisation = _ajuster(lignes, x)
     sortie = x[["province_pcode", "province_nom", "region_nom"]].copy()
     sortie["annee_prevue"] = P.annee_plus(P.DERNIERE_ANNEE, 1)
     sortie["score_rupture"] = np.round(score, 3)
     sortie["risque_de_rupture"] = np.select([score >= SEUILS[1], score >= SEUILS[0]], ["élevé", "moyen"], "faible")
-    coefficients = pd.DataFrame({"variable": colonnes, "libelle": [libelle(c.replace("__manquante", "")) for c in colonnes],
+    coefficients = pd.DataFrame({"variable": colonnes, "libelle": [libelle(c) for c in colonnes],
                                  "coefficient_standardise": np.round(m.coef_[0], 3)}).sort_values(
         "coefficient_standardise", key=abs, ascending=False)
-    return {"alerte_rupture": sortie.sort_values("score_rupture", ascending=False).reset_index(drop=True),
-            "evaluation_alerte_rupture": pd.DataFrame(evaluation), "coefficients_alerte_rupture": coefficients}
+    # Contribution de chaque signal au score (échelle logit) : coefficient × valeur normalisée.
+    contributions = normaliser(x, normalisation) * m.coef_[0]
+    contributions.columns = [libelle(c) for c in contributions.columns]
+    contributions.insert(0, "province_nom", x["province_nom"].values)
+    contributions["constante"] = float(m.intercept_[0])
+    tables = {"alerte_rupture": sortie.sort_values("score_rupture", ascending=False).reset_index(drop=True),
+              "contributions_alerte_rupture": contributions.round(3).reset_index(drop=True),
+              "evaluation_alerte_rupture": pd.DataFrame(evaluation), "coefficients_alerte_rupture": coefficients}
+    return tables, {"modele": m, "variables": VARIABLES, "normalisation": normalisation, "seuils": SEUILS}

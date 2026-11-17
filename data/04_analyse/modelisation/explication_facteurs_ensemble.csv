@@ -1,48 +1,48 @@
 ﻿province_pcode;province_nom;region_nom;niveau_habituel_observe;niveau_explique;facteur_1;frein_principal;facteur_2;facteur_3
-BF1300;Kadiogo;Kadiogo;3.4887499999999996;5.75;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-3.2 pt);;
-BF4701;Comoe;Tannounyan;9.37625;9.87;déficit de places assises (+0.7 pt);poids du CP1 (-1.4 pt);;
-BF4702;Leraba;Tannounyan;6.51;5.91;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.6 pt);;
-BF4801;Boulgou;Nakambe;8.975000000000001;9.5;jeunes ni à l'école ni en emploi (+0.5 pt);poids du CP1 (-1.4 pt);;
-BF4802;Koulpelogo;Nakambe;15.369999999999997;12.82;poids du CP1 (+2.5 pt);déficit de places assises (-0.6 pt);;
-BF4803;Kourittenga;Nakambe;9.69375;8.8;jeunes ni à l'école ni en emploi (+0.2 pt);poids du CP1 (-1.8 pt);;
-BF4901;Bam;Koulse;14.12375;11.62;jeunes ni à l'école ni en emploi (+0.8 pt);poids du CP1 (-0.3 pt);déficit de places assises (+0.1 pt);
-BF4902;Namentenga;Koulse;16.17428571428572;16.38;poids du CP1 (+3.4 pt);;jeunes ni à l'école ni en emploi (+1.7 pt);déficit de places assises (+0.2 pt)
-BF4903;Sandbondtenga;Koulse;12.802500000000002;13.4;poids du CP1 (+1.0 pt);;déficit de places assises (+0.7 pt);jeunes ni à l'école ni en emploi (+0.6 pt)
-BF5001;Boulkiemde;Nando;5.786249999999999;5.58;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-3.6 pt);;
-BF5002;Sanguie;Nando;6.3100000000000005;7.36;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-3.1 pt);;
-BF5003;Sissili;Nando;9.861428571428572;8.33;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-1.7 pt);;
-BF5004;Ziro;Nando;8.79375;8.23;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-1.7 pt);;
-BF5101;Bazega;Nazinon;6.04375;5.28;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-4.4 pt);;
-BF5102;Nahouri;Nazinon;6.128749999999999;7.3;déficit de places assises (+0.1 pt);poids du CP1 (-3.3 pt);;
-BF5103;Zoundweogo;Nazinon;8.66;7.9;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.1 pt);;
-BF5301;Houet;Guiriko;6.4325;7.62;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.8 pt);;
-BF5302;Kenedougou;Guiriko;8.505;7.06;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.6 pt);;
-BF5303;Tuy;Guiriko;9.747500000000002;10.83;déficit de places assises (+0.8 pt);poids du CP1 (-0.8 pt);;
-BF5401;Loroum;Yaadga;28.351999999999997;20.42;poids du CP1 (+7.1 pt);;déficit de places assises (+1.2 pt);jeunes ni à l'école ni en emploi (+0.9 pt)
-BF5402;Passore;Yaadga;8.05625;8.47;déficit de places assises (+0.0 pt);poids du CP1 (-2.5 pt);;
-BF5403;Yatenga;Yaadga;14.719999999999999;15.44;poids du CP1 (+1.7 pt);;jeunes ni à l'école ni en emploi (+1.4 pt);déficit de places assises (+1.3 pt)
-BF5404;Zondoma;Yaadga;14.071428571428571;13.99;jeunes ni à l'école ni en emploi (+1.6 pt);;poids du CP1 (+0.7 pt);déficit de places assises (+0.6 pt)
-BF5501;Ganzourgou;Oubri;11.328750000000003;12.37;jeunes ni à l'école ni en emploi (+1.0 pt);;poids du CP1 (+0.2 pt);déficit de places assises (+0.1 pt)
-BF5502;Kourweogo;Oubri;8.0825;7.38;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.2 pt);;
-BF5503;Bassitenga;Oubri;7.748749999999999;7.68;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.3 pt);;
-BF5701;Bougouriba;Djoro;8.874999999999998;8.49;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-1.4 pt);;
-BF5702;Ioba;Djoro;9.321250000000001;8.54;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-1.5 pt);;
-BF5703;Noumbiel;Djoro;12.882499999999999;12.34;poids du CP1 (+1.5 pt);jeunes ni à l'école ni en emploi (-0.6 pt);déficit de places assises (+0.3 pt);
-BF5704;Poni;Djoro;12.147499999999999;12.11;poids du CP1 (+1.3 pt);jeunes ni à l'école ni en emploi (-0.2 pt);;
-BF5801;Gnagna;Sirba;11.227999999999998;14.02;poids du CP1 (+2.1 pt);;jeunes ni à l'école ni en emploi (+0.6 pt);déficit de places assises (+0.2 pt)
-BF5802;Komandjari;Sirba;8.6875;16.99;poids du CP1 (+5.7 pt);;jeunes ni à l'école ni en emploi (+0.2 pt);déficit de places assises (+0.0 pt)
-BF5901;Djelgodji;Soum;;20.92;poids du CP1 (+6.2 pt);;jeunes ni à l'école ni en emploi (+2.7 pt);déficit de places assises (+0.9 pt)
-BF5902;Karo-Peli;Soum;;21.01;poids du CP1 (+6.2 pt);;jeunes ni à l'école ni en emploi (+2.8 pt);déficit de places assises (+0.9 pt)
-BF6001;Dyamongou;Tapoa;;13.4;poids du CP1 (+1.7 pt);jeunes ni à l'école ni en emploi (-0.0 pt);déficit de places assises (+0.6 pt);
-BF6002;Gobnangou;Tapoa;;13.97;poids du CP1 (+1.7 pt);;déficit de places assises (+0.6 pt);jeunes ni à l'école ni en emploi (+0.5 pt)
-BF6101;Kossin;Sourou;17.516666666666666;12.95;poids du CP1 (+1.4 pt);jeunes ni à l'école ni en emploi (-0.3 pt);déficit de places assises (+0.8 pt);
-BF6102;Nayala;Sourou;8.481666666666667;9.26;déficit de places assises (+0.7 pt);poids du CP1 (-2.0 pt);;
-BF6103;Sourou;Sourou;4.736;11.16;déficit de places assises (+0.5 pt);poids du CP1 (-0.4 pt);;
-BF6201;Bale;Bankui;6.9075;7.11;aucun facteur au-dessus de la moyenne des provinces;poids du CP1 (-2.4 pt);;
-BF6202;Banwa;Bankui;10.0;10.17;déficit de places assises (+1.0 pt);jeunes ni à l'école ni en emploi (-1.2 pt);;
-BF6203;Mouhoun;Bankui;9.542857142857143;9.23;déficit de places assises (+0.2 pt);poids du CP1 (-1.3 pt);;
-BF6301;Gourma;Goulmou;9.4425;11.45;jeunes ni à l'école ni en emploi (+0.2 pt);;poids du CP1 (+0.1 pt);déficit de places assises (+0.1 pt)
-BF6302;Kompienga;Goulmou;16.387999999999998;13.35;poids du CP1 (+2.0 pt);jeunes ni à l'école ni en emploi (-0.0 pt);déficit de places assises (+0.3 pt);
-BF6401;Oudalan;Liptako;18.28571428571429;20.59;poids du CP1 (+7.0 pt);;jeunes ni à l'école ni en emploi (+1.7 pt);déficit de places assises (+0.8 pt)
-BF6402;Seno;Liptako;25.523333333333337;21.45;poids du CP1 (+7.5 pt);;jeunes ni à l'école ni en emploi (+2.7 pt);déficit de places assises (+0.2 pt)
-BF6403;Yagha;Liptako;22.55;23.13;poids du CP1 (+8.7 pt);;jeunes ni à l'école ni en emploi (+2.0 pt);déficit de places assises (+1.2 pt)
+BF1300;Kadiogo;Kadiogo;3.4887499999999996;5.34;part des enseignantes (+0.3 pt);poids du CP1 (-2.2 pt);;
+BF4701;Comoe;Tannounyan;9.37625;9.74;part des enseignantes (+0.5 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);élèves par maître (+0.5 pt);chômage des adultes (+0.4 pt)
+BF4702;Leraba;Tannounyan;6.51;7.6;part des enseignantes (+0.9 pt);poids du CP1 (-1.9 pt);parité filles / garçons au post-primaire (2019) (+0.7 pt);chômage des adultes (+0.5 pt)
+BF4801;Boulgou;Nakambe;8.975000000000001;9.09;élèves par maître (+0.5 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);jeunes ni à l'école ni en emploi (+0.1 pt);
+BF4802;Koulpelogo;Nakambe;15.369999999999997;15.64;poids du CP1 (+2.8 pt);élèves par maître (-0.8 pt);jeunes de 16-18 ans hors de l'école (+2.2 pt);parité filles / garçons au post-primaire (2019) (+1.0 pt)
+BF4803;Kourittenga;Nakambe;9.69375;9.09;élèves par maître (+0.5 pt);jeunes de 16-18 ans hors de l'école (-0.6 pt);part des enseignantes (+0.3 pt);
+BF4901;Bam;Koulse;14.12375;14.67;jeunes ni à l'école ni en emploi (+2.5 pt);poids du CP1 (-0.6 pt);cantines au secondaire (région) (+2.0 pt);élèves par maître (+0.9 pt)
+BF4902;Namentenga;Koulse;16.17428571428572;17.52;poids du CP1 (+2.9 pt);part des enseignantes (-1.5 pt);jeunes ni à l'école ni en emploi (+2.6 pt);cantines au secondaire (région) (+2.2 pt)
+BF4903;Sandbondtenga;Koulse;12.802500000000002;12.72;cantines au secondaire (région) (+1.9 pt);jeunes de 16-18 ans hors de l'école (-1.2 pt);élèves par maître (+1.0 pt);poids du CP1 (+0.9 pt)
+BF5001;Boulkiemde;Nando;5.786249999999999;5.96;élèves par maître (+0.3 pt);poids du CP1 (-2.4 pt);;
+BF5002;Sanguie;Nando;6.3100000000000005;6.9;élèves par maître (+0.7 pt);poids du CP1 (-2.4 pt);chômage des adultes (+0.1 pt);
+BF5003;Sissili;Nando;9.861428571428572;8.99;chômage des adultes (+0.6 pt);jeunes ni à l'école ni en emploi (-0.6 pt);;
+BF5004;Ziro;Nando;8.79375;8.56;chômage des adultes (+0.6 pt);jeunes de 16-18 ans hors de l'école (-1.1 pt);;
+BF5101;Bazega;Nazinon;6.04375;5.65;part des enseignantes (+0.3 pt);poids du CP1 (-2.2 pt);;
+BF5102;Nahouri;Nazinon;6.128749999999999;5.58;élèves par maître (+0.5 pt);poids du CP1 (-2.3 pt);;
+BF5103;Zoundweogo;Nazinon;8.66;8.97;chômage des adultes (+0.4 pt);jeunes ni à l'école ni en emploi (-0.7 pt);élèves par maître (+0.2 pt);
+BF5301;Houet;Guiriko;6.4325;6.3;élèves par maître (+0.8 pt);poids du CP1 (-2.3 pt);;
+BF5302;Kenedougou;Guiriko;8.505;8.13;part des enseignantes (+1.0 pt);poids du CP1 (-1.9 pt);chômage des adultes (+0.5 pt);
+BF5303;Tuy;Guiriko;9.747500000000002;10.26;part des enseignantes (+1.1 pt);jeunes de 16-18 ans hors de l'école (-1.2 pt);élèves par maître (+0.9 pt);chômage des adultes (+0.4 pt)
+BF5401;Loroum;Yaadga;28.351999999999997;24.52;poids du CP1 (+3.2 pt);chômage des adultes (-0.3 pt);jeunes de 16-18 ans hors de l'école (+2.8 pt);jeunes ni à l'école ni en emploi (+2.4 pt)
+BF5402;Passore;Yaadga;8.05625;8.06;cantines au secondaire (région) (+1.5 pt);poids du CP1 (-2.2 pt);élèves par maître (+0.4 pt);
+BF5403;Yatenga;Yaadga;14.719999999999999;15.05;jeunes ni à l'école ni en emploi (+2.6 pt);part des enseignantes (-1.4 pt);poids du CP1 (+1.7 pt);cantines au secondaire (région) (+1.7 pt)
+BF5404;Zondoma;Yaadga;14.071428571428571;13.87;jeunes ni à l'école ni en emploi (+2.6 pt);jeunes de 16-18 ans hors de l'école (-0.7 pt);cantines au secondaire (région) (+1.6 pt);poids du CP1 (+0.8 pt)
+BF5501;Ganzourgou;Oubri;11.328750000000003;11.54;jeunes ni à l'école ni en emploi (+2.5 pt);jeunes de 16-18 ans hors de l'école (-1.0 pt);poids du CP1 (+0.9 pt);
+BF5502;Kourweogo;Oubri;8.0825;8.01;part des enseignantes (+0.3 pt);poids du CP1 (-1.3 pt);chômage des adultes (+0.2 pt);
+BF5503;Bassitenga;Oubri;7.748749999999999;7.34;part des enseignantes (+0.4 pt);poids du CP1 (-1.3 pt);;
+BF5701;Bougouriba;Djoro;8.874999999999998;9.16;parité filles / garçons au post-primaire (2019) (+0.8 pt);élèves par maître (-1.0 pt);chômage des adultes (+0.5 pt);
+BF5702;Ioba;Djoro;9.321250000000001;8.39;chômage des adultes (+0.6 pt);élèves par maître (-0.8 pt);;
+BF5703;Noumbiel;Djoro;12.882499999999999;12.66;poids du CP1 (+1.3 pt);élèves par maître (-1.5 pt);part des enseignantes (+1.1 pt);parité filles / garçons au post-primaire (2019) (+0.8 pt)
+BF5704;Poni;Djoro;12.147499999999999;12.65;poids du CP1 (+1.3 pt);élèves par maître (-1.5 pt);part des enseignantes (+1.1 pt);parité filles / garçons au post-primaire (2019) (+0.8 pt)
+BF5801;Gnagna;Sirba;11.227999999999998;10.35;jeunes de 16-18 ans hors de l'école (+2.0 pt);part des enseignantes (-1.4 pt);poids du CP1 (+1.3 pt);jeunes ni à l'école ni en emploi (+0.1 pt)
+BF5802;Komandjari;Sirba;8.6875;10.85;poids du CP1 (+2.8 pt);élèves par maître (-1.7 pt);jeunes de 16-18 ans hors de l'école (+1.8 pt);parité filles / garçons au post-primaire (2019) (+0.9 pt)
+BF5901;Djelgodji;Soum;;21.59;poids du CP1 (+3.2 pt);part des enseignantes (-1.4 pt);jeunes ni à l'école ni en emploi (+2.6 pt);jeunes de 16-18 ans hors de l'école (+2.4 pt)
+BF5902;Karo-Peli;Soum;;19.87;poids du CP1 (+3.2 pt);part des enseignantes (-1.4 pt);jeunes ni à l'école ni en emploi (+2.6 pt);jeunes de 16-18 ans hors de l'école (+2.4 pt)
+BF6001;Dyamongou;Tapoa;;17.29;jeunes de 16-18 ans hors de l'école (+2.6 pt);cantines au secondaire (région) (-0.8 pt);poids du CP1 (+1.6 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF6002;Gobnangou;Tapoa;;14.97;poids du CP1 (+1.7 pt);cantines au secondaire (région) (-0.7 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt);part des enseignantes (+1.1 pt)
+BF6101;Kossin;Sourou;17.516666666666666;16.87;jeunes de 16-18 ans hors de l'école (+2.6 pt);cantines au secondaire (région) (-0.8 pt);poids du CP1 (+1.5 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF6102;Nayala;Sourou;8.481666666666667;7.72;élèves par maître (+0.5 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);;
+BF6103;Sourou;Sourou;4.736;6.13;aucun facteur au-dessus de la moyenne des provinces;jeunes de 16-18 ans hors de l'école (-1.1 pt);;
+BF6201;Bale;Bankui;6.9075;7.58;chômage des adultes (+0.4 pt);poids du CP1 (-1.4 pt);élèves par maître (+0.3 pt);
+BF6202;Banwa;Bankui;10.0;10.27;part des enseignantes (+1.0 pt);cantines au secondaire (région) (-0.8 pt);élèves par maître (+0.5 pt);chômage des adultes (+0.5 pt)
+BF6203;Mouhoun;Bankui;9.542857142857143;8.9;chômage des adultes (+0.4 pt);jeunes ni à l'école ni en emploi (-0.7 pt);élèves par maître (+0.4 pt);
+BF6301;Gourma;Goulmou;9.4425;8.82;chômage des adultes (+0.5 pt);jeunes de 16-18 ans hors de l'école (-1.1 pt);part des enseignantes (+0.4 pt);
+BF6302;Kompienga;Goulmou;16.387999999999998;16.56;poids du CP1 (+1.7 pt);cantines au secondaire (région) (-0.8 pt);élèves par maître (+1.5 pt);part des enseignantes (+1.2 pt)
+BF6401;Oudalan;Liptako;18.28571428571429;21.1;poids du CP1 (+3.1 pt);part des enseignantes (-1.4 pt);jeunes ni à l'école ni en emploi (+2.5 pt);jeunes de 16-18 ans hors de l'école (+2.4 pt)
+BF6402;Seno;Liptako;25.523333333333337;23.49;poids du CP1 (+3.2 pt);chômage des adultes (-0.3 pt);jeunes ni à l'école ni en emploi (+2.6 pt);jeunes de 16-18 ans hors de l'école (+2.4 pt)
+BF6403;Yagha;Liptako;22.55;21.42;poids du CP1 (+2.9 pt);élèves par maître (-0.9 pt);jeunes ni à l'école ni en emploi (+2.5 pt);jeunes de 16-18 ans hors de l'école (+2.2 pt)

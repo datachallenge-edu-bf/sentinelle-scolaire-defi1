@@ -1,0 +1,241 @@
+{
+  "jeu": "sexe",
+  "date": "2026-11-17",
+  "cible": "taux d'abandon du primaire (%) entre t+h-1 et t+h, par province et par sexe",
+  "normalisation_cible": "z = logit(taux / 100), taux ramené dans [0,5 ; 99,5] ; dénormalisation : taux = 100 / (1 + exp(-z))",
+  "prevision": {
+    "modele_retenu": "reference_niveau_habituel",
+    "regle_de_choix": "niveau habituel à battre : gain d'au moins 3 % d'erreur et au moins 2 plis sur 3",
+    "marge_conforme_logit_par_horizon": {
+      "1": 0.8700494889331414,
+      "2": 1.0764935386254633,
+      "3": 0.9062822588374073
+    },
+    "niveau_intervalle": 0.8,
+    "seuils_classes_taux": {
+      "moyen": 8.3,
+      "eleve": 14.688
+    },
+    "reglages": {
+      "kappa": 8.0,
+      "alpha_elastic": 0.3,
+      "k_elastic": 5,
+      "alpha_ridge": 1000.0,
+      "k_ridge": 5,
+      "lightgbm": 2,
+      "k_lightgbm": null
+    },
+    "variables_par_modele": {
+      "elastic_net": [
+        "evolution_eleves_primaire",
+        "hors_ecole_16_18_province",
+        "rapport_cm2_cp1",
+        "redoublement_primaire_precedent",
+        "deficit_places_pour_100_eleves_primaire"
+      ],
+      "ridge_effet_province": [
+        "evolution_eleves_primaire",
+        "hors_ecole_16_18_province",
+        "rapport_cm2_cp1",
+        "redoublement_primaire_precedent",
+        "deficit_places_pour_100_eleves_primaire"
+      ],
+      "lightgbm": [
+        "evolution_eleves_primaire",
+        "hors_ecole_16_18_province",
+        "ni_ecole_ni_emploi_15_24_province",
+        "part_salles_primaire_toit_precaire",
+        "pauvrete_province",
+        "rapport_cm2_cp1",
+        "redoublement_primaire_precedent",
+        "ecart_abandon_a_la_moyenne",
+        "eleves_par_maitre_primaire",
+        "parite_tbs_post_primaire_province",
+        "parite_scolarisation_primaire_province",
+        "manuels_lecture_par_eleve_primaire",
+        "ips_tap_primaire_region",
+        "chomage_25_64_province",
+        "part_salles_primaire_murs_precaires",
+        "fille",
+        "part_ecoles_primaires_electricite",
+        "achevement_primaire_province",
+        "manuels_calcul_par_eleve_primaire",
+        "ecart_achevement_primaire_entree_6e",
+        "achevement_post_primaire_province",
+        "part_etab_post_primaire_secondaire_publics_cantine_region",
+        "ratio_eleves_classe_post_primaire_region",
+        "part_etab_post_primaire_secondaire_publics_electricite_region",
+        "rupture_annee_precedente",
+        "parite_scolarisation_post_primaire_province",
+        "dependance_demographique_province",
+        "abandons_primaire_orpaillage_pour_1000_region",
+        "part_ecoles_primaires_latrines",
+        "moyenne_passee_abandon",
+        "parite_scolarisation_secondaire_province",
+        "part_ecoles_primaires_eau_potable",
+        "part_ecoles_primaires_privees_region",
+        "part_ecoles_primaires_cycle_incomplet",
+        "part_eleves_primaire_12_ans_et_plus",
+        "tbs_primaire_province",
+        "filles_17_ans_mariees_province",
+        "part_enseignants_primaire_debutants",
+        "part_enseignantes_primaire",
+        "ips_tbs_primaire_region",
+        "part_entrants_cp1_8_ans_et_plus",
+        "abandons_primaire_mariage_grossesse_pour_1000_region",
+        "abandon_primaire_precedent",
+        "tbs_prescolaire_region",
+        "deficit_places_pour_100_eleves_primaire"
+      ],
+      "lightgbm_elimination": [
+        "evolution_eleves_primaire",
+        "part_ecoles_primaires_privees_region",
+        "parite_tbs_post_primaire_province",
+        "ni_ecole_ni_emploi_15_24_province",
+        "tbs_prescolaire_region",
+        "rapport_cm2_cp1",
+        "part_etab_post_primaire_secondaire_publics_electricite_region",
+        "manuels_calcul_par_eleve_primaire",
+        "part_etab_post_primaire_secondaire_publics_cantine_region"
+      ]
+    },
+    "qualite_horizon_1": [
+      {
+        "role": "sélection",
+        "erreur_absolue_moyenne": 6.34,
+        "correlation_rang": 0.549,
+        "rappel_quintile_le_plus_a_risque": 0.486
+      },
+      {
+        "role": "test final",
+        "erreur_absolue_moyenne": 3.832,
+        "correlation_rang": 0.66,
+        "rappel_quintile_le_plus_a_risque": 0.538
+      }
+    ],
+    "couverture_intervalle": [
+      {
+        "horizon": 1,
+        "modele": "reference_niveau_habituel",
+        "marge_conforme_logit": 1.092,
+        "couverture_test_final": 0.906,
+        "largeur_moyenne_points": 20.142,
+        "lignes": 64
+      },
+      {
+        "horizon": 2,
+        "modele": "reference_niveau_habituel",
+        "marge_conforme_logit": 1.209,
+        "couverture_test_final": 0.938,
+        "largeur_moyenne_points": 20.968,
+        "lignes": 64
+      },
+      {
+        "horizon": 3,
+        "modele": "reference_niveau_habituel",
+        "marge_conforme_logit": 0.906,
+        "couverture_test_final": 0.812,
+        "largeur_moyenne_points": 14.26,
+        "lignes": 64
+      }
+    ]
+  },
+  "explication": {
+    "effets_chiffres": {
+      "modele": "elastic_net",
+      "variables": [
+        "hors_ecole_16_18_province",
+        "rapport_cm2_cp1",
+        "achevement_post_primaire_province",
+        "achevement_primaire_province",
+        "eleves_par_maitre_primaire",
+        "parite_scolarisation_post_primaire_province",
+        "part_eleves_primaire_12_ans_et_plus",
+        "ips_tbs_primaire_region"
+      ],
+      "r2_provinces_non_vues": 0.473
+    },
+    "facteurs_par_province": {
+      "modele": "lightgbm (élimination récursive guidée par SHAP)",
+      "variables": [
+        "abandons_primaire_orpaillage_pour_1000_region",
+        "rapport_cm2_cp1",
+        "achevement_post_primaire_province",
+        "hors_ecole_16_18_province",
+        "part_eleves_primaire_12_ans_et_plus",
+        "ratio_eleves_classe_post_primaire_region",
+        "fille",
+        "eleves_par_maitre_primaire",
+        "parite_scolarisation_post_primaire_province",
+        "ips_tbs_primaire_region",
+        "evolution_eleves_primaire",
+        "chomage_25_64_province",
+        "part_salles_primaire_murs_precaires",
+        "part_etab_post_primaire_secondaire_publics_cantine_region",
+        "dependance_demographique_province",
+        "pauvrete_province",
+        "deficit_places_pour_100_eleves_primaire",
+        "parite_tbs_post_primaire_province",
+        "achevement_primaire_province",
+        "ni_ecole_ni_emploi_15_24_province"
+      ],
+      "r2_provinces_non_vues": 0.4481
+    }
+  },
+  "versions": {
+    "lightgbm": "4.7.0",
+    "scikit-learn": "1.9.1",
+    "shap": "0.54.1",
+    "pandas": "3.1.1"
+  },
+  "alerte_rupture": {
+    "modele": "régression logistique pénalisée, classes équilibrées",
+    "variables": [
+      "evolution_eleves_primaire",
+      "baisse_effectifs",
+      "rupture_annee_precedente",
+      "ruptures_passees",
+      "abandon_primaire_precedent",
+      "abandons_primaire_orpaillage_pour_1000_region",
+      "hors_ecole_16_18_province"
+    ],
+    "seuils_score": [
+      0.3,
+      0.6
+    ],
+    "evaluation": [
+      {
+        "annee_cible": "2021-2022",
+        "role": "sélection",
+        "provinces": 43,
+        "ruptures": 5,
+        "auc": 0.874,
+        "ruptures_dans_le_quart_le_plus_a_risque": 4
+      },
+      {
+        "annee_cible": "2022-2023",
+        "role": "sélection",
+        "provinces": 40,
+        "ruptures": 8,
+        "auc": 0.852,
+        "ruptures_dans_le_quart_le_plus_a_risque": 7
+      },
+      {
+        "annee_cible": "2023-2024",
+        "role": "sélection",
+        "provinces": 34,
+        "ruptures": 2,
+        "auc": 0.906,
+        "ruptures_dans_le_quart_le_plus_a_risque": 2
+      },
+      {
+        "annee_cible": "2024-2025",
+        "role": "test final",
+        "provinces": 42,
+        "ruptures": 2,
+        "auc": 0.962,
+        "ruptures_dans_le_quart_le_plus_a_risque": 2
+      }
+    ]
+  }
+}

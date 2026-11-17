@@ -1,95 +1,95 @@
-﻿province_pcode;sexe;province_nom;region_nom;niveau_habituel_observe;niveau_explique;facteur_1;frein_principal;facteur_2;facteur_3
-BF1300;F;Kadiogo;Kadiogo;2.1942857142857144;3.4;élèves de 12 ans et plus (+1.6 pt);achèvement du post-primaire (-6.2 pt);;
-BF1300;G;Kadiogo;Kadiogo;5.031428571428571;6.4;élèves de 12 ans et plus (+1.9 pt);achèvement du post-primaire (-4.4 pt);;
-BF4701;F;Comoe;Tannounyan;8.49142857142857;11.1;parité de scolarisation (région) (+0.9 pt);achèvement du post-primaire (-0.7 pt);élèves par maître (+0.4 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt)
-BF4701;G;Comoe;Tannounyan;11.077142857142857;12.7;parité de scolarisation (région) (+0.9 pt);achèvement du post-primaire (-0.4 pt);élèves par maître (+0.4 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt)
-BF4702;F;Leraba;Tannounyan;5.542857142857143;8.02;parité de scolarisation (région) (+0.9 pt);élèves par maître (-2.4 pt);parité filles / garçons au post-primaire (2019) (+0.3 pt);achèvement du post-primaire (+0.1 pt)
-BF4702;G;Leraba;Tannounyan;7.590000000000002;8.63;parité de scolarisation (région) (+0.9 pt);élèves par maître (-2.4 pt);parité filles / garçons au post-primaire (2019) (+0.3 pt);
-BF4801;F;Boulgou;Nakambe;7.47;9.59;parité de scolarisation (région) (+0.8 pt);élèves de 12 ans et plus (-1.6 pt);élèves par maître (+0.5 pt);
-BF4801;G;Boulgou;Nakambe;10.940000000000001;11.85;parité de scolarisation (région) (+0.8 pt);élèves de 12 ans et plus (-1.3 pt);élèves par maître (+0.5 pt);achèvement du post-primaire (+0.3 pt)
-BF4802;F;Koulpelogo;Nakambe;22.55;16.34;élèves de 12 ans et plus (+1.9 pt);élèves par maître (-1.4 pt);achèvement du post-primaire (+1.8 pt);parité de scolarisation (région) (+0.8 pt)
-BF4802;G;Koulpelogo;Nakambe;23.17;15.39;achèvement du post-primaire (+1.5 pt);élèves par maître (-1.4 pt);élèves de 12 ans et plus (+1.5 pt);parité de scolarisation (région) (+0.8 pt)
-BF4803;F;Kourittenga;Nakambe;7.708571428571427;8.41;parité de scolarisation (région) (+0.8 pt);achèvement du post-primaire (-2.2 pt);élèves par maître (+0.4 pt);
-BF4803;G;Kourittenga;Nakambe;11.918571428571429;12.31;parité de scolarisation (région) (+0.8 pt);parité filles / garçons au post-primaire (2019) (-0.4 pt);élèves par maître (+0.4 pt);rapport CM2 / CP1 (+0.3 pt)
-BF4901;F;Bam;Koulse;14.018571428571429;12.9;élèves par maître (+1.8 pt);élèves de 12 ans et plus (-1.1 pt);parité de scolarisation (région) (+0.9 pt);achèvement du post-primaire (+0.6 pt)
-BF4901;G;Bam;Koulse;18.107142857142858;16.41;élèves par maître (+1.8 pt);parité filles / garçons au post-primaire (2019) (-0.6 pt);achèvement du post-primaire (+1.4 pt);parité de scolarisation (région) (+0.9 pt)
-BF4902;F;Namentenga;Koulse;13.655;15.6;achèvement du post-primaire (+1.6 pt);élèves par maître (-0.8 pt);élèves de 12 ans et plus (+1.4 pt);parité de scolarisation (région) (+0.9 pt)
-BF4902;G;Namentenga;Koulse;18.046666666666663;17.88;élèves de 12 ans et plus (+2.4 pt);élèves par maître (-0.8 pt);achèvement du post-primaire (+2.2 pt);rapport CM2 / CP1 (+1.2 pt)
-BF4903;F;Sandbondtenga;Koulse;10.900000000000002;14.56;élèves par maître (+2.1 pt);parité filles / garçons au post-primaire (2019) (-0.4 pt);parité de scolarisation (région) (+0.9 pt);rapport CM2 / CP1 (+0.2 pt)
-BF4903;G;Sandbondtenga;Koulse;16.15285714285714;18.02;élèves par maître (+2.1 pt);parité filles / garçons au post-primaire (2019) (-0.4 pt);élèves de 12 ans et plus (+1.5 pt);rapport CM2 / CP1 (+1.1 pt)
-BF5001;F;Boulkiemde;Nando;3.8442857142857148;3.6;élèves par maître (+0.7 pt);achèvement du post-primaire (-3.8 pt);;
-BF5001;G;Boulkiemde;Nando;7.701428571428571;6.68;élèves par maître (+0.7 pt);achèvement du post-primaire (-3.0 pt);élèves de 12 ans et plus (+0.2 pt);
-BF5002;F;Sanguie;Nando;4.655714285714285;7.89;élèves par maître (+1.9 pt);parité de scolarisation (région) (-1.7 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt);
-BF5002;G;Sanguie;Nando;8.201428571428572;9.55;élèves par maître (+1.9 pt);achèvement du post-primaire (-1.8 pt);élèves de 12 ans et plus (+0.2 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt)
-BF5003;F;Sissili;Nando;9.491666666666667;9.01;élèves de 12 ans et plus (+0.5 pt);parité de scolarisation (région) (-1.7 pt);achèvement du post-primaire (+0.5 pt);
-BF5003;G;Sissili;Nando;12.786666666666669;11.32;élèves de 12 ans et plus (+1.5 pt);parité de scolarisation (région) (-1.7 pt);achèvement du post-primaire (+0.6 pt);rapport CM2 / CP1 (+0.2 pt)
-BF5004;F;Ziro;Nando;6.882857142857143;9.79;achèvement du post-primaire (+1.0 pt);parité de scolarisation (région) (-1.7 pt);élèves de 12 ans et plus (+0.6 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt)
-BF5004;G;Ziro;Nando;10.691428571428572;11.36;élèves de 12 ans et plus (+1.3 pt);parité de scolarisation (région) (-1.7 pt);achèvement du post-primaire (+0.9 pt);rapport CM2 / CP1 (+0.2 pt)
-BF5101;F;Bazega;Nazinon;3.661428571428572;3.74;parité de scolarisation (région) (+0.1 pt);élèves de 12 ans et plus (-2.7 pt);;
-BF5101;G;Bazega;Nazinon;8.292857142857143;6.6;parité de scolarisation (région) (+0.1 pt);élèves de 12 ans et plus (-2.4 pt);;
-BF5102;F;Nahouri;Nazinon;5.029999999999999;8.33;élèves par maître (+1.0 pt);achèvement du post-primaire (-1.4 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt);parité de scolarisation (région) (+0.1 pt)
-BF5102;G;Nahouri;Nazinon;7.441428571428571;9.55;élèves par maître (+1.0 pt);achèvement du post-primaire (-1.4 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt);parité de scolarisation (région) (+0.1 pt)
-BF5103;F;Zoundweogo;Nazinon;6.642857142857144;7.78;parité de scolarisation (région) (+0.1 pt);élèves de 12 ans et plus (-1.3 pt);;
-BF5103;G;Zoundweogo;Nazinon;10.494285714285713;11.2;achèvement du post-primaire (+0.8 pt);élèves de 12 ans et plus (-0.6 pt);rapport CM2 / CP1 (+0.2 pt);parité de scolarisation (région) (+0.1 pt)
-BF5301;F;Houet;Guiriko;5.112857142857144;6.08;élèves par maître (+1.8 pt);achèvement du post-primaire (-4.1 pt);;
-BF5301;G;Houet;Guiriko;7.677142857142856;8.53;élèves par maître (+1.8 pt);achèvement du post-primaire (-2.7 pt);;
-BF5302;F;Kenedougou;Guiriko;5.541428571428571;6.93;aucun facteur au-dessus de la moyenne des provinces;élèves de 12 ans et plus (-1.6 pt);;
-BF5302;G;Kenedougou;Guiriko;9.075714285714286;7.99;aucun facteur au-dessus de la moyenne des provinces;élèves de 12 ans et plus (-1.1 pt);;
-BF5303;F;Tuy;Guiriko;9.601428571428572;10.63;élèves par maître (+2.4 pt);élèves de 12 ans et plus (-2.3 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt);
-BF5303;G;Tuy;Guiriko;12.595714285714289;12.18;élèves par maître (+2.4 pt);élèves de 12 ans et plus (-1.6 pt);rapport CM2 / CP1 (+0.4 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt)
-BF5401;F;Loroum;Yaadga;25.395000000000003;20.54;élèves par maître (+4.5 pt);rapport CM2 / CP1 (-1.4 pt);élèves de 12 ans et plus (+2.7 pt);achèvement du post-primaire (+2.1 pt)
-BF5401;G;Loroum;Yaadga;28.1775;22.24;élèves par maître (+4.5 pt);rapport CM2 / CP1 (-1.1 pt);élèves de 12 ans et plus (+3.7 pt);achèvement du post-primaire (+2.5 pt)
-BF5402;F;Passore;Yaadga;5.428571428571429;6.82;élèves par maître (+0.9 pt);achèvement du post-primaire (-2.8 pt);parité de scolarisation (région) (+0.4 pt);
-BF5402;G;Passore;Yaadga;10.425714285714287;11.03;élèves par maître (+0.9 pt);achèvement du post-primaire (-1.6 pt);parité de scolarisation (région) (+0.4 pt);élèves de 12 ans et plus (+0.2 pt)
-BF5403;F;Yatenga;Yaadga;13.962857142857143;14.93;élèves de 12 ans et plus (+1.5 pt);achèvement du primaire (-0.1 pt);élèves par maître (+1.1 pt);rapport CM2 / CP1 (+0.5 pt)
-BF5403;G;Yatenga;Yaadga;17.360000000000003;17.11;élèves de 12 ans et plus (+2.3 pt);parité filles / garçons au post-primaire (2019) (-0.1 pt);élèves par maître (+1.1 pt);rapport CM2 / CP1 (+1.1 pt)
-BF5404;F;Zondoma;Yaadga;12.268333333333336;12.31;élèves de 12 ans et plus (+0.7 pt);parité filles / garçons au post-primaire (2019) (-0.5 pt);rapport CM2 / CP1 (+0.4 pt);parité de scolarisation (région) (+0.4 pt)
-BF5404;G;Zondoma;Yaadga;16.306666666666665;15.32;élèves de 12 ans et plus (+1.9 pt);parité filles / garçons au post-primaire (2019) (-0.5 pt);achèvement du post-primaire (+1.1 pt);rapport CM2 / CP1 (+1.1 pt)
-BF5501;F;Ganzourgou;Oubri;8.637142857142857;10.09;parité de scolarisation (région) (+0.9 pt);élèves de 12 ans et plus (-1.4 pt);achèvement du post-primaire (+0.2 pt);rapport CM2 / CP1 (+0.1 pt)
-BF5501;G;Ganzourgou;Oubri;13.318571428571428;13.14;achèvement du post-primaire (+1.4 pt);parité filles / garçons au post-primaire (2019) (-0.6 pt);parité de scolarisation (région) (+0.9 pt);rapport CM2 / CP1 (+0.8 pt)
-BF5502;F;Kourweogo;Oubri;6.028571428571428;5.54;parité de scolarisation (région) (+0.9 pt);achèvement du post-primaire (-2.5 pt);;
-BF5502;G;Kourweogo;Oubri;9.874285714285715;8.27;parité de scolarisation (région) (+0.9 pt);achèvement du post-primaire (-1.5 pt);rapport CM2 / CP1 (+0.0 pt);
-BF5503;F;Bassitenga;Oubri;5.277142857142857;4.37;parité de scolarisation (région) (+0.9 pt);achèvement du post-primaire (-2.6 pt);;
-BF5503;G;Bassitenga;Oubri;9.678571428571429;8.26;parité de scolarisation (région) (+0.9 pt);élèves de 12 ans et plus (-1.7 pt);rapport CM2 / CP1 (+0.1 pt);
-BF5701;F;Bougouriba;Djoro;8.262857142857142;7.56;parité filles / garçons au post-primaire (2019) (+0.3 pt);élèves par maître (-1.7 pt);;
-BF5701;G;Bougouriba;Djoro;9.947142857142856;7.53;parité filles / garçons au post-primaire (2019) (+0.3 pt);élèves par maître (-1.7 pt);;
-BF5702;F;Ioba;Djoro;8.307142857142859;5.84;parité filles / garçons au post-primaire (2019) (+0.1 pt);élèves par maître (-2.2 pt);;
-BF5702;G;Ioba;Djoro;10.584285714285715;7.49;rapport CM2 / CP1 (+0.2 pt);élèves par maître (-2.2 pt);parité filles / garçons au post-primaire (2019) (+0.1 pt);
-BF5703;F;Noumbiel;Djoro;13.18142857142857;10.9;élèves de 12 ans et plus (+1.4 pt);élèves par maître (-3.9 pt);achèvement du post-primaire (+1.4 pt);rapport CM2 / CP1 (+0.7 pt)
-BF5703;G;Noumbiel;Djoro;13.32142857142857;10.71;élèves de 12 ans et plus (+1.5 pt);élèves par maître (-3.9 pt);achèvement du post-primaire (+1.0 pt);rapport CM2 / CP1 (+0.8 pt)
-BF5704;F;Poni;Djoro;11.639999999999999;10.76;élèves de 12 ans et plus (+1.3 pt);élèves par maître (-2.9 pt);achèvement du post-primaire (+0.8 pt);rapport CM2 / CP1 (+0.3 pt)
-BF5704;G;Poni;Djoro;13.535714285714286;11.32;élèves de 12 ans et plus (+1.7 pt);élèves par maître (-2.9 pt);rapport CM2 / CP1 (+0.6 pt);achèvement du post-primaire (+0.5 pt)
-BF5801;F;Gnagna;Sirba;9.7775;12.98;achèvement du post-primaire (+1.7 pt);parité de scolarisation (région) (-0.7 pt);élèves de 12 ans et plus (+0.5 pt);achèvement du primaire (+0.5 pt)
-BF5801;G;Gnagna;Sirba;12.2525;14.94;achèvement du post-primaire (+2.1 pt);parité de scolarisation (région) (-0.7 pt);élèves de 12 ans et plus (+1.3 pt);rapport CM2 / CP1 (+0.7 pt)
-BF5802;F;Komandjari;Sirba;9.516666666666667;15.94;achèvement du post-primaire (+2.8 pt);élèves par maître (-2.8 pt);élèves de 12 ans et plus (+2.8 pt);parité filles / garçons au post-primaire (2019) (+1.0 pt)
-BF5802;G;Komandjari;Sirba;9.223333333333334;16.37;élèves de 12 ans et plus (+2.9 pt);élèves par maître (-2.8 pt);achèvement du post-primaire (+2.8 pt);parité filles / garçons au post-primaire (2019) (+1.0 pt)
-BF5901;F;Djelgodji;Soum;;20.96;élèves de 12 ans et plus (+3.2 pt);;parité de scolarisation (région) (+2.3 pt);rapport CM2 / CP1 (+1.5 pt)
-BF5901;G;Djelgodji;Soum;;21.14;élèves de 12 ans et plus (+3.3 pt);;parité de scolarisation (région) (+2.3 pt);rapport CM2 / CP1 (+1.6 pt)
-BF5902;F;Karo-Peli;Soum;;20.51;élèves de 12 ans et plus (+3.2 pt);parité filles / garçons au post-primaire (2019) (-0.4 pt);parité de scolarisation (région) (+2.3 pt);rapport CM2 / CP1 (+1.5 pt)
-BF5902;G;Karo-Peli;Soum;;20.69;élèves de 12 ans et plus (+3.3 pt);parité filles / garçons au post-primaire (2019) (-0.4 pt);parité de scolarisation (région) (+2.3 pt);rapport CM2 / CP1 (+1.6 pt)
-BF6001;F;Dyamongou;Tapoa;;14.7;parité de scolarisation (région) (+0.9 pt);;achèvement du primaire (+0.7 pt);parité filles / garçons au post-primaire (2019) (+0.6 pt)
-BF6001;G;Dyamongou;Tapoa;;15.31;parité de scolarisation (région) (+0.9 pt);;achèvement du primaire (+0.7 pt);rapport CM2 / CP1 (+0.6 pt)
-BF6002;F;Gobnangou;Tapoa;;14.62;parité de scolarisation (région) (+0.9 pt);;élèves par maître (+0.6 pt);achèvement du primaire (+0.5 pt)
-BF6002;G;Gobnangou;Tapoa;;15.23;parité de scolarisation (région) (+0.9 pt);;rapport CM2 / CP1 (+0.6 pt);élèves par maître (+0.6 pt)
-BF6101;F;Kossin;Sourou;16.948333333333334;12.83;élèves par maître (+0.9 pt);élèves de 12 ans et plus (-0.9 pt);achèvement du post-primaire (+0.8 pt);achèvement du primaire (+0.3 pt)
-BF6101;G;Kossin;Sourou;18.046666666666663;13.39;achèvement du post-primaire (+1.0 pt);élèves de 12 ans et plus (-0.8 pt);élèves par maître (+0.9 pt);achèvement du primaire (+0.3 pt)
-BF6102;F;Nayala;Sourou;8.517999999999999;7.79;élèves par maître (+0.5 pt);rapport CM2 / CP1 (-1.5 pt);parité de scolarisation (région) (+0.0 pt);
-BF6102;G;Nayala;Sourou;11.59;9.54;élèves par maître (+0.5 pt);élèves de 12 ans et plus (-1.3 pt);parité de scolarisation (région) (+0.0 pt);
-BF6103;F;Sourou;Sourou;4.8950000000000005;10.12;achèvement du primaire (+0.3 pt);élèves de 12 ans et plus (-0.7 pt);parité de scolarisation (région) (+0.0 pt);
-BF6103;G;Sourou;Sourou;5.65;11.77;achèvement du post-primaire (+0.6 pt);élèves de 12 ans et plus (-0.7 pt);achèvement du primaire (+0.4 pt);rapport CM2 / CP1 (+0.2 pt)
-BF6201;F;Bale;Bankui;5.170000000000001;4.29;élèves par maître (+1.1 pt);élèves de 12 ans et plus (-2.8 pt);;
-BF6201;G;Bale;Bankui;8.872857142857143;8.27;élèves par maître (+1.1 pt);élèves de 12 ans et plus (-1.9 pt);rapport CM2 / CP1 (+0.1 pt);
-BF6202;F;Banwa;Bankui;9.02;9.97;achèvement du post-primaire (+1.8 pt);élèves de 12 ans et plus (-3.6 pt);élèves par maître (+1.4 pt);achèvement du primaire (+0.3 pt)
-BF6202;G;Banwa;Bankui;10.85;10.29;achèvement du post-primaire (+2.1 pt);élèves de 12 ans et plus (-4.0 pt);élèves par maître (+1.4 pt);rapport CM2 / CP1 (+0.4 pt)
-BF6203;F;Mouhoun;Bankui;9.691666666666666;5.93;élèves par maître (+0.9 pt);achèvement du post-primaire (-2.5 pt);;
-BF6203;G;Mouhoun;Bankui;12.526666666666664;9.0;élèves par maître (+0.9 pt);parité de scolarisation (région) (-1.5 pt);rapport CM2 / CP1 (+0.1 pt);
-BF6301;F;Gourma;Goulmou;8.31;9.71;parité de scolarisation (région) (+0.8 pt);achèvement du post-primaire (-1.7 pt);achèvement du primaire (+0.0 pt);
-BF6301;G;Gourma;Goulmou;11.02;12.14;parité de scolarisation (région) (+0.8 pt);achèvement du post-primaire (-0.6 pt);rapport CM2 / CP1 (+0.4 pt);élèves de 12 ans et plus (+0.4 pt)
-BF6302;F;Kompienga;Goulmou;17.15;18.44;achèvement du post-primaire (+2.1 pt);;élèves par maître (+2.1 pt);parité de scolarisation (région) (+0.8 pt)
-BF6302;G;Kompienga;Goulmou;17.1075;18.42;élèves par maître (+2.1 pt);;achèvement du post-primaire (+2.0 pt);parité de scolarisation (région) (+0.8 pt)
-BF6401;F;Oudalan;Liptako;18.673333333333332;20.52;achèvement du post-primaire (+2.8 pt);;élèves de 12 ans et plus (+2.4 pt);rapport CM2 / CP1 (+1.4 pt)
-BF6401;G;Oudalan;Liptako;17.806666666666665;19.77;achèvement du post-primaire (+2.4 pt);;élèves de 12 ans et plus (+2.1 pt);parité de scolarisation (région) (+1.4 pt)
-BF6402;F;Seno;Liptako;27.056;21.03;élèves de 12 ans et plus (+3.0 pt);;achèvement du post-primaire (+2.4 pt);rapport CM2 / CP1 (+1.4 pt)
-BF6402;G;Seno;Liptako;26.834000000000003;20.35;élèves de 12 ans et plus (+2.6 pt);;achèvement du post-primaire (+2.3 pt);parité de scolarisation (région) (+1.4 pt)
-BF6403;F;Yagha;Liptako;21.8;22.83;élèves de 12 ans et plus (+3.9 pt);élèves par maître (-1.5 pt);achèvement du post-primaire (+3.5 pt);rapport CM2 / CP1 (+1.7 pt)
-BF6403;G;Yagha;Liptako;19.16;21.39;achèvement du post-primaire (+3.5 pt);élèves par maître (-1.5 pt);élèves de 12 ans et plus (+2.9 pt);rapport CM2 / CP1 (+1.5 pt)
+﻿province_pcode;sexe;province_nom;region_nom;niveau_habituel_observe;niveau_explique;facteur_1;facteur_2;frein_principal;facteur_3
+BF1300;F;Kadiogo;Kadiogo;2.1942857142857144;2.98;élèves de 12 ans et plus (+0.4 pt);évolution des effectifs (+0.1 pt);rapport CM2 / CP1 (-1.6 pt);
+BF1300;G;Kadiogo;Kadiogo;5.031428571428571;5.68;élèves de 12 ans et plus (+0.5 pt);fille (+0.3 pt);achèvement du post-primaire (-0.9 pt);évolution des effectifs (+0.0 pt)
+BF4701;F;Comoe;Tannounyan;8.49142857142857;8.81;élèves par maître (+0.4 pt);déficit de places assises (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);parité de scolarisation (région) (+0.2 pt)
+BF4701;G;Comoe;Tannounyan;11.077142857142857;11.1;achèvement du primaire (+0.6 pt);élèves par maître (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);déficit de places assises (+0.4 pt)
+BF4702;F;Leraba;Tannounyan;5.542857142857143;5.9;parité filles / garçons au post-primaire (2019) (+0.3 pt);parité de scolarisation (région) (+0.2 pt);rapport CM2 / CP1 (-1.7 pt);chômage des adultes (+0.1 pt)
+BF4702;G;Leraba;Tannounyan;7.590000000000002;7.94;fille (+0.4 pt);parité filles / garçons au post-primaire (2019) (+0.3 pt);jeunes de 16-18 ans hors de l'école (-1.0 pt);parité de scolarisation (région) (+0.2 pt)
+BF4801;F;Boulgou;Nakambe;7.47;7.66;élèves par maître (+0.4 pt);abandons pour l'orpaillage (région) (+0.2 pt);jeunes de 16-18 ans hors de l'école (-1.0 pt);élèves par classe au post-primaire (région) (+0.2 pt)
+BF4801;G;Boulgou;Nakambe;10.940000000000001;10.87;rapport CM2 / CP1 (+0.7 pt);fille (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);élèves par maître (+0.4 pt)
+BF4802;F;Koulpelogo;Nakambe;22.55;22.2;jeunes de 16-18 ans hors de l'école (+2.7 pt);rapport CM2 / CP1 (+1.2 pt);élèves par maître (-0.3 pt);achèvement du post-primaire (+1.2 pt)
+BF4802;G;Koulpelogo;Nakambe;23.17;22.45;jeunes de 16-18 ans hors de l'école (+2.7 pt);achèvement du post-primaire (+1.2 pt);élèves par maître (-0.3 pt);pauvreté (+1.2 pt)
+BF4803;F;Kourittenga;Nakambe;7.708571428571427;7.42;élèves par maître (+0.4 pt);abandons pour l'orpaillage (région) (+0.2 pt);achèvement du post-primaire (-1.0 pt);élèves par classe au post-primaire (région) (+0.2 pt)
+BF4803;G;Kourittenga;Nakambe;11.918571428571429;10.95;rapport CM2 / CP1 (+0.8 pt);fille (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);élèves par maître (+0.4 pt)
+BF4901;F;Bam;Koulse;14.018571428571429;13.39;achèvement du primaire (+0.8 pt);pauvreté (+0.7 pt);parité filles / garçons au post-primaire (2019) (-0.5 pt);cantines au secondaire (région) (+0.5 pt)
+BF4901;G;Bam;Koulse;18.107142857142858;17.44;rapport CM2 / CP1 (+1.4 pt);achèvement du post-primaire (+1.2 pt);parité filles / garçons au post-primaire (2019) (-0.5 pt);pauvreté (+0.8 pt)
+BF4902;F;Namentenga;Koulse;13.655;15.37;jeunes de 16-18 ans hors de l'école (+2.1 pt);achèvement du post-primaire (+1.2 pt);salles aux murs précaires (-0.7 pt);rapport CM2 / CP1 (+0.7 pt)
+BF4902;G;Namentenga;Koulse;18.046666666666663;17.77;jeunes de 16-18 ans hors de l'école (+2.1 pt);achèvement du post-primaire (+1.2 pt);parité filles / garçons au post-primaire (2019) (-0.6 pt);rapport CM2 / CP1 (+1.0 pt)
+BF4903;F;Sandbondtenga;Koulse;10.900000000000002;11.94;rapport CM2 / CP1 (+0.7 pt);achèvement du primaire (+0.6 pt);jeunes de 16-18 ans hors de l'école (-1.0 pt);cantines au secondaire (région) (+0.5 pt)
+BF4903;G;Sandbondtenga;Koulse;16.15285714285714;16.13;rapport CM2 / CP1 (+1.3 pt);achèvement du post-primaire (+1.2 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);achèvement du primaire (+0.6 pt)
+BF5001;F;Boulkiemde;Nando;3.8442857142857148;4.48;élèves par maître (+0.3 pt);dépendance démographique (+0.1 pt);rapport CM2 / CP1 (-1.7 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5001;G;Boulkiemde;Nando;7.701428571428571;6.97;fille (+0.4 pt);élèves par maître (+0.3 pt);achèvement du post-primaire (-0.9 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5002;F;Sanguie;Nando;4.655714285714285;5.03;pauvreté (+0.4 pt);élèves par maître (+0.3 pt);rapport CM2 / CP1 (-1.7 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5002;G;Sanguie;Nando;8.201428571428572;8.31;pauvreté (+0.4 pt);fille (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);élèves par maître (+0.3 pt)
+BF5003;F;Sissili;Nando;9.491666666666667;7.96;salles aux murs précaires (+0.2 pt);chômage des adultes (+0.2 pt);rapport CM2 / CP1 (-0.8 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5003;G;Sissili;Nando;12.786666666666669;11.34;rapport CM2 / CP1 (+0.6 pt);achèvement du primaire (+0.5 pt);jeunes de 16-18 ans hors de l'école (-0.6 pt);élèves de 12 ans et plus (+0.4 pt)
+BF5004;F;Ziro;Nando;6.882857142857143;7.92;achèvement du post-primaire (+0.7 pt);chômage des adultes (+0.2 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5004;G;Ziro;Nando;10.691428571428572;10.59;achèvement du post-primaire (+0.6 pt);rapport CM2 / CP1 (+0.6 pt);parité de scolarisation (région) (-0.8 pt);achèvement du primaire (+0.5 pt)
+BF5101;F;Bazega;Nazinon;3.661428571428572;4.14;élèves par classe au post-primaire (région) (+0.1 pt);dépendance démographique (+0.1 pt);rapport CM2 / CP1 (-1.7 pt);parité de scolarisation (région) (+0.1 pt)
+BF5101;G;Bazega;Nazinon;8.292857142857143;6.95;fille (+0.4 pt);élèves par classe au post-primaire (région) (+0.2 pt);rapport CM2 / CP1 (-0.9 pt);dépendance démographique (+0.1 pt)
+BF5102;F;Nahouri;Nazinon;5.029999999999999;4.94;élèves par maître (+0.4 pt);parité de scolarisation (région) (+0.1 pt);rapport CM2 / CP1 (-1.7 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5102;G;Nahouri;Nazinon;7.441428571428571;7.83;élèves par maître (+0.4 pt);fille (+0.4 pt);achèvement du post-primaire (-0.9 pt);parité de scolarisation (région) (+0.1 pt)
+BF5103;F;Zoundweogo;Nazinon;6.642857142857144;6.59;parité de scolarisation (région) (+0.1 pt);élèves par classe au post-primaire (région) (+0.1 pt);rapport CM2 / CP1 (-0.9 pt);dépendance démographique (+0.1 pt)
+BF5103;G;Zoundweogo;Nazinon;10.494285714285713;11.07;achèvement du post-primaire (+0.7 pt);rapport CM2 / CP1 (+0.6 pt);jeunes de 16-18 ans hors de l'école (-0.7 pt);fille (+0.4 pt)
+BF5301;F;Houet;Guiriko;5.112857142857144;5.18;élèves par maître (+0.4 pt);parité de scolarisation (région) (+0.1 pt);achèvement du post-primaire (-1.2 pt);évolution des effectifs (+0.0 pt)
+BF5301;G;Houet;Guiriko;7.677142857142856;7.35;élèves par maître (+0.4 pt);fille (+0.3 pt);achèvement du post-primaire (-1.1 pt);parité de scolarisation (région) (+0.1 pt)
+BF5302;F;Kenedougou;Guiriko;5.541428571428571;6.43;chômage des adultes (+0.2 pt);salles aux murs précaires (+0.1 pt);rapport CM2 / CP1 (-0.9 pt);dépendance démographique (+0.1 pt)
+BF5302;G;Kenedougou;Guiriko;9.075714285714286;8.45;fille (+0.3 pt);chômage des adultes (+0.2 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);achèvement du primaire (+0.1 pt)
+BF5303;F;Tuy;Guiriko;9.601428571428572;9.64;élèves par maître (+1.0 pt);salles aux murs précaires (+0.6 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);déficit de places assises (+0.4 pt)
+BF5303;G;Tuy;Guiriko;12.595714285714289;12.48;rapport CM2 / CP1 (+1.3 pt);élèves par maître (+1.0 pt);jeunes de 16-18 ans hors de l'école (-0.7 pt);achèvement du primaire (+0.5 pt)
+BF5401;F;Loroum;Yaadga;25.395000000000003;25.78;jeunes de 16-18 ans hors de l'école (+3.1 pt);achèvement du post-primaire (+1.4 pt);rapport CM2 / CP1 (-0.8 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF5401;G;Loroum;Yaadga;28.1775;26.5;jeunes de 16-18 ans hors de l'école (+3.1 pt);achèvement du post-primaire (+1.4 pt);rapport CM2 / CP1 (-0.8 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF5402;F;Passore;Yaadga;5.428571428571429;6.27;cantines au secondaire (région) (+0.6 pt);pauvreté (+0.4 pt);rapport CM2 / CP1 (-1.6 pt);élèves par maître (+0.3 pt)
+BF5402;G;Passore;Yaadga;10.425714285714287;10.95;rapport CM2 / CP1 (+0.7 pt);cantines au secondaire (région) (+0.5 pt);jeunes de 16-18 ans hors de l'école (-1.0 pt);pauvreté (+0.5 pt)
+BF5403;F;Yatenga;Yaadga;13.962857142857143;14.0;rapport CM2 / CP1 (+1.1 pt);salles aux murs précaires (+1.1 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);jeunes ni à l'école ni en emploi (+0.6 pt)
+BF5403;G;Yatenga;Yaadga;17.360000000000003;17.76;rapport CM2 / CP1 (+1.2 pt);salles aux murs précaires (+1.0 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);achèvement du post-primaire (+0.8 pt)
+BF5404;F;Zondoma;Yaadga;12.268333333333336;11.81;rapport CM2 / CP1 (+1.1 pt);pauvreté (+0.5 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);jeunes ni à l'école ni en emploi (+0.4 pt)
+BF5404;G;Zondoma;Yaadga;16.306666666666665;16.46;rapport CM2 / CP1 (+1.2 pt);achèvement du post-primaire (+1.0 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);pauvreté (+0.8 pt)
+BF5501;F;Ganzourgou;Oubri;8.637142857142857;9.3;jeunes ni à l'école ni en emploi (+0.5 pt);rapport CM2 / CP1 (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);abandons pour l'orpaillage (région) (+0.3 pt)
+BF5501;G;Ganzourgou;Oubri;13.318571428571428;13.37;rapport CM2 / CP1 (+1.5 pt);achèvement du post-primaire (+1.2 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);parité de scolarisation (région) (+0.4 pt)
+BF5502;F;Kourweogo;Oubri;6.028571428571428;6.32;pauvreté (+0.4 pt);abandons pour l'orpaillage (région) (+0.2 pt);achèvement du primaire (-1.4 pt);parité de scolarisation (région) (+0.2 pt)
+BF5502;G;Kourweogo;Oubri;9.874285714285715;9.4;rapport CM2 / CP1 (+0.5 pt);pauvreté (+0.4 pt);jeunes de 16-18 ans hors de l'école (-1.0 pt);fille (+0.4 pt)
+BF5503;F;Bassitenga;Oubri;5.277142857142857;5.49;abandons pour l'orpaillage (région) (+0.3 pt);parité de scolarisation (région) (+0.2 pt);achèvement du post-primaire (-1.2 pt);élèves par classe au post-primaire (région) (+0.1 pt)
+BF5503;G;Bassitenga;Oubri;9.678571428571429;9.41;rapport CM2 / CP1 (+0.7 pt);fille (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);abandons pour l'orpaillage (région) (+0.3 pt)
+BF5701;F;Bougouriba;Djoro;8.262857142857142;8.37;parité filles / garçons au post-primaire (2019) (+0.5 pt);abandons pour l'orpaillage (région) (+0.3 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);élèves par classe au post-primaire (région) (+0.2 pt)
+BF5701;G;Bougouriba;Djoro;9.947142857142856;9.72;parité filles / garçons au post-primaire (2019) (+0.4 pt);abandons pour l'orpaillage (région) (+0.3 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);fille (+0.3 pt)
+BF5702;F;Ioba;Djoro;8.307142857142859;8.15;abandons pour l'orpaillage (région) (+0.3 pt);élèves par classe au post-primaire (région) (+0.2 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);chômage des adultes (+0.2 pt)
+BF5702;G;Ioba;Djoro;10.584285714285715;10.92;rapport CM2 / CP1 (+0.7 pt);fille (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.7 pt);abandons pour l'orpaillage (région) (+0.3 pt)
+BF5703;F;Noumbiel;Djoro;13.18142857142857;13.05;rapport CM2 / CP1 (+1.3 pt);achèvement du post-primaire (+0.8 pt);parité de scolarisation (région) (-1.1 pt);parité filles / garçons au post-primaire (2019) (+0.6 pt)
+BF5703;G;Noumbiel;Djoro;13.32142857142857;14.05;rapport CM2 / CP1 (+1.3 pt);achèvement du post-primaire (+0.6 pt);parité de scolarisation (région) (-1.1 pt);achèvement du primaire (+0.5 pt)
+BF5704;F;Poni;Djoro;11.639999999999999;12.06;rapport CM2 / CP1 (+1.1 pt);achèvement du primaire (+0.5 pt);parité de scolarisation (région) (-1.0 pt);parité filles / garçons au post-primaire (2019) (+0.5 pt)
+BF5704;G;Poni;Djoro;13.535714285714286;12.63;rapport CM2 / CP1 (+1.2 pt);achèvement du primaire (+0.6 pt);élèves par maître (-0.7 pt);parité filles / garçons au post-primaire (2019) (+0.4 pt)
+BF5801;F;Gnagna;Sirba;9.7775;9.79;jeunes de 16-18 ans hors de l'école (+1.7 pt);achèvement du post-primaire (+0.7 pt);parité de scolarisation (région) (-1.0 pt);achèvement du primaire (+0.2 pt)
+BF5801;G;Gnagna;Sirba;12.2525;12.05;jeunes de 16-18 ans hors de l'école (+1.6 pt);rapport CM2 / CP1 (+1.0 pt);parité de scolarisation (région) (-1.1 pt);évolution des effectifs (+0.7 pt)
+BF5802;F;Komandjari;Sirba;9.516666666666667;9.74;jeunes de 16-18 ans hors de l'école (+1.6 pt);rapport CM2 / CP1 (+0.8 pt);évolution des effectifs (-1.5 pt);achèvement du post-primaire (+0.7 pt)
+BF5802;G;Komandjari;Sirba;9.223333333333334;10.36;jeunes de 16-18 ans hors de l'école (+1.6 pt);rapport CM2 / CP1 (+1.1 pt);évolution des effectifs (-1.5 pt);achèvement du post-primaire (+0.7 pt)
+BF5901;F;Djelgodji;Soum;;21.96;jeunes de 16-18 ans hors de l'école (+2.5 pt);achèvement du post-primaire (+1.2 pt);évolution des effectifs (-1.4 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF5901;G;Djelgodji;Soum;;22.24;jeunes de 16-18 ans hors de l'école (+2.5 pt);achèvement du post-primaire (+1.2 pt);évolution des effectifs (-1.4 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF5902;F;Karo-Peli;Soum;;22.96;jeunes de 16-18 ans hors de l'école (+2.5 pt);achèvement du post-primaire (+1.3 pt);parité filles / garçons au post-primaire (2019) (-0.7 pt);pauvreté (+1.1 pt)
+BF5902;G;Karo-Peli;Soum;;23.47;jeunes de 16-18 ans hors de l'école (+2.5 pt);achèvement du post-primaire (+1.2 pt);parité filles / garçons au post-primaire (2019) (-0.7 pt);pauvreté (+1.2 pt)
+BF6001;F;Dyamongou;Tapoa;;16.82;jeunes de 16-18 ans hors de l'école (+2.2 pt);achèvement du post-primaire (+1.2 pt);évolution des effectifs (-1.3 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF6001;G;Dyamongou;Tapoa;;17.09;jeunes de 16-18 ans hors de l'école (+2.2 pt);achèvement du post-primaire (+1.2 pt);évolution des effectifs (-1.3 pt);parité filles / garçons au post-primaire (2019) (+1.1 pt)
+BF6002;F;Gobnangou;Tapoa;;14.29;achèvement du post-primaire (+1.2 pt);rapport CM2 / CP1 (+1.2 pt);évolution des effectifs (-1.2 pt);parité filles / garçons au post-primaire (2019) (+1.1 pt)
+BF6002;G;Gobnangou;Tapoa;;14.58;achèvement du post-primaire (+1.2 pt);rapport CM2 / CP1 (+1.2 pt);évolution des effectifs (-1.2 pt);parité filles / garçons au post-primaire (2019) (+1.1 pt)
+BF6101;F;Kossin;Sourou;16.948333333333334;16.7;jeunes de 16-18 ans hors de l'école (+2.5 pt);parité filles / garçons au post-primaire (2019) (+1.0 pt);abandons pour l'orpaillage (région) (-0.5 pt);achèvement du post-primaire (+1.0 pt)
+BF6101;G;Kossin;Sourou;18.046666666666663;17.74;jeunes de 16-18 ans hors de l'école (+2.3 pt);achèvement du post-primaire (+1.0 pt);abandons pour l'orpaillage (région) (-0.5 pt);parité filles / garçons au post-primaire (2019) (+1.0 pt)
+BF6102;F;Nayala;Sourou;8.517999999999999;8.45;évolution des effectifs (+0.9 pt);élèves par maître (+0.5 pt);rapport CM2 / CP1 (-1.6 pt);déficit de places assises (+0.4 pt)
+BF6102;G;Nayala;Sourou;11.59;10.64;évolution des effectifs (+0.9 pt);achèvement du primaire (+0.6 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);élèves par maître (+0.6 pt)
+BF6103;F;Sourou;Sourou;4.8950000000000005;5.23;achèvement du primaire (+0.4 pt);dépendance démographique (+0.1 pt);évolution des effectifs (-1.2 pt);parité de scolarisation (région) (+0.1 pt)
+BF6103;G;Sourou;Sourou;5.65;7.68;rapport CM2 / CP1 (+0.7 pt);achèvement du primaire (+0.3 pt);évolution des effectifs (-1.3 pt);fille (+0.3 pt)
+BF6201;F;Bale;Bankui;5.170000000000001;4.82;élèves par maître (+0.4 pt);chômage des adultes (+0.1 pt);rapport CM2 / CP1 (-1.7 pt);pauvreté (+0.0 pt)
+BF6201;G;Bale;Bankui;8.872857142857143;9.5;rapport CM2 / CP1 (+0.7 pt);élèves par maître (+0.4 pt);jeunes de 16-18 ans hors de l'école (-0.7 pt);fille (+0.4 pt)
+BF6202;F;Banwa;Bankui;9.02;9.78;achèvement du post-primaire (+0.7 pt);évolution des effectifs (+0.7 pt);parité de scolarisation (région) (-1.0 pt);élèves par maître (+0.5 pt)
+BF6202;G;Banwa;Bankui;10.85;11.37;rapport CM2 / CP1 (+1.1 pt);achèvement du post-primaire (+0.7 pt);parité de scolarisation (région) (-1.0 pt);évolution des effectifs (+0.7 pt)
+BF6203;F;Mouhoun;Bankui;9.691666666666666;8.79;évolution des effectifs (+0.8 pt);élèves par maître (+0.5 pt);rapport CM2 / CP1 (-0.8 pt);salles aux murs précaires (+0.1 pt)
+BF6203;G;Mouhoun;Bankui;12.526666666666664;11.62;évolution des effectifs (+0.6 pt);rapport CM2 / CP1 (+0.6 pt);jeunes de 16-18 ans hors de l'école (-0.6 pt);achèvement du primaire (+0.5 pt)
+BF6301;F;Gourma;Goulmou;8.31;8.36;évolution des effectifs (+0.7 pt);achèvement du primaire (+0.6 pt);jeunes de 16-18 ans hors de l'école (-0.9 pt);parité de scolarisation (région) (+0.2 pt)
+BF6301;G;Gourma;Goulmou;11.02;10.66;rapport CM2 / CP1 (+1.2 pt);achèvement du primaire (+0.6 pt);jeunes de 16-18 ans hors de l'école (-0.8 pt);fille (+0.4 pt)
+BF6302;F;Kompienga;Goulmou;17.15;16.52;jeunes de 16-18 ans hors de l'école (+2.1 pt);élèves par maître (+1.2 pt);évolution des effectifs (-1.3 pt);parité filles / garçons au post-primaire (2019) (+1.2 pt)
+BF6302;G;Kompienga;Goulmou;17.1075;16.72;jeunes de 16-18 ans hors de l'école (+2.1 pt);élèves par maître (+1.2 pt);évolution des effectifs (-1.3 pt);parité filles / garçons au post-primaire (2019) (+1.1 pt)
+BF6401;F;Oudalan;Liptako;18.673333333333332;18.33;jeunes de 16-18 ans hors de l'école (+2.2 pt);achèvement du post-primaire (+1.2 pt);dépendance démographique (-0.6 pt);parité au post-primaire (+1.1 pt)
+BF6401;G;Oudalan;Liptako;17.806666666666665;18.57;jeunes de 16-18 ans hors de l'école (+2.2 pt);achèvement du post-primaire (+1.2 pt);dépendance démographique (-0.7 pt);parité au post-primaire (+1.0 pt)
+BF6402;F;Seno;Liptako;27.056;25.87;jeunes de 16-18 ans hors de l'école (+2.6 pt);parité filles / garçons au post-primaire (2019) (+1.6 pt);fille (-0.2 pt);parité au post-primaire (+1.2 pt)
+BF6402;G;Seno;Liptako;26.834000000000003;26.15;jeunes de 16-18 ans hors de l'école (+2.6 pt);parité filles / garçons au post-primaire (2019) (+1.5 pt);;achèvement du post-primaire (+1.2 pt)
+BF6403;F;Yagha;Liptako;21.8;20.67;jeunes de 16-18 ans hors de l'école (+2.3 pt);parité filles / garçons au post-primaire (2019) (+1.3 pt);pauvreté (-0.6 pt);achèvement du post-primaire (+1.2 pt)
+BF6403;G;Yagha;Liptako;19.16;21.05;jeunes de 16-18 ans hors de l'école (+2.3 pt);parité filles / garçons au post-primaire (2019) (+1.3 pt);pauvreté (-0.7 pt);achèvement du post-primaire (+1.2 pt)

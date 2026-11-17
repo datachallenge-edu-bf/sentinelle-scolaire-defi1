@@ -1,0 +1,29 @@
+﻿volet;rang;variable;libelle
+effets chiffrés (elastic net);1;hors_ecole_16_18_province;jeunes de 16-18 ans hors de l'école
+effets chiffrés (elastic net);2;rapport_cm2_cp1;rapport CM2 / CP1
+effets chiffrés (elastic net);3;achevement_post_primaire_province;achèvement du post-primaire
+effets chiffrés (elastic net);4;achevement_primaire_province;achèvement du primaire
+effets chiffrés (elastic net);5;eleves_par_maitre_primaire;élèves par maître
+effets chiffrés (elastic net);6;parite_scolarisation_post_primaire_province;parité filles / garçons au post-primaire (2019)
+effets chiffrés (elastic net);7;part_eleves_primaire_12_ans_et_plus;élèves de 12 ans et plus
+effets chiffrés (elastic net);8;ips_tbs_primaire_region;parité de scolarisation (région)
+facteurs par province (LightGBM);1;abandons_primaire_orpaillage_pour_1000_region;abandons pour l'orpaillage (région)
+facteurs par province (LightGBM);2;rapport_cm2_cp1;rapport CM2 / CP1
+facteurs par province (LightGBM);3;achevement_post_primaire_province;achèvement du post-primaire
+facteurs par province (LightGBM);4;hors_ecole_16_18_province;jeunes de 16-18 ans hors de l'école
+facteurs par province (LightGBM);5;part_eleves_primaire_12_ans_et_plus;élèves de 12 ans et plus
+facteurs par province (LightGBM);6;ratio_eleves_classe_post_primaire_region;élèves par classe au post-primaire (région)
+facteurs par province (LightGBM);7;fille;fille
+facteurs par province (LightGBM);8;eleves_par_maitre_primaire;élèves par maître
+facteurs par province (LightGBM);9;parite_scolarisation_post_primaire_province;parité filles / garçons au post-primaire (2019)
+facteurs par province (LightGBM);10;ips_tbs_primaire_region;parité de scolarisation (région)
+facteurs par province (LightGBM);11;evolution_eleves_primaire;évolution des effectifs
+facteurs par province (LightGBM);12;chomage_25_64_province;chômage des adultes
+facteurs par province (LightGBM);13;part_salles_primaire_murs_precaires;salles aux murs précaires
+facteurs par province (LightGBM);14;part_etab_post_primaire_secondaire_publics_cantine_region;cantines au secondaire (région)
+facteurs par province (LightGBM);15;dependance_demographique_province;dépendance démographique
+facteurs par province (LightGBM);16;pauvrete_province;pauvreté
+facteurs par province (LightGBM);17;deficit_places_pour_100_eleves_primaire;déficit de places assises
+facteurs par province (LightGBM);18;parite_tbs_post_primaire_province;parité au post-primaire
+facteurs par province (LightGBM);19;achevement_primaire_province;achèvement du primaire
+facteurs par province (LightGBM);20;ni_ecole_ni_emploi_15_24_province;jeunes ni à l'école ni en emploi

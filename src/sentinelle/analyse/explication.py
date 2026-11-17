@@ -5,11 +5,16 @@ hors ruptures (le niveau habituel, qui est aussi la prévision retenue). Variabl
 sur les années de la province, sans les variables de persistance (expliquer le niveau par le
 niveau passé serait circulaire).
 
-Deux modèles sont validés en prédisant des provinces que le modèle n'a pas vues (validation
-croisée par groupes de provinces : les deux sexes d'une province restent ensemble) : LightGBM à
-arbres très courts et l'elastic net. Le meilleur explique chaque province : contribution de
-chaque variable en points de taux d'abandon (valeurs SHAP pour LightGBM, coefficient × écart à la
-moyenne pour l'elastic net). Les liens décrits sont des associations, pas des causes.
+Les modèles sont validés en prédisant des provinces qu'ils n'ont pas vues (validation croisée par
+groupes de provinces : les deux sexes d'une province restent ensemble). L'explication a deux volets :
+
+- effets chiffrés : l'elastic net le mieux validé (nombre de variables choisi par validation) donne
+  l'effet de chaque variable en points de taux d'abandon, dénormalisé en unités d'origine ;
+- facteurs de chaque province : LightGBM sur les variables gardées par l'élimination récursive
+  guidée par SHAP (module ``elimination``) ; les valeurs SHAP donnent la contribution de chaque
+  variable au niveau de chaque province.
+
+Les liens décrits sont des associations, pas des causes.
 """
 
 from __future__ import annotations
@@ -148,31 +153,64 @@ def importance(contrib: pd.DataFrame, niveaux: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(lignes).sort_values("contribution_absolue_moyenne_points", ascending=False).reset_index(drop=True)
 
 
-def executer(d, t, entite, variables) -> dict[str, pd.DataFrame]:
+def _elastic_final(connus: pd.DataFrame, variables: list[str]):
+    """Elastic net appris sur toutes les unités connues, avec ses paramètres de normalisation."""
+    x = connus[variables]
+    mediane = x.median()
+    x = x.fillna(mediane)
+    moyenne, ecart = x.mean(), x.std().replace(0, 1)
+    m = ElasticNetCV(l1_ratio=0.5, cv=5, max_iter=50000, random_state=42).fit(
+        (x - moyenne) / ecart, connus["niveau_habituel_observe"])
+    return m, {"mediane": mediane.to_dict(), "moyenne": moyenne.to_dict(), "ecart_type": ecart.to_dict()}
+
+
+def executer(d, t, entite, variables) -> tuple[dict[str, pd.DataFrame], dict]:
     niveaux, variables = table_niveaux(d, t, entite, variables)
     validation = valider(niveaux, variables)
     connus = niveaux[niveaux["niveau_habituel_observe"].notna()]
     x, y = connus[variables], connus["niveau_habituel_observe"]
-    # Élimination récursive guidée par SHAP : courbe sur des provinces non vues, plus petit nombre de
-    # variables à moins de 0,01 de la meilleure part de variance expliquée.
+
+    # Volet 1 : effets chiffrés par l'elastic net le mieux validé.
+    lineaire = validation[validation["modele"] == "elastic_net"].sort_values(
+        ["r2_provinces_non_vues", "k"], ascending=[False, True]).iloc[0]
+    k_lineaire = int(lineaire["k"])
+    variables_lineaires = _rang(x, y)[:k_lineaire]
+    elastic, normalisation = _elastic_final(connus, variables_lineaires)
+
+    # Volet 2 : facteurs de chaque province par LightGBM après élimination récursive guidée par SHAP.
     courbe = EL.courbe_explication(x, y, connus.index.get_level_values("province_pcode"), PARAMETRES_LGB, PLIS_GROUPES)
     admissibles = courbe[courbe["r2_provinces_non_vues"] >= courbe["r2_provinces_non_vues"].max() - 0.01]
     optimum = admissibles.sort_values("nombre_de_variables").iloc[0]
+    n_arbres = int(optimum["nombre_de_variables"])
+    variables_arbres = EL.variables_explication(x, y, n_arbres, PARAMETRES_LGB)
+    arbres = lgb.LGBMRegressor(**PARAMETRES_LGB).fit(x[variables_arbres], y)
+    contrib = pd.DataFrame(shap.TreeExplainer(arbres).shap_values(niveaux[variables_arbres]),
+                           columns=variables_arbres, index=niveaux.index)
+    prevu = pd.Series(arbres.predict(niveaux[variables_arbres]), index=niveaux.index, name="niveau_explique")
+
     validation = pd.concat([validation, pd.DataFrame([{
-        "modele": "lightgbm_elimination", "k": int(optimum["nombre_de_variables"]), "unites": len(y),
-        "r2_provinces_non_vues": optimum["r2_provinces_non_vues"],
-        "correlation_rang_provinces_non_vues": np.nan,
+        "modele": "lightgbm_elimination", "k": n_arbres, "unites": len(y),
+        "r2_provinces_non_vues": optimum["r2_provinces_non_vues"], "correlation_rang_provinces_non_vues": np.nan,
         "erreur_absolue_moyenne": optimum["erreur_absolue_moyenne"]}])], ignore_index=True)
-    meilleure = validation.sort_values(["r2_provinces_non_vues", "k"], ascending=[False, True]).iloc[0]
-    modele, k = meilleure["modele"], int(meilleure["k"])
-    if modele == "lightgbm_elimination":
-        retenues = EL.variables_explication(x, y, k, PARAMETRES_LGB)
-        modele = "lightgbm"
-    else:
-        retenues = _rang(x, y)[:k]
-    prevu, contrib = expliquer(niveaux, retenues, modele)
+    validation["role"] = ""
+    validation.loc[(validation["modele"] == "elastic_net") & (validation["k"] == k_lineaire), "role"] = "effets chiffrés"
+    validation.loc[validation["modele"] == "lightgbm_elimination", "role"] = "facteurs par province"
+
     sortie = niveaux[["province_nom", "region_nom", "niveau_habituel_observe"]].join(prevu.round(2)).join(
         facteurs(contrib))
-    validation["retenu"] = (validation["modele"] == meilleure["modele"]) & (validation["k"] == k)
-    return {"validation": validation, "courbe_elimination": courbe, "facteurs": sortie.reset_index(), "importance": importance(contrib, niveaux),
-            "contributions": contrib.round(3).reset_index(), "effets_lineaires": effets_lineaires(niveaux, retenues)}
+    valeurs = niveaux[["province_nom", "region_nom", "niveau_habituel_observe"] + variables_arbres].reset_index()
+    base_shap = float(np.ravel(shap.TreeExplainer(arbres).expected_value)[0])
+    tables = {"validation": validation, "courbe_elimination": courbe, "facteurs": sortie.reset_index(),
+              "valeurs": valeurs, "valeur_de_base": pd.DataFrame([{"valeur_de_base_shap": round(base_shap, 4)}]),
+              "importance": importance(contrib, niveaux), "contributions": contrib.round(3).reset_index(),
+              "effets_lineaires": effets_lineaires(niveaux, variables_lineaires),
+              "variables_retenues": pd.DataFrame(
+                  [{"volet": "effets chiffrés (elastic net)", "rang": i + 1, "variable": v, "libelle": libelle(v)}
+                   for i, v in enumerate(variables_lineaires)]
+                  + [{"volet": "facteurs par province (LightGBM)", "rang": i + 1, "variable": v, "libelle": libelle(v)}
+                     for i, v in enumerate(variables_arbres)])}
+    objets = {"lightgbm": arbres, "variables_lightgbm": variables_arbres, "elastic_net": elastic,
+              "variables_elastic_net": variables_lineaires, "normalisation_elastic_net": normalisation,
+              "r2_lightgbm": float(optimum["r2_provinces_non_vues"]),
+              "r2_elastic_net": float(lineaire["r2_provinces_non_vues"])}
+    return tables, objets
