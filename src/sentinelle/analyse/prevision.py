@@ -7,6 +7,8 @@ Sept modèles sont comparés dans le temps (module ``preparation``) :
 - régression elastic net ;
 - régression ridge avec un effet par province (équivalent pénalisé d'un modèle mixte) ;
 - LightGBM (médiane, et quantiles 10 % et 90 % pour l'intervalle) ;
+- LightGBM avec élimination récursive des variables guidée par les valeurs SHAP (module
+  ``elimination``), refaite dans chaque pli sur la seule information de l'apprentissage ;
 - moyenne de l'elastic net et de LightGBM.
 
 Échelle : tous les modèles travaillent sur z = logit(taux / 100) ; prévisions et intervalles sont
@@ -41,6 +43,7 @@ import pandas as pd
 from sklearn.inspection import permutation_importance
 from sklearn.linear_model import ElasticNet, Ridge
 
+from . import elimination as EL
 from . import preparation as P
 
 NIVEAU = 0.80
@@ -55,7 +58,7 @@ GRILLE_LGB = [
     dict(num_leaves=7, max_depth=3, min_child_samples=30, n_estimators=200, reg_lambda=5.0),
 ]
 MODELES = ["reference_annee_precedente", "reference_niveau_habituel", "reference_niveau_retreci", "elastic_net",
-           "ridge_effet_province", "lightgbm", "moyenne_elastic_lightgbm"]
+           "ridge_effet_province", "lightgbm", "lightgbm_elimination", "moyenne_elastic_lightgbm"]
 REFERENCE = "reference_niveau_habituel"
 GAIN_MINIMAL = 0.03
 SEUIL_HAUSSE = 2.0
@@ -131,6 +134,7 @@ def predire(train, test, choix: dict[str, list[str]], reglages) -> dict[str, np.
     p["ridge_effet_province"] = ridge_province(train, test, choix["ridge_effet_province"], reglages["alpha_ridge"])
     p["lightgbm"] = lightgbm_median(train, test, choix["lightgbm"], params)
     p["lightgbm_bas"], p["lightgbm_haut"] = lightgbm_bornes(train, test, choix["lightgbm"], params)
+    p["lightgbm_elimination"] = lightgbm_median(train, test, choix["lightgbm_elimination"], params)
     p["moyenne_elastic_lightgbm"] = (p["elastic_net"] + p["lightgbm"]) / 2
     return p
 
@@ -173,9 +177,13 @@ def choisir_reglages(t, lineaire, arbres, nom) -> tuple[dict, dict]:
 
 def evaluer(t, lineaire, arbres, reglages, entite, nom, horizon):
     """Prévisions hors échantillon de chaque pli et du test final, mesures et variables choisies."""
-    lignes, previsions, choix_plis = [], [], []
+    lignes, previsions, choix_plis, courbes = [], [], [], []
     for annee, train, test in P.plis(t, P.PLIS[nom] + [P.TEST_FINAL[nom]], horizon):
         choix = variables_par_modele(classement(train, arbres), lineaire, arbres, reglages)
+        choix["lightgbm_elimination"], etapes = EL.variables_prevision(
+            train, arbres, GRILLE_LGB[reglages["lightgbm"]], _relative, _lgb)
+        courbes.append(pd.DataFrame([{"horizon": horizon, "annee_cible": annee, "nombre_de_variables": len(v),
+                                      "erreur_validation_interne": round(e, 4)} for v, e in etapes]))
         choix_plis.append(choix)
         p = predire(train, test, choix, reglages)
         role = "test final" if annee == P.TEST_FINAL[nom] else "sélection"
@@ -186,8 +194,8 @@ def evaluer(t, lineaire, arbres, reglages, entite, nom, horizon):
         previsions.append(test[entite + ["annee_scolaire", "annee_cible", "y", "z"]].assign(
             role=role, **{m: p[m] for m in MODELES + ["lightgbm_bas", "lightgbm_haut"]}))
     if not lignes:
-        return pd.DataFrame(), pd.DataFrame(), []
-    return pd.DataFrame(lignes), pd.concat(previsions, ignore_index=True), choix_plis
+        return pd.DataFrame(), pd.DataFrame(), [], pd.DataFrame()
+    return pd.DataFrame(lignes), pd.concat(previsions, ignore_index=True), choix_plis, pd.concat(courbes)
 
 
 def variables_stables(choix_plis: list[dict], modele: str) -> tuple[list[str], pd.DataFrame]:

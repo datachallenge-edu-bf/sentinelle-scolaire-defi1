@@ -22,7 +22,7 @@ HORIZONS = [1, 2, 3]
 def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFrame]:
     entite = jeu["entite"]
     d, lineaire, arbres = P.preparer(jeu, nom, listes)
-    resultats, evaluations, couvertures, previsions, frequences = {}, [], [], [], []
+    resultats, evaluations, couvertures, previsions, frequences, courbes = {}, [], [], [], [], []
     reglages = modele = t1 = None
     for h in HORIZONS:
         t = P.avec_cible(d, jeu, nom, h)
@@ -30,15 +30,16 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFra
             reglages, info = prevision.choisir_reglages(t, lineaire, arbres, nom)
             resultats[f"grille_reglages_{nom}"] = info["grille"]
             t1 = t
-        evaluation, prev, choix_plis = prevision.evaluer(t, lineaire, arbres, reglages, entite, nom, h)
+        evaluation, prev, choix_plis, courbe = prevision.evaluer(t, lineaire, arbres, reglages, entite, nom, h)
         if evaluation.empty:
             continue
+        courbes.append(courbe)
         evaluations.append(evaluation)
         if h == 1:
             modele = prevision.choisir_modele(evaluation)
         # Variables du modèle final : retenues dans au moins la moitié des plis.
         choix = {}
-        for m in ["elastic_net", "ridge_effet_province", "lightgbm"]:
+        for m in ["elastic_net", "ridge_effet_province", "lightgbm", "lightgbm_elimination"]:
             stables, frequence = prevision.variables_stables(choix_plis, m)
             choix[m] = stables or choix_plis[-1][m]
             frequences.append(frequence.assign(horizon=h))
@@ -60,6 +61,7 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> dict[str, pd.DataFra
     resultats[f"intervalle_{nom}"] = pd.DataFrame(couvertures)
     resultats[f"reglages_{nom}"] = pd.DataFrame([{**reglages, "modele_retenu": modele}])
     resultats[f"variables_retenues_{nom}"] = pd.concat(frequences, ignore_index=True)
+    resultats[f"courbe_elimination_prevision_{nom}"] = pd.concat(courbes, ignore_index=True)
     resultats[f"previsions_{nom}"] = pd.concat(previsions, ignore_index=True)
 
     for cle, table in explication.executer(d, t1, entite, arbres).items():

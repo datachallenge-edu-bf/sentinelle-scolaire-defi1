@@ -22,6 +22,7 @@ from scipy.stats import spearmanr
 from sklearn.linear_model import ElasticNetCV
 from sklearn.model_selection import GroupKFold
 
+from . import elimination as EL
 from . import preparation as P
 from .libelles import libelle
 
@@ -150,13 +151,28 @@ def importance(contrib: pd.DataFrame, niveaux: pd.DataFrame) -> pd.DataFrame:
 def executer(d, t, entite, variables) -> dict[str, pd.DataFrame]:
     niveaux, variables = table_niveaux(d, t, entite, variables)
     validation = valider(niveaux, variables)
+    connus = niveaux[niveaux["niveau_habituel_observe"].notna()]
+    x, y = connus[variables], connus["niveau_habituel_observe"]
+    # Élimination récursive guidée par SHAP : courbe sur des provinces non vues, plus petit nombre de
+    # variables à moins de 0,01 de la meilleure part de variance expliquée.
+    courbe = EL.courbe_explication(x, y, connus.index.get_level_values("province_pcode"), PARAMETRES_LGB, PLIS_GROUPES)
+    admissibles = courbe[courbe["r2_provinces_non_vues"] >= courbe["r2_provinces_non_vues"].max() - 0.01]
+    optimum = admissibles.sort_values("nombre_de_variables").iloc[0]
+    validation = pd.concat([validation, pd.DataFrame([{
+        "modele": "lightgbm_elimination", "k": int(optimum["nombre_de_variables"]), "unites": len(y),
+        "r2_provinces_non_vues": optimum["r2_provinces_non_vues"],
+        "correlation_rang_provinces_non_vues": np.nan,
+        "erreur_absolue_moyenne": optimum["erreur_absolue_moyenne"]}])], ignore_index=True)
     meilleure = validation.sort_values(["r2_provinces_non_vues", "k"], ascending=[False, True]).iloc[0]
     modele, k = meilleure["modele"], int(meilleure["k"])
-    connus = niveaux[niveaux["niveau_habituel_observe"].notna()]
-    retenues = _rang(connus[variables], connus["niveau_habituel_observe"])[:k]
+    if modele == "lightgbm_elimination":
+        retenues = EL.variables_explication(x, y, k, PARAMETRES_LGB)
+        modele = "lightgbm"
+    else:
+        retenues = _rang(x, y)[:k]
     prevu, contrib = expliquer(niveaux, retenues, modele)
     sortie = niveaux[["province_nom", "region_nom", "niveau_habituel_observe"]].join(prevu.round(2)).join(
         facteurs(contrib))
-    validation["retenu"] = (validation["modele"] == modele) & (validation["k"] == k)
-    return {"validation": validation, "facteurs": sortie.reset_index(), "importance": importance(contrib, niveaux),
+    validation["retenu"] = (validation["modele"] == meilleure["modele"]) & (validation["k"] == k)
+    return {"validation": validation, "courbe_elimination": courbe, "facteurs": sortie.reset_index(), "importance": importance(contrib, niveaux),
             "contributions": contrib.round(3).reset_index(), "effets_lineaires": effets_lineaires(niveaux, retenues)}
