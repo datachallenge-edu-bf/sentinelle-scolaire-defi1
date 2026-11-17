@@ -29,9 +29,30 @@ EXCLUS = shutil.ignore_patterns("node_modules", ".next", "__pycache__", "*.pyc",
                                 "*.tsbuildinfo", "05_mises_a_jour")
 
 
+def _forcer(fonction, chemin, _erreur):
+    """Supprime aussi les fichiers en lecture seule ou brièvement verrouillés (synchronisation, cache Python)."""
+    import os
+    import stat
+    import time
+    os.chmod(chemin, stat.S_IWRITE)
+    for _ in range(5):
+        try:
+            fonction(chemin)
+            return
+        except PermissionError:
+            time.sleep(1)
+    fonction(chemin)
+
+
 def preparer() -> Path:
-    if CIBLE.exists():
-        shutil.rmtree(CIBLE)
+    # On vide le dossier sans le supprimer : il peut être ouvert dans un terminal, et le lien avec le projet
+    # Railway (créé par « railway init » dans ce dossier) est conservé ailleurs, dans la configuration de l'outil.
+    CIBLE.mkdir(exist_ok=True)
+    for element in CIBLE.iterdir():
+        if element.is_dir():
+            shutil.rmtree(element, onexc=_forcer)
+        else:
+            _forcer(lambda c: Path(c).unlink(), element, None)
     for element in ELEMENTS:
         source, destination = RACINE / element, CIBLE / element
         destination.parent.mkdir(parents=True, exist_ok=True)
