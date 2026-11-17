@@ -1,4 +1,4 @@
 ﻿horizon;modele;marge_conforme_logit;couverture_test_final;largeur_moyenne_points;lignes
-1;reference_niveau_habituel;0.875;0.85;17.203;40
-2;reference_niveau_habituel;1.005;0.875;20.134;40
-3;reference_niveau_habituel;0.937;0.85;17.127;40
+1;retour_amorti;0.99;0.85;19.187;40
+2;retour_amorti;1.004;0.875;20.386;40
+3;retour_amorti;1.004;0.85;18.518;40

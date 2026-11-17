@@ -9,7 +9,10 @@ Sept modèles sont comparés dans le temps (module ``preparation``) :
 - LightGBM (médiane, et quantiles 10 % et 90 % pour l'intervalle) ;
 - LightGBM avec élimination récursive des variables guidée par les valeurs SHAP (module
   ``elimination``), refaite dans chaque pli sur la seule information de l'apprentissage ;
-- moyenne de l'elastic net et de LightGBM.
+- moyenne de l'elastic net et de LightGBM ;
+- retour amorti vers le niveau habituel : l'écart de l'année (sur l'échelle z) au niveau habituel se
+  résorbe d'un facteur φ par an, z(t+h) = niveau + φ^h × écart ; φ est choisi sur les plis de sélection ;
+- combinaison du niveau habituel et de l'elastic net (moyenne sur l'échelle z).
 
 Échelle : tous les modèles travaillent sur z = logit(taux / 100) ; prévisions et intervalles sont
 dénormalisés, donc toujours entre 0 et 100 %. Les mesures de qualité sont calculées en points de
@@ -26,7 +29,10 @@ de sélection. Le modèle final garde les variables retenues dans au moins la mo
 
 Choix du modèle : le niveau habituel est le modèle à battre. Un autre modèle n'est retenu que s'il
 réduit l'erreur moyenne des plis de sélection d'au moins 3 % et fait mieux sur au moins deux plis
-sur trois : un écart plus faible s'explique par le hasard des plis.
+sur trois : un écart plus faible s'explique par le hasard des plis. À défaut, un modèle qui suit la
+situation de l'année (retour amorti, combinaison) est préféré au niveau habituel s'il est aussi précis
+sur les plis de sélection, à 1 % près : à précision égale, la prévision exploite l'information récente.
+Le test final ne sert jamais au choix.
 
 Intervalle à 80 % : prédiction conforme sur l'échelle z (quantiles conformalisés pour LightGBM,
 écart absolu sinon), puis dénormalisation ; couverture vérifiée sur le test final.
@@ -57,10 +63,14 @@ GRILLE_LGB = [
     dict(num_leaves=7, max_depth=3, min_child_samples=15, n_estimators=400, reg_lambda=2.0),
     dict(num_leaves=7, max_depth=3, min_child_samples=30, n_estimators=200, reg_lambda=5.0),
 ]
+GRILLE_PHI = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
 MODELES = ["reference_annee_precedente", "reference_niveau_habituel", "reference_niveau_retreci", "elastic_net",
-           "ridge_effet_province", "lightgbm", "lightgbm_elimination", "moyenne_elastic_lightgbm"]
+           "ridge_effet_province", "lightgbm", "lightgbm_elimination", "moyenne_elastic_lightgbm",
+           "retour_amorti", "combinaison_niveau_elastic"]
 REFERENCE = "reference_niveau_habituel"
 GAIN_MINIMAL = 0.03
+INFORMATIFS = ["retour_amorti", "combinaison_niveau_elastic"]
+ECART_EQUIVALENT = 0.01
 SEUIL_HAUSSE = 2.0
 
 
@@ -87,6 +97,13 @@ def classement(train: pd.DataFrame, variables: list[str]) -> list[str]:
 def _choisies(rang: list[str], liste: list[str], k) -> list[str]:
     retenues = [v for v in rang if v in liste]
     return retenues if k is None else retenues[:k]
+
+
+def retour_amorti(test, phi: float, horizon: int) -> np.ndarray:
+    """Niveau habituel plus l'écart de l'année, amorti d'un facteur φ par an (écart nul après une rupture)."""
+    ecart = P.normaliser(test[P.CIBLE].clip(lower=0)) - test["base_z"]
+    ecart = ecart.where((test["rupture_annee_precedente"] == 0) & test[P.CIBLE].notna(), 0.0)
+    return (test["base_z"] + phi ** horizon * ecart).values
 
 
 def elastic(train, test, variables, alpha):
@@ -124,7 +141,7 @@ def variables_par_modele(rang, lineaire, arbres, reglages) -> dict[str, list[str
             "lightgbm": _choisies(rang, arbres, reglages["k_lightgbm"])}
 
 
-def predire(train, test, choix: dict[str, list[str]], reglages) -> dict[str, np.ndarray]:
+def predire(train, test, choix: dict[str, list[str]], reglages, horizon: int = 1) -> dict[str, np.ndarray]:
     """Prévisions sur l'échelle z de chaque modèle (et bornes quantiles de LightGBM)."""
     params = GRILLE_LGB[reglages["lightgbm"]]
     p = {"reference_annee_precedente": P.normaliser(test[P.CIBLE]),
@@ -136,6 +153,8 @@ def predire(train, test, choix: dict[str, list[str]], reglages) -> dict[str, np.
     p["lightgbm_bas"], p["lightgbm_haut"] = lightgbm_bornes(train, test, choix["lightgbm"], params)
     p["lightgbm_elimination"] = lightgbm_median(train, test, choix["lightgbm_elimination"], params)
     p["moyenne_elastic_lightgbm"] = (p["elastic_net"] + p["lightgbm"]) / 2
+    p["retour_amorti"] = retour_amorti(test, reglages["phi"], horizon)
+    p["combinaison_niveau_elastic"] = (p["reference_niveau_habituel"] + p["elastic_net"]) / 2
     return p
 
 
@@ -155,6 +174,8 @@ def choisir_reglages(t, lineaire, arbres, nom) -> tuple[dict, dict]:
         rang = rangs[annee] = classement(train, arbres)
         for kappa in P.GRILLE_KAPPA:
             noter(("kappa", kappa), _erreur(test, P.normaliser(test[f"niveau_retreci_{kappa:g}"])))
+        for phi in GRILLE_PHI:
+            noter(("phi", phi), _erreur(test, retour_amorti(test, phi, 1)))
         for k in GRILLE_K:
             for a in GRILLE_ELASTIC:
                 noter(("elastic", a, k), _erreur(test, elastic(train, test, _choisies(rang, lineaire, k), a)))
@@ -165,10 +186,11 @@ def choisir_reglages(t, lineaire, arbres, nom) -> tuple[dict, dict]:
     moyenne = {cle: np.mean(v) for cle, v in erreurs.items()}
     meilleur = lambda famille: min((c for c in moyenne if c[0] == famille), key=moyenne.get)  # noqa: E731
     _, kappa = meilleur("kappa")
+    _, phi = meilleur("phi")
     _, alpha_e, k_e = meilleur("elastic")
     _, alpha_r, k_r = meilleur("ridge")
     _, i_lgb, k_l = meilleur("lgb")
-    reglages = {"kappa": kappa, "alpha_elastic": alpha_e, "k_elastic": k_e, "alpha_ridge": alpha_r, "k_ridge": k_r,
+    reglages = {"kappa": kappa, "phi": phi, "alpha_elastic": alpha_e, "k_elastic": k_e, "alpha_ridge": alpha_r, "k_ridge": k_r,
                 "lightgbm": i_lgb, "k_lightgbm": k_l}
     grille = pd.DataFrame([{"famille": c[0], "parametre": c[1], "k": c[2] if len(c) > 2 else None,
                             "erreur_moyenne_plis_selection": round(v, 4)} for c, v in moyenne.items()])
@@ -185,7 +207,7 @@ def evaluer(t, lineaire, arbres, reglages, entite, nom, horizon):
         courbes.append(pd.DataFrame([{"horizon": horizon, "annee_cible": annee, "nombre_de_variables": len(v),
                                       "erreur_validation_interne": round(e, 4)} for v, e in etapes]))
         choix_plis.append(choix)
-        p = predire(train, test, choix, reglages)
+        p = predire(train, test, choix, reglages, horizon)
         role = "test final" if annee == P.TEST_FINAL[nom] else "sélection"
         for m in MODELES:
             lignes.append({"horizon": horizon, "annee_cible": annee, "role": role, "modele": m,
@@ -223,7 +245,11 @@ def choisir_modele(evaluation: pd.DataFrame) -> str:
     gain = 1 - s.mean() / reference.mean()
     plis_gagnes = (s.lt(reference, axis=0)).mean()
     eligibles = [m for m in s.columns if m != REFERENCE and gain[m] >= GAIN_MINIMAL and plis_gagnes[m] >= 2 / 3]
-    return min(eligibles, key=lambda m: s[m].mean()) if eligibles else REFERENCE
+    if eligibles:
+        return min(eligibles, key=lambda m: s[m].mean())
+    # À précision équivalente (à 1 % près), préférer un modèle qui suit la situation de l'année.
+    equivalents = [m for m in INFORMATIFS if m in s.columns and gain[m] >= -ECART_EQUIVALENT]
+    return min(equivalents, key=lambda m: s[m].mean()) if equivalents else REFERENCE
 
 
 def marge_conforme(prev: pd.DataFrame, modele: str) -> float:
@@ -256,7 +282,7 @@ def prevoir(d, t, nom, choix, reglages, modele, marge, horizon, annees_x):
     """Modèle retenu, appris sur toutes les cibles apprenables, appliqué aux variables des années ``annees_x``."""
     train = t[t["apprenable"]]
     x = d[d["annee_scolaire"].isin(annees_x)].copy()
-    p = predire(train, x, choix, reglages)
+    p = predire(train, x, choix, reglages, horizon)
     taux = P.denormaliser(p[modele])
     bas, haut = intervalle(p, modele, marge)
     seuils = train["y"].quantile([0.5, 0.8]).values

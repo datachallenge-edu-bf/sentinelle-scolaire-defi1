@@ -1,0 +1,10 @@
+# Seuls le code, les sorties nécessaires à l'application et le site entrent dans l'image.
+*
+!src/
+!application/
+!data/02_nettoyage/contours_web/
+!data/03_transformation/base_apuree/
+!data/04_analyse/
+application/web/node_modules/
+application/web/.next/
+**/__pycache__/

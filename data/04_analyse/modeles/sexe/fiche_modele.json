@@ -4,12 +4,12 @@
   "cible": "taux d'abandon du primaire (%) entre t+h-1 et t+h, par province et par sexe",
   "normalisation_cible": "z = logit(taux / 100), taux ramené dans [0,5 ; 99,5] ; dénormalisation : taux = 100 / (1 + exp(-z))",
   "prevision": {
-    "modele_retenu": "reference_niveau_habituel",
-    "regle_de_choix": "niveau habituel à battre : gain d'au moins 3 % d'erreur et au moins 2 plis sur 3",
+    "modele_retenu": "retour_amorti",
+    "regle_de_choix": "niveau habituel à battre : gain d'au moins 3 % d'erreur et au moins 2 plis sur 3 ; à défaut, modèle suivant la situation de l'année (retour amorti, combinaison) s'il est aussi précis à 1 % près sur les plis de sélection",
     "marge_conforme_logit_par_horizon": {
-      "1": 0.8700494889331414,
-      "2": 1.0764935386254633,
-      "3": 0.9062822588374073
+      "1": 1.0498146415754386,
+      "2": 1.070029795357145,
+      "3": 1.070029795357145
     },
     "niveau_intervalle": 0.8,
     "seuils_classes_taux": {
@@ -18,6 +18,7 @@
     },
     "reglages": {
       "kappa": 8.0,
+      "phi": 0.3,
       "alpha_elastic": 0.3,
       "k_elastic": 5,
       "alpha_ridge": 1000.0,
@@ -102,40 +103,40 @@
     "qualite_horizon_1": [
       {
         "role": "sélection",
-        "erreur_absolue_moyenne": 6.34,
-        "correlation_rang": 0.549,
-        "rappel_quintile_le_plus_a_risque": 0.486
+        "erreur_absolue_moyenne": 6.318,
+        "correlation_rang": 0.479,
+        "rappel_quintile_le_plus_a_risque": 0.424
       },
       {
         "role": "test final",
-        "erreur_absolue_moyenne": 3.832,
-        "correlation_rang": 0.66,
-        "rappel_quintile_le_plus_a_risque": 0.538
+        "erreur_absolue_moyenne": 4.147,
+        "correlation_rang": 0.557,
+        "rappel_quintile_le_plus_a_risque": 0.462
       }
     ],
     "couverture_intervalle": [
       {
         "horizon": 1,
-        "modele": "reference_niveau_habituel",
-        "marge_conforme_logit": 1.092,
-        "couverture_test_final": 0.906,
-        "largeur_moyenne_points": 20.142,
+        "modele": "retour_amorti",
+        "marge_conforme_logit": 1.072,
+        "couverture_test_final": 0.859,
+        "largeur_moyenne_points": 21.618,
         "lignes": 64
       },
       {
         "horizon": 2,
-        "modele": "reference_niveau_habituel",
-        "marge_conforme_logit": 1.209,
+        "modele": "retour_amorti",
+        "marge_conforme_logit": 1.192,
         "couverture_test_final": 0.938,
-        "largeur_moyenne_points": 20.968,
+        "largeur_moyenne_points": 20.991,
         "lignes": 64
       },
       {
         "horizon": 3,
-        "modele": "reference_niveau_habituel",
-        "marge_conforme_logit": 0.906,
-        "couverture_test_final": 0.812,
-        "largeur_moyenne_points": 14.26,
+        "modele": "retour_amorti",
+        "marge_conforme_logit": 1.192,
+        "couverture_test_final": 0.922,
+        "largeur_moyenne_points": 19.439,
         "lignes": 64
       }
     ]

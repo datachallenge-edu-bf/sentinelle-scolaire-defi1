@@ -1,4 +1,5 @@
 ﻿horizon;role;modele;erreur_absolue_moyenne;correlation_rang;rappel_quintile_le_plus_a_risque
+1;sélection;combinaison_niveau_elastic;6.331;0.549;0.486
 1;sélection;elastic_net;6.321;0.549;0.486
 1;sélection;lightgbm;6.488;0.511;0.399
 1;sélection;lightgbm_elimination;6.321;0.528;0.438
@@ -6,7 +7,9 @@
 1;sélection;reference_annee_precedente;7.112;0.328;0.296
 1;sélection;reference_niveau_habituel;6.34;0.549;0.486
 1;sélection;reference_niveau_retreci;6.195;0.512;0.424
+1;sélection;retour_amorti;6.318;0.479;0.424
 1;sélection;ridge_effet_province;7.274;0.521;0.451
+1;test final;combinaison_niveau_elastic;3.83;0.66;0.538
 1;test final;elastic_net;3.829;0.66;0.538
 1;test final;lightgbm;4.126;0.639;0.538
 1;test final;lightgbm_elimination;3.396;0.694;0.692
@@ -14,7 +17,9 @@
 1;test final;reference_annee_precedente;8.725;0.484;0.692
 1;test final;reference_niveau_habituel;3.832;0.66;0.538
 1;test final;reference_niveau_retreci;4.249;0.523;0.385
+1;test final;retour_amorti;4.147;0.557;0.462
 1;test final;ridge_effet_province;4.867;0.414;0.231
+2;sélection;combinaison_niveau_elastic;8.089;0.56;0.464
 2;sélection;elastic_net;8.361;0.516;0.464
 2;sélection;lightgbm;7.808;0.626;0.569
 2;sélection;lightgbm_elimination;8.059;0.575;0.541
@@ -22,7 +27,9 @@
 2;sélection;reference_annee_precedente;8.12;0.474;0.387
 2;sélection;reference_niveau_habituel;7.872;0.572;0.464
 2;sélection;reference_niveau_retreci;7.535;0.588;0.431
+2;sélection;retour_amorti;7.86;0.566;0.464
 2;sélection;ridge_effet_province;8.669;0.502;0.431
+2;test final;combinaison_niveau_elastic;3.779;0.705;0.538
 2;test final;elastic_net;3.791;0.708;0.538
 2;test final;lightgbm;3.81;0.686;0.538
 2;test final;lightgbm_elimination;3.888;0.669;0.538
@@ -30,7 +37,9 @@
 2;test final;reference_annee_precedente;5.318;0.607;0.615
 2;test final;reference_niveau_habituel;3.774;0.704;0.538
 2;test final;reference_niveau_retreci;4.154;0.581;0.385
+2;test final;retour_amorti;3.613;0.721;0.538
 2;test final;ridge_effet_province;4.17;0.664;0.538
+3;test final;combinaison_niveau_elastic;4.274;0.672;0.538
 3;test final;elastic_net;4.272;0.672;0.538
 3;test final;lightgbm;4.262;0.605;0.462
 3;test final;lightgbm_elimination;4.817;0.625;0.462
@@ -38,4 +47,5 @@
 3;test final;reference_annee_precedente;4.523;0.556;0.308
 3;test final;reference_niveau_habituel;4.275;0.672;0.538
 3;test final;reference_niveau_retreci;4.494;0.505;0.308
+3;test final;retour_amorti;4.273;0.672;0.538
 3;test final;ridge_effet_province;4.217;0.685;0.692

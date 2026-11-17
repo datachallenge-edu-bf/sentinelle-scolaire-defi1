@@ -19,3 +19,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Application : clé secrète et dossier de déploiement assemblé
+.env
+application/deploiement/

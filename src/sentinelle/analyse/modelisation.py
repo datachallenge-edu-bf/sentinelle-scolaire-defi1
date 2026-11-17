@@ -24,7 +24,7 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> tuple[dict[str, pd.D
     d, lineaire, arbres = P.preparer(jeu, nom, listes)
     resultats, evaluations, couvertures, previsions, frequences, courbes = {}, [], [], [], [], []
     reglages = modele = t1 = seuils_1 = None
-    marges, variables_1 = {}, {}
+    marges, marges_selection, variables_1 = {}, {}, {}
     for h in HORIZONS:
         t = P.avec_cible(d, jeu, nom, h)
         if h == 1:
@@ -45,11 +45,13 @@ def modeliser(jeu: dict, nom: str, listes: pd.DataFrame) -> tuple[dict[str, pd.D
             choix[m] = stables or choix_plis[-1][m]
             frequences.append(frequence.assign(horizon=h))
         selection, finale = prev[prev["role"] == "sélection"], prev[prev["role"] == "test final"]
-        marge = prevision.marge_conforme(selection if len(selection) else prev, modele)
+        # Les marges ne diminuent pas avec l'horizon : à 3 ans, l'incertitude est au moins celle de 2 ans.
+        marge = max(prevision.marge_conforme(selection if len(selection) else prev, modele), marges_selection.get(h - 1, 0.0))
+        marges_selection[h] = marge
         if len(finale):
             couvertures.append(prevision.couverture(finale, modele, marge, h))
         annees_x = [P.DERNIERE_ANNEE] + (["2023-2024"] if nom == "sexe" and h == 1 else [])
-        marges[h] = prevision.marge_conforme(prev, modele)
+        marges[h] = max(prevision.marge_conforme(prev, modele), marges.get(h - 1, 0.0))
         sortie, seuils = prevision.prevoir(d, t, nom, choix, reglages, modele, marges[h], h, annees_x)
         previsions.append(sortie)
         if h == 1:

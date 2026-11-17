@@ -61,7 +61,7 @@ def sauvegarder(objets: dict, resultats: dict[str, pd.DataFrame], nom: str, doss
                                "taux = 100 / (1 + exp(-z))",
         "prevision": {
             "modele_retenu": prev["modele"],
-            "regle_de_choix": "niveau habituel à battre : gain d'au moins 3 % d'erreur et au moins 2 plis sur 3",
+            "regle_de_choix": "niveau habituel à battre : gain d'au moins 3 % d'erreur et au moins 2 plis sur 3 ; à défaut, modèle suivant la situation de l'année (retour amorti, combinaison) s'il est aussi précis à 1 % près sur les plis de sélection",
             "marge_conforme_logit_par_horizon": prev["marges"],
             "niveau_intervalle": 0.80,
             "seuils_classes_taux": {"moyen": prev["seuils"][0], "eleve": prev["seuils"][1]},

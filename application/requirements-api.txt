@@ -1,0 +1,19 @@
+# Dépendances de l'API, versions identiques à celles qui ont produit les modèles sauvegardés.
+fastapi==0.163.1
+uvicorn[standard]==0.54.0
+pydantic==2.14.3
+pandas==3.1.1
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+lightgbm==4.7.0
+shap==0.54.1
+joblib==1.6.0
+geopandas==1.2.0
+shapely==2.2.0
+pyogrio==0.13.0
+pyproj==3.8.0
+matplotlib==3.11.2
+pillow==13.0.0
+reportlab==5.1.0
+openpyxl==3.1.5
