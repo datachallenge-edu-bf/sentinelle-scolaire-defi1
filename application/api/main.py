@@ -376,12 +376,13 @@ def methode():
 class Question(BaseModel):
     question: str
     population: Population = "ensemble"
+    historique: list[dict] = []
 
 
 @app.post("/api/assistant")
 def assistant(q: Question):
     from assistant import repondre
-    return propre(repondre(q.question, q.population))
+    return propre(repondre(q.question, q.population, q.historique))
 
 
 # Mise à jour annuelle -------------------------------------------------------------------------------

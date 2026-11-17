@@ -23,6 +23,8 @@ ELEMENTS = [
     "application/requirements-api.txt",
     "data/02_nettoyage/contours_web",
     "data/03_transformation/base_apuree",
+    "data/03_transformation/dictionnaire_variables_modele.csv",
+    "data/03_transformation/metadonnees/dictionnaire_bases_modele.csv",
     "data/04_analyse",
 ]
 EXCLUS = shutil.ignore_patterns("node_modules", ".next", "__pycache__", "*.pyc", ".env", "next-env.d.ts",

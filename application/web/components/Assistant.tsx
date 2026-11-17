@@ -63,7 +63,8 @@ export default function Assistant({ population }: { population: Population }) {
     setQuestion("");
     setAttente(true);
     try {
-      const r = await envoyer<Reponse>("/api/assistant", { question: q, population });
+      const historique = messages.slice(-6).map((m) => ({ auteur: m.auteur, texte: m.auteur === "moi" ? m.texte : m.reponse }));
+      const r = await envoyer<Reponse>("/api/assistant", { question: q, population, historique });
       setMessages((m) => [...m, { auteur: "sentinelle", ...r }]);
     } catch {
       setMessages((m) => [...m, { auteur: "sentinelle", reponse: "L'API ne répond pas. Vérifiez qu'elle tourne sur le port 8000.", sources: [], liens: [], mode: "hors ligne" }]);

@@ -16,12 +16,14 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 import unicodedata
 import urllib.error
 import urllib.request
 
 import pandas as pd
 
+import indicateurs as I
 from donnees import DONNEES_APPLI as D, fr
 
 MODELE_GEMINI = os.environ.get("GEMINI_MODELE", "gemini-2.5-flash")
@@ -128,6 +130,15 @@ def ecarts_filles_garcons() -> dict:
             "provinces_filles_au_dessus": int((e > 0).sum()), "total": len(e), "sources": [SOURCE_BASE, SOURCE_PREVISION]}
 
 
+def indicateurs_province(pcode: str, variables: list[str] | None = None, population: str = "ensemble") -> dict:
+    return I.indicateurs_province(pcode, variables, population)
+
+
+def classement_indicateur(variable: str, region: str | None = None, n: int = 8, plus_bas: bool = False,
+                          population: str = "ensemble") -> dict:
+    return I.classement_indicateur(variable, region, population, n, plus_bas)
+
+
 OUTILS = {
     "fiche_province": (fiche_province, "Fiche d'une province : taux observé 2024-2025, prévisions 2025-2026 à 2027-2028 avec intervalle, classe, rang, facteurs, rupture, filles et garçons.",
                        {"pcode": {"type": "string", "description": "Code de la province, par exemple BF5401"}}),
@@ -139,6 +150,18 @@ OUTILS = {
     "provinces_resistantes": (provinces_resistantes, "Provinces dont le niveau d'abandon est nettement sous celui attendu d'après leurs caractéristiques.", {}),
     "facteurs_nationaux": (facteurs_nationaux, "Caractéristiques les plus associées au niveau d'abandon des provinces, avec leur sens.", {}),
     "ecarts_filles_garcons": (ecarts_filles_garcons, "Écarts de taux prévu entre filles et garçons par province.", {}),
+    "indicateurs_province": (indicateurs_province,
+                             "Valeurs d'une province pour n'importe quel indicateur de la base (pauvreté, cantines, eau, "
+                             "électricité, distance à l'école, enseignants, mariage précoce, orpaillage, travail des enfants…), "
+                             "avec la médiane des provinces, le rang et le lien avec le risque prévu.",
+                             {"pcode": {"type": "string"},
+                              "variables": {"type": "array", "items": {"type": "string"},
+                                            "description": "Noms de variables du catalogue ; vide pour toutes"}}),
+    "classement_indicateur": (classement_indicateur,
+                              "Provinces classées selon un indicateur (pays ou région), avec leur taux prévu et le lien "
+                              "entre l'indicateur et le risque.",
+                              {"variable": {"type": "string"}, "region": {"type": "string"}, "n": {"type": "integer"},
+                               "plus_bas": {"type": "boolean", "description": "vrai pour classer des plus basses aux plus élevées"}}),
 }
 
 
@@ -188,10 +211,50 @@ def _texte_fiche(f: dict) -> str:
     return "\n".join(lignes)
 
 
-def _hors_ligne(question: str, population: str) -> tuple[str, list[str], list[dict]]:
+def _texte_indicateurs(question: str, provinces: list[dict], regions: list[str], variables: list[str],
+                       population: str) -> tuple[str, list[str], list[dict]]:
+    """Réponse sur des indicateurs de la base : province(s), région ou pays."""
+    lignes, sources = [], set()
+    if provinces:
+        for p in provinces[:2]:
+            r = I.indicateurs_province(p["pcode"], variables, population)
+            lignes.append(f"**{r['province']}** :")
+            for x in r["indicateurs"]:
+                rg = x["rang_sur_47_du_plus_eleve"]
+                rang = f", {rg}{'re' if rg == 1 else 'e'} valeur la plus élevée sur 47" if rg else ""
+                lignes.append(f"- {x['indicateur']} : **{x['valeur']}** (médiane des provinces {x['mediane_provinces']}{rang})")
+            sources.update(r["sources"])
+        liens = provinces[:2]
+    else:
+        liens = []
+        for v in variables[:2]:
+            bas = I.croissant(question)
+            c = I.classement_indicateur(v, regions[0] if regions else None, population, n=5, plus_bas=bas)
+            entete = f"**{c['indicateur'][0].upper() + c['indicateur'][1:]}**" + (
+                f" dans la région {regions[0]} (moyenne {c['moyenne_de_la_region']}, médiane nationale {c['mediane_nationale']})"
+                if regions else f" (médiane nationale {c['mediane_nationale']})")
+            lignes.append(entete + (", valeurs les plus basses :" if bas else ", valeurs les plus élevées :"))
+            lignes += [f"- {x['province']} ({x['region']}) : {x['valeur']}, taux prévu {x['taux_prevu_2025_2026']}"
+                       for x in c["provinces"]]
+            sources.update(c["sources"])
+            liens += [{"pcode": x["pcode"], "province": x["province"]} for x in c["provinces"][:3]]
+    for v in variables[:2]:
+        nom = I.libelle(v)
+        lignes.append(f"{nom[0].upper() + nom[1:]} et risque : {I.lecture_lien(I.lien_avec_risque(v, population))}. "
+                      "C'est une association entre provinces, pas un effet démontré.")
+    return "\n".join(lignes), sorted(sources), liens
+
+
+def _hors_ligne(question: str, population: str, contexte: str = "") -> tuple[str, list[str], list[dict]]:
     q = _sans_accent(question)
     provinces, regions = _trouver(question)
+    if not provinces and not regions and contexte:
+        # « dans la zone », « là-bas » : on reprend la province ou la région de l'échange précédent.
+        provinces, regions = _trouver(contexte)
     annee = next((a for a in ANNEES if a in question), "2025-2026")
+    variables = I.variables_de_la_question(question)
+    if variables:
+        return _texte_indicateurs(question, provinces, regions, variables, population)
 
     if len(provinces) >= 2:
         fiches = [fiche_province(p["pcode"], population) for p in provinces[:4]]
@@ -270,7 +333,12 @@ CONSIGNE = (
     "associations, pas des causes. Les taux sont en pourcentage avec une virgule décimale. Termine par une "
     "recommandation concrète quand la question s'y prête. Ne pose pas de question à l'utilisateur : si l'année "
     "n'est pas précisée, utilise 2025-2026 ; si la population n'est pas précisée, l'ensemble des élèves ; appelle "
-    "toujours les outils avant de répondre. Codes des provinces : {codes}."
+    "toujours les outils avant de répondre. Les facteurs du modèle (fiche_province, facteurs_nationaux) ne sont "
+    "qu'une partie de l'information : pour toute caractéristique d'une province ou d'une région (pauvreté, cantines, "
+    "eau, distance, enseignants, mariage précoce, orpaillage…), utilise indicateurs_province ou classement_indicateur "
+    "avec les variables du catalogue, compare à la médiane des provinces et indique le lien avec le risque comme une "
+    "association. Tiens compte des échanges précédents : « la zone » ou « là-bas » désignent la province ou la région "
+    "dont on vient de parler. Codes des provinces : {codes}. Catalogue des indicateurs (variable : libellé) : {catalogue}."
 )
 
 
@@ -295,10 +363,13 @@ def _appeler_gemini(cle: str, contenus: list, consigne: str) -> dict:
         return json.loads(reponse.read().decode("utf-8"))
 
 
-def _gemini(question: str, population: str, cle: str) -> tuple[str, list[str], list[dict]]:
+def _gemini(question: str, population: str, cle: str, historique: list[dict]) -> tuple[str, list[str], list[dict]]:
     codes = ", ".join(f"{r.province_nom}={r.province_pcode}" for r in D.tableau_ensemble.itertuples())
-    consigne = CONSIGNE.format(codes=codes)
-    contenus = [{"role": "user", "parts": [{"text": question}]}]
+    catalogue = "; ".join(f"{x['variable']} : {x['libelle']}" for x in I.catalogue())
+    consigne = CONSIGNE.format(codes=codes, catalogue=catalogue)
+    contenus = [{"role": "user" if m.get("auteur") == "moi" else "model", "parts": [{"text": str(m.get("texte", ""))[:1500]}]}
+                for m in historique[-6:] if m.get("texte")]
+    contenus.append({"role": "user", "parts": [{"text": question}]})
     sources: list[str] = []
     liens: list[dict] = []
     for _ in range(5):
@@ -331,20 +402,23 @@ def _gemini(question: str, population: str, cle: str) -> tuple[str, list[str], l
     raise RuntimeError("trop d'appels d'outils")
 
 
-def repondre(question: str, population: str = "ensemble") -> dict:
+def repondre(question: str, population: str = "ensemble", historique: list[dict] | None = None) -> dict:
     question = (question or "").strip()[:500]
+    historique = historique or []
     cle = os.environ.get("GEMINI_API_KEY", "").strip()
     if cle and question:
         try:
-            texte, sources, liens = _gemini(question, population, cle)
+            texte, sources, liens = _gemini(question, population, cle, historique)
             if texte:
                 vus = {}
                 for l in liens:
                     vus.setdefault(l["pcode"], l)
                 return {"reponse": texte, "sources": sources, "liens": list(vus.values())[:6], "mode": "gemini"}
-        except (urllib.error.URLError, TimeoutError, KeyError, IndexError, RuntimeError, ValueError):
-            pass
-    texte, sources, liens = _hors_ligne(question, population)
+        except Exception as e:  # le service ne répond pas, quota atteint… : on passe au mode hors ligne
+            detail = e.read().decode("utf-8", "ignore")[:300] if isinstance(e, urllib.error.HTTPError) else ""
+            print(f"Assistant : Gemini indisponible ({type(e).__name__} : {e}) {detail}", file=sys.stderr)
+    contexte = " ".join(str(m.get("texte", "")) for m in historique[-4:])
+    texte, sources, liens = _hors_ligne(question, population, contexte)
     return {"reponse": texte, "sources": sources,
             "liens": [{"pcode": l["pcode"], "province": l["province"]} for l in liens if "pcode" in l][:6],
             "mode": "hors ligne"}
