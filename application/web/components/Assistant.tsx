@@ -122,7 +122,7 @@ export default function Assistant({ population }: { population: Population }) {
                   ) : null}
                   {m.sources.length ? (
                     <details className="sources-reponse">
-                      <summary>Sources ({m.sources.length}) · {m.mode === "gemini" ? "rédigé par Gemini" : "mode hors ligne"}</summary>
+                      <summary>Sources ({m.sources.length})</summary>
                       <ul>
                         {m.sources.map((s) => (
                           <li key={s}>{s}</li>
