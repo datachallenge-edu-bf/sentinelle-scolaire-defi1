@@ -1,7 +1,7 @@
 """Préparation des dépôts selon la convention du challenge.
 
 Modèle : EQUIPE_ETAPE_DEFI_ROLE_description_vN.extension
-Exemple : E07_02-nettoyage_D1_engineer_effectifs-primaire-propres_v2.csv
+Exemple : DiscernaTeam_02-nettoyage_D1_engineer_effectifs-primaire-propres_v1.csv
 """
 
 from __future__ import annotations
@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 import shutil
 import unicodedata
+import zipfile
 from pathlib import Path
 
 import pandas as pd
@@ -66,8 +67,8 @@ def deposer(etape: int, fichiers: list[tuple[Path, str, str, str]], entete: list
                        "fichier_produit": chemin.relative_to(config.RACINE).as_posix(), "contenu": contenu})
     table = pd.DataFrame(lignes)
 
-    roles = sorted(set(table["role"])) if not table.empty else ["engineer"]
-    role_lisez_moi = roles[0] if len(roles) == 1 else "engineer"
+    # Le LISEZ-MOI porte le rôle qui a déposé le plus de fichiers dans l'étape.
+    role_lisez_moi = table["role"].value_counts().idxmax() if not table.empty else "engineer"
     corps = [f"{r.fichier_depose}\n    {r.contenu}" for r in table.itertuples()]
     (cible / nom_depot(etape, role_lisez_moi, "lisez-moi", version, "txt")).write_text(
         "\n".join(entete + ["", "FICHIERS", ""] + corps) + "\n", encoding="utf-8")
@@ -345,3 +346,169 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
         "PYTHONPATH), ou notebooks/03_transformation.ipynb puis notebooks/03b_apurement.ipynb.",
     ]
     return deposer(3, fichiers, entete, version)
+
+
+# Étape 04 ----------------------------------------------------------------------------------------
+
+EXPLORATION = {
+    "variance_cible": ("variance-cible-annees-provinces", "Part de la variance du taux d'abandon due aux années, aux provinces et aux ruptures."),
+    "cible_par_annee": ("taux-abandon-par-annee", "Taux d'abandon observé par année : moyenne, médiane, dispersion, nombre de ruptures."),
+    "ruptures": ("ruptures-de-scolarisation", "Lignes en rupture (variation des effectifs de plus de 30 %), exclues du modèle d'abandon."),
+    "correlations": ("liens-variables-cible", "Lien de chaque variable avec la cible (corrélation de rang), année par année et en moyenne."),
+    "groupes_colineaires": ("groupes-variables-colineaires", "Groupes de variables trop liées entre elles (|rho| >= 0,85) et représentant gardé."),
+    "decision_variables": ("decision-garder-retirer-variables", "Décision motivée de garder ou de retirer chaque variable."),
+    "variables_modele": ("listes-variables-modeles", "Variables gardées pour les modèles linéaires et pour les modèles d'arbres."),
+}
+MODELISATION = {
+    "tableau_de_bord": ("scientist", "previsions-tableau-de-bord-province-2025-2028",
+                        "Prévision 2025-2026 et projections 2026-2027 et 2027-2028 par province, intervalle à 80 %, "
+                        "classe de risque, facteurs principaux, score et classe de rupture."),
+    "previsions": ("scientist", "previsions-par-horizon-province", "Prévisions à 1, 2 et 3 ans du modèle retenu, avec bornes."),
+    "synthese_modeles": ("scientist", "fiabilite-erreurs-dix-modeles", "Erreur absolue moyenne, corrélation de rang et rappel du "
+                         "quintile le plus à risque de dix modèles, plis de sélection et test final, à 1, 2 et 3 ans."),
+    "evaluation_plis": ("scientist", "fiabilite-erreurs-par-pli", "Mêmes mesures pour chaque pli de validation dans le temps."),
+    "intervalle": ("scientist", "fiabilite-couverture-intervalles", "Marge conforme et couverture observée de l'intervalle à 80 % au test final."),
+    "seuils_classes": ("scientist", "seuils-classes-risque", "Seuils des classes de risque (médiane et 80e centile des taux prévus)."),
+    "reglages": ("scientist", "reglages-retenus", "Réglages choisis sur les plis de sélection et modèle retenu."),
+    "grille_reglages": ("scientist", "grille-reglages-testes", "Erreur de chaque réglage testé sur les plis de sélection."),
+    "variables_retenues": ("scientist", "variables-retenues-par-pli", "Fréquence de chaque variable retenue dans les plis."),
+    "courbe_elimination_prevision": ("scientist", "elimination-shap-prevision", "Courbe d'élimination récursive guidée par SHAP (prévision)."),
+    "explication_validation": ("scientist", "fiabilite-explication-provinces-non-vues", "Part de variance expliquée sur des provinces non vues."),
+    "explication_courbe_elimination": ("scientist", "elimination-shap-explication", "Courbe d'élimination récursive guidée par SHAP (explication)."),
+    "explication_variables_retenues": ("scientist", "variables-explication", "Variables des deux volets de l'explication."),
+    "explication_facteurs": ("scientist", "facteurs-par-province", "Trois facteurs qui élèvent le niveau de chaque province et son principal frein."),
+    "explication_contributions": ("scientist", "valeurs-shap-par-province", "Contribution SHAP de chaque variable au niveau de chaque province (points)."),
+    "explication_valeurs": ("scientist", "valeurs-variables-explication", "Valeurs des variables de l'explication pour chaque province."),
+    "explication_valeur_de_base": ("scientist", "valeur-de-base-shap", "Valeur de départ des contributions SHAP (moyenne des provinces)."),
+    "explication_importance": ("scientist", "importance-facteurs-nationale", "Importance moyenne et sens de chaque facteur."),
+    "explication_effets_lineaires": ("scientist", "effets-chiffres-elastic-net", "Effet de chaque variable en points de taux (elastic net)."),
+    "alerte_rupture": ("scientist", "alerte-rupture-2025-2026", "Score et classe de rupture de scolarisation par province pour 2025-2026."),
+    "evaluation_alerte_rupture": ("scientist", "fiabilite-alerte-rupture", "AUC de l'alerte de rupture et ruptures retrouvées, par année."),
+    "coefficients_alerte_rupture": ("scientist", "coefficients-alerte-rupture", "Coefficients standardisés du modèle d'alerte."),
+    "contributions_alerte_rupture": ("scientist", "contributions-alerte-rupture-province", "Contribution de chaque signal au score de chaque province."),
+}
+
+
+def _zipper(dossiers: list[Path], archive: Path) -> Path:
+    """Archive ZIP des fichiers de code, sans les caches."""
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
+        for dossier in dossiers:
+            for f in sorted(dossier.rglob("*")):
+                if f.is_file() and "__pycache__" not in f.parts:
+                    z.write(f, f.relative_to(config.RACINE).as_posix())
+    return archive
+
+
+def exporter_analyse(version: int = 1) -> pd.DataFrame:
+    """Dépôt de l'étape 04 : exploration (analyst), modèle, fiabilité, prévisions, explication, alerte (scientist)."""
+    source = config.DONNEES / "04_analyse"
+    fichiers = []
+    for jeu, libelle in [("ensemble", "ensemble"), ("sexe", "par-sexe")]:
+        for nom, (desc, contenu) in EXPLORATION.items():
+            fichiers.append((source / "exploration" / f"{nom}_{jeu}.csv", "analyst", f"{desc}-{libelle}",
+                             f"{contenu} ({'ensemble des élèves' if jeu == 'ensemble' else 'filles et garçons'})."))
+        for nom, (role, desc, contenu) in MODELISATION.items():
+            suffixe = "" if nom.endswith("alerte_rupture") else f"_{jeu}"
+            if suffixe == "" and jeu == "sexe":
+                continue
+            fichiers.append((source / "modelisation" / f"{nom}{suffixe}.csv", role,
+                             desc if not suffixe else f"{desc}-{libelle}", contenu))
+        modeles = source / "modeles" / jeu
+        fichiers += [
+            (modeles / "fiche_modele.json", "scientist", f"fiche-modele-{libelle}",
+             "Fiche du modèle : cible, normalisation, modèle retenu, règle de choix, marges, seuils, réglages, "
+             "variables, qualité mesurée, versions des bibliothèques."),
+            (modeles / "explication_lightgbm.txt", "scientist", f"modele-lightgbm-facteurs-{libelle}",
+             "Modèle LightGBM des facteurs par province, format texte relisible sans Python."),
+            (modeles / "explication_lightgbm.joblib", "scientist", f"modele-lightgbm-facteurs-{libelle}-python",
+             "Même modèle sauvegardé pour Python (joblib), avec ses variables."),
+            (modeles / "explication_elastic_net.joblib", "scientist", f"modele-elastic-net-effets-{libelle}",
+             "Elastic net des effets chiffrés (simulateur), avec ses paramètres de normalisation."),
+        ]
+    fichiers.append((source / "modeles" / "ensemble" / "alerte_rupture.joblib", "scientist", "modele-alerte-rupture",
+                     "Régression logistique de l'alerte de rupture, avec ses variables, sa normalisation et ses seuils."))
+    code = _zipper([config.RACINE / "src" / "sentinelle" / "analyse"], source / "code_modele_sentinelle_analyse.zip")
+    fichiers.append((code, "scientist", "code-modele-prevision-explication-alerte",
+                     "Code du modèle (paquet sentinelle.analyse) : préparation, dix modèles de prévision, choix, "
+                     "intervalle conforme, explication SHAP, alerte de rupture, sauvegarde."))
+    notebooks = config.RACINE / "notebooks"
+    fichiers += [
+        (notebooks / "04a_exploration.ipynb", "analyst", "notebook-analyse-exploratoire",
+         "Notebook exécuté de l'analyse exploratoire : cible, variance, ruptures, liens, décisions sur les variables."),
+        (notebooks / "04b_modelisation.ipynb", "scientist", "notebook-modelisation-fiabilite",
+         "Notebook exécuté de la modélisation : comparaison des modèles, fiabilité, intervalles, alerte."),
+        (notebooks / "04c_explicabilite.ipynb", "scientist", "notebook-explicabilite-shap",
+         "Notebook exécuté de l'explicabilité : effets chiffrés, valeurs SHAP, facteurs par province."),
+    ]
+    entete = [
+        "DÉPÔT 04 : ANALYSE - Défi 1, cartographie et anticipation du risque de décrochage scolaire",
+        "",
+        "Contenu : analyse exploratoire (rôle analyst) puis modèle du décrochage (rôle scientist), pour",
+        "l'ensemble des élèves et pour les filles et les garçons.",
+        "",
+        "Cible : taux d'abandon du primaire de chaque province (47 provinces de 2025), normalisé en logit.",
+        "Les années de rupture (effectifs en variation de plus de 30 %) sont traitées par une alerte à part.",
+        "",
+        "Prévision : dix modèles comparés dans le temps (trois plis de sélection, puis 2024-2025 en test",
+        "final jamais utilisé pour choisir). Modèle retenu : retour amorti vers le niveau habituel de la",
+        "province. Erreur au test final : 3,3 points (ensemble). Intervalle conforme à 80 %, couverture",
+        "de 85 à 88 % au test. Horizons : 2025-2026, 2026-2027 et 2027-2028.",
+        "Explication : LightGBM après élimination récursive guidée par SHAP et elastic net, validés sur des",
+        "provinces non vues. Les facteurs sont des associations, pas des causes.",
+        "Alerte de rupture : régression logistique sur sept signaux, AUC de 0,85 à 0,96.",
+        "",
+        "Format : séparateur « ; », encodage UTF-8. Modèles en joblib (Python) et en texte (LightGBM).",
+        "",
+        "Relancer : python -m sentinelle.analyse.exploration puis python -m sentinelle.analyse.modelisation",
+        "(avec src dans le PYTHONPATH), ou les notebooks 04a, 04b et 04c.",
+    ]
+    return deposer(4, fichiers, entete, version)
+
+
+# Étape 05 ----------------------------------------------------------------------------------------
+
+def exporter_interpretation(version: int = 1) -> pd.DataFrame:
+    """Dépôt de l'étape 05 : indicateurs clés, carte d'alerte, rapports, guide et code du tableau de bord."""
+    source = config.DONNEES / "05_interpretation"
+    fichiers = [
+        (source / "indicateurs_cles_province.csv", "analyst", "indicateurs-cles-province-2024-2028",
+         "Par province : taux observé 2024-2025, taux prévus 2025-2026 à 2027-2028 avec intervalle et classe, "
+         "nombre estimé d'élèves qui abandonnent, alerte de rupture, facteurs principaux."),
+        (source / "indicateurs_cles_region.csv", "analyst", "indicateurs-cles-region-pays-2024-2028",
+         "Par région et pour le pays : taux pondéré par les effectifs, nombre estimé d'abandons, provinces en "
+         "risque élevé, alertes de rupture."),
+        (source / "carte_alerte_2025_2026.png", "analyst", "carte-alerte-risque-decrochage-2025-2026",
+         "Carte des classes de risque de décrochage en 2025-2026, alertes de rupture en hachures."),
+        (source / "rapports" / "rapport_national.pdf", "analyst", "rapport-national-decision",
+         "Rapport national : chiffres clés, carte, classement, provinces qui résistent, facteurs, pistes d'action."),
+        (source / "rapports" / "rapports_regions.zip", "analyst", "rapports-17-regions",
+         "Rapport de chacune des 17 régions : carte, provinces, priorités et pistes d'action (PDF)."),
+        (source / "rapports" / "rapports_provinces.zip", "analyst", "fiches-47-provinces",
+         "Fiche de décision de chacune des 47 provinces : prévision, intervalle, évolution, facteurs, filles et "
+         "garçons, rupture, pistes d'action (PDF)."),
+        (source / "guide_sentinelle.pdf", "analyst", "guide-utilisation-tableau-de-bord",
+         "Guide d'utilisation du tableau de bord Sentinelle Scolaire."),
+        (source / "application_sentinelle_source.zip", "analyst", "tableau-de-bord-sentinelle-code",
+         "Code du tableau de bord : API FastAPI, site Next.js (carte MapLibre, graphiques ECharts), image Docker, "
+         "lancement local (lancer.bat) et déploiement."),
+    ]
+    entete = [
+        "DÉPÔT 05 : INTERPRÉTATION ET VISUALISATION - Défi 1, risque de décrochage scolaire",
+        "",
+        "Solution : tableau de bord Sentinelle Scolaire, en ligne à l'adresse",
+        "https://sentinelle-scolaire-bf.up.railway.app",
+        "Vue nationale sur quatre années (2024-2025 observée, prévisions jusqu'en 2027-2028), fiche de",
+        "chaque province, vue des régions, simulateur de leviers, mise à jour annuelle des données",
+        "(import CSV ou saisie, sans réentraîner), assistant de questions-réponses, rapports PDF.",
+        "",
+        "Ce dépôt réunit ce qu'un décideur utilise sans ouvrir l'application : indicateurs clés, carte",
+        "d'alerte, rapport national, rapports régionaux, fiches provinciales et guide d'utilisation.",
+        "Le nombre estimé d'élèves qui abandonnent multiplie le taux par l'effectif du primaire de",
+        "2024-2025 (effectifs futurs inconnus).",
+        "",
+        "Relancer : python -m sentinelle.interpretation (avec src dans le PYTHONPATH) produit ces fichiers.",
+        "Le tableau de bord se lance avec application/lancer.bat (Windows, sans Internet) ou",
+        "docker compose up --build ; voir application/README.md.",
+    ]
+    return deposer(5, fichiers, entete, version)

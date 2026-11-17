@@ -46,7 +46,8 @@ CRS_STOCKAGE = "EPSG:4326"
 CRS_METRIQUE = "EPSG:32630"
 
 # Convention de nommage des dépôts : EQUIPE_ETAPE_DEFI_ROLE_description_vN.
-EQUIPE = os.environ.get("SENTINELLE_EQUIPE", "EXX")
+# Équipe « Discerna Team », écrite sans espace pour les noms de dépôt.
+EQUIPE = os.environ.get("SENTINELLE_EQUIPE", "DiscernaTeam")
 DEFI = "D1"
 
 # Format des fichiers produits : séparateur du Data Pack, encodage lisible par Excel.
