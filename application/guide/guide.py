@@ -1,6 +1,6 @@
 """Guide d'utilisation de Sentinelle Scolaire, au format PDF.
 
-Produit ``application/web/public/guide_sentinelle.pdf`` (téléchargeable depuis la barre latérale) à partir des
+Produit ``application/web/public/guide_sentinelle.pdf`` (bouton « Guide » de la barre du haut) à partir des
 captures d'écran de ``application/guide/images/``. Lancement, depuis ``application/guide`` :
 ``python guide.py``.
 """
@@ -77,7 +77,7 @@ def construire() -> Path:
     e += ecran("3. Fiche province", "2_province",
                "Tout ce qu'il faut savoir sur une province, sur un seul écran : taux observé et prévu, classe et rang, score de "
                "rupture, historique depuis 2016-2017 avec les prévisions, facteurs SHAP, filles et garçons.",
-               ["Accès : clic sur la carte, sur un classement, ou liste « Aller à une province » dans la barre latérale.",
+               ["Accès : clic sur la carte, sur un classement, ou liste « Province » de la barre du haut.",
                 "« Rapport PDF » produit la fiche de décision de la province, avec ses pistes d'action."])
     e += ecran("4. Vue régions", "3_regions",
                "Taux de chaque région (moyenne de ses provinces pondérée par les effectifs), classement, provinces de la région choisie.",
@@ -93,10 +93,12 @@ def construire() -> Path:
                 "débutants, salles précaires, enseignantes, électricité, eau, cantines) selon leur lien avec l'abandon ; en orange, "
                 "la province fait moins bien que la médiane.",
                 "Résultat à lire comme un ordre de grandeur pour fixer des priorités, pas comme un effet garanti."])
-    e += ecran("6. Post-primaire", "10_post_primaire",
-               "L'abandon en 6e, 5e et 4e par province, valeurs observées : il a presque doublé entre 2018-2019 et 2022-2023 dans "
-               "la province médiane. Pas de prévision : le taux n'est publié que pour quatre années.",
-               ["Cliquez une province pour ouvrir sa fiche ; les valeurs non interprétables (écoles fermées) sont listées à part."])
+    e += ecran("6. Post-primaire et secondaire", "10_post_primaire",
+               "La barre du haut choisit l'ordre d'enseignement. Post-primaire (6e à 4e) et secondaire (2nde, 1re) : carte, "
+               "classement et comparaison des trois ordres, valeurs observées 2018-2019 à 2022-2023. Pas de prévision : quatre "
+               "années publiées seulement.",
+               ["Choisissez l'année, et l'ensemble, les filles ou les garçons.",
+                "Les provinces en gris (écoles fermées) ont un taux non interprétable."])
     e += ecran("7. Mise à jour des données", "9_mise_a_jour_apercu",
                "Chaque année, à la sortie de l'annuaire, les prévisions des trois années suivantes se recalculent sans réentraîner les "
                "modèles. Les données saisies sont rangées à part (data/05_mises_a_jour) et ne modifient jamais les données officielles.",

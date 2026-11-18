@@ -229,3 +229,25 @@ export async function envoyer<T>(adresse: string, corps: unknown): Promise<T> {
   if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
   return r.json();
 }
+
+export interface OrdreProvince {
+  pcode: string;
+  province: string;
+  region: string;
+  serie: { annee: string; taux: number | null; classe: Classe | null; entree: number | null; achevement: number | null }[];
+}
+
+export interface VueOrdre {
+  ordre: "post_primaire" | "secondaire";
+  population: Population;
+  annees: string[];
+  seuils: Seuils;
+  provinces: OrdreProvince[];
+  medianes: { annee: string; mediane: number; non_interpretables: number }[];
+  regions: { region: string; serie: (number | null)[] }[];
+}
+
+export interface ComparaisonOrdres {
+  annees: string[];
+  series: { primaire: (number | null)[]; post_primaire: (number | null)[]; secondaire: (number | null)[] };
+}

@@ -161,9 +161,12 @@ def test_taux_national_leviers_et_post_primaire(api):
     assert pays[0]["taux"] == pytest.approx(6.7, abs=0.05) and pays[1]["abandons"] > 200_000
     leviers = api.leviers_action("BF5401")["leviers"]
     assert len(leviers) == 8 and all(-1 <= x["lien"] <= 1 for x in leviers)
-    pp = api.post_primaire()
-    assert len(pp["provinces"]) == 47 and pp["annee"] == "2022-2023"
-    assert pp["medianes"][-1]["mediane"] > pp["medianes"][0]["mediane"]
+    for ordre in ["post_primaire", "secondaire"]:
+        vue = api.vue_ordre(ordre, "ensemble")
+        assert len(vue["provinces"]) == 47 and vue["annees"][-1] == "2022-2023"
+        assert vue["medianes"][-1]["mediane"] > vue["medianes"][0]["mediane"]
+    comparaison = api.comparaison_ordres("F")
+    assert set(comparaison["series"]) == {"primaire", "post_primaire", "secondaire"}
 
 
 def test_rapport_province_est_un_pdf(api):

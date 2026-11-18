@@ -469,33 +469,86 @@ def leviers_action(pcode: str):
     return propre({"pcode": pcode, "leviers": sortie, "signaux": SIGNAUX})
 
 
-@app.get("/api/post_primaire")
-def post_primaire():
-    """Abandon au post-primaire (moyenne 6e, 5e, 4e), valeurs observées 2018-2019 et 2020-2021 à 2022-2023, sans prévision."""
+# Ordres d'enseignement après le primaire : valeurs observées seulement (quatre années publiées, pas de prévision).
+ORDRES = {
+    "post_primaire": {"abandon": "abandon_post_primaire_province", "entree": "tba_6e_province",
+                      "achevement": "achevement_post_primaire_province"},
+    "secondaire": {"abandon": "abandon_secondaire_province", "entree": "tba_2nde_province",
+                   "achevement": "achevement_secondaire_province"},
+}
+SEUILS_ORDRES = {"moyen": 15.0, "eleve": 30.0}
+
+
+def _annees_observees(variable: str) -> list[str]:
     import donnees
-    statuts = pd.read_csv(donnees.BASE / "statut_cellules.csv", sep=";", encoding="utf-8-sig",
+    statuts = pd.read_csv(donnees.BASE / "statut_cellules_par_sexe.csv", sep=";", encoding="utf-8-sig",
                           usecols=["annee_scolaire", "variable", "statut"])
-    obs = statuts[(statuts["variable"] == "abandon_post_primaire_province") & (statuts["statut"] == "observée")]
-    annees = sorted(obs["annee_scolaire"].unique())
-    b = D.base.set_index(["province_pcode", "annee_scolaire"])
-    derniere = annees[-1]
+    v = statuts[statuts["variable"] == variable]
+    part = v.groupby("annee_scolaire")["statut"].agg(lambda x: (x == "observée").mean())
+    return sorted(part[part >= 0.5].index)
+
+
+def _table_ordre(ordre: str, population: str) -> pd.DataFrame:
+    """Province × année : abandon, entrée, achèvement. Ensemble du secondaire : moyenne des filles et des garçons."""
+    colonnes = list(ORDRES[ordre].values())
+    cles = ["province_pcode", "province_nom", "region_nom", "annee_scolaire"]
+    if population != "ensemble":
+        t = D.base_sexe[D.base_sexe["sexe"] == population]
+    elif ordre == "post_primaire":
+        t = D.base
+    else:
+        t = D.base_sexe.groupby(cles, as_index=False)[colonnes].mean()
+    return t[cles + colonnes]
+
+
+def _interpretable(taux: float) -> bool:
+    # 0 % ou plus de 90 % : presque aucun élève (écoles fermées), taux non interprétable.
+    return 1 < taux < 90
+
+
+@app.get("/api/ordre/{ordre}")
+def vue_ordre(ordre: Literal["post_primaire", "secondaire"], population: Population = "ensemble"):
+    v = ORDRES[ordre]
+    annees = _annees_observees(v["abandon"])
+    t = _table_ordre(ordre, population).set_index(["province_pcode", "annee_scolaire"])
     provinces = []
-    for pcode, g in D.base.groupby("province_pcode"):
-        r = b.loc[(pcode, derniere)]
-        serie = [{"annee": a, "taux": propre(round(float(b.loc[(pcode, a), "abandon_post_primaire_province"]), 1))}
-                 for a in annees]
-        taux_dernier = float(r["abandon_post_primaire_province"])
-        # Valeur extrême là où presque aucun élève n'entre en 6e : fermetures d'écoles, taux non interprétable.
-        fiable = not ((taux_dernier <= 1 or taux_dernier >= 90) and float(r["tba_6e_province"]) < 15)
-        provinces.append({"pcode": pcode, "province": g["province_nom"].iloc[0], "region": g["region_nom"].iloc[0],
-                          "taux": round(taux_dernier, 1), "fiable": fiable, "serie": serie,
-                          "tba_6e": propre(round(float(r["tba_6e_province"]), 1)),
-                          "achevement": propre(round(float(r["achevement_post_primaire_province"]), 1))})
-    fiables = [p for p in provinces if p["fiable"]]
-    medianes = [{"annee": a, "mediane": round(float(np.median([p["serie"][k]["taux"] for p in fiables])), 1)}
-                for k, a in enumerate(annees)]
-    return propre({"annee": derniere, "annees": annees, "provinces": provinces, "medianes": medianes,
-                   "non_interpretables": len(provinces) - len(fiables)})
+    for pcode in t.index.get_level_values(0).unique():
+        serie = []
+        for a in annees:
+            r = t.loc[(pcode, a)]
+            taux_a = round(float(r[v["abandon"]]), 1)
+            serie.append({"annee": a, "taux": taux_a if _interpretable(taux_a) else None,
+                          "classe": _classe(taux_a, SEUILS_ORDRES) if _interpretable(taux_a) else None,
+                          "entree": propre(round(float(r[v["entree"]]), 1)),
+                          "achevement": propre(round(float(r[v["achevement"]]), 1))})
+        r = t.loc[(pcode, annees[-1])]
+        provinces.append({"pcode": pcode, "province": r["province_nom"], "region": r["region_nom"], "serie": serie})
+    medianes = []
+    for k, a in enumerate(annees):
+        valeurs = [p["serie"][k]["taux"] for p in provinces if p["serie"][k]["taux"] is not None]
+        medianes.append({"annee": a, "mediane": round(float(np.median(valeurs)), 1),
+                         "non_interpretables": len(provinces) - len(valeurs)})
+    regions = []
+    for reg in sorted({p["region"] for p in provinces}):
+        valeurs = [[p["serie"][k]["taux"] for p in provinces if p["region"] == reg] for k in range(len(annees))]
+        regions.append({"region": reg, "serie": [propre(round(float(np.median([x for x in vk if x is not None])), 1))
+                                                 if any(x is not None for x in vk) else None for vk in valeurs]})
+    return propre({"ordre": ordre, "population": population, "annees": annees, "seuils": SEUILS_ORDRES,
+                   "provinces": provinces, "medianes": medianes, "regions": regions})
+
+
+@app.get("/api/comparaison_ordres")
+def comparaison_ordres(population: Population = "ensemble"):
+    """Abandon de la province médiane, primaire, post-primaire et secondaire, sur les années observées communes."""
+    annees = _annees_observees(ORDRES["post_primaire"]["abandon"])
+    base = D.base if population == "ensemble" else D.base_sexe[D.base_sexe["sexe"] == population]
+    filtre = base["abandon_primaire_precedent"].map(_interpretable)
+    primaire = base[filtre].groupby("annee_scolaire")["abandon_primaire_precedent"].median()
+    series = {"primaire": [propre(round(float(primaire[a]), 1)) for a in annees]}
+    for ordre in ORDRES:
+        vue = vue_ordre(ordre, population)
+        series[ordre] = [m["mediane"] for m in vue["medianes"]]
+    return propre({"annees": annees, "series": series})
 
 
 @app.get("/api/telechargement/previsions")

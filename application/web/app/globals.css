@@ -60,7 +60,8 @@ h3 {
 
 .coquille {
   display: grid;
-  grid-template-columns: 248px 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   min-height: 100vh;
   padding: var(--drapeau) var(--drapeau) var(--drapeau) var(--drapeau);
 }
@@ -1795,6 +1796,7 @@ h3 {
     margin: 10mm;
   }
   .barre-laterale,
+  .barre-haute,
   .bouton,
   .drapeau-cadre,
   .ne-pas-imprimer {
@@ -1939,4 +1941,173 @@ h3 {
   font-size: 13.5px;
   color: var(--texte-2);
   margin: 0;
+}
+
+/* Barre du haut : marque, ordre d'enseignement (rouge), écrans (vert), outils. ------------------- */
+.barre-haute {
+  position: sticky;
+  top: var(--drapeau);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #0d1626 0%, #0b1322 100%);
+  border-bottom: 1px solid var(--bordure);
+}
+
+.barre-haute .marque {
+  align-items: center;
+  flex: none;
+}
+
+.ordres {
+  display: flex;
+  flex: none;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+}
+
+.ordre {
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--texte-2);
+  white-space: nowrap;
+}
+
+.ordre:hover {
+  color: var(--texte);
+  box-shadow: inset 0 -2px 0 var(--drapeau-jaune);
+}
+
+.ordre.actif {
+  background: var(--drapeau-rouge);
+  color: #fff;
+}
+
+.onglets {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.onglet {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border-radius: 8px;
+  color: var(--texte-2);
+  white-space: nowrap;
+  font-size: 13.5px;
+}
+
+.onglet svg {
+  width: 17px;
+  height: 17px;
+}
+
+.onglet:hover {
+  background: var(--surface-2);
+  color: var(--texte);
+}
+
+.onglet.actif {
+  background: rgba(0, 158, 73, 0.18);
+  color: #fff;
+  box-shadow: inset 0 -3px 0 var(--drapeau-vert);
+}
+
+.barre-outils {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.barre-outils .select {
+  min-width: 150px;
+}
+
+@media (max-width: 1100px) {
+  .barre-haute {
+    flex-wrap: wrap;
+  }
+  .onglets {
+    order: 5;
+    flex-basis: 100%;
+  }
+}
+
+/* Comparaison des trois ordres d'enseignement. */
+.comparaison-ordres {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+}
+
+.comparaison-chiffres {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.comparaison-titre {
+  display: flex;
+  flex-direction: column;
+}
+
+.comparaison-ordre {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  border-left: 4px solid var(--teinte);
+}
+
+.comparaison-ordre b {
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.comparaison-libelle {
+  font-size: 12px;
+  color: var(--texte-2);
+}
+
+.comparaison-barres {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 74px;
+}
+
+.comparaison-annee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.comparaison-groupe {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 56px;
+}
+
+.comparaison-groupe span {
+  width: 10px;
+  border-radius: 3px 3px 0 0;
+}
+
+.tuiles.tuiles-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
