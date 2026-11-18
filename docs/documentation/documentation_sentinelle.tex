@@ -522,7 +522,7 @@ L'application sépare deux parties (figure~\ref{fig:architecture}). Une \textbf{
 
 \subsection{La vue nationale : où agir}
 
-La vue nationale (figure~\ref{fig:ecran}) réunit sur un écran : six chiffres clés (provinces par classe de risque avec une bande des 47 provinces, alertes de rupture avec leur mini-carte, taux le plus élevé, erreur au test comparée à la méthode naïve) ; la carte, où l'on zoome pour lire le nom et le taux de chaque province ; le nuage SHAP ; le classement des 47 provinces en trois graphiques ; les filles et les garçons par région ; les provinces qui résistent ; et l'évolution des classes d'une année à l'autre. Une bascule affiche l'ensemble des élèves, les filles ou les garçons ; un curseur choisit l'année, de 2024-2025 observé à 2027-2028, et un bouton de lecture fait défiler les années. Le bouton \textbf{Données} télécharge la base des prévisions en CSV, qui s'ouvre tel quel dans Excel : pour chaque province et chaque année de 2024-2025 à 2027-2028, le taux, l'intervalle à 80 \%, la classe, le nombre d'abandons estimé et le risque de rupture. Un analyste peut ainsi reprendre les chiffres dans ses propres tableaux sans les ressaisir.
+La vue nationale (figure~\ref{fig:ecran}) réunit sur un écran : sept chiffres clés (le taux national de l'année choisie, 8,0 \% et environ 266\,000 élèves en 2025-2026, puis les provinces par classe de risque avec une bande des 47 provinces, alertes de rupture avec leur mini-carte, taux le plus élevé, erreur au test comparée à la méthode naïve) ; la carte, où l'on zoome pour lire le nom et le taux de chaque province ; le nuage SHAP ; le classement des 47 provinces en trois graphiques ; les filles et les garçons par région ; les provinces qui résistent ; et l'évolution des classes d'une année à l'autre. Une bascule affiche l'ensemble des élèves, les filles ou les garçons ; un curseur choisit l'année, de 2024-2025 observé à 2027-2028, et un bouton de lecture fait défiler les années. Le bouton \textbf{Données} télécharge la base des prévisions en CSV, qui s'ouvre tel quel dans Excel : pour chaque province et chaque année de 2024-2025 à 2027-2028, le taux, l'intervalle à 80 \%, la classe, le nombre d'abandons estimé et le risque de rupture. Un analyste peut ainsi reprendre les chiffres dans ses propres tableaux sans les ressaisir.
 
 \begin{figure*}[!t]
 \centering
@@ -547,19 +547,23 @@ La fiche d'une province tient sur un écran (figure~\ref{fig:ecrans}) : taux obs
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.495\textwidth]{ecran_regions}\hfill
-\includegraphics[width=0.495\textwidth]{ecran_simulateur}
-\caption{À gauche, la vue régions : carte, classement des 17 régions et provinces de la région choisie (Soum). À droite, le simulateur de leviers : le Loroum aligné sur la province médiane.}
+\includegraphics[width=0.495\textwidth]{ecran_simulateur}\hfill
+\includegraphics[width=0.495\textwidth]{ecran_post_primaire}
+\caption{À gauche, le simulateur : les variables du modèle, chacune marquée levier d'action ou signal à surveiller, et les leviers d'action de l'État pour le Loroum. À droite, la vue post-primaire : taux observés en 2022-2023 et hausse depuis 2018-2019.}
 \label{fig:regsim}
 \end{figure*}
 
 \subsection{La vue régions : piloter un territoire}
 
-La vue régions (figure~\ref{fig:regsim}) colore les 17 régions selon leur taux pondéré par les effectifs, les classe, et liste les provinces de la région choisie avec leur intervalle, leur classe et leur alerte. Elle suit le même curseur des années et produit le rapport régional en PDF, ainsi que les prévisions des provinces de la région en CSV.
+La vue régions colore les 17 régions selon leur taux pondéré par les effectifs, les classe, et liste les provinces de la région choisie avec leur intervalle, leur classe et leur alerte. Elle suit le même curseur des années et produit le rapport régional en PDF, ainsi que les prévisions des provinces de la région en CSV.
 
 \subsection{Le simulateur : avec quels leviers}
 
-Le simulateur (figure~\ref{fig:regsim}) répond à « et si les conditions changeaient ? ». Pour une province, on déplace trois curseurs, le poids du CP1, les jeunes ni à l'école ni en emploi et les places assises manquantes, et l'outil recalcule le niveau attendu avec l'elastic net sauvegardé. Aligner le Loroum sur la province médiane du pays abaisserait son niveau attendu d'environ 10 points, de 27,1 \% à 17 \% environ. C'est un ordre de grandeur pour hiérarchiser les priorités, pas un effet garanti : le simulateur l'écrit en clair.
+Le simulateur (figure~\ref{fig:regsim}) répond à « et si les conditions changeaient ? ». Pour une province, on déplace les trois variables retenues par l'elastic net et l'outil recalcule le niveau attendu : aligner le Loroum sur la province médiane l'abaisserait d'environ 10 points. Chaque variable est qualifiée : le poids du CP1 est un \emph{signal à surveiller}, non une action (il traduit entrées tardives, redoublements et départs avant le CM2) ; les jeunes sans école ni emploi relèvent d'un levier interministériel ; les places assises manquantes sont un levier direct. Sous le résultat, un tableau range les \textbf{leviers d'action de l'État} selon leur lien avec l'abandon entre les 47 provinces et l'écart de la province à la médiane : places assises (corrélation de rang +0,75), préscolaire ($-0{,}65$), enseignants débutants (+0,64), salles précaires (+0,56), enseignantes ($-0{,}52$), électricité ($-0{,}49$), eau et cantines (liens faibles). La part des parents agriculteurs, souvent citée, n'a presque aucun lien (+0,07). Ce sont des associations, pas des effets garantis : l'outil l'écrit en clair.
+
+\subsection{Le post-primaire : là où le problème grandit}
+
+La vue post-primaire montre l'abandon en 6e, 5e et 4e, par province, avec les seules valeurs observées (figure~\ref{fig:regsim}). Le taux de la province médiane passe de 9,5 \% en 2018-2019 à 18,8 \% en 2022-2023 ; 36 provinces sur 43 sont en hausse et 10 dépassent 30 \%. Quatre valeurs extrêmes (0 ou 100 \%), là où presque aucun élève n'entre en 6e, traduisent des fermetures d'écoles et sont signalées comme non interprétables. Il n'y a pas de prévision : ce taux n'est publié que pour quatre années, ce qui ne laisse aucune année pour vérifier un modèle à trois ans.
 
 \subsection{Les rapports PDF : décider hors de l'écran}
 
@@ -668,7 +672,7 @@ Le tableau~\ref{tab:innovations} résume les innovations. La plus importante n'e
 
 \subsection{Limites et suites}
 
-Neuf années par province, c'est peu : les intervalles restent larges (18 à 20 points), et les projections au-delà de trois ans ne seraient pas validées, d'où l'horizon de 2027-2028. Les provinces créées en 2025 héritent de l'historique de leur province d'origine. Les facteurs et le simulateur décrivent des associations, pas des causes : une évaluation d'impact resterait nécessaire avant de généraliser une mesure. Le nombre d'élèves qui abandonnent suppose des effectifs constants. Deux suites sont prévues : un rapport de qualité des données pour la DGESS, à partir du journal de nettoyage, des contrôles et du statut de chaque cellule, et un indice mensuel d'exposition aux fermetures d'écoles tiré des rapports du ST-ESU, pour alerter avant la sortie de l'annuaire.
+Neuf années par province, c'est peu : les intervalles restent larges (18 à 20 points), et les projections au-delà de trois ans ne seraient pas validées, d'où l'horizon de 2027-2028. Les provinces créées en 2025 héritent de l'historique de leur province d'origine. Les facteurs et le simulateur décrivent des associations, pas des causes : une évaluation d'impact resterait nécessaire avant de généraliser une mesure. Le nombre d'élèves qui abandonnent suppose des effectifs constants. La prévision du post-primaire et du secondaire, avec la même méthode, attend deux ou trois annuaires de plus. Deux autres suites sont prévues : un rapport de qualité des données pour la DGESS, à partir du journal de nettoyage, des contrôles et du statut de chaque cellule, et un indice mensuel d'exposition aux fermetures d'écoles tiré des rapports du ST-ESU, pour alerter avant la sortie de l'annuaire.
 
 %======================================================================
 \section{La reproduction}
@@ -676,7 +680,7 @@ Neuf années par province, c'est peu : les intervalles restent larges (18 à 20 
 
 \textbf{Utiliser l'outil.} En ligne : \lien. Sur un ordinateur Windows, sans Internet : \texttt{application/lancer.bat}. Sur toute machine avec Docker : \texttt{docker compose up --build} dans \texttt{application/}.
 
-\textbf{Relancer la chaîne.} Python 3.13 ou plus récent, \texttt{pip install -r requirements.txt}, puis, avec \texttt{src} dans le chemin Python, dans cet ordre : \texttt{sentinelle.collecte}, \texttt{.nettoyage}, \texttt{.transformation}, \texttt{.apurement}, \texttt{.analyse}, \texttt{.interpretation} (une commande \texttt{python -m} par étape). Chaque commande régénère ses sorties et son dépôt, et 16 tests automatiques (\texttt{python -m pytest}) vérifient les calculs clés, la cohérence entre l'analyse et l'application et la reproduction exacte des prévisions par la mise à jour annuelle ; les notebooks \texttt{01} à \texttt{04c}, exécutés, présentent chaque étape. Les modèles retenus sont sauvegardés avec une fiche (\texttt{fiche\_modele.json}) qui donne les réglages, les marges, les seuils, la qualité mesurée et les versions des bibliothèques.
+\textbf{Relancer la chaîne.} Python 3.13 ou plus récent, \texttt{pip install -r requirements.txt}, puis, avec \texttt{src} dans le chemin Python, dans cet ordre : \texttt{sentinelle.collecte}, \texttt{.nettoyage}, \texttt{.transformation}, \texttt{.apurement}, \texttt{.analyse}, \texttt{.interpretation} (une commande \texttt{python -m} par étape). Chaque commande régénère ses sorties et son dépôt, et 17 tests automatiques (\texttt{python -m pytest}) vérifient les calculs clés, la cohérence entre l'analyse et l'application et la reproduction exacte des prévisions par la mise à jour annuelle ; les notebooks \texttt{01} à \texttt{04c}, exécutés, présentent chaque étape. Les modèles retenus sont sauvegardés avec une fiche (\texttt{fiche\_modele.json}) qui donne les réglages, les marges, les seuils, la qualité mesurée et les versions des bibliothèques.
 
 \begin{table}[!t]
 \centering
@@ -696,7 +700,7 @@ Dépôt & Fichiers & Rôles et contenu \\
 \label{tab:depots}
 \end{table}
 
-\textbf{Contrôles de qualité.} Les 16 tests couvrent cinq familles : la normalisation de la cible (aller-retour exact, taux toujours entre 0 et 100 \%) ; le nommage de tous les dépôts selon la convention ; la cohérence entre l'analyse et l'application (47 provinces et quatre années servies, intervalles qui contiennent la prévision et ne rétrécissent pas avec l'horizon, cascade SHAP dont la somme redonne le niveau expliqué, simulateur qui réagit aux leviers) ; la mise à jour annuelle (reproduction exacte des prévisions, détection d'une province inconnue et d'un taux impossible) ; l'assistant hors ligne (comparaison de deux provinces, reprise de la zone de l'échange précédent, mots clés qui ne se confondent pas) , le téléchargement de la base des prévisions et la production des rapports PDF. Le code passe l'analyse statique \texttt{ruff} sans avertissement.
+\textbf{Contrôles de qualité.} Les 17 tests couvrent cinq familles : la normalisation de la cible (aller-retour exact, taux toujours entre 0 et 100 \%) ; le nommage de tous les dépôts selon la convention ; la cohérence entre l'analyse et l'application (47 provinces et quatre années servies, intervalles qui contiennent la prévision et ne rétrécissent pas avec l'horizon, cascade SHAP dont la somme redonne le niveau expliqué, simulateur qui réagit aux leviers) ; la mise à jour annuelle (reproduction exacte des prévisions, détection d'une province inconnue et d'un taux impossible) ; l'assistant hors ligne (comparaison de deux provinces, reprise de la zone de l'échange précédent, mots clés qui ne se confondent pas) , le téléchargement de la base des prévisions, le taux national, les leviers d'action, la vue post-primaire et la production des rapports PDF. Le code passe l'analyse statique \texttt{ruff} sans avertissement.
 
 \begin{table}[!t]
 \centering

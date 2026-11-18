@@ -155,6 +155,17 @@ def test_base_des_previsions_telechargeable(api):
     assert len(api.telecharger_previsions("F", "Liptako").body.decode("utf-8-sig").splitlines()) > 1
 
 
+def test_taux_national_leviers_et_post_primaire(api):
+    pays = api.national("ensemble")["pays"]
+    assert [p["annee"] for p in pays] == ["2024-2025", "2025-2026", "2026-2027", "2027-2028"]
+    assert pays[0]["taux"] == pytest.approx(6.7, abs=0.05) and pays[1]["abandons"] > 200_000
+    leviers = api.leviers_action("BF5401")["leviers"]
+    assert len(leviers) == 8 and all(-1 <= x["lien"] <= 1 for x in leviers)
+    pp = api.post_primaire()
+    assert len(pp["provinces"]) == 47 and pp["annee"] == "2022-2023"
+    assert pp["medianes"][-1]["mediane"] > pp["medianes"][0]["mediane"]
+
+
 def test_rapport_province_est_un_pdf(api):
     import rapport
     contenu = rapport.rapport_province("BF5401", "ensemble")

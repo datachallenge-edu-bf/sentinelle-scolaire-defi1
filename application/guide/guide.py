@@ -87,15 +87,24 @@ def construire() -> Path:
                "Que deviendrait le taux attendu d'une province si ses caractéristiques changeaient ? Les effets viennent du modèle "
                "linéaire validé sur des provinces non vues (il explique 64 % des écarts entre provinces).",
                ["Déplacez les curseurs, ou « Aligner sur la médiane » pour comparer à la province médiane du pays.",
+                "Chaque variable est qualifiée : le poids du CP1 est un signal à surveiller, pas une action ; les places assises "
+                "manquantes sont un levier direct.",
+                "Le tableau « leviers d'action de l'État » range les actions possibles (places assises, préscolaire, enseignants "
+                "débutants, salles précaires, enseignantes, électricité, eau, cantines) selon leur lien avec l'abandon ; en orange, "
+                "la province fait moins bien que la médiane.",
                 "Résultat à lire comme un ordre de grandeur pour fixer des priorités, pas comme un effet garanti."])
-    e += ecran("6. Mise à jour des données", "9_mise_a_jour_apercu",
+    e += ecran("6. Post-primaire", "10_post_primaire",
+               "L'abandon en 6e, 5e et 4e par province, valeurs observées : il a presque doublé entre 2018-2019 et 2022-2023 dans "
+               "la province médiane. Pas de prévision : le taux n'est publié que pour quatre années.",
+               ["Cliquez une province pour ouvrir sa fiche ; les valeurs non interprétables (écoles fermées) sont listées à part."])
+    e += ecran("7. Mise à jour des données", "9_mise_a_jour_apercu",
                "Chaque année, à la sortie de l'annuaire, les prévisions des trois années suivantes se recalculent sans réentraîner les "
                "modèles. Les données saisies sont rangées à part (data/05_mises_a_jour) et ne modifient jamais les données officielles.",
                ["Téléchargez le « Modèle CSV à remplir » (47 provinces, valeurs de l'année précédente pour repère), ou saisissez à l'écran.",
                 "Renseignez le taux d'abandon et l'effectif du primaire (filles et garçons facultatifs), puis « Calculer les prévisions ».",
                 "Vérifiez les contrôles (provinces manquantes, valeurs hors limites, ruptures détectées) et les changements de classe.",
                 "« Enregistrer » range les données et télécharge les nouvelles prévisions ; « retirer » annule la dernière année saisie."])
-    e += ecran("7. Assistant Sentinelle", "7_assistant",
+    e += ecran("8. Assistant Sentinelle", "7_assistant",
                "Le bouton « Demander à Sentinelle », en bas à droite, répond aux questions de décision à partir des données : "
                "priorités, comparaison de provinces, situation d'une région, ruptures, provinces qui résistent, filles et garçons.",
                ["Chaque réponse donne ses sources et des liens vers les fiches des provinces citées.",

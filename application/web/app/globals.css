@@ -340,7 +340,7 @@ h3 {
 
 .tuiles {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 12px;
   margin-bottom: 12px;
 }
@@ -1814,4 +1814,129 @@ h3 {
   .tuile {
     break-inside: avoid;
   }
+}
+
+/* Simulateur : nature de chaque variable et tableau des leviers d'action. */
+.levier-nature {
+  margin: 4px 0 6px;
+  font-size: 12px;
+  color: var(--texte-2);
+  border-left: 3px solid var(--drapeau-jaune);
+  padding-left: 8px;
+}
+
+.tableau-leviers {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tableau-leviers th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--texte-3);
+  font-size: 11.5px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--bordure);
+}
+
+.tableau-leviers td {
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--bordure);
+  vertical-align: top;
+}
+
+.tableau-leviers td:not(:first-child),
+.tableau-leviers th:not(:first-child) {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.tableau-leviers tr.a-ameliorer td:nth-child(3) {
+  color: var(--moyen);
+  font-weight: 700;
+}
+
+/* Vue post-primaire. */
+.tuiles.tuiles-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.barres-pp {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 18px;
+}
+
+.barre-pp {
+  display: grid;
+  grid-template-columns: 128px 1fr 52px;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  break-inside: avoid;
+}
+
+.barre-pp:hover {
+  background: var(--surface-2);
+}
+
+.barre-pp-nom {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--texte-2);
+}
+
+.barre-pp-piste {
+  height: 10px;
+  background: var(--surface-3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barre-pp-piste span {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.barre-pp-valeur {
+  text-align: right;
+  font-weight: 600;
+}
+
+.evolution-pp {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  padding-top: 10px;
+}
+
+.evolution-pp-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.evolution-pp-barre {
+  width: 46px;
+  background: var(--moyen);
+  border-radius: 4px 4px 0 0;
+}
+
+.evolution-pp-valeur {
+  font-weight: 700;
+}
+
+.texte-pp {
+  font-size: 13.5px;
+  color: var(--texte-2);
+  margin: 0;
 }

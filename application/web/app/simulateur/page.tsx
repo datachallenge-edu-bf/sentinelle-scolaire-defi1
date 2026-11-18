@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, RotateCcw } from "lucide-react";
 import Badge from "@/components/Badge";
 import { Chargement, Erreur } from "@/components/Etat";
-import { envoyer, useApi, type Leviers, type Meta, type Simulation } from "@/lib/api";
+import { envoyer, useApi, type Leviers, type LeviersAction, type Meta, type Simulation } from "@/lib/api";
 import { COULEURS_CLASSES, nombre, pourcent } from "@/lib/format";
 
 function Echelle({ prevu, simule, seuils }: { prevu: number; simule: number; seuils: { moyen: number; eleve: number } }) {
@@ -36,6 +36,7 @@ export default function Simulateur() {
   const [pcode, setPcode] = useState("BF5401");
   const { donnees: meta } = useApi<Meta>("/api/meta");
   const { donnees: l, erreur } = useApi<Leviers>(`/api/simulateur/${pcode}`);
+  const { donnees: actions } = useApi<LeviersAction>(`/api/leviers_action/${pcode}`);
   const [valeurs, setValeurs] = useState<Record<string, number>>({});
   const [resultat, setResultat] = useState<Simulation | null>(null);
 
@@ -132,6 +133,7 @@ export default function Simulateur() {
                   onChange={(e) => setValeurs({ ...valeurs, [v.variable]: Number(e.target.value) })}
                   aria-label={v.libelle}
                 />
+                {actions?.signaux[v.variable] ? <div className="levier-nature">{actions.signaux[v.variable]}</div> : null}
                 <div className="levier-reperes">
                   <span>{nombre(v.minimum, 1)}</span>
                   <span>
@@ -182,6 +184,41 @@ export default function Simulateur() {
             </div>
             <Echelle prevu={l.taux} simule={r?.taux_simule ?? l.taux} seuils={l.seuils} />
           </section>
+
+          {actions ? (
+            <section className="panneau">
+              <div className="panneau-titre">
+                <h2>{l.province} : leviers d&apos;action de l&apos;État</h2>
+                <p>
+                  Lien mesuré entre les 47 provinces (corrélation de rang avec le taux d&apos;abandon, moyennes 2016-2025) ; en
+                  orange, la province fait moins bien que la médiane. Associations, pas des effets garantis.
+                </p>
+              </div>
+              <table className="tableau-leviers">
+                <thead>
+                  <tr>
+                    <th>Action possible</th>
+                    <th>Lien</th>
+                    <th>{l.province}</th>
+                    <th>Médiane</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {actions.leviers.map((a) => (
+                    <tr key={a.variable} className={a.a_ameliorer ? "a-ameliorer" : undefined}>
+                      <td>
+                        <b>{a.action}</b>
+                        <div className="note">{a.libelle}</div>
+                      </td>
+                      <td>{a.lien > 0 ? "+" : "−"}{nombre(Math.abs(a.lien), 2)}</td>
+                      <td>{nombre(a.valeur, 1)}{a.unite === "%" ? " %" : ""}</td>
+                      <td>{nombre(a.mediane, 1)}{a.unite === "%" ? " %" : ""}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          ) : null}
         </div>
       </div>
     </>

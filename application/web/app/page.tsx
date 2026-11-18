@@ -342,6 +342,19 @@ export default function VueNationale() {
       </header>
 
       <section className="tuiles" aria-label="Indicateurs clés">
+        {n.pays?.[k] ? (
+          <div className="tuile tuile-pays" style={{ "--teinte": "#fcd116" } as React.CSSProperties} title="Moyenne des 47 provinces pondérée par leurs effectifs du primaire de 2024-2025">
+            <div className="tuile-valeur">{pourcent(n.pays[k].taux)}</div>
+            <div className="tuile-libelle">
+              <b>Burkina Faso</b> · {n.annees[k]}
+            </div>
+            <div className="note" style={{ marginTop: 4 }}>
+              {n.pays[k].abandons != null
+                ? `≈ ${nombre(n.pays[k].abandons! / 1000, 0)} 000 élèves${k > 0 ? " (prévision)" : ""}`
+                : k > 0 ? "prévision" : "observé"}
+            </div>
+          </div>
+        ) : null}
         {CLASSES.map((c) => (
           <div key={c} className="tuile" style={{ "--teinte": COULEURS_CLASSES[c] } as React.CSSProperties} title={c === "élevé" ? `Taux ≥ ${nombre(n.seuils.eleve)} %` : c === "moyen" ? `Taux entre ${nombre(n.seuils.moyen)} et ${nombre(n.seuils.eleve)} %` : `Taux < ${nombre(n.seuils.moyen)} %`}>
             <div className="tuile-valeur">

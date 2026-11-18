@@ -164,8 +164,18 @@ def national(population: Population = "ensemble"):
         sexe.append([{"region": reg, "filles": propre(float(np.nanmean(v["F"]))),
                       "garcons": propre(float(np.nanmean(v["G"])))} for reg, v in sorted(lignes.items())])
 
+    # Taux national de chaque année : moyenne des provinces pondérée par leurs effectifs de 2024-2025.
+    pays = []
+    for k, annee in enumerate(annees):
+        valeurs = [(p["serie"][k]["taux"], p["poids"]) for p in provinces if p["serie"][k]["taux"] is not None]
+        total = sum(w for _, w in valeurs)
+        pays.append({"annee": annee, "taux": round(sum(v * w for v, w in valeurs) / total, 2),
+                     # Effectifs par sexe non disponibles : le nombre d'abandons ne vaut que pour l'ensemble.
+                     "abandons": round(sum(v * w for v, w in valeurs) / 100) if population == "ensemble" else None})
+
     histo_annees = [h["annee"] for h in D.historique(t["province_pcode"].iloc[0], population)]
     return propre({
+        "pays": pays,
         "population": population, "annees": annees, "annees_historique": histo_annees,
         "seuils": _seuils(population), "provinces": provinces, "alertes": alertes, "sexe_par_region": sexe,
         "nuage_shap": _nuage_shap(population), "resistantes": _resistantes(population),
@@ -417,6 +427,75 @@ def annuler_mise_a_jour(annee: str):
 
 def _pdf(contenu: bytes, nom: str) -> Response:
     return Response(contenu, media_type="application/pdf", headers={"Content-Disposition": f'attachment; filename="{nom}"'})
+
+
+# Leviers d'action : variables sur lesquelles l'administration peut agir, avec le sens qui réduit l'abandon.
+LEVIERS_ACTION = [
+    ("deficit_places_pour_100_eleves_primaire", "baisser", "Tables-bancs et nouvelles salles de classe"),
+    ("tbs_prescolaire_region", "hausser", "Ouvrir des classes de préscolaire"),
+    ("part_enseignants_primaire_debutants", "baisser", "Accompagner les débutants, stabiliser les affectations"),
+    ("part_salles_primaire_murs_precaires", "baisser", "Remplacer les salles en matériaux précaires"),
+    ("part_enseignantes_primaire", "hausser", "Recruter et affecter davantage d'enseignantes"),
+    ("part_ecoles_primaires_electricite", "hausser", "Électrifier les écoles (solaire)"),
+    ("part_ecoles_primaires_cantine", "hausser", "Étendre les cantines scolaires"),
+    ("part_ecoles_primaires_eau_potable", "hausser", "Points d'eau potable dans les écoles"),
+]
+# Variables du modèle qui décrivent la situation sans être une action directe.
+SIGNAUX = {"part_cp1": "Signal à surveiller : un CP1 très chargé traduit des entrées tardives, des redoublements et des "
+                       "départs avant le CM2 ; on agit sur ses causes (préscolaire, suivi des élèves dès le CP1).",
+           "ni_ecole_ni_emploi_15_24_province": "Levier interministériel : programmes d'emploi et de formation des jeunes.",
+           "deficit_places_pour_100_eleves_primaire": "Levier d'action : tables-bancs et salles de classe."}
+
+
+@app.get("/api/leviers_action/{pcode}")
+def leviers_action(pcode: str):
+    """Leviers d'action : lien mesuré entre provinces (moyennes 2016-2025) et écart de la province à la médiane."""
+    m = D.base.groupby("province_pcode").mean(numeric_only=True)
+    if pcode not in m.index:
+        raise HTTPException(404, f"Province inconnue : {pcode}")
+    cible = m["abandon_primaire_precedent"]
+    sortie = []
+    for v, sens, action in LEVIERS_ACTION:
+        echelle = 100 if m[v].max() <= 1.0 else 1
+        lien = float(m[v].corr(cible, method="spearman"))
+        valeur, mediane = float(m.loc[pcode, v]) * echelle, float(m[v].median()) * echelle
+        defavorable = valeur > mediane if sens == "baisser" else valeur < mediane
+        libelle = nom_variable(v) if nom_variable(v) != v else "écoles avec cantine"
+        sortie.append({"variable": v, "libelle": libelle, "action": action, "sens": sens,
+                       "lien": round(lien, 2), "valeur": round(valeur, 1), "mediane": round(mediane, 1),
+                       "unite": "%" if echelle == 100 or v.startswith("tbs") else " pour 100 élèves",
+                       "a_ameliorer": bool(defavorable)})
+    sortie.sort(key=lambda x: (not x["a_ameliorer"], -abs(x["lien"])))
+    return propre({"pcode": pcode, "leviers": sortie, "signaux": SIGNAUX})
+
+
+@app.get("/api/post_primaire")
+def post_primaire():
+    """Abandon au post-primaire (moyenne 6e, 5e, 4e), valeurs observées 2018-2019 et 2020-2021 à 2022-2023, sans prévision."""
+    import donnees
+    statuts = pd.read_csv(donnees.BASE / "statut_cellules.csv", sep=";", encoding="utf-8-sig",
+                          usecols=["annee_scolaire", "variable", "statut"])
+    obs = statuts[(statuts["variable"] == "abandon_post_primaire_province") & (statuts["statut"] == "observée")]
+    annees = sorted(obs["annee_scolaire"].unique())
+    b = D.base.set_index(["province_pcode", "annee_scolaire"])
+    derniere = annees[-1]
+    provinces = []
+    for pcode, g in D.base.groupby("province_pcode"):
+        r = b.loc[(pcode, derniere)]
+        serie = [{"annee": a, "taux": propre(round(float(b.loc[(pcode, a), "abandon_post_primaire_province"]), 1))}
+                 for a in annees]
+        taux_dernier = float(r["abandon_post_primaire_province"])
+        # Valeur extrême là où presque aucun élève n'entre en 6e : fermetures d'écoles, taux non interprétable.
+        fiable = not ((taux_dernier <= 1 or taux_dernier >= 90) and float(r["tba_6e_province"]) < 15)
+        provinces.append({"pcode": pcode, "province": g["province_nom"].iloc[0], "region": g["region_nom"].iloc[0],
+                          "taux": round(taux_dernier, 1), "fiable": fiable, "serie": serie,
+                          "tba_6e": propre(round(float(r["tba_6e_province"]), 1)),
+                          "achevement": propre(round(float(r["achevement_post_primaire_province"]), 1))})
+    fiables = [p for p in provinces if p["fiable"]]
+    medianes = [{"annee": a, "mediane": round(float(np.median([p["serie"][k]["taux"] for p in fiables])), 1)}
+                for k, a in enumerate(annees)]
+    return propre({"annee": derniere, "annees": annees, "provinces": provinces, "medianes": medianes,
+                   "non_interpretables": len(provinces) - len(fiables)})
 
 
 @app.get("/api/telechargement/previsions")

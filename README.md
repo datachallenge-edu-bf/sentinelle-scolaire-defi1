@@ -75,7 +75,7 @@ python -m sentinelle.analyse         # étape 04 : exploration, modèles, fiabil
 python -m sentinelle.interpretation  # étape 05 : indicateurs clés, carte, rapports, dépôt
 ```
 
-Chaque commande régénère ses sorties et son dépôt. Vérifications : `python -m pytest` (16 tests : normalisation, nommage des dépôts, cohérence entre l'analyse et l'application, mise à jour annuelle, assistant, téléchargement des prévisions, rapports) et `python -m ruff check src application/api tests`. Les étapes 04 et 05 ne lisent que les sorties de l'étape 03 : elles se relancent sans les données des organisateurs. Si ces données sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.
+Chaque commande régénère ses sorties et son dépôt. Vérifications : `python -m pytest` (17 tests : normalisation, nommage des dépôts, cohérence entre l'analyse et l'application, mise à jour annuelle, assistant, téléchargement des prévisions, taux national, leviers, post-primaire, rapports) et `python -m ruff check src application/api tests`. Les étapes 04 et 05 ne lisent que les sorties de l'étape 03 : elles se relancent sans les données des organisateurs. Si ces données sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.
 
 **Tableau de bord**, sans Internet : double-cliquer `application/lancer.bat` (Windows), ou `docker compose up --build` dans `application/`, puis ouvrir http://localhost:3000.
 

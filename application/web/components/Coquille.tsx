@@ -27,6 +27,12 @@ export default function Coquille({ children }: { children: React.ReactNode }) {
     },
     { href: "/regions", libelle: "Vue régions", icone: <IconeRegions />, actif: chemin.startsWith("/regions") },
     {
+      href: "/post-primaire",
+      libelle: "Post-primaire",
+      icone: <IconeNationale />,
+      actif: chemin.startsWith("/post-primaire"),
+    },
+    {
       href: "/simulateur",
       libelle: "Simulateur de leviers",
       icone: <IconeSimulateur />,

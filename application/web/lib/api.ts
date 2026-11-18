@@ -90,6 +90,44 @@ export interface National {
   };
   resistantes: { pcode: string; province: string; region: string; observe: number; attendu: number; ecart: number }[];
   erreurs: { sentinelle: number; annee_precedente: number };
+  pays: { annee: string; taux: number; abandons: number | null }[];
+}
+
+export interface LevierAction {
+  variable: string;
+  libelle: string;
+  action: string;
+  sens: "baisser" | "hausser";
+  lien: number;
+  valeur: number;
+  mediane: number;
+  unite: string;
+  a_ameliorer: boolean;
+}
+
+export interface LeviersAction {
+  pcode: string;
+  leviers: LevierAction[];
+  signaux: Record<string, string>;
+}
+
+export interface PostPrimaireProvince {
+  pcode: string;
+  province: string;
+  region: string;
+  taux: number;
+  fiable: boolean;
+  serie: { annee: string; taux: number }[];
+  tba_6e: number | null;
+  achevement: number | null;
+}
+
+export interface PostPrimaire {
+  annee: string;
+  annees: string[];
+  provinces: PostPrimaireProvince[];
+  medianes: { annee: string; mediane: number }[];
+  non_interpretables: number;
 }
 
 export interface PointHistorique {
