@@ -1,6 +1,23 @@
 # Sentinelle Scolaire : Data Challenge Burkina 2026, défi 1
 
-Cartographie et anticipation du risque de décrochage scolaire au primaire, à partir des données remises par les organisateurs.
+Cartographie et anticipation du risque de décrochage scolaire au primaire, province par province, à partir des données remises par les organisateurs. Équipe Discerna Team.
+
+**Application en ligne : https://sentinelle-scolaire-bf.up.railway.app**
+
+| Document | Contenu |
+|---|---|
+| [`docs/documentation/documentation_sentinelle.pdf`](docs/documentation/documentation_sentinelle.pdf) | Documentation de la solution : défi, données, préparation, méthode et évaluation des modèles, résultats et interprétation des prévisions, réponse au défi, reproduction |
+| [`docs/methodologie/methodologie_donnees.pdf`](docs/methodologie/methodologie_donnees.pdf) | Document technique : collecte et nettoyage des données |
+| [`docs/methodologie/passage_decoupage_2025.pdf`](docs/methodologie/passage_decoupage_2025.pdf) | Document technique : passage au découpage de 2025 (17 régions, 47 provinces) |
+| [`application/README.md`](application/README.md) | Tableau de bord : écrans, lancement local, Docker, API |
+| [`application/DEPLOIEMENT.md`](application/DEPLOIEMENT.md) | Mise en ligne de l'application |
+
+## En bref
+
+- **Prévision** du taux d'abandon de chaque province pour 2025-2026, 2026-2027 et 2027-2028, avec un intervalle à 80 % dont la couverture est vérifiée (85 à 94 % au test). Modèle retenu parmi dix, évalué sur une année jamais vue : erreur de 3,3 points contre 4,4 pour la méthode naïve.
+- **Explication** de chaque province par les valeurs SHAP, et provinces qui résistent (niveau nettement sous celui attendu).
+- **Alerte de rupture de scolarisation** (fermetures, déplacements), AUC de 0,85 à 0,96.
+- **Tableau de bord** : carte, fiches, régions, simulateur de leviers, mise à jour annuelle des données sans réentraîner, assistant de questions-réponses, rapports PDF.
 
 ## Organisation
 
@@ -9,59 +26,58 @@ Le projet est rangé dans le dossier des données remises par les organisateurs,
 ```
 Competition_EducationBurkina/
 ├── DataPack_DCB_2026/, base principale, document du challenge   (organisateurs, lecture seule)
-├── defi1_sentinelle/               ce projet
-└── defi3_boussole/                 projet du défi 3 (autre équipe)
+└── defi1_sentinelle/               ce projet
 ```
 
 | Élément | Contenu |
 |---|---|
 | `src/sentinelle/` | Code de la chaîne de traitement, un sous-module par étape |
 | `notebooks/` | Un notebook numéroté par étape, enregistré avec ses résultats |
-| `data/` | Sorties de la chaîne : extraits bruts (01), base nettoyée (02) |
-| `depots/` | Fichiers à déposer sur la plateforme, nommés selon la convention du challenge |
-| `docs/` | Documentation (méthodologie de collecte et de nettoyage) |
+| `data/` | Sorties de la chaîne, une sous-partie par étape (`01_collecte` à `05_interpretation`) |
+| `depots/` | Fichiers à déposer sur la plateforme, nommés `DiscernaTeam_ÉTAPE_D1_RÔLE_description_vN`, avec un LISEZ-MOI par étape |
+| `application/` | Tableau de bord : API FastAPI (`api/`), site Next.js (`web/`), guide d'utilisation, Docker, déploiement |
+| `docs/` | Documentation de la solution, documents techniques, note d'intention |
 | `outputs/` | Figures et cartes |
-| `prototype/` | Prototype de la note d'intention (application web). Ses fichiers `prototype/data/` sont en partie **simulés** : la chaîne de traitement ne les lit jamais |
-| `docs/note_intention/` | Note d'intention du défi 1 et sa source LaTeX |
 
 ## Étapes
 
-| Étape | Module | Notebook | Sorties |
+| Étape | Module | Notebook | Sorties et dépôt |
 |---|---|---|---|
-| 01 Collecte | `sentinelle.collecte` | `notebooks/01_collecte.ipynb` | `data/01_collecte/`, `depots/01-collecte/` |
-| 02 Nettoyage | `sentinelle.nettoyage` | `notebooks/02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02-nettoyage/` |
-| 03 Transformation | `sentinelle.transformation` | `notebooks/03_transformation.ipynb` | `data/03_transformation/` (table d'analyse province × année, panel mensuel, indicateurs régionaux et série nationale de la base principale), `depots/03-transformation/` |
-| 03b Apurement | `sentinelle.apurement` | `notebooks/03b_apurement.ipynb` | `data/03_transformation/base_apuree/` (base provinciale de 2025 sans cellule vide, statut de chaque cellule, journal, classeur coloré) |
+| 01 Collecte | `sentinelle.collecte` | `01_collecte.ipynb` | `data/01_collecte/`, `depots/01-collecte/` |
+| 02 Nettoyage | `sentinelle.nettoyage` | `02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02-nettoyage/` |
+| 03 Transformation | `sentinelle.transformation` | `03_transformation.ipynb` | `data/03_transformation/` (table d'analyse, panels), `depots/03-transformation/` |
+| 03b Apurement | `sentinelle.apurement` | `03b_apurement.ipynb` | `data/03_transformation/base_apuree/` (base sans cellule vide, statut de chaque cellule, journal) |
+| 04 Analyse | `sentinelle.analyse` | `04a_exploration.ipynb`, `04b_modelisation.ipynb`, `04c_explicabilite.ipynb` | `data/04_analyse/` (exploration, prévisions, fiabilité, modèles sauvegardés), `depots/04-analyse/` |
+| 05 Interprétation | `sentinelle.interpretation` | (tableau de bord `application/`) | `data/05_interpretation/` (indicateurs clés, carte d'alerte, rapports PDF), `depots/05-interpretation/` |
 
 ## Démarrer après un clonage
 
-Le dépôt contient les données produites par la chaîne (`data/` et `depots/`), prêtes à consulter et à déposer. Il ne contient pas les données des organisateurs, réservées au concours : elles ne sont nécessaires que pour relancer la chaîne.
+Le dépôt contient les données produites par la chaîne (`data/`), prêtes à consulter. Il ne contient pas les données des organisateurs, réservées au concours : elles ne sont nécessaires que pour relancer les étapes 01 à 03.
 
 1. Récupérer dans l'espace du challenge le Data Pack (`DataPack_DCB_2026/`) et la base principale (`DONNEES_STATISTQUES_ PRESCOLAIRE ET PRIMAIRE_2016_2025_DCB.xlsx`), et les placer dans un dossier `Competition_EducationBurkina/`.
-2. Cloner le dépôt dans ce même dossier :
-   ```powershell
-   cd Competition_EducationBurkina
-   git clone https://github.com/datachallenge-edu-bf/sentinelle-scolaire-defi1.git defi1_sentinelle
-   ```
-3. Pour relancer la chaîne, installer l'environnement (section suivante). Les dossiers `data/` et `depots/` sont recréés à l'identique.
+2. Placer ce projet dans ce même dossier, sous le nom `defi1_sentinelle`.
+3. Installer l'environnement et relancer (section suivante).
 
 ## Relancer
 
-Depuis ce dossier, avec Python 3.11 ou plus récent :
+Depuis ce dossier, avec Python 3.13 ou plus récent :
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-$env:SENTINELLE_EQUIPE = "E07"     # code équipe utilisé dans le nom des dépôts
 $env:PYTHONPATH = "src"
-python -m sentinelle.collecte       # étape 01
-python -m sentinelle.nettoyage      # étape 02
-python -m sentinelle.transformation # étape 03
-python -m sentinelle.apurement      # étape 03b
+python -m sentinelle.collecte        # étape 01
+python -m sentinelle.nettoyage       # étape 02
+python -m sentinelle.transformation  # étape 03
+python -m sentinelle.apurement       # étape 03b
+python -m sentinelle.analyse         # étape 04 : exploration, modèles, fiabilité, dépôt
+python -m sentinelle.interpretation  # étape 05 : indicateurs clés, carte, rapports, dépôt
 ```
 
-Si les données des organisateurs sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.
+Chaque commande régénère ses sorties et son dépôt. Les étapes 04 et 05 ne lisent que les sorties de l'étape 03 : elles se relancent sans les données des organisateurs. Si ces données sont rangées ailleurs que dans le dossier parent, indiquer leur dossier par `$env:SENTINELLE_DONNEES`.
+
+**Tableau de bord**, sans Internet : double-cliquer `application/lancer.bat` (Windows), ou `docker compose up --build` dans `application/`, puis ouvrir http://localhost:3000.
 
 ## La base principale DGESS
 

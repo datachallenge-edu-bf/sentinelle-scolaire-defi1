@@ -25,6 +25,7 @@ ETAPES = {
     5: "05-interpretation",
 }
 ROLES = {"engineer", "architect", "analyst", "scientist"}
+DOCUMENTS = config.RACINE / "docs"
 
 
 def slug(texte: str) -> str:
@@ -218,6 +219,10 @@ def exporter_nettoyage(version: int = 1) -> pd.DataFrame:
     """Dépôt de l'étape 02 : base GeoPackage, tables propres, métadonnées, journal, contrôles, contours web."""
     source = config.SORTIE_NETTOYAGE
     fichiers = [(source / f, role, desc, contenu) for f, role, desc, contenu in TABLES_NETTOYAGE]
+    fichiers.append((DOCUMENTS / "methodologie" / "methodologie_donnees.pdf", "architect",
+                     "documentation-technique-collecte-nettoyage",
+                     "Document technique : sources retenues et écartées, méthode de collecte et de nettoyage, "
+                     "référentiel à deux découpages, contrôles, limites, reproduction."))
     for chemin in sorted(config.CONTOURS_WEB.glob("*.geojson")):
         fichiers.append((chemin, "engineer", f"contours-web-{chemin.stem.replace('_', '-')}",
                          f"Contours simplifiés pour le web ({chemin.stem}), sans trou entre entités, WGS 84."))
@@ -316,6 +321,12 @@ def exporter_transformation(version: int = 1) -> pd.DataFrame:
          "Description des bases du modèle au format standard Frictionless Data Package : schémas, clés, liens."),
         (source / "metadonnees" / "dictionnaire_bases_modele.html", "architect", "dictionnaire-lisible-bases-modele",
          "Dictionnaire lisible des bases du modèle (s'ouvre dans un navigateur, imprimable en PDF)."),
+        (DOCUMENTS / "methodologie" / "passage_decoupage_2025.pdf", "architect",
+         "documentation-technique-passage-decoupage-2025",
+         "Document technique : table de passage vers les 17 régions et 47 provinces de 2025, méthode de calcul de "
+         "chaque variable pour les provinces scindées, contrôles, limites."),
+        (DOCUMENTS / "documentation" / "figures" / "fig_parcours.png", "architect", "plan-parcours-des-donnees",
+         "Plan du parcours des données, des sources à la décision : cinq étapes, modules, dépôts et rôles."),
         (source / "controles_transformation.csv", "engineer", "controles-transformation",
          "Contrôles : unicité des lignes, cible renseignée, aucune variable venant du futur, variables décrites, "
          "jointure avec la carte de 2025, cohérence des tables régionale et nationale."),
@@ -487,6 +498,9 @@ def exporter_interpretation(version: int = 1) -> pd.DataFrame:
         (source / "rapports" / "rapports_provinces.zip", "analyst", "fiches-47-provinces",
          "Fiche de décision de chacune des 47 provinces : prévision, intervalle, évolution, facteurs, filles et "
          "garçons, rupture, pistes d'action (PDF)."),
+        (DOCUMENTS / "documentation" / "documentation_sentinelle.pdf", "analyst", "documentation-solution",
+         "Documentation de la solution (15 pages au plus, plan du challenge) : défi, données, préparation, méthode "
+         "et évaluation des modèles, résultats et interprétation des prévisions, réponse au défi, reproduction."),
         (source / "guide_sentinelle.pdf", "analyst", "guide-utilisation-tableau-de-bord",
          "Guide d'utilisation du tableau de bord Sentinelle Scolaire."),
         (source / "application_sentinelle_source.zip", "analyst", "tableau-de-bord-sentinelle-code",

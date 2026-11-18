@@ -1,0 +1,420 @@
+%%%% documentation_sentinelle.tex
+%%%% Data Challenge Burkina 2026, édition Éducation, défi 1 : documentation de la solution (15 pages au plus).
+%%%% Mise en page reprise du gabarit de la note d'intention. Évaluation anonyme : aucun nom, aucune affiliation.
+%%%% Compilation : tectonic documentation_sentinelle.tex (ou pdflatex puis bibtex). Figures : python figures.py.
+
+\documentclass{article}
+
+\usepackage{ijcai26}
+
+\usepackage{times}
+\usepackage{url}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,french]{babel}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[colorlinks=true,
+            citecolor=blue!70!black,
+            linkcolor=red!60!black,
+            urlcolor=blue!70!black,
+            pdfauthor={},
+            pdftitle={Sentinelle Scolaire : documentation de la solution},
+            pdfcreator={},
+            pdfproducer={}]{hyperref}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{placeins}
+
+\urlstyle{same}
+\emergencystretch=1.5em
+\graphicspath{{figures/}}
+
+\addto\captionsfrench{%
+  \renewcommand{\tablename}{Tableau}%
+  \renewcommand{\figurename}{Figure}%
+  \renewcommand{\refname}{Références}%
+}
+
+\newcommand{\sol}{Sentinelle Scolaire}
+\newcommand{\lien}{\url{https://sentinelle-scolaire-bf.up.railway.app}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{\sol{}\\[3pt]
+{\large\mdseries Cartographier et anticiper le risque de décrochage scolaire au primaire, province par province}}
+\author{
+Data Challenge Burkina 2026, édition Éducation, défi 1\\
+\affiliations
+Documentation de la solution \\
+Application en ligne : \lien
+}
+
+\begin{document}
+\renewcommand{\tablename}{Tableau}\renewcommand{\figurename}{Figure}\renewcommand{\refname}{Références}
+\raggedbottom
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+\begin{abstract}
+\sol{} est un outil d'aide à la décision qui dit où le décrochage au primaire risque d'être le plus fort au Burkina Faso, pourquoi, et comment l'anticiper. À partir des annuaires de la DGESS, des données de l'INSD, des rapports du ST-ESU et des déplacés internes, nous avons construit un panel de 47 provinces (découpage de 2025) sur neuf années scolaires. Dix modèles de prévision ont été comparés dans le temps, sur des années jamais vues : le modèle retenu, un retour amorti vers le niveau habituel de chaque province, prévoit le taux d'abandon avec une erreur moyenne de 3,3 points, contre 4,4 pour la méthode naïve, et donne un intervalle à 80 \% dont la couverture mesurée va de 85 à 94 \%. Les prévisions vont jusqu'en 2027-2028. Une alerte distincte repère les ruptures de scolarisation (AUC de 0,85 à 0,96), et les valeurs SHAP expliquent chaque province. Pour 2025-2026, le taux national prévu est de 8,0 \%, soit environ 266\,000 élèves ; 12 provinces sont en risque élevé et 11 en alerte de rupture, surtout dans le nord et l'est. L'outil est en ligne : carte, fiches, simulateur, mise à jour annuelle sans réentraînement, assistant et rapports PDF.
+\end{abstract}
+
+%======================================================================
+\section{Le défi}
+%======================================================================
+
+\textbf{La question.} Le défi 1 demande où le risque de décrochage scolaire est le plus fort, par région, et comment l'anticiper~\cite{dcb_document}. Nous la reformulons ainsi : \emph{pour chaque province, quel sera le taux d'abandon du primaire l'an prochain et les deux années suivantes, avec quelle incertitude, qu'est-ce qui l'explique, et où une rupture brutale de la scolarisation menace-t-elle ?}
+
+\textbf{Pourquoi c'est urgent.} En 2024-2025, le taux d'achèvement du primaire n'est que de 51,6 \% : sur deux enfants qui entrent au CP1, un seul atteint la fin du CM2~\cite{dgess_base}. Les écarts entre régions vont de un à huit, et les régions les plus touchées par la crise sécuritaire cumulent fermetures d'écoles et déplacements de population~\cite{stesu,conasur}. Le système ne mesure l'abandon qu'après coup, dans l'annuaire de l'année suivante.
+
+\textbf{Pour qui.} Le ministère et ses directions régionales et provinciales, qui doivent répartir des moyens limités (enseignants, cantines, places assises, programmes de seconde chance) et préparer la continuité éducative là où des écoles risquent de fermer.
+
+\textbf{Notre réponse.} Une chaîne complète, des données brutes à la décision, en cinq étapes (figure~\ref{fig:parcours}) : un modèle de prévision évalué honnêtement, une explication province par province, une alerte de rupture, et un tableau de bord en ligne qui transforme ces résultats en actions.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig_parcours}
+\caption{Parcours des données de \sol{}, des sources à la décision, et rôles qui portent chaque étape. Chaque étape est un module Python présenté par un notebook exécuté et produit son dépôt.}
+\label{fig:parcours}
+\end{figure*}
+
+%======================================================================
+\section{Les données}
+%======================================================================
+
+\textbf{Sources.} Toutes les données proviennent des fichiers remis par les organisateurs : la base principale de la DGESS~\cite{dgess_base} et le Data Pack de 167 fichiers~\cite{dcb_guide}, complétés par trois annuaires régionaux de l'INSD absents du pack~\cite{insd_annuaires}. Sur 347 fichiers remis, 118 sont retenus et répartis en 33 jeux de données ; chacun des 55 fichiers écartés l'est pour un motif écrit (hors du champ du primaire, géométries, doublons). Le tableau~\ref{tab:sources} résume ce que chaque source apporte.
+
+\begin{table}[!t]
+\centering
+\footnotesize
+\begin{tabularx}{\columnwidth}{@{}L{2.75cm} Y L{1.15cm}@{}}
+\toprule
+Source & Apport & Niveau \\
+\midrule
+Annuaires du primaire DGESS (8 éditions)~\cite{dgess_annuaires} & Taux d'abandon, de redoublement et de promotion (cible), effectifs, maîtres, salles, équipement, distance & Province \\
+Base principale DGESS~\cite{dgess_base} & Admission, scolarisation, achèvement, CEP, parité ; contrôle des totaux & Région \\
+RGPH 2019, INSD~\cite{insd_rgph,insd_pauvrete} & Pauvreté, enfants hors de l'école, travail des enfants, mariage précoce, alphabétisation & Commune \\
+ST-ESU~\cite{stesu} & Écoles fermées et rouvertes, élèves concernés & Région, province \\
+CONASUR~\cite{conasur} & Déplacés internes et enfants déplacés & Commune \\
+COD-AB~\cite{codab} & 351 communes, anciens et nouveaux codes, contours & Commune \\
+\bottomrule
+\end{tabularx}
+\caption{Principales sources. Le registre des sources (dépôt 01) donne pour chaque fichier son adresse d'origine et son empreinte SHA-256.}
+\label{tab:sources}
+\end{table}
+
+\textbf{Unité d'analyse.} La province, dans le découpage de juillet 2025 (17 régions, 47 provinces), sur neuf années scolaires (2016-2017 à 2024-2025), soit 423 lignes pour l'ensemble des élèves et 846 pour les filles et les garçons. La cible est le taux d'abandon du primaire publié par la DGESS ; le taux de l'année $t$ est mesuré entre $t-1$ et $t$.
+
+\textbf{Limites connues.} Trois limites sont signalées dans les dépôts et prises en compte par le modèle. (1) La répartition filles-garçons des effectifs de 2024-2025 est invraisemblable pour 31 provinces : seul le total est utilisé pour cette année. (2) Les rapports du ST-ESU, lus dans des PDF, ne sont fiables qu'au niveau régional, et ne recensent plus les fermetures à partir d'octobre 2023. (3) Les années de crise produisent des variations d'effectifs de plus de 30 \% (fermetures massives) : ces \emph{ruptures} concernent 8 \% des lignes mais 73 \% de la variance du taux d'abandon. Elles sont traitées à part (section~\ref{sec:methode}).
+
+%======================================================================
+\section{La préparation}
+%======================================================================
+
+La collecte et le nettoyage sont décrits en détail dans deux documents techniques déposés avec les étapes 02 et 03 ; nous en donnons ici l'essentiel.
+
+\textbf{Collecte (dépôt 01).} Un catalogue déclaratif indique, pour chaque jeu, les fichiers, les pages et les tableaux à extraire. Les lignes sont copiées sans modification et gardent leur fichier, leur page et leur ligne d'origine. Les fichiers des organisateurs restent en lecture seule : le code refuse d'écrire dans leur dossier.
+
+\textbf{Nettoyage (dépôt 02).} Trois pièges signalés par le challenge ont été traités. \emph{Les noms de provinces} s'écrivent de plusieurs façons : une table d'alias les ramène à un code unique. \emph{Les anciennes et nouvelles régions} ne se recoupent pas : le référentiel part de la commune, qui porte à la fois son code de l'ancien découpage (13 régions, 45 provinces), utilisé par toutes les données de la DGESS, et celui de 2025. \emph{L'année scolaire} n'est pas l'année civile : toutes les tables sont indexées par année scolaire. Chaque correction est consignée dans un journal (valeur avant, valeur après, motif), et des contrôles automatiques comparent la somme des provinces aux totaux régionaux et nationaux publiés.
+
+\textbf{Transformation (dépôt 03).} Le panel province-année réunit la cible et 79 variables connues à la date $t$ : passé scolaire, effectifs, encadrement, équipement, contexte social du RGPH 2019, exposition à la crise. Le passage au découpage de 2025 répartit les effectifs des deux provinces scindées (Soum et Tapoa) selon des clés communales de l'INSD. La \emph{base apurée} ne contient aucune cellule vide : les valeurs impossibles sont recodées, les manquants imputés par une méthode choisie par test, et le statut de chaque cellule (observée, valeur publiée de l'INSD, imputée) est conservé. Règle centrale : \textbf{seules les cibles observées servent à entraîner et à évaluer les modèles}.
+
+\begin{table}[!t]
+\centering
+\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Y r@{}}
+\toprule
+Contrôle ou statut & Résultat \\
+\midrule
+Provinces présentes chaque année (flux, effectifs) & 45 sur 45 \\
+Garçons + filles = total & 0 écart \\
+Abandon + redoublement + promotion = 100 & 423 lignes sur 423 \\
+Somme des provinces = total régional publié & 98,8 \% des 3\,236 comparaisons \\
+Corrections consignées dans le journal & 2\,410 \\
+\midrule
+Cellules de la base apurée observées & 87,7 \% \\
+Imputées (méthode choisie par test) & 6,0 \% \\
+Complétées par le passage à 2025 & 5,1 \% \\
+Valeurs publiées par l'INSD & 1,2 \% \\
+\bottomrule
+\end{tabularx}
+\caption{Qualité de la préparation : contrôles automatiques et statut des 29\,187 cellules de la base apurée. Les écarts aux totaux publiés sont listés un par un dans les dépôts 02 et 03.}
+\label{tab:qualite}
+\end{table}
+
+Le tableau~\ref{tab:qualite} chiffre la qualité obtenue : près de neuf cellules sur dix sont des valeurs observées, et aucune valeur observée n'a été modifiée par l'apurement (25\,595 cellules comparées, aucun écart).
+
+%======================================================================
+\section{La méthode et son évaluation}
+\label{sec:methode}
+%======================================================================
+
+\subsection{Trois briques}
+
+\textbf{Brique 1, prévision.} Le taux d'abandon est transformé en $z = \mathrm{logit}(\text{taux}/100)$ avant modélisation, puis ramené en pourcentage : les prévisions et les intervalles restent entre 0 et 100 \% et deviennent asymétriques, comme les taux eux-mêmes. Dix modèles sont comparés : trois références (taux de l'année précédente, niveau habituel de la province, niveau rétréci vers la région), quatre modèles appris (elastic net~\cite{elasticnet}, ridge avec effet province, LightGBM~\cite{lightgbm}, LightGBM après élimination récursive guidée par SHAP), et trois combinaisons. Le \emph{niveau habituel} est la moyenne des taux passés de la province, années de rupture exclues. Le \emph{retour amorti} part de ce niveau et laisse l'écart de la dernière année se résorber d'un facteur $\varphi$ par an~\cite{hyndman} :
+\begin{equation}
+z_{t+h} = \bar z_p + \varphi^{h}\,(z_t - \bar z_p),
+\end{equation}
+où $\bar z_p$ est le niveau habituel de la province $p$ et $h$ l'horizon (1 à 3 ans). La sélection des variables (importance par permutation, élimination guidée par SHAP) et le choix des réglages ($\varphi$, pénalités, profondeur des arbres) sont refaits dans chaque pli, sur la seule information de l'apprentissage : aucune fuite du futur.
+
+\textbf{Intervalle.} Un intervalle conforme à 80 \%~\cite{vovk,angelopoulos} est calculé sur l'échelle logit à partir des erreurs hors échantillon, puis dénormalisé. Sa marge ne diminue jamais avec l'horizon : à trois ans, l'incertitude est au moins celle de deux ans.
+
+\textbf{Brique 2, explication.} Pourquoi une province a-t-elle un niveau habituel élevé ? Deux modèles sont validés en prédisant des provinces qu'ils n'ont pas vues (validation croisée par groupes de provinces) : un elastic net donne l'effet chiffré de cinq variables (utilisé par le simulateur), et un LightGBM réduit à huit variables par élimination récursive donne, par les valeurs SHAP~\cite{shap}, la contribution de chaque variable au niveau de chaque province. Les variables de persistance (taux passés) sont exclues : expliquer le niveau par le niveau serait circulaire.
+
+\textbf{Brique 3, alerte de rupture.} Une régression logistique pénalisée, aux classes équilibrées, estime le risque qu'une province voie ses effectifs varier de plus de 30 \% l'année suivante, à partir de sept signaux connus à l'avance : évolution et baisse des effectifs, ruptures passées, abandon de l'année, abandons pour orpaillage, jeunes hors de l'école.
+
+\subsection{Un protocole d'évaluation sans complaisance}
+
+Les modèles sont évalués \emph{dans le temps} : on apprend sur les années passées et on prévoit l'année suivante, sur trois plis de sélection (cibles 2021-2022 à 2023-2024), puis sur un \textbf{test final}, 2024-2025, qui n'a jamais servi à choisir quoi que ce soit. Trois mesures, en points de taux après dénormalisation : l'erreur absolue moyenne, la corrélation de rang entre taux prévus et observés, et le rappel du quintile le plus à risque (part des provinces réellement les plus touchées que la prévision retrouve).
+
+\textbf{Règle de choix, fixée avant de regarder le test.} Le niveau habituel est le modèle à battre. Un autre modèle n'est retenu que s'il réduit l'erreur des plis de sélection d'au moins 3 \% \emph{et} fait mieux sur au moins deux plis sur trois : un écart plus faible s'explique par le hasard des plis. À défaut, un modèle qui suit la situation de l'année (retour amorti, combinaison) est préféré s'il est aussi précis, à 1 \% près.
+
+\subsection{Résultats de l'évaluation}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_comparaison_modeles}
+\caption{Erreur des dix modèles à un an, sur les plis de sélection (choix) et sur le test final 2024-2025 (jamais vu). Ensemble des élèves.}
+\label{fig:modeles}
+\end{figure}
+
+\textbf{Aucun modèle appris ne bat durablement le niveau habituel} (figure~\ref{fig:modeles}). Les modèles appris gagnent un peu les années de crise et perdent les années calmes : les variables provinciales ne prévoient pas bien les chocs d'une année sur l'autre, qui sont surtout communs à tout le pays. Le décrochage est \emph{structurel et persistant}. C'est un résultat en soi, et nous le présentons tel quel plutôt que de retenir un modèle plus complexe sur la foi d'un seul test.
+
+Le \textbf{retour amorti} ($\varphi = 0{,}2$ pour l'ensemble, $0{,}3$ par sexe) est aussi précis que le niveau habituel sur les plis de sélection (6,27 contre 6,32 points) et il est retenu par la règle. Au test final, son erreur est de \textbf{3,34 points à un an} contre 3,41 pour le niveau habituel et \textbf{4,44 pour la méthode naïve} (reconduire le taux de l'année) ; à deux et trois ans, elle est de 3,67 et 3,01 points (tableau~\ref{tab:fiabilite}). Il retrouve 75 \% des provinces du quintile le plus à risque. Par sexe, l'erreur au test est de 4,15 points à un an et de 3,61 à deux ans.
+
+\begin{table}[!t]
+\centering
+\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Y r r r@{}}
+\toprule
+Mesure (test final 2024-2025) & 1 an & 2 ans & 3 ans \\
+\midrule
+Erreur, retour amorti (points) & 3,34 & 3,67 & 3,01 \\
+Erreur, niveau habituel & 3,41 & 3,55 & 3,01 \\
+Erreur, taux de l'année précédente & 4,44 & 15,15 & 10,62 \\
+Rappel du quintile le plus à risque & 0,75 & 0,62 & 0,75 \\
+Couverture de l'intervalle à 80 \% & 85 \% & 88 \% & 85 \% \\
+Couverture, par sexe & 86 \% & 94 \% & 92 \% \\
+\bottomrule
+\end{tabularx}
+\caption{Fiabilité de la prévision au test final, ensemble des élèves (40 provinces à cible observée hors rupture), sauf dernière ligne.}
+\label{tab:fiabilite}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.96\columnwidth]{fig_couverture}
+\caption{Couverture de l'intervalle à 80 \% au test final : la part des taux réels tombés dans l'intervalle annoncé dépasse la cible à tous les horizons.}
+\label{fig:couverture}
+\end{figure}
+
+\textbf{L'intervalle tient sa promesse} : 85 à 88 \% des taux réels tombent dans l'intervalle annoncé à 80 \% (figure~\ref{fig:couverture}). Sa largeur moyenne, 18 à 20 points, est le prix honnête de la volatilité des taux provinciaux : la classe de risque est plus fiable que le chiffre exact, et c'est elle que le tableau de bord met en avant.
+
+\textbf{L'explication se généralise} à des provinces non vues : l'elastic net explique 64 \% des écarts entre provinces, le LightGBM réduit 52 \% (47 et 45 \% par sexe). \textbf{L'alerte de rupture discrimine bien} : AUC de 0,87, 0,85 et 0,91 sur les plis de sélection et de \textbf{0,96 au test final} ; au test, les deux ruptures de l'année figurent dans le quart des provinces au score le plus élevé (figure~\ref{fig:auc}).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.55\columnwidth]{fig_alerte_auc}
+\caption{AUC de l'alerte de rupture par année cible (foncé : test final).}
+\label{fig:auc}
+\end{figure}
+
+%======================================================================
+\section{Les résultats}
+%======================================================================
+
+\subsection{Où le risque est le plus fort}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_carte_2025_2026}
+\caption{Classes de risque de décrochage prévues pour 2025-2026 (faible sous 8,4 \%, élevé au-delà de 14,2 \%) et provinces en alerte de rupture (hachures).}
+\label{fig:carte}
+\end{figure}
+
+Pour 2025-2026, \textbf{12 provinces sont en risque élevé}, 17 en risque moyen et 18 en risque faible ; \textbf{11 sont en alerte de rupture} (figure~\ref{fig:carte}). Le risque se concentre dans le nord et l'est, là où la crise sécuritaire est la plus forte : les régions du Soum (23,2 \% en moyenne pondérée), du Liptako (21,4 \%) et de la Tapoa (15,8 \%) cumulent risque élevé et alertes de rupture. Le tableau~\ref{tab:top} donne les provinces les plus exposées.
+
+\textbf{Taux et volume ne désignent pas les mêmes régions.} En nombre d'élèves, les régions les plus touchées sont les plus peuplées : le Yaadga (environ 42\,400 élèves en 2025-2026), le Guiriko (28\,000), le Koulsé (27\,200), le Nakambé (25\,500), le Nando (22\,100) et même le Kadiogo (20\,300), dont le taux n'est que de 3,3 \%. Le Soum, au taux le plus élevé, compte environ 2\,700 élèves concernés. L'outil donne les deux lectures : le taux pour l'urgence et l'intensité des actions, le volume pour dimensionner les moyens.
+
+\begin{table}[!t]
+\centering
+\footnotesize
+\begin{tabular}{@{}l l r r r@{}}
+\toprule
+Province & Région & 2024-25 & 2025-26 [IC 80 \%] & 2027-28 \\
+\midrule
+Loroum & Yaadga & 34,4 & 27,1 [13,1 ; 47,8] & 25,5 \\
+Karo-Peli & Soum & 18,7 & 23,6 [11,1 ; 43,2] & 24,8 \\
+Djelgodji & Soum & 18,7 & 23,2 [10,9 ; 42,6] & 24,3 \\
+Seno & Liptako & 18,3 & 23,0 [10,8 ; 42,4] & 24,2 \\
+Yagha & Liptako & 19,4 & 22,8 [10,7 ; 42,1] & 23,7 \\
+Oudalan & Liptako & 18,7 & 18,6 [8,5 ; 36,0] & 18,6 \\
+\bottomrule
+\end{tabular}
+\caption{Provinces au taux d'abandon prévu le plus élevé (\%) ; toutes sont en alerte de rupture.}
+\label{tab:top}
+\end{table}
+
+\subsection{Comment le risque va évoluer}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_trajectoire_nationale}
+\caption{Taux d'abandon national (moyenne des provinces pondérée par les effectifs) : observé de 2016-2017 à 2024-2025, prévu jusqu'en 2027-2028, avec le nombre estimé d'élèves qui abandonnent.}
+\label{fig:national}
+\end{figure}
+
+\textbf{Le taux national remonte.} Après le pic de 2022-2023, l'année 2024-2025 a été exceptionnellement basse (6,7 \%). Le modèle prévoit \textbf{8,0 \% en 2025-2026}, puis 8,4 et 8,5 \% : environ \textbf{266\,000 élèves} en 2025-2026 et 282\,000 en 2027-2028, si les effectifs restent ceux de 2024-2025 (figure~\ref{fig:national}). Cette remontée n'est pas une tendance inventée : de nombreuses provinces étaient en 2024-2025 sous leur niveau habituel, et le retour amorti les y ramène progressivement.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_trajectoire_loroum}
+\caption{Loroum : taux observés, années de rupture (bandes), prévision et intervalle à 80 \%. Le taux exceptionnel de 2024-2025 revient vers le niveau habituel de la province.}
+\label{fig:loroum}
+\end{figure}
+
+\textbf{Province par province, la logique est lisible.} Le Loroum, au taux exceptionnel de 34,4 \% en 2024-2025, redescend vers son niveau habituel : 27,1 \%, puis 25,8 et 25,5 \% (figure~\ref{fig:loroum}). À l'inverse, les provinces du Soum et du Liptako, qui ont connu une accalmie en 2024-2025, remontent vers 23 à 25 \%. Le nombre de provinces en risque moyen passe de 17 à 21 entre 2025-2026 et 2027-2028 (figure~\ref{fig:classes}).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_classes_par_annee}
+\caption{Provinces par classe de risque, de l'année observée aux trois années prévues.}
+\label{fig:classes}
+\end{figure}
+
+\subsection{Pourquoi : les facteurs du risque}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_shap}
+\caption{Valeurs SHAP : un point par province ; à droite du trait, la variable élève le niveau habituel d'abandon ; la couleur donne la valeur de la variable.}
+\label{fig:shap}
+\end{figure}
+
+\begin{table}[!t]
+\centering
+\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Y r@{}}
+\toprule
+Variable (elastic net, provinces non vues : $R^2 = 0{,}64$) & Effet sur le niveau habituel \\
+\midrule
+Poids du CP1 dans les effectifs & +0,97 point par point de \% \\
+Jeunes de 15-24 ans ni à l'école ni en emploi & +0,08 point par point de \% \\
+Places assises manquantes pour 100 élèves & +0,16 point par place \\
+\bottomrule
+\end{tabularx}
+\caption{Effets chiffrés utilisés par le simulateur de leviers (associations mesurées entre provinces, toutes choses égales par ailleurs dans le modèle).}
+\label{tab:effets}
+\end{table}
+
+La figure~\ref{fig:shap} montre, province par province, ce qui élève ou abaisse le niveau habituel d'abandon. \textbf{Le poids du CP1} vient en tête : une province où le CP1 pèse lourd dans les effectifs perd ses élèves au fil du cycle (jusqu'à +3,2 points). Viennent ensuite \textbf{les jeunes de 16 à 18 ans hors de l'école}, \textbf{les jeunes ni à l'école ni en emploi} (l'école perd son sens quand elle ne débouche sur rien) et \textbf{le nombre d'élèves par maître}. Une part plus élevée d'enseignantes va de pair avec un risque plus faible. Le tableau~\ref{tab:effets} chiffre les effets retenus par l'elastic net : un point de pourcentage de plus pour le poids du CP1 s'accompagne d'un niveau d'abandon plus élevé de près d'un point.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_liens_indicateurs}
+\caption{Indicateurs les plus liés au taux prévu (corrélation de rang sur les 47 provinces) : rouge, plus l'indicateur est élevé, plus le risque l'est ; vert, l'inverse.}
+\label{fig:liens}
+\end{figure}
+
+Au-delà des variables du modèle, les 64 indicateurs de la base sont reliés au risque (figure~\ref{fig:liens}). Les provinces où \textbf{les enfants sont hors de l'école} (corrélation de 0,77 à 0,81), où \textbf{les filles sont mariées tôt} (0,70) et où les salles sont précaires ont un taux prévu plus élevé ; celles où le post-primaire est fréquenté et achevé, où les adultes sont alphabétisés (de $-0{,}74$ à $-0{,}81$) et où les écoles sont électrifiées ($-0{,}51$) en ont un plus faible. Ce sont des associations entre provinces, pas des causes démontrées : elles orientent l'analyse, elles ne prouvent pas l'effet d'une mesure.
+
+\subsection{Ce qui va mieux qu'attendu, et pour qui}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_resistantes}
+\caption{Provinces qui résistent : niveau habituel observé, nettement sous celui attendu d'après leurs caractéristiques (prédit sans voir la province).}
+\label{fig:resistantes}
+\end{figure}
+
+\textbf{Des provinces résistent.} Le Komandjari a un niveau habituel de 8,7 \% alors que ses caractéristiques en laissaient attendre 16,2 \% ; l'Oudalan, le Sourou, la Léraba et le Sanguié font aussi mieux que prévu (figure~\ref{fig:resistantes}). L'écart est mesuré avec un modèle qui n'a pas vu la province : ce n'est pas un artefact d'ajustement. Ces provinces sont des terrains à étudier, et si leurs pratiques se confirment, à reproduire.
+
+\textbf{Les garçons décrochent davantage} au primaire : leur taux prévu dépasse celui des filles dans 39 provinces sur 47 (12,1 \% contre 9,5 \% en moyenne). Les filles sont plus exposées dans le Liptako : dans le Séno (+3,1 points) et le Yagha (+1,8 point), où le mariage précoce est très fréquent (65 \% des filles de 17 ans sont mariées dans le Yagha, contre 32 \% en médiane) (figure~\ref{fig:fg}).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_filles_garcons}
+\caption{Taux d'abandon prévu en 2025-2026, filles et garçons, par région (moyenne des provinces).}
+\label{fig:fg}
+\end{figure}
+
+%======================================================================
+\section{La réponse au défi}
+%======================================================================
+
+\subsection{Un outil pour décider}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{ecran_nationale}
+\caption{Vue nationale du tableau de bord en ligne : curseur des années, chiffres clés, carte, valeurs SHAP, classement des 47 provinces, filles et garçons, provinces qui résistent, classes d'une année à l'autre.}
+\label{fig:ecran}
+\end{figure*}
+
+\sol{} est en ligne (\lien) et fonctionne aussi sans Internet. Il ne demande aucune compétence technique (figure~\ref{fig:ecran}).
+\begin{itemize}
+\item \textbf{Vue nationale} : chiffres clés et carte pour l'année choisie, de 2024-2025 observé à 2027-2028, avec un bouton qui fait défiler les années ; un panneau d'alertes liste les provinces à surveiller.
+\item \textbf{Fiche province} : prévision et intervalle, historique depuis 2016-2017, facteurs SHAP, filles et garçons, score de rupture, sur un seul écran.
+\item \textbf{Vue régions} : taux pondéré, classement, provinces de la région choisie.
+\item \textbf{Simulateur de leviers} : effet attendu, sur le niveau d'une province, d'un rapprochement de ses caractéristiques de la médiane du pays (par exemple $-10$ points pour le Loroum).
+\item \textbf{Rapports PDF} générés à la demande : national, régional et une fiche par province, avec des pistes d'action liées à ses facteurs.
+\item \textbf{Assistant} : il répond aux questions d'un décideur (« quelles provinces prioriser dans le Liptako ? », « quel est le niveau de pauvreté au Loroum ? ») en interrogeant les données du tableau de bord, et cite ses sources (figure~\ref{fig:ecrans}).
+\item \textbf{Mise à jour annuelle} : à la sortie de l'annuaire, un fichier CSV ou une saisie à l'écran suffit pour recalculer les prévisions des trois années suivantes, sans réentraîner les modèles ; le calcul reproduit exactement celui du modèle, et les données saisies sont rangées à part des données officielles (figure~\ref{fig:maj}).
+\end{itemize}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{ecran_mise_a_jour}
+\caption{Mise à jour annuelle : saisie ou import des données de la nouvelle année, contrôles, nouvelles prévisions et changements de classe, avant enregistrement.}
+\label{fig:maj}
+\end{figure}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[height=5.6cm]{ecran_province}\hfill
+\includegraphics[height=5.6cm]{ecran_assistant}
+\caption{À gauche, fiche d'une province (Loroum). À droite, l'assistant répond à partir des données et cite ses sources.}
+\label{fig:ecrans}
+\end{figure*}
+
+\subsection{Ce que l'outil change, et les pistes d'action}
+
+Les directions peuvent cibler en priorité les neuf provinces à la fois en risque élevé et en alerte de rupture (Loroum, Karo-Peli, Djelgodji, Seno, Yagha, Oudalan, Dyamongou, Gobnangou, Kompienga), et y préparer la continuité éducative : écoles d'accueil, enseignement à distance, recensement des élèves déplacés. Les facteurs orientent les leviers : suivi des élèves dès le CP1, passerelles de seconde chance pour les adolescents non scolarisés, affectation d'enseignants vers les classes surchargées, places assises, prévention des mariages précoces. Les provinces qui résistent indiquent où chercher des pratiques qui marchent.
+
+\subsection{Ce qui est nouveau}
+
+\begin{itemize}
+\item \textbf{Séparer l'abandon et la rupture} : deux phénomènes différents, deux modèles, au lieu d'un modèle brouillé par les années de crise.
+\item \textbf{Une évaluation honnête} : dix modèles, un test jamais vu, une règle de choix écrite à l'avance, et le constat assumé que le plus simple suffit.
+\item \textbf{Des intervalles dont la couverture est vérifiée}, qui restent entre 0 et 100 \%.
+\item \textbf{Les provinces qui résistent}, mesurées sur des provinces non vues.
+\item \textbf{Une mise à jour annuelle sans data scientist}, et des rapports PDF générés automatiquement.
+\item \textbf{Un assistant} qui exploite tous les indicateurs de la base et cite ses sources.
+\end{itemize}
+
+\subsection{Limites et suites}
+
+Neuf années par province, c'est peu : les intervalles restent larges, et les projections au-delà de trois ans ne seraient pas validées, d'où l'horizon de 2027-2028. Les provinces créées en 2025 héritent de l'historique de leur province d'origine. Les facteurs décrivent des associations, pas des causes. Le nombre d'élèves qui abandonnent suppose des effectifs constants. Deux suites sont prévues : un rapport de qualité des données pour la DGESS (le journal de nettoyage, les contrôles et le statut de chaque cellule existent déjà) et un indice mensuel d'exposition aux fermetures d'écoles à partir des rapports du ST-ESU, pour alerter avant la sortie de l'annuaire. Le modèle doit être réentraîné tous les deux ou trois ans.
+
+%======================================================================
+\section{La reproduction}
+%======================================================================
+
+\textbf{Utiliser l'outil.} En ligne : \lien. Sur un ordinateur Windows, sans Internet : \texttt{application/lancer.bat}. Sur toute machine avec Docker : \texttt{docker compose up --build} dans \texttt{application/}.
+
+\textbf{Relancer la chaîne.} Python 3.13 ou plus récent, \texttt{pip install -r requirements.txt}, puis, avec \texttt{src} dans le chemin Python, dans cet ordre : \texttt{sentinelle.collecte}, \texttt{.nettoyage}, \texttt{.transformation}, \texttt{.apurement}, \texttt{.analyse}, \texttt{.interpretation} (une commande \texttt{python -m} par étape). Chaque commande régénère ses sorties et son dépôt ; les notebooks \texttt{01} à \texttt{04c}, exécutés, présentent chaque étape. Les modèles retenus sont sauvegardés avec une fiche (\texttt{fiche\_modele.json}) qui donne les réglages, les marges, les seuils, la qualité mesurée et les versions des bibliothèques.
+
+\textbf{Dépôts et documents techniques.} Les dépôts suivent la convention \texttt{EQUIPE\_ÉTAPE\_DÉFI\_RÔLE\_description\_vN} et contiennent chacun un fichier LISEZ-MOI. Le détail de la collecte et du nettoyage, et celui du passage au découpage de 2025, sont décrits dans deux documents techniques déposés avec les étapes 02 et 03 ; le code du modèle et ses notebooks sont déposés avec l'étape 04, et le code du tableau de bord avec l'étape 05.
+
+\bibliographystyle{named}
+\bibliography{references}
+
+\end{document}
