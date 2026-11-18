@@ -1,4 +1,4 @@
-"""Dossier unique à déposer sur la plateforme, rangé par dépôt (01_collecte à 05_interpretation).
+"""Dossier unique à déposer sur la plateforme, rangé par catégorie (Code, Donnees, Documentation).
 
 Chaque fichier suit le modèle du document du challenge, EQUIPE_ÉTAPE_DÉFI_RÔLE_description_vN, et appartient à une
 seule étape : le code est découpé en une archive par étape. La plateforme accepte 20 fichiers de 50 Mo au plus.
@@ -12,7 +12,7 @@ base finale diffère de la base de travail sur deux points, appliqués ici et d�
 Le code garde les noms courts en interne ; la correspondance est la table ``RENOMMEES_2019``.
 
 Lancement, depuis ``defi1_sentinelle`` : ``python -m sentinelle.soumission``
-Sortie : ``soumission/<dépôt>/`` (ignoré par Git), à téléverser tel quel.
+Sortie : ``soumission/<catégorie>/`` (ignoré par Git), à téléverser tel quel.
 """
 
 from __future__ import annotations
@@ -31,6 +31,7 @@ from .depots import DOSSIERS, ETAPES
 SORTIE = config.RACINE / "soumission"
 LIEN_APPLICATION = "https://sentinelle-scolaire-bf.up.railway.app"
 LIMITE_OCTETS = 50 * 1024 * 1024
+CATEGORIES = {"Code": "Code", "Données": "Donnees", "Documentation": "Documentation"}
 
 # Variables publiées une seule fois (INSD, RGPH 2019, volume 3) et répétées chaque année scolaire.
 RENOMMEES_2019 = {v: f"{v}_2019" for v in [
@@ -86,8 +87,8 @@ DOCUMENTS = [
     (3, "architect", config.RACINE / "docs/methodologie/passage_decoupage_2025.pdf",
      "document-technique-passage-decoupage-2025",
      "Document technique : passage des données au découpage administratif de 2025."),
-    (5, "analyst", config.RACINE / "docs/documentation/documentation_sentinelle.pdf", "documentation-solution",
-     "**Documentation de la solution** (format IJCAI, 14 pages) : données, méthode, performances, prévisions, "
+    (5, "analyst", config.RACINE / "docs/documentation/documentation_sentinelle.pdf", "rapport-sentinelle",
+     "**Rapport Sentinelle** : documentation de la solution (format IJCAI, 14 pages) : données, méthode, performances, prévisions, "
      "application, limites."),
     (5, "analyst", config.RACINE / "application/web/public/guide_sentinelle.pdf",
      "guide-utilisation-tableau-de-bord", "Guide d'utilisation du tableau de bord, écran par écran."),
@@ -221,14 +222,15 @@ def _lisez_moi(fichiers: list[tuple[str, str, str, str]], ecartes: list[str]) ->
               "Défi 1, cartographie et anticipation du risque de décrochage scolaire par province (découpage de "
               "2025), avec prévisions pour 2025-2026, 2026-2027 et 2027-2028.", "",
               f"**Application en ligne :** {LIEN_APPLICATION}", "",
-              "Les fichiers sont rangés par dépôt (section 4 du document du challenge) et nommés selon le modèle "
-              "`EQUIPE_ÉTAPE_DÉFI_RÔLE_description_vN` : le nom de la solution, `SENTINELLE`, tient lieu de nom "
-              "d'équipe (évaluation à l'aveugle). Un fichier appartient à une seule étape ; le code est donc découpé "
-              "en une archive par étape. Décompressées au même endroit, les cinq archives de code redonnent le "
-              "projet complet.", ""]
-    for dossier in DOSSIERS.values():
-        lignes += [f"## {dossier}", "", "| Fichier | Catégorie | Contenu |", "|---|---|---|"]
-        lignes += [f"| `{nom}` | {categorie} | {texte} |" for d, categorie, nom, texte in fichiers if d == dossier]
+              "Les fichiers sont rangés selon les trois catégories de la plateforme (Code, Données, Documentation) "
+              "et nommés selon le modèle du document du challenge, `EQUIPE_ÉTAPE_DÉFI_RÔLE_description_vN` : le nom "
+              "de la solution, `SENTINELLE`, tient lieu de nom d'équipe (évaluation à l'aveugle), `D1` désigne le "
+              "défi 1 et l'étape renvoie au dépôt (`01_collecte` à `05_interpretation`). Un fichier appartient à "
+              "une seule étape ; le code est donc découpé en une archive par étape. Décompressées au même endroit, "
+              "les cinq archives de code redonnent le projet complet.", ""]
+    for categorie in ["Code", "Données", "Documentation"]:
+        lignes += [f"## {categorie}", "", "| Dépôt | Fichier | Contenu |", "|---|---|---|"]
+        lignes += [f"| {d} | `{nom}` | {texte} |" for d, c, nom, texte in fichiers if c == categorie]
         lignes.append("")
     lignes += [
         "## Base finale : ce qui change par rapport à la base de travail", "",
@@ -305,13 +307,17 @@ def preparer() -> dict[str, list[tuple[str, int]]]:
     resume.append((DOSSIERS[5], "Documentation", lisez_moi, "Ce fichier : contenu de chaque dépôt."))
     fichiers.append((5, "Documentation", lisez_moi, _lisez_moi(resume, ecartes).encode("utf-8"), ""))
 
+    # Un dossier par catégorie de la plateforme, sans accent ; dans chacun, les fichiers dans l'ordre des étapes.
+    for vide in sorted(SORTIE.glob("*"), reverse=True) if SORTIE.exists() else []:
+        if vide.is_dir() and not any(vide.iterdir()):
+            vide.rmdir()
     bilan: dict[str, list[tuple[str, int]]] = {}
-    for etape, categorie, nom_fichier, octets, _ in sorted(fichiers, key=lambda f: f[0]):
+    for etape, categorie, nom_fichier, octets, _ in sorted(fichiers, key=lambda f: (f[0], f[2])):
         assert len(octets) <= LIMITE_OCTETS, (nom_fichier, len(octets))
-        dossier = SORTIE / DOSSIERS[etape]
+        dossier = SORTIE / CATEGORIES[categorie]
         dossier.mkdir(parents=True, exist_ok=True)
         (dossier / nom_fichier).write_bytes(octets)
-        bilan.setdefault(DOSSIERS[etape], []).append((f"[{categorie}] {nom_fichier}", len(octets)))
+        bilan.setdefault(CATEGORIES[categorie], []).append((nom_fichier, len(octets)))
     total = sum(len(f[3]) for f in fichiers)
     assert len(fichiers) <= 20 and total <= 500 * 1024 * 1024, (len(fichiers), total)
     return bilan
