@@ -145,6 +145,16 @@ def test_mots_cles_ne_se_confondent_pas():
 
 # Livrables -------------------------------------------------------------------------------------------
 
+def test_base_des_previsions_telechargeable(api):
+    import io
+    r = api.telecharger_previsions("ensemble")
+    t = pd.read_csv(io.BytesIO(r.body), sep=";", decimal=",", encoding="utf-8-sig")
+    assert len(t) == 47 * 4 and t["province_pcode"].nunique() == 47
+    prevu = t[t["nature"] == "prévision"]
+    assert (prevu["borne_basse_80_pct"] <= prevu["taux_abandon_pct"]).all()
+    assert len(api.telecharger_previsions("F", "Liptako").body.decode("utf-8-sig").splitlines()) > 1
+
+
 def test_rapport_province_est_un_pdf(api):
     import rapport
     contenu = rapport.rapport_province("BF5401", "ensemble")

@@ -10,7 +10,7 @@ import { Carte, Graphique } from "@/components/dynamique";
 import { Chargement, Erreur } from "@/components/Etat";
 import Localisation from "@/components/Localisation";
 import { Bande47, Comparaison, Courbe } from "@/components/MiniVisuels";
-import { IconeRapport } from "@/components/Icones";
+import { IconeRapport, IconeTableur } from "@/components/Icones";
 import TiroirAlertes from "@/components/TiroirAlertes";
 import { usePopulation } from "@/components/usePopulation";
 import { useApi, type Carte as DonneesCarte, type Classe, type National, type ProvinceNationale } from "@/lib/api";
@@ -328,6 +328,13 @@ export default function VueNationale() {
           <BasculePopulation valeur={population} changer={setPopulation} />
           <CurseurAnnees annees={n.annees} valeur={k} changer={changerAnnee} />
           <TiroirAlertes alertes={n.alertes} population={population} />
+          <a
+            className="bouton secondaire"
+            href={`/api/telechargement/previsions?population=${population}`}
+            title="Base des prévisions 2025-2028 (CSV pour Excel) : taux, intervalles, classes, abandons estimés"
+          >
+            <IconeTableur taille={18} /> Données
+          </a>
           <a className="bouton" href={`/api/rapport/national?population=${population}`} title="Rapport national à télécharger">
             <IconeRapport taille={18} /> Rapport
           </a>

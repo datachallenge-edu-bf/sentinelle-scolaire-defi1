@@ -419,6 +419,34 @@ def _pdf(contenu: bytes, nom: str) -> Response:
     return Response(contenu, media_type="application/pdf", headers={"Content-Disposition": f'attachment; filename="{nom}"'})
 
 
+@app.get("/api/telechargement/previsions")
+def telecharger_previsions(population: Population = "ensemble", region: str | None = None):
+    """Base des prévisions en CSV pour Excel : une ligne par province et par année, de 2024-2025 à 2027-2028."""
+    n = national(population)
+    lignes = []
+    for p in n["provinces"]:
+        if region and p["region"] != region:
+            continue
+        for s in p["serie"]:
+            lignes.append({
+                "province_pcode": p["pcode"], "province": p["province"], "region": p["region"],
+                "province_avant_2025": p["ancienne_province"], "province_creee_en_2025": "oui" if p["scindee"] else "non",
+                "population": POPULATIONS[population], "annee_scolaire": s["annee"], "nature": s["nature"],
+                "taux_abandon_pct": s["taux"], "borne_basse_80_pct": s["bas"], "borne_haute_80_pct": s["haut"],
+                "classe_de_risque": s["classe"], "eleves_2024_2025": int(p["poids"]) if p["poids"] else None,
+                "abandons_estimes": round(s["taux"] * p["poids"] / 100) if p["poids"] else None,
+                "score_rupture_2025_2026": p["score_rupture"], "risque_de_rupture": p["rupture"],
+            })
+    if not lignes:
+        raise HTTPException(404, f"Région inconnue : {region}")
+    # Séparateur « ; » et virgule décimale : le fichier s'ouvre tel quel dans Excel en français.
+    contenu = pd.DataFrame(lignes).to_csv(sep=";", decimal=",", index=False).encode("utf-8-sig")
+    suffixe = f"_{region}" if region else ""
+    nom = f"sentinelle_previsions_2025_2028{suffixe}_{population}.csv"
+    return Response(contenu, media_type="text/csv; charset=utf-8",
+                    headers={"Content-Disposition": f'attachment; filename="{nom}"'})
+
+
 @app.get("/api/rapport/national")
 def rapport_national(population: Population = "ensemble"):
     import rapport

@@ -68,7 +68,9 @@ def construire() -> Path:
                "garçons, provinces qui résistent, évolution des classes d'une année à l'autre.",
                ["Choisissez l'année avec le curseur (2024-2025 observé, puis prévisions) ; le bouton lecture fait défiler les années.",
                 "Survolez une province pour voir son taux et son intervalle ; zoomez pour lire les noms ; cliquez pour ouvrir sa fiche.",
-                "Le bouton « Rapport » télécharge le rapport national en PDF."])
+                "Le bouton « Rapport » télécharge le rapport national en PDF ; le bouton « Données » télécharge la base des "
+                "prévisions 2025-2028 (CSV qui s'ouvre dans Excel) : taux, intervalle, classe, abandons estimés et risque de "
+                "rupture de chaque province, pour la population choisie."])
     e += ecran("2. Alertes", "6_alertes",
                "Le bouton « Alertes » ouvre la liste des provinces en alerte de rupture et de celles dont le risque élevé augmente.",
                ["Cliquez une province pour ouvrir sa fiche ; Échap ferme le panneau."])
@@ -79,7 +81,8 @@ def construire() -> Path:
                 "« Rapport PDF » produit la fiche de décision de la province, avec ses pistes d'action."])
     e += ecran("4. Vue régions", "3_regions",
                "Taux de chaque région (moyenne de ses provinces pondérée par les effectifs), classement, provinces de la région choisie.",
-               ["Cliquez une région sur la carte ou dans le classement ; « Rapport » télécharge le rapport régional."])
+               ["Cliquez une région sur la carte ou dans le classement ; « Rapport » télécharge le rapport régional, "
+                "« Données » les prévisions de ses provinces en CSV."])
     e += ecran("5. Simulateur de leviers", "8_simulateur_scenario",
                "Que deviendrait le taux attendu d'une province si ses caractéristiques changeaient ? Les effets viennent du modèle "
                "linéaire validé sur des provinces non vues (il explique 64 % des écarts entre provinces).",

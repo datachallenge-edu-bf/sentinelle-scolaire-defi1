@@ -7,7 +7,7 @@ import BasculePopulation from "@/components/BasculePopulation";
 import CurseurAnnees from "@/components/CurseurAnnees";
 import { Carte, Graphique } from "@/components/dynamique";
 import { Chargement, Erreur } from "@/components/Etat";
-import { IconeRapport } from "@/components/Icones";
+import { IconeRapport, IconeTableur } from "@/components/Icones";
 import TiroirAlertes from "@/components/TiroirAlertes";
 import { usePopulation } from "@/components/usePopulation";
 import { useApi, type Carte as DonneesCarte, type Classe, type National, type ProvinceNationale } from "@/lib/api";
@@ -182,9 +182,18 @@ export default function VueRegions() {
               {pourcent(region.taux)} en {annee} · {region.provinces.length} provinces · {region.alertes} alerte{region.alertes > 1 ? "s" : ""} de rupture
             </p>
             </div>
-            <a className="bouton secondaire petit" href={`/api/rapport/region/${encodeURIComponent(region.region)}?population=${population}`}>
-              <IconeRapport taille={16} /> Rapport
-            </a>
+            <div style={{ display: "flex", gap: 6 }}>
+              <a
+                className="bouton secondaire petit"
+                href={`/api/telechargement/previsions?population=${population}&region=${encodeURIComponent(region.region)}`}
+                title="Prévisions 2025-2028 des provinces de la région (CSV pour Excel)"
+              >
+                <IconeTableur taille={16} /> Données
+              </a>
+              <a className="bouton secondaire petit" href={`/api/rapport/region/${encodeURIComponent(region.region)}?population=${population}`}>
+                <IconeRapport taille={16} /> Rapport
+              </a>
+            </div>
           </div>
           <ul className="liste-provinces">
             {region.provinces.map((p) => {

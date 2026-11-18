@@ -91,6 +91,15 @@ export function IconeAlerte(p: P) {
   );
 }
 
+export function IconeTableur(p: P) {
+  return (
+    <Cadre {...p}>
+      <rect x="4" y="4.5" width="16" height="15" rx="2" />
+      <path d="M4 9.5h16M4 14.5h16M10 9.5v10" />
+    </Cadre>
+  );
+}
+
 export function IconeRapport(p: P) {
   return (
     <Cadre {...p}>
