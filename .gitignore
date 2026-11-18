@@ -23,3 +23,7 @@ desktop.ini
 # Application : clé secrète et dossier de déploiement assemblé
 .env
 application/deploiement/
+
+# Trop lourds pour GitHub : d�pos�s sur la plateforme equation
+*.gpkg
+depots/
