@@ -80,7 +80,8 @@ CODE_ETAPE = {
 EXCLUS_CODE = {"node_modules", ".next", "deploiement", "__pycache__", ".pytest_cache", ".ruff_cache",
                ".ipynb_checkpoints"}
 FICHIERS_EXCLUS_CODE = {".env", "next-env.d.ts", "tsconfig.tsbuildinfo"}
-SUFFIXES_EXCLUS_CODE = {".pyc", ".log", ".blg", ".aux", ".out"}
+# Les classeurs Excel sont déposés avec les données ; l'application ne les lit pas.
+SUFFIXES_EXCLUS_CODE = {".pyc", ".log", ".blg", ".aux", ".out", ".xlsx"}
 DOCUMENTS = [
     (2, "architect", config.RACINE / "docs/methodologie/methodologie_donnees.pdf",
      "document-technique-collecte-nettoyage-donnees",
@@ -141,8 +142,13 @@ def _table_deposee(chemin: Path) -> bytes:
 
 
 def classeur_depose(source: Path) -> bytes:
-    """Classeur coloré de la base apurée, avec les mêmes changements que la base déposée."""
+    """Classeur coloré de la base apurée : la seule feuille de la base, avec les changements de la base déposée.
+
+    Le journal, les contrôles et le statut de chaque cellule sont déposés à part, en CSV, avec l'étape 03.
+    """
     classeur = load_workbook(source)
+    for nom in [n for n in classeur.sheetnames if n != "base_apuree"]:
+        del classeur[nom]
     feuille = classeur["base_apuree"]
     entetes = [c.value for c in feuille[1]]
     for indice in sorted((i + 1 for i, v in enumerate(entetes) if v in RETIREES), reverse=True):
@@ -152,11 +158,16 @@ def classeur_depose(source: Path) -> bytes:
             for cellule in ligne:
                 if isinstance(cellule.value, str) and MOTIF.search(cellule.value):
                     cellule.value = renommer_texte(cellule.value)
-    lisez_moi = classeur["Lisez-moi"]
-    lisez_moi.cell(row=lisez_moi.max_row + 2, column=1, value=(
-        "Version déposée : les colonnes de suivi interne (" + ", ".join(RETIREES) + ") sont retirées, leur "
-        "information étant dans les feuilles Journal et Rapport par variable ; les variables du recensement "
-        "de 2019, publiées une seule fois et répétées chaque année, portent le suffixe _2019."))
+    tampon = io.BytesIO()
+    classeur.save(tampon)
+    return tampon.getvalue()
+
+
+def classeur_donnees(source: Path) -> bytes:
+    """Classeur de données sans ses feuilles de texte (« lisez-moi », « variables ») : le dictionnaire est en CSV."""
+    classeur = load_workbook(source)
+    for nom in [n for n in classeur.sheetnames if n.lower() in {"lisez-moi", "variables"}]:
+        del classeur[nom]
     tampon = io.BytesIO()
     classeur.save(tampon)
     return tampon.getvalue()
@@ -201,6 +212,8 @@ def _archive_etape(etape: int) -> tuple[bytes, list[str]]:
                 z.writestr(f.name, renommer_texte(f.read_text(encoding="utf-8")).encode("utf-8"))
             elif f.suffix == ".xlsx" and "base-apuree" in f.name:
                 z.writestr(f.name, classeur_depose(f))
+            elif f.suffix == ".xlsx":
+                z.writestr(f.name, classeur_donnees(f))
             else:
                 z.write(f, f.name)
     return tampon.getvalue(), ecartes
@@ -298,8 +311,8 @@ def preparer() -> dict[str, list[tuple[str, int]]]:
          f"Base finale pour les filles et les garçons : {len(sexe)} lignes, {base_deposee(sexe).shape[1]} colonnes."),
         (3, "Données", nom(3, "engineer", "classeur-base-finale", "xlsx"),
          classeur_depose(BASE / "base_defi1_apuree.xlsx"),
-         "Base finale en classeur, cellules colorées selon leur statut, avec journal, rapport par variable et "
-         "contrôles."),
+         "Base finale en classeur, cellules colorées selon leur statut (blanc observé, vert INSD, jaune imputé, "
+         "orange complété)."),
         (3, "Données", nom(3, "architect", "dictionnaire-base-finale", "csv"), _ecrire_csv(dictionnaire_depose()),
          "Dictionnaire des colonnes de la base finale : libellé, unité, calcul, source, limites."),
     ]
