@@ -1,4 +1,7 @@
-"""Dossier unique à déposer sur la plateforme : Code, Données, Documentation (20 fichiers au plus, 50 Mo chacun).
+"""Dossier unique à déposer sur la plateforme, rangé par dépôt (01_collecte à 05_interpretation).
+
+Chaque fichier suit le modèle du document du challenge, EQUIPE_ÉTAPE_DÉFI_RÔLE_description_vN, et appartient à une
+seule étape : le code est découpé en une archive par étape. La plateforme accepte 20 fichiers de 50 Mo au plus.
 
 Les fichiers viennent des dépôts de chaque étape (``depots/``) et des documents compilés. La version déposée de la
 base finale diffère de la base de travail sur deux points, appliqués ici et décrits dans le LISEZ-MOI :
@@ -9,7 +12,7 @@ base finale diffère de la base de travail sur deux points, appliqués ici et d�
 Le code garde les noms courts en interne ; la correspondance est la table ``RENOMMEES_2019``.
 
 Lancement, depuis ``defi1_sentinelle`` : ``python -m sentinelle.soumission``
-Sortie : ``soumission/`` (ignoré par Git), à téléverser tel quel.
+Sortie : ``soumission/<dépôt>/`` (ignoré par Git), à téléverser tel quel.
 """
 
 from __future__ import annotations
@@ -23,7 +26,7 @@ import pandas as pd
 from openpyxl import load_workbook
 
 from . import config
-from .depots import DOSSIERS
+from .depots import DOSSIERS, ETAPES
 
 SORTIE = config.RACINE / "soumission"
 LIEN_APPLICATION = "https://sentinelle-scolaire-bf.up.railway.app"
@@ -47,25 +50,47 @@ MOTIF = re.compile(r"\b(" + "|".join(map(re.escape, RENOMMEES_2019)) + r")\b")
 
 BASE = config.DONNEES / "03_transformation" / "base_apuree"
 ROLE_ARCHIVE = {1: "engineer", 2: "engineer", 3: "engineer", 4: "scientist", 5: "analyst"}
-CODE = ["src", "notebooks", "tests", "application", "README.md", "requirements.txt", "pyproject.toml",
-        ".gitignore", ".gitattributes", ".dockerignore", "data/LISEZ-MOI.md",
-        # Sorties légères que l'application relit : elle démarre sans relancer toute la chaîne.
-        "data/02_nettoyage/contours_web", "data/03_transformation/base_apuree",
-        "data/03_transformation/dictionnaire_variables_modele.csv",
-        "data/03_transformation/metadonnees/dictionnaire_bases_modele.csv", "data/04_analyse"]
+# Code de chaque étape. Les chemins partent de la racine du projet : les cinq archives, décompressées au même
+# endroit, redonnent le projet complet. Les modules communs et les fichiers d'installation sont dans chacune.
+COMMUN = ["src/sentinelle/__init__.py", "src/sentinelle/config.py", "src/sentinelle/lecture.py",
+          "src/sentinelle/indicateurs.py", "src/sentinelle/cartes.py", "src/sentinelle/depots.py",
+          "README.md", "requirements.txt", "pyproject.toml", ".gitignore", ".gitattributes"]
+CODE_ETAPE = {
+    1: ("code-collecte-extraction-sources", "Code de la collecte : catalogue des sources, extraction, registre "
+        "et notebook de l'étape.", ["src/sentinelle/collecte", "notebooks/01_collecte.ipynb"]),
+    2: ("code-nettoyage-base-geopackage", "Code du nettoyage : harmonisation des noms, contrôles des totaux, base "
+        "GeoPackage et notebook de l'étape.", ["src/sentinelle/nettoyage", "notebooks/02_nettoyage.ipynb"]),
+    3: ("code-transformation-apurement", "Code de la transformation (panels, passage au découpage de 2025) et de "
+        "l'apurement (base finale sans cellule vide), avec les notebooks.",
+        ["src/sentinelle/transformation", "src/sentinelle/apurement", "notebooks/03_transformation.ipynb",
+         "notebooks/03b_apurement.ipynb"]),
+    4: ("code-prevision-explication-alerte", "Code de l'analyse : exploration, prévisions avec intervalles, "
+        "explication SHAP, alerte de rupture, fiabilité, avec les notebooks exécutés.",
+        ["src/sentinelle/analyse", "notebooks/04a_exploration.ipynb", "notebooks/04b_modelisation.ipynb",
+         "notebooks/04c_explicabilite.ipynb"]),
+    5: ("code-tableau-de-bord-rapports", "Code de l'interprétation et du tableau de bord (API FastAPI, site "
+        "Next.js, Dockerfile), tests, sources de la documentation et sorties légères que l'application relit.",
+        ["src/sentinelle/interpretation", "src/sentinelle/soumission.py", "application", "tests", ".dockerignore",
+         "docs/documentation", "data/LISEZ-MOI.md", "data/02_nettoyage/contours_web",
+         "data/03_transformation/base_apuree", "data/03_transformation/dictionnaire_variables_modele.csv",
+         "data/03_transformation/metadonnees/dictionnaire_bases_modele.csv", "data/04_analyse"]),
+}
 EXCLUS_CODE = {"node_modules", ".next", "deploiement", "__pycache__", ".pytest_cache", ".ruff_cache",
                ".ipynb_checkpoints"}
 FICHIERS_EXCLUS_CODE = {".env", "next-env.d.ts", "tsconfig.tsbuildinfo"}
+SUFFIXES_EXCLUS_CODE = {".pyc", ".log", ".blg", ".aux", ".out"}
 DOCUMENTS = [
-    (config.RACINE / "docs/documentation/documentation_sentinelle.pdf", "documentation-solution",
+    (2, "architect", config.RACINE / "docs/methodologie/methodologie_donnees.pdf",
+     "document-technique-collecte-nettoyage-donnees",
+     "Document technique : collecte, nettoyage et contrôle des données."),
+    (3, "architect", config.RACINE / "docs/methodologie/passage_decoupage_2025.pdf",
+     "document-technique-passage-decoupage-2025",
+     "Document technique : passage des données au découpage administratif de 2025."),
+    (5, "analyst", config.RACINE / "docs/documentation/documentation_sentinelle.pdf", "documentation-solution",
      "**Documentation de la solution** (format IJCAI, 14 pages) : données, méthode, performances, prévisions, "
      "application, limites."),
-    (config.RACINE / "application/web/public/guide_sentinelle.pdf", "guide-utilisation-tableau-de-bord",
-     "Guide d'utilisation du tableau de bord, écran par écran."),
-    (config.RACINE / "docs/methodologie/methodologie_donnees.pdf", "methodologie-collecte-nettoyage-donnees",
-     "Document technique : collecte, nettoyage et contrôle des données."),
-    (config.RACINE / "docs/methodologie/passage_decoupage_2025.pdf", "methodologie-passage-decoupage-2025",
-     "Document technique : passage des données au découpage administratif de 2025."),
+    (5, "analyst", config.RACINE / "application/web/public/guide_sentinelle.pdf",
+     "guide-utilisation-tableau-de-bord", "Guide d'utilisation du tableau de bord, écran par écran."),
 ]
 
 
@@ -177,28 +202,33 @@ def _archive_etape(etape: int) -> tuple[bytes, list[str]]:
     return tampon.getvalue(), ecartes
 
 
-def _archive_code() -> bytes:
+def _archive_code(etape: int) -> bytes:
     tampon = io.BytesIO()
     with zipfile.ZipFile(tampon, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-        for element in CODE:
+        for element in COMMUN + CODE_ETAPE[etape][2]:
             chemin = config.RACINE / element
             fichiers = [chemin] if chemin.is_file() else sorted(chemin.rglob("*")) if chemin.exists() else []
             for f in fichiers:
                 relatif = f.relative_to(config.RACINE)
-                if f.is_file() and not EXCLUS_CODE & set(relatif.parts) and f.name not in FICHIERS_EXCLUS_CODE:
+                if (f.is_file() and not EXCLUS_CODE & set(relatif.parts) and f.name not in FICHIERS_EXCLUS_CODE
+                        and f.suffix not in SUFFIXES_EXCLUS_CODE):
                     z.write(f, relatif.as_posix())
     return tampon.getvalue()
 
 
-def _lisez_moi(fichiers: dict[str, list[tuple[str, str]]], ecartes: list[str]) -> str:
+def _lisez_moi(fichiers: list[tuple[str, str, str, str]], ecartes: list[str]) -> str:
     lignes = ["# Sentinelle Scolaire : fichiers déposés", "",
               "Défi 1, cartographie et anticipation du risque de décrochage scolaire par province (découpage de "
               "2025), avec prévisions pour 2025-2026, 2026-2027 et 2027-2028.", "",
               f"**Application en ligne :** {LIEN_APPLICATION}", "",
-              "Les noms suivent la convention du challenge : `SENTINELLE_ÉTAPE_D1_RÔLE_description_vN`.", ""]
-    for categorie, liste in fichiers.items():
-        lignes += [f"## {categorie}", "", "| Fichier | Contenu |", "|---|---|"]
-        lignes += [f"| `{nom}` | {texte} |" for nom, texte in liste]
+              "Les fichiers sont rangés par dépôt (section 4 du document du challenge) et nommés selon le modèle "
+              "`EQUIPE_ÉTAPE_DÉFI_RÔLE_description_vN` : le nom de la solution, `SENTINELLE`, tient lieu de nom "
+              "d'équipe (évaluation à l'aveugle). Un fichier appartient à une seule étape ; le code est donc découpé "
+              "en une archive par étape. Décompressées au même endroit, les cinq archives de code redonnent le "
+              "projet complet.", ""]
+    for dossier in DOSSIERS.values():
+        lignes += [f"## {dossier}", "", "| Fichier | Catégorie | Contenu |", "|---|---|---|"]
+        lignes += [f"| `{nom}` | {categorie} | {texte} |" for d, categorie, nom, texte in fichiers if d == dossier]
         lignes.append("")
     lignes += [
         "## Base finale : ce qui change par rapport à la base de travail", "",
@@ -220,69 +250,70 @@ def _lisez_moi(fichiers: dict[str, list[tuple[str, str]]], ecartes: list[str]) -
                    "dépasse la limite de 50 Mo par fichier. Ses tables sont dans l'archive de l'étape 02 au format "
                    "CSV, et `python -m sentinelle.nettoyage` la régénère.", ""]
     lignes += ["## Relancer la chaîne", "",
-               "Voir le `README.md` de l'archive de code : une commande par étape "
+               "Décompresser les cinq archives de code dans un même dossier, puis suivre le `README.md` : une "
+               "commande par étape "
                "(`python -m sentinelle.collecte`, `.nettoyage`, `.transformation`, `.apurement`, `.analyse`, "
                "`.interpretation`), puis l'application (`application/lancer.bat` ou `docker compose up`).", ""]
     return "\n".join(lignes)
 
 
-def preparer() -> dict[str, list[tuple[str, str, int]]]:
+def preparer() -> dict[str, list[tuple[str, int]]]:
     # Vide le dossier sans le supprimer : l'explorateur ou OneDrive peut le garder ouvert.
     for ancien in SORTIE.rglob("*") if SORTIE.exists() else []:
         if ancien.is_file():
             ancien.unlink()
-    contenus: dict[str, list[tuple[str, bytes, str]]] = {"Code": [], "Données": [], "Documentation": []}
 
-    contenus["Code"].append(("SENTINELLE_D1_code-complet-solution-et-application_v1.zip", _archive_code(),
-                             "Tout le code : chaîne `src/sentinelle` (étapes 01 à 05), notebooks exécutés, tests, "
-                             "application (API FastAPI et site Next.js, Dockerfile) et sorties légères qu'elle relit."))
+    def nom(etape: int, role: str, description: str, extension: str) -> str:
+        return f"SENTINELLE_{ETAPES[etape]}_D1_{role}_{description}_v1.{extension}"
 
-    base, sexe = _lire(BASE / "base_apuree.csv"), _lire(BASE / "base_apuree_par_sexe.csv")
-    t03, t04 = "SENTINELLE_03-transformation_D1_engineer_", "SENTINELLE_04-analyse_D1_scientist_"
-    depot04 = config.DEPOTS / DOSSIERS[4]
-    donnees = [
-        (f"{t03}base-finale-province-2016-2025_v1.csv", _ecrire_csv(base_deposee(base)),
-         f"**Base finale** : {len(base)} lignes (47 provinces × 9 années), {base_deposee(base).shape[1]} colonnes, "
-         "aucune cellule vide."),
-        (f"{t03}base-finale-par-sexe-2016-2025_v1.csv", _ecrire_csv(base_deposee(sexe)),
-         f"Base finale pour les filles et les garçons : {len(sexe)} lignes, {base_deposee(sexe).shape[1]} colonnes."),
-        (f"{t03}classeur-base-finale_v1.xlsx", classeur_depose(BASE / "base_defi1_apuree.xlsx"),
-         "Base finale en classeur, cellules colorées selon leur statut, avec journal, rapport par variable et "
-         "contrôles."),
-        (f"{t03}dictionnaire-base-finale_v1.csv", _ecrire_csv(dictionnaire_depose()),
-         "Dictionnaire des colonnes de la base finale : libellé, unité, calcul, source, limites."),
-    ]
-    for population, texte in [("ensemble", "toutes les provinces"), ("par-sexe", "filles et garçons")]:
-        f = depot04 / f"{t04}previsions-tableau-de-bord-province-2025-2028-{population}_v1.csv"
-        donnees.append((f"{t04}previsions-province-2025-2028-{population}_v1.csv", _table_deposee(f),
-                        f"Prévisions du taux d'abandon 2025-2026 à 2027-2028 ({texte}) : intervalle, classe de "
-                        "risque, alerte de rupture."))
+    # (étape, catégorie de la plateforme, nom, contenu, description)
+    fichiers: list[tuple[int, str, str, bytes, str]] = []
     ecartes = []
-    for etape, dossier in DOSSIERS.items():
+    for etape in DOSSIERS:
+        role = ROLE_ARCHIVE[etape]
+        description, texte, _ = CODE_ETAPE[etape]
+        fichiers.append((etape, "Code", nom(etape, role, description, "zip"), _archive_code(etape), texte))
         contenu, e = _archive_etape(etape)
         ecartes += e
-        donnees.append((f"SENTINELLE_{dossier.replace('_', '-', 1)}_D1_{ROLE_ARCHIVE[etape]}_depot-complet-etape_v1.zip",
-                        contenu, f"Dépôt complet de l'étape {dossier} (avec son LISEZ-MOI)."))
-    contenus["Données"] = donnees
+        fichiers.append((etape, "Données", nom(etape, role, "depot-donnees-etape", "zip"), contenu,
+                         f"Toutes les sorties de l'étape {DOSSIERS[etape]}, avec leur LISEZ-MOI."))
 
-    for source, description, texte in DOCUMENTS:
-        contenus["Documentation"].append((f"SENTINELLE_D1_{description}_v1.pdf", source.read_bytes(), texte))
-    resume = {c: [(n, t) for n, _, t in liste] for c, liste in contenus.items()}
-    contenus["Documentation"].append(("SENTINELLE_D1_lisez-moi_v1.md",
-                                      _lisez_moi(resume, ecartes).encode("utf-8"), "Ce fichier."))
+    base, sexe = _lire(BASE / "base_apuree.csv"), _lire(BASE / "base_apuree_par_sexe.csv")
+    fichiers += [
+        (3, "Données", nom(3, "engineer", "base-finale-province-2016-2025", "csv"), _ecrire_csv(base_deposee(base)),
+         f"**Base finale** : {len(base)} lignes (47 provinces × 9 années), {base_deposee(base).shape[1]} colonnes, "
+         "aucune cellule vide."),
+        (3, "Données", nom(3, "engineer", "base-finale-par-sexe-2016-2025", "csv"), _ecrire_csv(base_deposee(sexe)),
+         f"Base finale pour les filles et les garçons : {len(sexe)} lignes, {base_deposee(sexe).shape[1]} colonnes."),
+        (3, "Données", nom(3, "engineer", "classeur-base-finale", "xlsx"),
+         classeur_depose(BASE / "base_defi1_apuree.xlsx"),
+         "Base finale en classeur, cellules colorées selon leur statut, avec journal, rapport par variable et "
+         "contrôles."),
+        (3, "Données", nom(3, "architect", "dictionnaire-base-finale", "csv"), _ecrire_csv(dictionnaire_depose()),
+         "Dictionnaire des colonnes de la base finale : libellé, unité, calcul, source, limites."),
+    ]
+    prevision = (config.DEPOTS / DOSSIERS[4] /
+                 "SENTINELLE_04-analyse_D1_scientist_previsions-tableau-de-bord-province-2025-2028-ensemble_v1.csv")
+    fichiers.append((4, "Données", nom(4, "scientist", "previsions-province-2025-2028", "csv"),
+                     _table_deposee(prevision),
+                     "Prévisions du taux d'abandon 2025-2026 à 2027-2028 par province : intervalle, classe de risque, "
+                     "alerte de rupture (version par sexe dans l'archive de l'étape 04)."))
+    for etape, role, source, description, texte in DOCUMENTS:
+        fichiers.append((etape, "Documentation", nom(etape, role, description, "pdf"), source.read_bytes(), texte))
+    lisez_moi = nom(5, "analyst", "lisez-moi-ensemble-des-depots", "md")
+    resume = [(DOSSIERS[e], c, n, t) for e, c, n, _, t in fichiers]
+    resume.append((DOSSIERS[5], "Documentation", lisez_moi, "Ce fichier : contenu de chaque dépôt."))
+    fichiers.append((5, "Documentation", lisez_moi, _lisez_moi(resume, ecartes).encode("utf-8"), ""))
 
-    bilan = {}
-    for categorie, liste in contenus.items():
-        dossier = SORTIE / categorie
+    bilan: dict[str, list[tuple[str, int]]] = {}
+    for etape, categorie, nom_fichier, octets, _ in sorted(fichiers, key=lambda f: f[0]):
+        assert len(octets) <= LIMITE_OCTETS, (nom_fichier, len(octets))
+        dossier = SORTIE / DOSSIERS[etape]
         dossier.mkdir(parents=True, exist_ok=True)
-        bilan[categorie] = []
-        for nom, octets, _ in liste:
-            assert len(octets) <= LIMITE_OCTETS, (nom, len(octets))
-            (dossier / nom).write_bytes(octets)
-            bilan[categorie].append((nom, len(octets)))
-    nombre = sum(len(v) for v in bilan.values())
-    total = sum(t for v in bilan.values() for _, t in v)
-    assert nombre <= 20 and total <= 500 * 1024 * 1024, (nombre, total)
+        (dossier / nom_fichier).write_bytes(octets)
+        bilan.setdefault(DOSSIERS[etape], []).append((f"[{categorie}] {nom_fichier}", len(octets)))
+    total = sum(len(f[3]) for f in fichiers)
+    assert len(fichiers) <= 20 and total <= 500 * 1024 * 1024, (len(fichiers), total)
     return bilan
 
 
