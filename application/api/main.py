@@ -7,6 +7,7 @@ Documentation interactive : http://localhost:8000/docs
 from __future__ import annotations
 
 import json
+from functools import lru_cache
 import os
 from typing import Literal
 
@@ -488,20 +489,45 @@ def _annees_observees(variable: str) -> list[str]:
     return sorted(part[part >= 0.5].index)
 
 
+# Classes dont l'abandon est publié par les annuaires du post-primaire et du secondaire (DGESS).
+CLASSES_ORDRES = {"post_primaire": ["flux_6e", "flux_5e", "flux_4e"], "secondaire": ["flux_2nde", "flux_1ere"]}
+
+
+@lru_cache(maxsize=8)
+def _abandon_publie(ordre: str, sexe: str) -> pd.Series:
+    """Abandon moyen des classes de l'ordre, par ancienne province et année, depuis la table nettoyée.
+
+    Un taux de 0 est traité comme non publié : les annuaires inscrivent 0 pour la 4e et la 1re dans une province sur
+    deux certaines années (0 % au niveau national), alors que promotion et redoublement n'atteignent pas 100 %.
+    """
+    import donnees
+    t = pd.read_csv(donnees.DONNEES / "02_nettoyage" / "fait_secondaire_province.csv", sep=";", encoding="utf-8-sig",
+                    usecols=["annee_scolaire", "entite_pcode", "niveau", "indicateur", "mesure", "sexe", "valeur"])
+    t = t[(t["niveau"] == "province_ancienne") & (t["mesure"] == "abandon") & (t["sexe"] == sexe)
+          & t["indicateur"].isin(CLASSES_ORDRES[ordre])]
+    t = t.assign(valeur=t["valeur"].where(t["valeur"] > 0))
+    return t.groupby(["entite_pcode", "annee_scolaire"])["valeur"].mean().dropna()
+
+
 def _table_ordre(ordre: str, population: str) -> pd.DataFrame:
-    """Province × année : abandon, entrée, achèvement. Ensemble du secondaire : moyenne des filles et des garçons."""
-    colonnes = list(ORDRES[ordre].values())
+    """Province de 2025 × année : abandon publié (province d'origine), entrée et achèvement de la base apurée."""
+    v = ORDRES[ordre]
     cles = ["province_pcode", "province_nom", "region_nom", "annee_scolaire"]
     if population != "ensemble":
         t = D.base_sexe[D.base_sexe["sexe"] == population]
     elif ordre == "post_primaire":
         t = D.base
     else:
-        t = D.base_sexe.groupby(cles, as_index=False)[colonnes].mean()
-    return t[cles + colonnes]
+        t = D.base_sexe.groupby(cles + ["province_ancienne_pcode"], as_index=False)[[v["entree"], v["achevement"]]].mean()
+    t = t[cles + ["province_ancienne_pcode", v["entree"], v["achevement"]]].copy()
+    publie = _abandon_publie(ordre, "T" if population == "ensemble" else population)
+    t[v["abandon"]] = [publie.get((a, an), np.nan) for a, an in zip(t["province_ancienne_pcode"], t["annee_scolaire"])]
+    return t
 
 
 def _interpretable(taux: float) -> bool:
+    if taux is None or pd.isna(taux):
+        return False
     # 0 % ou plus de 90 % : presque aucun élève (écoles fermées), taux non interprétable.
     return 1 < taux < 90
 
@@ -509,14 +535,14 @@ def _interpretable(taux: float) -> bool:
 @app.get("/api/ordre/{ordre}")
 def vue_ordre(ordre: Literal["post_primaire", "secondaire"], population: Population = "ensemble"):
     v = ORDRES[ordre]
-    annees = _annees_observees(v["abandon"])
+    annees = sorted(_abandon_publie(ordre, "T").index.get_level_values(1).unique())
     t = _table_ordre(ordre, population).set_index(["province_pcode", "annee_scolaire"])
     provinces = []
     for pcode in t.index.get_level_values(0).unique():
         serie = []
         for a in annees:
             r = t.loc[(pcode, a)]
-            taux_a = round(float(r[v["abandon"]]), 1)
+            taux_a = round(float(r[v["abandon"]]), 1) if pd.notna(r[v["abandon"]]) else None
             serie.append({"annee": a, "taux": taux_a if _interpretable(taux_a) else None,
                           "classe": _classe(taux_a, SEUILS_ORDRES) if _interpretable(taux_a) else None,
                           "entree": propre(round(float(r[v["entree"]]), 1)),
@@ -540,7 +566,7 @@ def vue_ordre(ordre: Literal["post_primaire", "secondaire"], population: Populat
 @app.get("/api/comparaison_ordres")
 def comparaison_ordres(population: Population = "ensemble"):
     """Abandon de la province médiane, primaire, post-primaire et secondaire, sur les années observées communes."""
-    annees = _annees_observees(ORDRES["post_primaire"]["abandon"])
+    annees = sorted(_abandon_publie("post_primaire", "T").index.get_level_values(1).unique())
     base = D.base if population == "ensemble" else D.base_sexe[D.base_sexe["sexe"] == population]
     filtre = base["abandon_primaire_precedent"].map(_interpretable)
     primaire = base[filtre].groupby("annee_scolaire")["abandon_primaire_precedent"].median()

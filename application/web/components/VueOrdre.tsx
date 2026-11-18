@@ -157,7 +157,7 @@ export default function VueOrdre({ ordre }: { ordre: "post_primaire" | "secondai
             ))}
           </ol>
           <p className="note" style={{ marginTop: 10 }}>
-            Valeurs publiées (DGESS) · pas de prévision : 4 années observées.
+            Taux publiés (DGESS) · un 0 publié compte comme non renseigné · pas de prévision : 4 années observées.
           </p>
         </section>
       </div>

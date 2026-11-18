@@ -73,6 +73,7 @@ CODE_ETAPE = {
         "Next.js, Dockerfile), tests, sources de la documentation et sorties légères que l'application relit.",
         ["src/sentinelle/interpretation", "src/sentinelle/soumission.py", "application", "tests", ".dockerignore",
          "docs/documentation", "data/LISEZ-MOI.md", "data/02_nettoyage/contours_web",
+         "data/02_nettoyage/fait_secondaire_province.csv",
          "data/03_transformation/base_apuree", "data/03_transformation/dictionnaire_variables_modele.csv",
          "data/03_transformation/metadonnees/dictionnaire_bases_modele.csv", "data/04_analyse"]),
 }
@@ -246,6 +247,12 @@ def _lisez_moi(fichiers: list[tuple[str, str, str, str]], ecartes: list[str]) ->
                "de ce dossier (`python -m sentinelle.soumission`).", "",
                "**Colonnes de suivi retirées** (leur information est dans le journal et le statut des cellules) : "
                + ", ".join(f"`{c}`" for c in RETIREES) + ".", ""]
+    lignes += ["## Post-primaire et secondaire : une anomalie des annuaires", "",
+               "Les annuaires inscrivent un taux d'abandon de 0 pour la 4e et la 1re dans une province sur deux certaines "
+               "années (0 % au niveau national), alors que promotion et redoublement n'atteignent pas 100 % : ces 0 sont "
+               "des valeurs non renseignées. Le tableau de bord les traite comme non publiés ; sans cette correction, "
+               "l'abandon au secondaire de la province médiane serait de 9,7 % au lieu de 16,1 % en 2022-2023. Ces taux "
+               "ne sont publiés que pour quatre années : ils sont montrés tels quels, sans prévision.", ""]
     if ecartes:
         lignes += ["## Fichier non déposé", "",
                    "La base GeoPackage de l'étape 02 (" + ", ".join(f"`{e}`" for e in ecartes) + ", 173 Mo) "

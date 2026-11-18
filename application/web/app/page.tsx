@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 import Badge from "@/components/Badge";
 import BasculePopulation from "@/components/BasculePopulation";
-import ComparaisonOrdres from "@/components/ComparaisonOrdres";
 import type { Couches } from "@/components/Carte";
 import CurseurAnnees from "@/components/CurseurAnnees";
 import { Carte, Graphique } from "@/components/dynamique";
@@ -341,8 +340,6 @@ export default function VueNationale() {
           </a>
         </div>
       </header>
-
-      <ComparaisonOrdres population={population} />
 
       <section className="tuiles" aria-label="Indicateurs clés">
         {n.pays?.[k] ? (
