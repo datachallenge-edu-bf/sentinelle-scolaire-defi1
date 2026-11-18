@@ -42,12 +42,25 @@ export default function Coquille({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="coquille">
+      {/* Cadre aux couleurs du drapeau du Burkina Faso : rouge en haut, vert en bas, les deux sur les côtés. */}
+      <div className="drapeau-cadre" aria-hidden="true">
+        <span className="drapeau-haut" />
+        <span className="drapeau-bas" />
+        <span className="drapeau-gauche" />
+        <span className="drapeau-droite" />
+      </div>
       <aside className="barre-laterale">
         <div className="marque">
           <Logo />
           <div>
             <div className="marque-nom">
               Sentinelle <span>Scolaire</span>
+            </div>
+            <div className="marque-pays">
+              <svg className="marque-etoile" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.5l2.6 6.9 7.4.3-5.8 4.6 2 7.1L12 17.3l-6.2 4.1 2-7.1L2 9.7l7.4-.3z" />
+              </svg>
+              Burkina Faso
             </div>
             <div className="marque-devise">Anticiper, comprendre et prévenir le décrochage au primaire</div>
           </div>

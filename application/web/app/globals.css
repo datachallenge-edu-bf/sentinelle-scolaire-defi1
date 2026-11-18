@@ -62,12 +62,88 @@ h3 {
   display: grid;
   grid-template-columns: 248px 1fr;
   min-height: 100vh;
+  padding: var(--drapeau) var(--drapeau) var(--drapeau) var(--drapeau);
+}
+
+/* Cadre aux couleurs du drapeau national, fixe sur les bords de l'écran. */
+:root {
+  --drapeau: 5px;
+  --drapeau-rouge: #ef2b2d;
+  --drapeau-vert: #009e49;
+  --drapeau-jaune: #fcd116;
+}
+
+/* Hors de la grille de la coquille : le cadre ne prend aucune colonne. */
+.drapeau-cadre {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.drapeau-cadre span {
+  position: fixed;
+}
+
+.drapeau-haut {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--drapeau);
+  background: var(--drapeau-rouge);
+}
+
+.drapeau-bas {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--drapeau);
+  background: var(--drapeau-vert);
+}
+
+.drapeau-gauche,
+.drapeau-droite {
+  top: 0;
+  bottom: 0;
+  width: var(--drapeau);
+  background: linear-gradient(180deg, var(--drapeau-rouge) 0 50%, var(--drapeau-vert) 50% 100%);
+}
+
+.drapeau-gauche {
+  left: 0;
+}
+
+.drapeau-droite {
+  right: 0;
+}
+
+.marque-etoile {
+  width: 11px;
+  height: 11px;
+  margin-right: 5px;
+  vertical-align: -1px;
+  fill: var(--drapeau-jaune);
+}
+
+.marque-pays {
+  display: inline-block;
+  white-space: nowrap;
+  margin-top: 6px;
+  padding: 1px 8px 1px 0;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texte-2);
+  border-left: 3px solid var(--drapeau-rouge);
+  padding-left: 6px;
+  box-shadow: inset 0 -2px 0 var(--drapeau-vert);
 }
 
 .barre-laterale {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  top: var(--drapeau);
+  height: calc(100vh - 2 * var(--drapeau));
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -1720,11 +1796,13 @@ h3 {
   }
   .barre-laterale,
   .bouton,
+  .drapeau-cadre,
   .ne-pas-imprimer {
     display: none !important;
   }
   .coquille {
     grid-template-columns: 1fr;
+    padding: 0;
   }
   body,
   .contenu {

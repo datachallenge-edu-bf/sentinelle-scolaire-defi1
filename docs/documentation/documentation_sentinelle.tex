@@ -518,7 +518,7 @@ Au-delà des variables du modèle, les 64 indicateurs de la base sont reliés au
 \label{fig:architecture}
 \end{figure}
 
-L'application sépare deux parties (figure~\ref{fig:architecture}). Une \textbf{API FastAPI} sert les sorties de l'analyse et les modèles sauvegardés : elle ne recalcule aucune prévision, si bien que les chiffres affichés sont exactement ceux de l'analyse et des dépôts. Un \textbf{site Next.js} (React) affiche la carte avec MapLibre GL, sans aucune tuile externe (les contours viennent de nos données), et les graphiques avec ECharts. L'ensemble tient dans une seule image Docker. Il est déployé en ligne sur un hébergeur de conteneurs, et se lance hors ligne par un double clic (\texttt{lancer.bat}). Les couleurs des classes de risque et des filles et garçons ont été choisies et vérifiées pour être distinguées par les personnes daltoniennes. Chaque écran tient sur une hauteur d'écran, avec peu de texte : l'information se lit sur la carte et les graphiques, et le détail apparaît au survol.
+L'application sépare deux parties (figure~\ref{fig:architecture}). Une \textbf{API FastAPI} sert les sorties de l'analyse et les modèles sauvegardés : elle ne recalcule aucune prévision, si bien que les chiffres affichés sont exactement ceux de l'analyse et des dépôts. Un \textbf{site Next.js} (React) affiche la carte avec MapLibre GL, sans aucune tuile externe (les contours viennent de nos données), et les graphiques avec ECharts. L'ensemble tient dans une seule image Docker. Il est déployé en ligne sur un hébergeur de conteneurs, et se lance hors ligne par un double clic (\texttt{lancer.bat}). Les couleurs des classes de risque et des filles et garçons ont été choisies et vérifiées pour être distinguées par les personnes daltoniennes. Chaque écran tient sur une hauteur d'écran, avec peu de texte : l'information se lit sur la carte et les graphiques, et le détail apparaît au survol. Le cadre de l'écran reprend les couleurs du drapeau national, une bande rouge en haut, une bande verte en bas, les deux couleurs sur les côtés et l'étoile jaune à côté du nom du pays : l'outil se présente comme un outil du Burkina Faso, et ces couleurs restent sur les bords, à l'écart de celles des classes de risque.
 
 \subsection{La vue nationale : où agir}
 
@@ -676,7 +676,7 @@ Neuf années par province, c'est peu : les intervalles restent larges (18 à 20 
 
 \textbf{Utiliser l'outil.} En ligne : \lien. Sur un ordinateur Windows, sans Internet : \texttt{application/lancer.bat}. Sur toute machine avec Docker : \texttt{docker compose up --build} dans \texttt{application/}.
 
-\textbf{Relancer la chaîne.} Python 3.13 ou plus récent, \texttt{pip install -r requirements.txt}, puis, avec \texttt{src} dans le chemin Python, dans cet ordre : \texttt{sentinelle.collecte}, \texttt{.nettoyage}, \texttt{.transformation}, \texttt{.apurement}, \texttt{.analyse}, \texttt{.interpretation} (une commande \texttt{python -m} par étape). Chaque commande régénère ses sorties et son dépôt, et 15 tests automatiques (	exttt{python -m pytest}) vérifient les calculs clés, la cohérence entre l'analyse et l'application et la reproduction exacte des prévisions par la mise à jour annuelle ; les notebooks \texttt{01} à \texttt{04c}, exécutés, présentent chaque étape. Les modèles retenus sont sauvegardés avec une fiche (\texttt{fiche\_modele.json}) qui donne les réglages, les marges, les seuils, la qualité mesurée et les versions des bibliothèques.
+\textbf{Relancer la chaîne.} Python 3.13 ou plus récent, \texttt{pip install -r requirements.txt}, puis, avec \texttt{src} dans le chemin Python, dans cet ordre : \texttt{sentinelle.collecte}, \texttt{.nettoyage}, \texttt{.transformation}, \texttt{.apurement}, \texttt{.analyse}, \texttt{.interpretation} (une commande \texttt{python -m} par étape). Chaque commande régénère ses sorties et son dépôt, et 15 tests automatiques (\texttt{python -m pytest}) vérifient les calculs clés, la cohérence entre l'analyse et l'application et la reproduction exacte des prévisions par la mise à jour annuelle ; les notebooks \texttt{01} à \texttt{04c}, exécutés, présentent chaque étape. Les modèles retenus sont sauvegardés avec une fiche (\texttt{fiche\_modele.json}) qui donne les réglages, les marges, les seuils, la qualité mesurée et les versions des bibliothèques.
 
 \begin{table}[!t]
 \centering
@@ -695,6 +695,28 @@ Dépôt & Fichiers & Rôles et contenu \\
 \caption{Dépôts de l'équipe, nommés \texttt{SENTINELLE\_ÉTAPE\_D1\_RÔLE\_description\_vN}, chacun avec son LISEZ-MOI.}
 \label{tab:depots}
 \end{table}
+
+\textbf{Contrôles de qualité.} Les 15 tests couvrent cinq familles : la normalisation de la cible (aller-retour exact, taux toujours entre 0 et 100 \%) ; le nommage de tous les dépôts selon la convention ; la cohérence entre l'analyse et l'application (47 provinces et quatre années servies, intervalles qui contiennent la prévision et ne rétrécissent pas avec l'horizon, cascade SHAP dont la somme redonne le niveau expliqué, simulateur qui réagit aux leviers) ; la mise à jour annuelle (reproduction exacte des prévisions, détection d'une province inconnue et d'un taux impossible) ; l'assistant hors ligne (comparaison de deux provinces, reprise de la zone de l'échange précédent, mots clés qui ne se confondent pas) et la production des rapports PDF. Le code passe l'analyse statique \texttt{ruff} sans avertissement.
+
+\begin{table}[!t]
+\centering
+\footnotesize
+\begin{tabularx}{\columnwidth}{@{}L{1.75cm} c Y@{}}
+\toprule
+Catégorie & Fichiers & Contenu \\
+\midrule
+Code & 5 & une archive par étape (01 à 05) : modules, notebooks exécutés ; l'étape 05 ajoute l'application (API, site, Docker), les tests et les sources de ce rapport \\
+Données & 10 & base finale par province et par sexe, classeur coloré, dictionnaire de la base finale, prévisions 2025-2028, et une archive des sorties de chaque étape \\
+Documentation & 5 & ce rapport, le guide du tableau de bord, les deux documents techniques, un LISEZ-MOI de l'ensemble des dépôts \\
+\bottomrule
+\end{tabularx}
+\caption{Les 20 fichiers téléversés sur la plateforme, rangés selon ses trois catégories ; chacun est nommé selon la convention et rattaché à une seule étape.}
+\label{tab:soumission}
+\end{table}
+
+\textbf{Ce que contient la soumission.} La plateforme accepte vingt fichiers : la soumission en compte vingt, rangés selon ses trois catégories (tableau~\ref{tab:soumission}). Chaque fichier appartient à une seule étape, comme le demande le document du challenge ; le code est donc découpé en cinq archives qui, décompressées au même endroit, redonnent le projet complet. Un module (\texttt{sentinelle.soumission}) prépare ce dossier à partir des dépôts et vérifie les noms, le nombre et la taille des fichiers. La base GeoPackage de l'étape 02 (173 Mo) dépasse la limite de 50 Mo par fichier : ses tables sont déposées en CSV et la commande de l'étape 02 la régénère.
+
+\textbf{La base finale déposée.} Elle compte 423 lignes (47 provinces sur neuf années scolaires) et 74 colonnes, sans cellule vide ; la version par sexe compte 846 lignes et 79 colonnes. Deux choix la rendent lisible. Les seize indicateurs du recensement de 2019 (pauvreté, enfants hors de l'école, mariage précoce, emploi des jeunes, alphabétisation\dots) n'ont qu'une mesure par province, répétée chaque année comme contexte : leur nom porte le suffixe \texttt{\_2019}, pour que cette répétition se lise comme un choix et non comme une erreur. Les colonnes de suivi interne de la chaîne sont retirées, leur information restant dans le statut de chaque cellule et le journal d'apurement. Le dictionnaire déposé donne, pour chaque colonne, son libellé, son unité, son calcul, sa source et ses limites.
 
 \textbf{Dépôts et documents techniques.} Les 203 fichiers déposés suivent la convention du challenge et chaque dépôt contient un fichier LISEZ-MOI (tableau~\ref{tab:depots}). Le détail de la collecte et du nettoyage, et celui du passage au découpage de 2025, sont décrits dans deux documents techniques déposés avec les étapes 02 et 03 ; le code du modèle et ses notebooks sont déposés avec l'étape 04, et le code du tableau de bord avec l'étape 05.
 
