@@ -301,6 +301,159 @@ def alerte() -> pd.DataFrame:
     return e
 
 
+
+# 12. Architecture de l'application ---------------------------------------------------------------
+
+def architecture() -> None:
+    fig, ax = plt.subplots(figsize=(UNE_COLONNE + 0.2, 2.45))
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 7.4)
+    ax.axis("off")
+
+    def boite(x, y, l, h, titre, texte, fond):
+        ax.add_patch(FancyBboxPatch((x, y), l, h, boxstyle="round,pad=0.04,rounding_size=0.15",
+                                    facecolor=fond, edgecolor="#475569", linewidth=0.8))
+        ax.text(x + l / 2, y + h - 0.32, titre, ha="center", va="top", fontsize=6.6, fontweight="bold", color=ENCRE)
+        ax.text(x + l / 2, y + h / 2 - 0.25, texte, ha="center", va="center", fontsize=5.4, color="#334155", linespacing=1.2)
+
+    boite(0.2, 5.0, 9.6, 2.2, "Navigateur du décideur", "Site Next.js (React) : carte MapLibre GL sans tuiles externes,\n"
+          "graphiques ECharts, tiroir d'alertes, assistant, simulateur", "#e0f2fe")
+    boite(0.2, 2.25, 9.6, 2.3, "API FastAPI", "carte, vue nationale sur 4 ans, fiches, régions, simulateur,\n"
+          "rapports PDF (reportlab), mise à jour annuelle, assistant (Gemini ou hors ligne)", "#ecfdf5")
+    boite(0.2, 0.1, 4.6, 1.75, "Sorties de l'analyse", "prévisions, SHAP, alerte,\nindicateurs (CSV)", "#f8fafc")
+    boite(5.2, 0.1, 4.6, 1.75, "Modèles sauvegardés", "LightGBM, elastic net,\nalerte, fiche du modèle", "#f8fafc")
+    for x in (2.5, 7.5):
+        ax.annotate("", xy=(x, 2.25), xytext=(x, 1.85), arrowprops=dict(arrowstyle="-|>", color="#475569", lw=0.9))
+    ax.annotate("", xy=(5, 5.0), xytext=(5, 4.55), arrowprops=dict(arrowstyle="<|-|>", color="#475569", lw=0.9))
+    ax.text(5.15, 4.78, "JSON, PDF", fontsize=5.2, color="#475569", va="center")
+    enregistrer(fig, "fig_architecture")
+
+
+# 13. Erreur selon l'horizon ----------------------------------------------------------------------
+
+def erreur_horizon() -> None:
+    s = lire("synthese_modeles_ensemble")
+    t = s[s["role"] == "test final"].pivot_table(index="horizon", columns="modele", values="erreur_absolue_moyenne")
+    fig, ax = plt.subplots(figsize=(UNE_COLONNE, 1.6))
+    for m, c, w in [("reference_annee_precedente", "#94a3b8", 1), ("lightgbm", "#cf8a1a", 1),
+                    ("reference_niveau_habituel", "#3b82f6", 1.2), ("retour_amorti", VERT, 2)]:
+        ax.plot(t.index, t[m], marker="o", ms=3.5, color=c, lw=w, label=NOMS[m])
+    ax.set_xticks([1, 2, 3], ["1 an", "2 ans", "3 ans"])
+    ax.set_ylabel("Erreur au test (points)")
+    ax.set_yscale("log")
+    ax.set_yticks([3, 4, 6, 10, 15], ["3", "4", "6", "10", "15"])
+    ax.legend(fontsize=5.6, loc="upper left", ncol=2)
+    ax.grid(axis="y", color="#e2e8f0", lw=0.6)
+    enregistrer(fig, "fig_erreur_horizon")
+
+
+# 14. Signaux de l'alerte de rupture --------------------------------------------------------------
+
+def signaux_alerte() -> None:
+    c = lire("coefficients_alerte_rupture").sort_values("coefficient_standardise")
+    fig, ax = plt.subplots(figsize=(UNE_COLONNE * 0.5 + 0.4, 1.45))
+    ax.barh(range(len(c)), c["coefficient_standardise"],
+            color=[VIOLET if v > 0 else "#c4b5fd" for v in c["coefficient_standardise"]], height=0.6)
+    ax.set_yticks(range(len(c)), c["libelle"], fontsize=5.6)
+    ax.axvline(0, color="#64748b", lw=0.7)
+    ax.set_xlabel("Coefficient standardisé", fontsize=6)
+    enregistrer(fig, "fig_signaux_alerte")
+
+
+# 15. Décisions sur les variables -----------------------------------------------------------------
+
+def decisions_variables() -> None:
+    d = pd.read_csv(RACINE / "data" / "04_analyse" / "exploration" / "decision_variables_ensemble.csv", sep=";",
+                    encoding="utf-8-sig")
+
+    def famille(m: str) -> str:
+        m = str(m)
+        if m.startswith("candidate"):
+            return "gardée pour les modèles"
+        if m.startswith("colinéaire"):
+            return "colinéaire (|ρ| ≥ 0,85)"
+        if m.startswith("VIF"):
+            return "redondante (VIF > 10)"
+        if m.startswith("lien faible"):
+            return "lien faible et instable"
+        if m.startswith("trop estimée"):
+            return "trop peu observée"
+        return "identité comptable ou technique"
+
+    t = d["motif"].map(famille).value_counts().sort_values()
+    fig, ax = plt.subplots(figsize=(UNE_COLONNE * 0.5 + 0.4, 1.45))
+    ax.barh(range(len(t)), t.values, color=[VERT if "gardée" in i else "#cbd5e1" for i in t.index], height=0.6)
+    for i, v in enumerate(t.values):
+        ax.text(v + 0.4, i, str(v), va="center", fontsize=5.6)
+    ax.set_yticks(range(len(t)), t.index, fontsize=5.6)
+    ax.set_xlabel("Variables (sur 69)", fontsize=6)
+    enregistrer(fig, "fig_decisions_variables")
+
+
+# 16. Cartes des quatre années et des filles et garçons ------------------------------------------
+
+def _carte_axe(ax, population: str, k: int, titre: str) -> None:
+    n = API.national(population)
+    serie = {q["pcode"]: q for q in n["provinces"]}
+    g = D.provinces.copy()
+    g["classe"] = g["province_pcode"].map(lambda c: serie[c]["serie"][k]["classe"] if c in serie else None)
+    g.plot(ax=ax, color=g["classe"].map(COULEURS).fillna("#cbd5e1"), edgecolor="white", linewidth=0.35)
+    if k >= 1:
+        r = g[g["province_pcode"].map(lambda c: serie.get(c, {}).get("rupture") == "élevé")]
+        r.plot(ax=ax, facecolor="none", edgecolor="#1e293b", hatch="//////", linewidth=0)
+    D.regions.boundary.plot(ax=ax, color="#334155", linewidth=0.5)
+    comptes = {c: int((g["classe"] == c).sum()) for c in COULEURS}
+    ax.set_title(f"{titre}\n{comptes['élevé']} élevé · {comptes['moyen']} moyen · {comptes['faible']} faible", fontsize=6.4)
+    ax.set_axis_off()
+
+
+def cartes_annees() -> None:
+    n = API.national("ensemble")
+    fig, axes = plt.subplots(1, 4, figsize=(DEUX_COLONNES, 1.75))
+    for k, ax in enumerate(axes):
+        _carte_axe(ax, "ensemble", k, n["annees"][k] + (" (observé)" if k == 0 else " (prévu)"))
+    fig.legend(handles=[Patch(color=COULEURS[c], label=c.capitalize()) for c in ["faible", "moyen", "élevé"]]
+               + [Patch(facecolor="white", edgecolor="#1e293b", hatch="//////", label="Alerte de rupture")],
+               loc="lower center", ncol=4, fontsize=6, bbox_to_anchor=(0.5, -0.06))
+    enregistrer(fig, "fig_cartes_annees")
+
+
+def cartes_sexe() -> None:
+    fig, axes = plt.subplots(1, 2, figsize=(UNE_COLONNE, 1.55))
+    _carte_axe(axes[0], "F", 1, "Filles, 2025-2026")
+    _carte_axe(axes[1], "G", 1, "Garçons, 2025-2026")
+    enregistrer(fig, "fig_cartes_sexe")
+
+
+# 17. Cycle annuel d'utilisation ------------------------------------------------------------------
+
+def cycle_annuel() -> None:
+    etapes = [("Annuaire DGESS", "taux d'abandon et\neffectifs de l'année"),
+              ("Mise à jour", "import CSV ou saisie,\ncontrôles, 5 minutes"),
+              ("Prévisions", "3 années suivantes,\nclasses, alertes"),
+              ("Rapports", "national, 17 régions,\n47 fiches provinciales"),
+              ("Actions", "ciblage, continuité\néducative, leviers"),
+              ("Suivi", "indicateurs, écart\nprévu / observé")]
+    fig, ax = plt.subplots(figsize=(DEUX_COLONNES + 0.8, 1.15))
+    ax.set_xlim(-0.05, 12.05)
+    ax.set_ylim(-0.75, 1.9)
+    ax.axis("off")
+    for i, (titre, texte) in enumerate(etapes):
+        x = 0.05 + i * 2
+        ax.add_patch(FancyBboxPatch((x, 0.2), 1.82, 1.55, boxstyle="round,pad=0.03,rounding_size=0.12",
+                                    facecolor="#ecfdf5" if i % 2 == 0 else "#f0f9ff", edgecolor=VERT, linewidth=0.9))
+        ax.text(x + 0.91, 1.45, titre, ha="center", va="center", fontsize=5.9, fontweight="bold", color=ENCRE)
+        ax.text(x + 0.91, 0.78, texte, ha="center", va="center", fontsize=5.0, color="#334155", linespacing=1.2)
+        if i < len(etapes) - 1:
+            ax.annotate("", xy=(x + 2.02, 0.98), xytext=(x + 1.87, 0.98),
+                        arrowprops=dict(arrowstyle="-|>", color=VERT, lw=1.1))
+    ax.annotate("", xy=(0.9, 0.18), xytext=(11.0, 0.18),
+                arrowprops=dict(arrowstyle="-|>", color="#94a3b8", lw=0.9, connectionstyle="arc3,rad=-0.06"))
+    ax.text(6, -0.66, "l'année suivante, le cycle recommence ; réentraînement complet tous les deux ou trois ans",
+            ha="center", fontsize=5.6, color="#475569", style="italic")
+    enregistrer(fig, "fig_cycle_annuel")
+
+
 if __name__ == "__main__":
     FIGURES.mkdir(exist_ok=True)
     parcours()
@@ -315,5 +468,12 @@ if __name__ == "__main__":
     filles_garcons()
     t = liens_indicateurs()
     alerte()
+    architecture()
+    erreur_horizon()
+    signaux_alerte()
+    decisions_variables()
+    cartes_annees()
+    cartes_sexe()
+    cycle_annuel()
     print("national", national)
     print("liens", t[["libelle", "r"]].to_string(index=False))
