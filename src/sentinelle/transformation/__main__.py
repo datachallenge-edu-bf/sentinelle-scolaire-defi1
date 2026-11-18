@@ -7,7 +7,7 @@ from . import executer_transformation
 def main() -> None:
     resultat = executer_transformation()
     print(resultat["controles_transformation"].to_string(index=False))
-    print(f"{len(exporter_transformation())} fichiers déposés dans depots/03-transformation.")
+    print(f"{len(exporter_transformation())} fichiers déposés dans depots/03_transformation.")
 
 
 if __name__ == "__main__":

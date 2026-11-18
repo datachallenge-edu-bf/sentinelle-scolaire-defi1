@@ -47,7 +47,8 @@ def test_nom_depot_refuse_un_role_inconnu():
 
 
 def test_tous_les_depots_sont_conformes():
-    fichiers = [f.name for f in config.DEPOTS.rglob("*") if f.is_file()]
+    # Fichiers des dossiers de dépôt (le LISEZ-MOI général, à la racine de depots/, n'est pas un dépôt).
+    fichiers = [f.name for d in config.DEPOTS.iterdir() if d.is_dir() for f in d.iterdir() if f.is_file()]
     if not fichiers:
         pytest.skip("dépôts non générés")
     assert [f for f in fichiers if not MODELE.match(f)] == []

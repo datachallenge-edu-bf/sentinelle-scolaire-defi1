@@ -7,4 +7,4 @@ if __name__ == "__main__":
     resultat = executer()
     print(f"Interprétation : {resultat['provinces']} provinces, {resultat['regions']} régions, "
           f"{resultat['provinces']} fiches et {resultat['regions']} rapports régionaux.")
-    print(f"{len(exporter_interpretation())} fichiers déposés dans depots/05-interpretation.")
+    print(f"{len(exporter_interpretation())} fichiers déposés dans depots/05_interpretation.")

@@ -33,8 +33,8 @@ Competition_EducationBurkina/
 |---|---|
 | `src/sentinelle/` | Code de la chaîne de traitement, un sous-module par étape |
 | `notebooks/` | Un notebook numéroté par étape, enregistré avec ses résultats |
-| `data/` | Sorties de la chaîne, une sous-partie par étape (`01_collecte` à `05_interpretation`) |
-| `depots/` | Fichiers à déposer sur la plateforme, nommés `DiscernaTeam_ÉTAPE_D1_RÔLE_description_vN`, avec un LISEZ-MOI par étape |
+| `data/` | Dossier de travail : sorties de la chaîne, une sous-partie par étape (`01_collecte` à `05_interpretation`), que le code relit d'une étape à l'autre |
+| `depots/` | **Fichiers à déposer** sur la plateforme : un dossier par dépôt (`01_collecte` à `05_interpretation`, noms du document du challenge), fichiers nommés `DiscernaTeam_ÉTAPE_D1_RÔLE_description_vN`, un LISEZ-MOI par dépôt |
 | `application/` | Tableau de bord : API FastAPI (`api/`), site Next.js (`web/`), guide d'utilisation, Docker, déploiement |
 | `docs/` | Documentation de la solution, documents techniques, note d'intention |
 | `outputs/` | Figures et cartes |
@@ -43,12 +43,12 @@ Competition_EducationBurkina/
 
 | Étape | Module | Notebook | Sorties et dépôt |
 |---|---|---|---|
-| 01 Collecte | `sentinelle.collecte` | `01_collecte.ipynb` | `data/01_collecte/`, `depots/01-collecte/` |
-| 02 Nettoyage | `sentinelle.nettoyage` | `02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02-nettoyage/` |
-| 03 Transformation | `sentinelle.transformation` | `03_transformation.ipynb` | `data/03_transformation/` (table d'analyse, panels), `depots/03-transformation/` |
+| 01 Collecte | `sentinelle.collecte` | `01_collecte.ipynb` | `data/01_collecte/`, `depots/01_collecte/` |
+| 02 Nettoyage | `sentinelle.nettoyage` | `02_nettoyage.ipynb` | `data/02_nettoyage/` (base GeoPackage), `depots/02_nettoyage/` |
+| 03 Transformation | `sentinelle.transformation` | `03_transformation.ipynb` | `data/03_transformation/` (table d'analyse, panels), `depots/03_transformation/` |
 | 03b Apurement | `sentinelle.apurement` | `03b_apurement.ipynb` | `data/03_transformation/base_apuree/` (base sans cellule vide, statut de chaque cellule, journal) |
-| 04 Analyse | `sentinelle.analyse` | `04a_exploration.ipynb`, `04b_modelisation.ipynb`, `04c_explicabilite.ipynb` | `data/04_analyse/` (exploration, prévisions, fiabilité, modèles sauvegardés), `depots/04-analyse/` |
-| 05 Interprétation | `sentinelle.interpretation` | (tableau de bord `application/`) | `data/05_interpretation/` (indicateurs clés, carte d'alerte, rapports PDF), `depots/05-interpretation/` |
+| 04 Analyse | `sentinelle.analyse` | `04a_exploration.ipynb`, `04b_modelisation.ipynb`, `04c_explicabilite.ipynb` | `data/04_analyse/` (exploration, prévisions, fiabilité, modèles sauvegardés), `depots/04_analyse/` |
+| 05 Interprétation | `sentinelle.interpretation` | (tableau de bord `application/`) | `data/05_interpretation/` (indicateurs clés, carte d'alerte, rapports PDF), `depots/05_interpretation/` |
 
 ## Démarrer après un clonage
 

@@ -24,6 +24,14 @@ ETAPES = {
     4: "04-analyse",
     5: "05-interpretation",
 }
+# Dossiers de dépôt : noms donnés par le document du challenge (section 4, colonne « Dépôt »).
+DOSSIERS = {
+    1: "01_collecte",
+    2: "02_nettoyage",
+    3: "03_transformation",
+    4: "04_analyse",
+    5: "05_interpretation",
+}
 ROLES = {"engineer", "architect", "analyst", "scientist"}
 DOCUMENTS = config.RACINE / "docs"
 
@@ -44,12 +52,12 @@ def nom_depot(etape: int, role: str, description: str, version: int = 1, extensi
 
 def deposer(etape: int, fichiers: list[tuple[Path, str, str, str]], entete: list[str],
             version: int = 1) -> pd.DataFrame:
-    """Copie des fichiers dans depots/<étape> sous leur nom normalisé et écrit le LISEZ-MOI.
+    """Copie des fichiers dans depots/<dossier de l'étape> sous leur nom normalisé et écrit le LISEZ-MOI.
 
     ``fichiers`` : liste de (chemin produit, rôle, description pour le nom, contenu pour le LISEZ-MOI).
     Le dossier de l'étape est vidé au préalable pour qu'aucun fichier périmé ne subsiste.
     """
-    cible = config.verifier_ecriture(config.DEPOTS / ETAPES[etape])
+    cible = config.verifier_ecriture(config.DEPOTS / DOSSIERS[etape])
     cible.mkdir(parents=True, exist_ok=True)
     # Le contenu est vidé sans supprimer le dossier lui-même, que Windows peut garder ouvert.
     for element in cible.iterdir():

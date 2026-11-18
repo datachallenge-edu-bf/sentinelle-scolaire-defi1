@@ -7,4 +7,4 @@ if __name__ == "__main__":
     executer_exploration()
     tables = executer_modelisation()
     print(tables["synthese_modeles_ensemble"].query("horizon == 1").to_string(index=False))
-    print(f"{len(exporter_analyse())} fichiers déposés dans depots/04-analyse.")
+    print(f"{len(exporter_analyse())} fichiers déposés dans depots/04_analyse.")

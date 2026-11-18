@@ -14,7 +14,7 @@ def main() -> None:
         print("Alertes de couverture :")
         print(alertes.to_string(index=False))
     depot = exporter_collecte()
-    print(f"{len(depot)} fichiers déposés dans depots/01-collecte.")
+    print(f"{len(depot)} fichiers déposés dans depots/01_collecte.")
 
 
 if __name__ == "__main__":

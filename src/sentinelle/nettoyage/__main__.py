@@ -9,7 +9,7 @@ def main() -> None:
     print(resultats["meta_controles"].to_string(index=False))
     print(resultats["contours_web"][["niveau", "taille_ko", "mosaique_valide"]].to_string(index=False))
     depot = exporter_nettoyage()
-    print(f"{len(depot)} fichiers déposés dans depots/02-nettoyage.")
+    print(f"{len(depot)} fichiers déposés dans depots/02_nettoyage.")
 
 
 if __name__ == "__main__":
