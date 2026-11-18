@@ -27,3 +27,4 @@ application/deploiement/
 # Trop lourds pour GitHub : déposés sur la plateforme equation
 *.gpkg
 depots/
+soumission/
