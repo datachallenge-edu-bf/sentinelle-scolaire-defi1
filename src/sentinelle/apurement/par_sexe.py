@@ -233,8 +233,6 @@ def construire(base: pd.DataFrame, statuts: pd.DataFrame, sources: pd.DataFrame 
     ecarts = _ecarts(sources).set_index(["province_ancienne_pcode", "sexe", "annee_scolaire"]).sort_index()
     valeurs = sources.set_index(["province_ancienne_pcode", "sexe", "annee_scolaire"]).sort_index()
     statut_total = statuts.set_index(["province_pcode", "annee_scolaire", "variable"])["statut"]
-    # Plages observées des taux de flux par sexe, pour borner les valeurs déduites.
-    observes = sources[sources["sexe"].isin(SEXES)]
 
     lignes, cellules = [], []
     for r in base.itertuples(index=False):

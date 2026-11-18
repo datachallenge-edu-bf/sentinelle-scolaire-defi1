@@ -178,9 +178,7 @@ VARIABLES = {
                    "(fait_secondaire_province) ; commodités, état des salles, ratios (fait_secondaire_region) ; "
                    "eleves, tba, tbs, taux_achevement (fait_tableau_bord_secondaire)", ""),
     "valeur": ("Valeur publiée, dans l'unité indiquée", ""),
-    "modalite": ("Modalité : F (filles ou femmes), G (garçons ou hommes), T (ensemble), public, prive, communautaire", ""),
     "age": ("Âge révolu en années (80 = 80 ans et plus)", "années"),
-    "population": ("Effectif de la population", "personnes"),
     "mesure": ("Mesure : population de référence, effectif au numérateur, taux, indice de parité (indicateurs) ; "
                "promotion, redoublement, abandon (flux, en %)", ""),
     "incidence": ("Part de la population sous le seuil de pauvreté (P0)", "%"),

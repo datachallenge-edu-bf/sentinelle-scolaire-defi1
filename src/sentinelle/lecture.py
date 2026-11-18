@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from functools import lru_cache
+from functools import lru_cache, cache
 from pathlib import Path
 
 import pandas as pd
@@ -41,7 +41,7 @@ def empreinte(chemin: Path) -> str:
     return _empreinte(str(chemin.resolve()), etat.st_size, etat.st_mtime_ns)
 
 
-@lru_cache(maxsize=None)
+@cache
 def _empreinte(chemin: str, taille: int, modification: int, taille_bloc: int = 1 << 20) -> str:
     # La taille et la date de modification font partie de la clé : un fichier modifié est recalculé.
     h = hashlib.sha256()

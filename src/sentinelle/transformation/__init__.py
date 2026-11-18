@@ -41,7 +41,6 @@ VARIABLES = {
     "salles_primaire_paillote_insd": ('explicative', 'Salles du primaire sous paillote', 'INSD, annuaires statistiques régionaux 2024'),
     "ecoles_primaires_fermees_insd": ('explicative', 'Écoles primaires fermées pour insécurité', 'INSD, annuaires statistiques régionaux 2024'),
     "eleves_post_primaire_insd": ('explicative', 'Élèves du post-primaire (enseignement général) de la commune', 'INSD, annuaires statistiques régionaux 2024'),
-    "deplaces": ('explicative', 'Personnes déplacées internes (dernière situation avant le 31 décembre de t)', 'CONASUR'),
     "tbs_primaire_commune": ('explicative', 'Taux brut de scolarisation du primaire de la commune, en %', 'INSD, annuaires statistiques régionaux 2024 ; INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
     "tbs_post_primaire_commune": ('explicative', 'Taux brut de scolarisation du post-primaire de la commune, en %', 'INSD, annuaires statistiques régionaux 2024 ; INSD, projections de population actualisées par âge simple (OpenDataForAfrica)'),
     "eleves_par_enseignant_primaire_insd": ('explicative', 'Élèves par enseignant du primaire de la commune', 'INSD, annuaires statistiques régionaux 2024'),

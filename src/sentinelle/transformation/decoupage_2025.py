@@ -39,7 +39,6 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .. import config
 from . import recensement
 from .panel import SEUIL_RUPTURE, annee_scolaire, debut, lire
 
@@ -344,7 +343,8 @@ def ecarts_recalcul_regional(region: pd.DataFrame) -> pd.Series:
 def controles(panel: pd.DataFrame, province_2025: pd.DataFrame, region: pd.DataFrame,
               region_2025: pd.DataFrame) -> pd.DataFrame:
     annees = panel["annee_scolaire"].nunique()
-    somme = lambda t, c: t.groupby("annee_scolaire")[c].sum()
+    def somme(t, c):
+        return t.groupby("annee_scolaire")[c].sum()
     ecart_effectif = (somme(province_2025, "effectif") - somme(panel, "effectif")).abs().max()
     ecart_deplaces = (somme(province_2025, "deplaces") - somme(panel, "deplaces")).abs().max()
     nouvelles = region_2025[region_2025["region_pcode"] != "BF"]

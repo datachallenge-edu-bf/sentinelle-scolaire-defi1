@@ -7,7 +7,6 @@ L'API ne recalcule aucune prévision : elle sert les tableaux produits par
 
 from __future__ import annotations
 
-import json
 import math
 import sys
 from functools import cached_property

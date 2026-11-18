@@ -1,0 +1,22 @@
+[project]
+name = "sentinelle-scolaire"
+version = "1.0.0"
+description = "Cartographie et anticipation du risque de décrochage scolaire au primaire (Data Challenge Burkina 2026, défi 1)"
+requires-python = ">=3.13"
+
+[tool.ruff]
+line-length = 130
+target-version = "py313"
+extend-exclude = ["notebooks", "application/web", "application/deploiement"]
+
+[tool.ruff.lint]
+# Erreurs, avertissements, noms et imports inutilisés, pièges courants.
+select = ["E", "F", "W", "B", "UP"]
+# E501 : catalogues de sources, libellés et descriptions gardent leurs phrases entières.
+# B023 : les fonctions définies dans une boucle y sont appelées aussitôt, dans la même itération.
+# B007 : variables de boucle nommées pour la lisibilité. E741 : noms courts (l) dans les compréhensions.
+ignore = ["E501", "E741", "B023", "B007", "B905"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "application/api"]

@@ -55,7 +55,6 @@ FICHES: dict[str, tuple[str, str, str, str]] = {
     "salles_primaire_paillote_insd": ('Salles du primaire sous paillote', 'salles', 'Salles du primaire sous paillote', ''),
     "ecoles_primaires_fermees_insd": ('Écoles primaires fermées pour insécurité', 'écoles', 'Écoles primaires fermées pour insécurité', ''),
     "eleves_post_primaire_insd": ('Élèves du post-primaire', 'élèves', 'Élèves du post-primaire (enseignement général) de la commune', ''),
-    "deplaces": ('Personnes déplacées internes', 'personnes', 'Personnes déplacées internes (dernière situation avant le 31 décembre de t)', ''),
     "tbs_primaire_commune": ('Taux brut de scolarisation du primaire de la commune, en %', '%', 'Taux brut de scolarisation du primaire de la commune, en %', "Élèves comptés dans la commune de l'école"),
     "tbs_post_primaire_commune": ('Taux brut de scolarisation du post-primaire de la commune, en %', '%', 'Taux brut de scolarisation du post-primaire de la commune, en %', "Élèves comptés dans la commune de l'école"),
     "eleves_par_enseignant_primaire_insd": ('Élèves par enseignant du primaire de la commune', 'élèves par enseignant', 'Élèves par enseignant du primaire de la commune', ''),

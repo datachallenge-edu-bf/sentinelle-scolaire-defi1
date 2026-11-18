@@ -16,12 +16,12 @@ dans les deux découpages.
 
 from __future__ import annotations
 
-from functools import lru_cache
+from functools import lru_cache, cache
 
 import numpy as np
 import pandas as pd
 
-from .panel import annee_scolaire, debut, lire
+from .panel import annee_scolaire, lire
 
 PREMIERE, DERNIERE = 2016, 2025
 GROUPES = {"population_totale": (0, 80), "moins_15": (0, 14), "age_15_64": (15, 64), "plus_64": (65, 80),
@@ -81,7 +81,7 @@ def _groupes(table: pd.DataFrame, cles: list[str]) -> pd.DataFrame:
     return resultat
 
 
-@lru_cache(maxsize=None)
+@cache
 def demographie(niveau: str) -> pd.DataFrame:
     """Groupes d'âge et indicateurs par entité (commune, province ou région, de 2025 ou anciennes) et année scolaire.
 

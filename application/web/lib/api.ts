@@ -135,19 +135,6 @@ export interface Province {
   annee_des_variables: string;
 }
 
-export interface Region {
-  region: string;
-  provinces: number;
-  taux_pondere: number;
-  taux_max: number;
-  province_max: string;
-  eleve: number;
-  moyen: number;
-  faible: number;
-  alertes_rupture: number;
-  eleves_primaire: number;
-}
-
 export interface Leviers {
   pcode: string;
   province: string;

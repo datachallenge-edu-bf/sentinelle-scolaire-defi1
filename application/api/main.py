@@ -16,7 +16,7 @@ from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from donnees import (ANNEE_PREVUE, ANNEES_PROJETEES, DONNEES_APPLI as D, POPULATIONS, enregistrements, fr, logit,
+from donnees import (ANNEE_PREVUE, ANNEES_PROJETEES, DONNEES_APPLI as D, POPULATIONS, fr, logit,
                      nom_variable, propre, taux)
 
 # En production (variable SENTINELLE_PRODUCTION), la documentation interactive de l'API n'est pas exposée.
@@ -253,37 +253,6 @@ def province(pcode: str, population: Population = "ensemble"):
     })
 
 
-@app.get("/api/regions")
-def regions(population: Population = "ensemble"):
-    t = D.tableau(population).copy()
-    t["poids"] = t["province_pcode"].map(D.poids).fillna(1)
-    lignes = []
-    for nom, g in t.groupby("region_nom"):
-        lignes.append({
-            "region": nom, "provinces": len(g),
-            "taux_pondere": round(float(np.average(g["taux_abandon_prevu"], weights=g["poids"])), 2),
-            "taux_max": float(g["taux_abandon_prevu"].max()),
-            "province_max": g.loc[g["taux_abandon_prevu"].idxmax(), "province_nom"],
-            "eleve": int((g["classe_de_risque"] == "élevé").sum()),
-            "moyen": int((g["classe_de_risque"] == "moyen").sum()),
-            "faible": int((g["classe_de_risque"] == "faible").sum()),
-            "alertes_rupture": int((g["risque_de_rupture"] == "élevé").sum()),
-            "eleves_primaire": int(g["poids"].sum()),
-        })
-    lignes.sort(key=lambda x: -x["taux_pondere"])
-    return propre({"regions": lignes, "seuils": _seuils(population)})
-
-
-@app.get("/api/region/{nom}")
-def region(nom: str, population: Population = "ensemble"):
-    t = D.tableau(population)
-    g = t[t["region_nom"] == nom]
-    if g.empty:
-        raise HTTPException(404, f"Région inconnue : {nom}")
-    return propre({"region": nom,
-                   "provinces": [_resume(r) for _, r in g.sort_values("taux_abandon_prevu", ascending=False).iterrows()]})
-
-
 # Simulateur -----------------------------------------------------------------------------------------
 
 def _elastic():
@@ -356,21 +325,6 @@ def simuler(s: Scenario):
                    "classe_prevue": r["classe_de_risque"], "classe_simulee": classe})
 
 
-@app.get("/api/methode")
-def methode():
-    ensemble, sexe = D.fiche("ensemble"), D.fiche("sexe")
-    def tables(jeu: str) -> dict:
-        from donnees import lire
-        synthese = lire(f"synthese_modeles_{jeu}")
-        validation = lire(f"explication_validation_{jeu}")
-        return {"synthese": enregistrements(synthese[synthese["horizon"] == 1]),
-                "intervalle": enregistrements(lire(f"intervalle_{jeu}")),
-                "explication": enregistrements(validation[validation["role"].fillna("") != ""])}
-    return propre({"fiches": {"ensemble": ensemble, "sexe": sexe},
-                   "tables": {"ensemble": tables("ensemble"), "sexe": tables("sexe")},
-                   "alerte": enregistrements(D.evaluation_alerte), "sources": SOURCES})
-
-
 # Assistant ------------------------------------------------------------------------------------------
 
 class Question(BaseModel):
@@ -424,7 +378,7 @@ def lire_mise_a_jour(c: TexteCsv):
     try:
         return {"lignes": propre(M.lire_csv(c.csv))}
     except Exception as e:
-        raise HTTPException(400, f"Fichier illisible : {e}")
+        raise HTTPException(400, f"Fichier illisible : {e}") from e
 
 
 @app.post("/api/mise_a_jour/apercu")
@@ -484,4 +438,4 @@ def rapport_region(nom: str, population: Population = "ensemble"):
     try:
         return _pdf(rapport.rapport_region(nom, population), f"sentinelle_rapport_region_{nom}_{population}.pdf")
     except ValueError as e:
-        raise HTTPException(404, str(e))
+        raise HTTPException(404, str(e)) from e

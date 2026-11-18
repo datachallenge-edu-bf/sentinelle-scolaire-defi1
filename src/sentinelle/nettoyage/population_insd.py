@@ -27,7 +27,6 @@ from difflib import SequenceMatcher
 import pandas as pd
 
 from .communes_insd import ORTHOGRAPHES as ORTHOGRAPHES_COMMUNES
-from .dgess import _trier
 from .outils import Journal, lire_extrait, normaliser_nom
 
 TABLE = "fait_population"

@@ -179,7 +179,6 @@ def _regrouper_communes(rgph: pd.DataFrame) -> pd.DataFrame:
     """Une ligne par commune COD-AB : arrondissements sommés, taux pondérés par la population."""
     communes = rgph[rgph["niveau_rgph"] == "commune_rgph"].dropna(subset=["commune_pcode"])
     taux = [c for c in INDICATEURS if c not in COMPTAGES]
-    poids = communes["population"]
     agreges = communes.groupby("commune_pcode").apply(
         lambda g: pd.Series({**{c: g[c].sum(min_count=1) for c in COMPTAGES},
                              **{c: np.average(g[c].dropna(), weights=g.loc[g[c].notna(), "population"])
@@ -196,7 +195,6 @@ def _regrouper_communes(rgph: pd.DataFrame) -> pd.DataFrame:
 def construire(communes: pd.DataFrame, alias: pd.DataFrame, journal: Journal) -> pd.DataFrame:
     """Table finale : pays, régions, provinces (anciennes) et communes COD-AB, 33 indicateurs."""
     rgph = _rattacher(lire_rgph(journal), communes, alias, journal)
-    hors = rgph[["region_ancienne_pcode", "province_ancienne_pcode", "niveau_rgph"]]
     lignes = []
     for niveau, cle in [("pays", None), ("region_ancienne", "region_ancienne_pcode"),
                         ("province_ancienne", "province_ancienne_pcode")]:

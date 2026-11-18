@@ -20,8 +20,6 @@ de l'ensemble.
 from __future__ import annotations
 
 import io
-import math
-from pathlib import Path
 
 import numpy as np
 import pandas as pd

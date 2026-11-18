@@ -61,14 +61,12 @@ Guide : depuis `application/guide`, `python guide.py` régénère `web/public/gu
 | `GET /api/carte` | Contours des provinces et des régions, points d'étiquette |
 | `GET /api/national?population=` | Série des quatre années par province, alertes, filles et garçons par région, nuage SHAP, provinces qui résistent, erreurs au test |
 | `GET /api/province/{pcode}?population=` | Fiche complète d'une province |
-| `GET /api/regions`, `GET /api/region/{nom}` | Synthèse par région |
 | `GET /api/simulateur/{pcode}`, `POST /api/simulateur` | Leviers d'une province, taux attendu pour un scénario |
 | `POST /api/assistant` | Réponse de l'assistant |
 | `GET /api/rapport/national`, `/api/rapport/region/{nom}`, `/api/rapport/province/{pcode}` | Rapports PDF |
 | `GET /api/mise_a_jour/etat`, `GET /api/mise_a_jour/modele.csv` | État des données, fichier à remplir |
 | `POST /api/mise_a_jour/lire`, `/apercu`, `/enregistrer` | Lecture d'un CSV, aperçu des prévisions, enregistrement |
 | `GET /api/mise_a_jour/previsions/{annee}.csv`, `DELETE /api/mise_a_jour/{annee}` | Prévisions d'une année saisie, retrait de la dernière année |
-| `GET /api/methode` | Fiches des modèles et tableaux de validation |
 
 `population` vaut `ensemble` (par défaut), `F` ou `G`.
 

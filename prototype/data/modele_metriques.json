@@ -1,9 +1,0 @@
-{
-  "donnees": "fictives",
-  "n_eleves_test": 3282,
-  "prevalence_test": 0.128,
-  "roc_auc": 0.812,
-  "pr_auc": 0.442,
-  "rappel_top20": 0.601,
-  "rappel_top20_reference_territoire": 0.308
-}
