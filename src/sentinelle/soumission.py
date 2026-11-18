@@ -308,9 +308,13 @@ def preparer() -> dict[str, list[tuple[str, int]]]:
     fichiers.append((5, "Documentation", lisez_moi, _lisez_moi(resume, ecartes).encode("utf-8"), ""))
 
     # Un dossier par catégorie de la plateforme, sans accent ; dans chacun, les fichiers dans l'ordre des étapes.
+    # Les anciens dossiers vides sont retirés, sauf ceux de la sortie et ceux qu'un explorateur garde ouverts.
     for vide in sorted(SORTIE.glob("*"), reverse=True) if SORTIE.exists() else []:
-        if vide.is_dir() and not any(vide.iterdir()):
-            vide.rmdir()
+        if vide.is_dir() and vide.name not in CATEGORIES.values() and not any(vide.iterdir()):
+            try:
+                vide.rmdir()
+            except OSError:
+                pass
     bilan: dict[str, list[tuple[str, int]]] = {}
     for etape, categorie, nom_fichier, octets, _ in sorted(fichiers, key=lambda f: (f[0], f[2])):
         assert len(octets) <= LIMITE_OCTETS, (nom_fichier, len(octets))
