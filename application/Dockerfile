@@ -19,6 +19,7 @@ COPY application/requirements-api.txt ./
 RUN pip install --no-cache-dir -r requirements-api.txt
 COPY src ./src
 COPY data/02_nettoyage/contours_web ./data/02_nettoyage/contours_web
+COPY data/02_nettoyage/fait_secondaire_province.csv ./data/02_nettoyage/
 COPY data/03_transformation/base_apuree ./data/03_transformation/base_apuree
 COPY data/03_transformation/dictionnaire_variables_modele.csv ./data/03_transformation/
 COPY data/03_transformation/metadonnees/dictionnaire_bases_modele.csv ./data/03_transformation/metadonnees/
