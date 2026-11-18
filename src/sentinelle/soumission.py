@@ -93,6 +93,8 @@ DOCUMENTS = [
      "application, limites."),
     (5, "analyst", config.RACINE / "application/web/public/guide_sentinelle.pdf",
      "guide-utilisation-tableau-de-bord", "Guide d'utilisation du tableau de bord, écran par écran."),
+    (5, "analyst", config.RACINE / "docs/notice_ia/notice_usage_ia.pdf", "notice-usage-intelligence-artificielle",
+     "Notice d'usage de l'IA : données non sensibles, ce qui a été demandé à l'IA et ce qui en a été retenu."),
 ]
 
 
@@ -301,12 +303,8 @@ def preparer() -> dict[str, list[tuple[str, int]]]:
         (3, "Données", nom(3, "architect", "dictionnaire-base-finale", "csv"), _ecrire_csv(dictionnaire_depose()),
          "Dictionnaire des colonnes de la base finale : libellé, unité, calcul, source, limites."),
     ]
-    prevision = (config.DEPOTS / DOSSIERS[4] /
-                 "SENTINELLE_04-analyse_D1_scientist_previsions-tableau-de-bord-province-2025-2028-ensemble_v1.csv")
-    fichiers.append((4, "Données", nom(4, "scientist", "previsions-province-2025-2028", "csv"),
-                     _table_deposee(prevision),
-                     "Prévisions du taux d'abandon 2025-2026 à 2027-2028 par province : intervalle, classe de risque, "
-                     "alerte de rupture (version par sexe dans l'archive de l'étape 04)."))
+    # Les prévisions par province sont dans l'archive de l'étape 04 et téléchargeables dans l'application
+    # (bouton « Données ») : la place libérée reçoit la notice d'usage de l'IA (20 fichiers au plus).
     for etape, role, source, description, texte in DOCUMENTS:
         fichiers.append((etape, "Documentation", nom(etape, role, description, "pdf"), source.read_bytes(), texte))
     lisez_moi = nom(5, "analyst", "lisez-moi-ensemble-des-depots", "md")
