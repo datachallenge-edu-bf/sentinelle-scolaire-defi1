@@ -1,7 +1,7 @@
 """Préparation des dépôts selon la convention du challenge.
 
 Modèle : EQUIPE_ETAPE_DEFI_ROLE_description_vN.extension
-Exemple : DiscernaTeam_02-nettoyage_D1_engineer_effectifs-primaire-propres_v1.csv
+Exemple : SENTINELLE_02-nettoyage_D1_engineer_effectifs-primaire-propres_v1.csv
 """
 
 from __future__ import annotations

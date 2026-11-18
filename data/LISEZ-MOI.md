@@ -11,5 +11,5 @@ Ce dossier contient les sorties de chaque étape, sous des noms courts que le co
 | `05_interpretation/` | Interprétation : indicateurs clés, carte d'alerte, rapports PDF | `sentinelle.interpretation` |
 
 **Les fichiers à déposer sur la plateforme ne sont pas ici** : ils sont dans `../depots/`, renommés selon la
-convention du challenge (`DiscernaTeam_ÉTAPE_D1_RÔLE_description_vN`), avec un LISEZ-MOI par dépôt. Chaque
+convention du challenge (`SENTINELLE_ÉTAPE_D1_RÔLE_description_vN`), avec un LISEZ-MOI par dépôt. Chaque
 commande d'étape les régénère à partir de ce dossier.

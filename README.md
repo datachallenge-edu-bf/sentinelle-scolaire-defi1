@@ -1,6 +1,6 @@
 # Sentinelle Scolaire : Data Challenge Burkina 2026, défi 1
 
-Cartographie et anticipation du risque de décrochage scolaire au primaire, province par province, à partir des données remises par les organisateurs. Équipe Discerna Team.
+Cartographie et anticipation du risque de décrochage scolaire au primaire, province par province, à partir des données remises par les organisateurs.
 
 **Application en ligne : https://sentinelle-scolaire-bf.up.railway.app**
 
@@ -34,7 +34,7 @@ Competition_EducationBurkina/
 | `src/sentinelle/` | Code de la chaîne de traitement, un sous-module par étape |
 | `notebooks/` | Un notebook numéroté par étape, enregistré avec ses résultats |
 | `data/` | Dossier de travail : sorties de la chaîne, une sous-partie par étape (`01_collecte` à `05_interpretation`), que le code relit d'une étape à l'autre |
-| `depots/` | **Fichiers à déposer** sur la plateforme : un dossier par dépôt (`01_collecte` à `05_interpretation`, noms du document du challenge), fichiers nommés `DiscernaTeam_ÉTAPE_D1_RÔLE_description_vN`, un LISEZ-MOI par dépôt |
+| `depots/` | **Fichiers à déposer** sur la plateforme : un dossier par dépôt (`01_collecte` à `05_interpretation`, noms du document du challenge), fichiers nommés `SENTINELLE_ÉTAPE_D1_RÔLE_description_vN`, un LISEZ-MOI par dépôt |
 | `application/` | Tableau de bord : API FastAPI (`api/`), site Next.js (`web/`), guide d'utilisation, Docker, déploiement |
 | `docs/` | Documentation de la solution, documents techniques, note d'intention |
 | `outputs/` | Figures et cartes |

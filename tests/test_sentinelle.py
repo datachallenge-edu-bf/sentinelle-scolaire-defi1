@@ -32,12 +32,12 @@ def test_denormalisation_toujours_entre_0_et_100():
 
 # Nommage des dépôts ----------------------------------------------------------------------------------
 
-MODELE = re.compile(r"^DiscernaTeam_0[1-5]-[a-z]+_D1_(engineer|architect|analyst|scientist)_[a-z0-9]+(-[a-z0-9]+)*_v[0-9]+\.[a-z0-9]+$")
+MODELE = re.compile(r"^SENTINELLE_0[1-5]-[a-z]+_D1_(engineer|architect|analyst|scientist)_[a-z0-9]+(-[a-z0-9]+)*_v[0-9]+\.[a-z0-9]+$")
 
 
 def test_nom_depot_suit_la_convention():
     nom = depots.nom_depot(2, "engineer", "Effectifs primaire propres (édition 2025)", 1, "csv")
-    assert nom == "DiscernaTeam_02-nettoyage_D1_engineer_effectifs-primaire-propres-edition-2025_v1.csv"
+    assert nom == "SENTINELLE_02-nettoyage_D1_engineer_effectifs-primaire-propres-edition-2025_v1.csv"
     assert MODELE.match(nom)
 
 
