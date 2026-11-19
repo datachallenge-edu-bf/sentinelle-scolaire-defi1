@@ -154,8 +154,12 @@ def abandon_ordre(ordre: str, pcode: str | None = None, region: str | None = Non
     lignes = [{"province": p["province"], "pcode": p["pcode"], "region": p["region"], "taux": p["serie"][k]["taux"],
                "taux_premiere_annee": p["serie"][0]["taux"], "classe": p["serie"][k]["classe"]} for p in provinces]
     valides = sorted([x for x in lignes if x["taux"] is not None], key=lambda x: -x["taux"])
+    zone = [x["taux"] for x in valides]
+    mediane_zone = round(float(pd.Series(zone).median()), 1) if region and zone else None
     return {"ordre": LIBELLES_ORDRES[ordre], "annee": v["annees"][k], "premiere_annee": v["annees"][0],
-            "mediane_provinces": v["medianes"][k]["mediane"], "mediane_premiere_annee": v["medianes"][0]["mediane"],
+            "mediane_nationale_des_47_provinces": v["medianes"][k]["mediane"],
+            "mediane_nationale_premiere_annee": v["medianes"][0]["mediane"],
+            "region": region, "mediane_des_provinces_de_la_region": mediane_zone,
             "provinces": valides[: max(1, int(n))] if not pcode else valides,
             "non_interpretables": [x["province"] for x in lignes if x["taux"] is None],
             "remarque": "valeurs observées, sans prévision : quatre années publiées seulement",
@@ -309,14 +313,14 @@ def _hors_ligne(question: str, population: str, contexte: str = "") -> tuple[str
         if provinces and a["provinces"]:
             x = a["provinces"][0]
             lignes = [f"**{x['province']}**, abandon au {a['ordre']} : **{_pct(x['taux'])}** en {a['annee']} "
-                      f"({_pct(x['taux_premiere_annee'])} en {a['premiere_annee']}) ; médiane des provinces {_pct(a['mediane_provinces'])}."]
+                      f"({_pct(x['taux_premiere_annee'])} en {a['premiere_annee']}) ; médiane nationale {_pct(a['mediane_nationale_des_47_provinces'])}."]
         elif provinces:
             lignes = [f"Pas de taux interprétable au {a['ordre']} pour {provinces[0]['province']} en {a['annee']} "
                       "(presque aucun élève : écoles fermées)."]
         else:
             zone = f" dans la région {regions[0]}" if regions else ""
-            lignes = [f"Abandon au {a['ordre']}{zone}, {a['annee']} (médiane nationale {_pct(a['mediane_provinces'])}, "
-                      f"contre {_pct(a['mediane_premiere_annee'])} en {a['premiere_annee']}) :"]
+            lignes = [f"Abandon au {a['ordre']}{zone}, {a['annee']} (médiane nationale {_pct(a['mediane_nationale_des_47_provinces'])}, "
+                      f"contre {_pct(a['mediane_nationale_premiere_annee'])} en {a['premiere_annee']}) :"]
             lignes += [f"{i + 1}. **{x['province']}** ({x['region']}) : {_pct(x['taux'])}" for i, x in enumerate(a["provinces"])]
         lignes.append("Valeurs observées, sans prévision : ces taux ne sont publiés que pour quatre années.")
         return "\n".join(lignes), a["sources"], [{"pcode": x["pcode"], "province": x["province"]} for x in a["provinces"][:5]]
