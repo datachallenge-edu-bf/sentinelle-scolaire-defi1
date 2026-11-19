@@ -173,3 +173,10 @@ def test_rapport_province_est_un_pdf(api):
     import rapport
     contenu = rapport.rapport_province("BF5401", "ensemble")
     assert contenu[:4] == b"%PDF" and len(contenu) > 50_000
+
+
+def test_assistant_post_primaire_et_secondaire(api, hors_ligne):
+    from assistant import repondre
+    r = repondre("Quel est le taux d'abandon au post-primaire ?")
+    assert "post-primaire" in r["reponse"] and "sans prévision" in r["reponse"]
+    assert "secondaire" in repondre("Compare les trois ordres")["reponse"]

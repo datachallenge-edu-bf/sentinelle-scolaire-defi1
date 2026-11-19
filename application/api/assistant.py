@@ -31,6 +31,9 @@ SOURCE_BASE = "Base apurée 2016-2017 à 2024-2025 (Data Pack du Data Challenge,
 SOURCE_PREVISION = "Prévision Sentinelle : retour amorti vers le niveau habituel de la province, intervalle conforme à 80 %"
 SOURCE_SHAP = "Facteurs : LightGBM et valeurs SHAP (associations, pas causes)"
 SOURCE_RUPTURE = "Alerte de rupture : régression logistique sur sept signaux"
+SOURCE_ORDRES = ("Annuaires du post-primaire et du secondaire (DGESS), taux observés 2018-2019 et 2020-2021 à 2022-2023 ; "
+                 "un 0 publié compte comme non renseigné ; pas de prévision")
+LIBELLES_ORDRES = {"post_primaire": "post-primaire (6e, 5e, 4e)", "secondaire": "secondaire (2nde, 1re)"}
 ANNEES = ["2024-2025", "2025-2026", "2026-2027", "2027-2028"]
 
 
@@ -139,6 +142,33 @@ def classement_indicateur(variable: str, region: str | None = None, n: int = 8, 
     return I.classement_indicateur(variable, region, population, n, plus_bas)
 
 
+def abandon_ordre(ordre: str, pcode: str | None = None, region: str | None = None, annee: str | None = None,
+                  n: int = 5, population: str = "ensemble") -> dict:
+    """Abandon observé au post-primaire ou au secondaire : pays (médiane, classement), une région ou une province."""
+    from main import vue_ordre
+    ordre = "secondaire" if "second" in _sans_accent(ordre) else "post_primaire"
+    v = vue_ordre(ordre, population)
+    k = v["annees"].index(annee) if annee in v["annees"] else len(v["annees"]) - 1
+    provinces = [p for p in v["provinces"]
+                 if (not region or _sans_accent(p["region"]) == _sans_accent(region)) and (not pcode or p["pcode"] == pcode)]
+    lignes = [{"province": p["province"], "pcode": p["pcode"], "region": p["region"], "taux": p["serie"][k]["taux"],
+               "taux_premiere_annee": p["serie"][0]["taux"], "classe": p["serie"][k]["classe"]} for p in provinces]
+    valides = sorted([x for x in lignes if x["taux"] is not None], key=lambda x: -x["taux"])
+    return {"ordre": LIBELLES_ORDRES[ordre], "annee": v["annees"][k], "premiere_annee": v["annees"][0],
+            "mediane_provinces": v["medianes"][k]["mediane"], "mediane_premiere_annee": v["medianes"][0]["mediane"],
+            "provinces": valides[: max(1, int(n))] if not pcode else valides,
+            "non_interpretables": [x["province"] for x in lignes if x["taux"] is None],
+            "remarque": "valeurs observées, sans prévision : quatre années publiées seulement",
+            "sources": [SOURCE_ORDRES]}
+
+
+def comparaison_ordres(population: str = "ensemble") -> dict:
+    """Abandon de la province médiane au primaire, au post-primaire et au secondaire, années observées communes."""
+    from main import comparaison_ordres as comparer
+    c = comparer(population)
+    return {**c, "sources": [SOURCE_BASE, SOURCE_ORDRES]}
+
+
 OUTILS = {
     "fiche_province": (fiche_province, "Fiche d'une province : taux observé 2024-2025, prévisions 2025-2026 à 2027-2028 avec intervalle, classe, rang, facteurs, rupture, filles et garçons.",
                        {"pcode": {"type": "string", "description": "Code de la province, par exemple BF5401"}}),
@@ -162,6 +192,15 @@ OUTILS = {
                               "entre l'indicateur et le risque.",
                               {"variable": {"type": "string"}, "region": {"type": "string"}, "n": {"type": "integer"},
                                "plus_bas": {"type": "boolean", "description": "vrai pour classer des plus basses aux plus élevées"}}),
+    "abandon_ordre": (abandon_ordre,
+                      "Abandon observé au post-primaire (6e à 4e, collège) ou au secondaire (2nde, 1re, lycée), par "
+                      "province : pays, région ou une province, de 2018-2019 à 2022-2023. Pas de prévision pour ces ordres.",
+                      {"ordre": {"type": "string", "description": "post_primaire ou secondaire"},
+                       "pcode": {"type": "string"}, "region": {"type": "string"}, "annee": {"type": "string"},
+                       "n": {"type": "integer"}}),
+    "comparaison_ordres": (comparaison_ordres,
+                           "Comparaison de l'abandon au primaire, au post-primaire et au secondaire (province médiane), "
+                           "2018-2019 à 2022-2023.", {}),
 }
 
 
@@ -252,6 +291,35 @@ def _hors_ligne(question: str, population: str, contexte: str = "") -> tuple[str
         # « dans la zone », « là-bas » : on reprend la province ou la région de l'échange précédent.
         provinces, regions = _trouver(contexte)
     annee = next((a for a in ANNEES if a in question), "2025-2026")
+    ordre = ("secondaire" if re.search(r"\bsecondaire\b|\blycee|\b2nde\b|\bseconde\b", q) and "cantine" not in q
+             else "post_primaire" if re.search(r"post.?primaire|\bcollege|\bcem\b|\b6e\b|\b5e\b|\b4e\b", q) else None)
+    if re.search(r"(trois|3) ordres|primaire.*post.?primaire.*secondaire", q):
+        c = comparaison_ordres(population)
+        s_ = c["series"]
+        lignes = [f"Abandon de la province médiane, {c['annees'][0]} puis {c['annees'][-1]} :",
+                  f"- primaire : {_pct(s_['primaire'][0])} puis **{_pct(s_['primaire'][-1])}**",
+                  f"- post-primaire : {_pct(s_['post_primaire'][0])} puis **{_pct(s_['post_primaire'][-1])}**",
+                  f"- secondaire : {_pct(s_['secondaire'][0])} puis **{_pct(s_['secondaire'][-1])}**",
+                  "Le décrochage augmente dans les trois ordres ; c'est au post-primaire qu'il est le plus élevé."]
+        return "\n".join(lignes), c["sources"], []
+    if ordre:
+        a = abandon_ordre(ordre, provinces[0]["pcode"] if provinces else None, regions[0] if regions and not provinces else None,
+                          next((x for x in ["2018-2019", "2020-2021", "2021-2022", "2022-2023"] if x in question), None),
+                          n=5, population=population)
+        if provinces and a["provinces"]:
+            x = a["provinces"][0]
+            lignes = [f"**{x['province']}**, abandon au {a['ordre']} : **{_pct(x['taux'])}** en {a['annee']} "
+                      f"({_pct(x['taux_premiere_annee'])} en {a['premiere_annee']}) ; médiane des provinces {_pct(a['mediane_provinces'])}."]
+        elif provinces:
+            lignes = [f"Pas de taux interprétable au {a['ordre']} pour {provinces[0]['province']} en {a['annee']} "
+                      "(presque aucun élève : écoles fermées)."]
+        else:
+            zone = f" dans la région {regions[0]}" if regions else ""
+            lignes = [f"Abandon au {a['ordre']}{zone}, {a['annee']} (médiane nationale {_pct(a['mediane_provinces'])}, "
+                      f"contre {_pct(a['mediane_premiere_annee'])} en {a['premiere_annee']}) :"]
+            lignes += [f"{i + 1}. **{x['province']}** ({x['region']}) : {_pct(x['taux'])}" for i, x in enumerate(a["provinces"])]
+        lignes.append("Valeurs observées, sans prévision : ces taux ne sont publiés que pour quatre années.")
+        return "\n".join(lignes), a["sources"], [{"pcode": x["pcode"], "province": x["province"]} for x in a["provinces"][:5]]
     variables = I.variables_de_la_question(question)
     if variables:
         return _texte_indicateurs(question, provinces, regions, variables, population)
@@ -320,14 +388,16 @@ def _hors_ligne(question: str, population: str, contexte: str = "") -> tuple[str
 
     aide = ("Je réponds à partir des données du tableau de bord. Exemples :\n"
             "- « Où agir en priorité en 2025-2026 ? »\n- « Compare Loroum et Yagha »\n- « Que se passe-t-il dans la région Soum ? »\n"
-            "- « Quelles provinces risquent une rupture ? »\n- « Quelles provinces résistent ? »\n- « Où les filles sont-elles plus exposées ? »")
+            "- « Quelles provinces risquent une rupture ? »\n- « Quelles provinces résistent ? »\n- « Où les filles sont-elles plus exposées ? »\n"
+            "- « Abandon au post-primaire dans la région Liptako »\n- « Compare les trois ordres »")
     return aide, [], []
 
 
 # Mode Gemini ----------------------------------------------------------------------------------------
 
 CONSIGNE = (
-    "Tu es l'assistant de Sentinelle Scolaire, tableau de bord du risque de décrochage au primaire au Burkina Faso "
+    "Tu es l'assistant de Sentinelle Scolaire, tableau de bord du risque de décrochage au Burkina Faso (prévisions au "
+    "primaire ; valeurs observées au post-primaire et au secondaire, outils abandon_ordre et comparaison_ordres) "
     "(47 provinces, 17 régions, découpage de 2025). Réponds en français, en phrases courtes, pour un décideur. "
     "N'utilise que les chiffres renvoyés par les outils ; si une information manque, dis-le. Les facteurs sont des "
     "associations, pas des causes. Les taux sont en pourcentage avec une virgule décimale. Termine par une "
