@@ -1949,9 +1949,8 @@ h3 {
   top: var(--drapeau);
   z-index: 50;
   display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 10px 20px;
+  flex-direction: column;
+  padding: 0;
   background: linear-gradient(180deg, #0d1626 0%, #0b1322 100%);
   border-bottom: 1px solid var(--bordure);
 }
@@ -2110,4 +2109,27 @@ h3 {
 
 .tuiles.tuiles-5 {
   grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* Ligne 1 : identité et ordre d'enseignement ; ligne 2 : écrans de l'ordre choisi. */
+.barre-ligne {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 20px;
+}
+
+.barre-ecrans {
+  padding: 4px 20px 6px;
+  border-top: 1px solid var(--bordure);
+  background: rgba(10, 17, 31, 0.6);
+}
+
+.barre-ligne .ordres {
+  margin-left: 8px;
+}
+
+.barre-ligne .ordre {
+  padding: 8px 18px;
+  font-size: 14.5px;
 }
