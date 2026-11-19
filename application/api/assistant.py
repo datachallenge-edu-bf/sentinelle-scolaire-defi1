@@ -149,8 +149,16 @@ def abandon_ordre(ordre: str, pcode: str | None = None, region: str | None = Non
     ordre = "secondaire" if "second" in _sans_accent(ordre) else "post_primaire"
     v = vue_ordre(ordre, population)
     k = v["annees"].index(annee) if annee in v["annees"] else len(v["annees"]) - 1
+    if region:
+        # « région Sirba », « Sirba region » : on garde le nom de la région.
+        cle = re.sub(r"(region|de|la|du)", " ", _sans_accent(region)).strip()
+        connues = {_sans_accent(p["region"]): p["region"] for p in v["provinces"]}
+        trouvee = next((nom for c_, nom in connues.items() if c_ == cle or c_ in cle.split()), None)
+        if trouvee is None:
+            return {"erreur": f"Région inconnue : {region}", "regions": sorted(connues.values())}
+        region = trouvee
     provinces = [p for p in v["provinces"]
-                 if (not region or _sans_accent(p["region"]) == _sans_accent(region)) and (not pcode or p["pcode"] == pcode)]
+                 if (not region or p["region"] == region) and (not pcode or p["pcode"] == pcode)]
     lignes = [{"province": p["province"], "pcode": p["pcode"], "region": p["region"], "taux": p["serie"][k]["taux"],
                "taux_premiere_annee": p["serie"][0]["taux"], "classe": p["serie"][k]["classe"]} for p in provinces]
     valides = sorted([x for x in lignes if x["taux"] is not None], key=lambda x: -x["taux"])
@@ -412,7 +420,8 @@ CONSIGNE = (
     "eau, distance, enseignants, mariage précoce, orpaillage…), utilise indicateurs_province ou classement_indicateur "
     "avec les variables du catalogue, compare à la médiane des provinces et indique le lien avec le risque comme une "
     "association. Tiens compte des échanges précédents : « la zone » ou « là-bas » désignent la province ou la région "
-    "dont on vient de parler. Codes des provinces : {codes}. Catalogue des indicateurs (variable : libellé) : {catalogue}."
+    "dont on vient de parler. Régions (nom exact à passer aux outils) : {regions}. Codes des provinces : {codes}. "
+    "Catalogue des indicateurs (variable : libellé) : {catalogue}."
 )
 
 
@@ -440,7 +449,8 @@ def _appeler_gemini(cle: str, contenus: list, consigne: str) -> dict:
 def _gemini(question: str, population: str, cle: str, historique: list[dict]) -> tuple[str, list[str], list[dict]]:
     codes = ", ".join(f"{r.province_nom}={r.province_pcode}" for r in D.tableau_ensemble.itertuples())
     catalogue = "; ".join(f"{x['variable']} : {x['libelle']}" for x in I.catalogue())
-    consigne = CONSIGNE.format(codes=codes, catalogue=catalogue)
+    regions = ", ".join(sorted(D.tableau_ensemble["region_nom"].unique()))
+    consigne = CONSIGNE.format(codes=codes, catalogue=catalogue, regions=regions)
     contenus = [{"role": "user" if m.get("auteur") == "moi" else "model", "parts": [{"text": str(m.get("texte", ""))[:1500]}]}
                 for m in historique[-6:] if m.get("texte")]
     contenus.append({"role": "user", "parts": [{"text": question}]})
